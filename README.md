@@ -18,7 +18,18 @@ $ npm install eslint-plugin-nextcloud --save-dev
 
 ## Usage
 
-Add `nextcloud` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix:
+Add `plugin:nextcloud/recommended` to the `extends` section of your `.eslintrc` configuration file in order to use all recommended options (load estlint-plugin-nextcloud, add Nextcloud environment and add recommended rules):
+
+```json
+{
+    extends: [
+        'plugin:nextcloud/recommended',
+    ]
+}
+```
+
+
+Alternatively, you can activate only those parts that you want to use. In this case, you have to add `nextcloud` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix:
 
 ```json
 {
@@ -29,7 +40,7 @@ Add `nextcloud` to the plugins section of your `.eslintrc` configuration file. Y
 ```
 
 
-Then add the Nextcloud environment if you want to use global variables defined by Nextcloud server.
+Add the Nextcloud environment if you want to use global variables defined by Nextcloud server.
 
 ```json
 {
@@ -40,7 +51,7 @@ Then add the Nextcloud environment if you want to use global variables defined b
 ```
 
 
-Then configure the rules you want to use under the rules section.
+Configure the rules you want to use under the rules section.
 
 ```json
 {
@@ -50,6 +61,11 @@ Then configure the rules you want to use under the rules section.
     }
 }
 ```
+
+## Supported Shared Configurations
+
+* `nextcloud/recommended`: Recommended configuration that loads the Nextcloud ESlint plugin, adds the Nextcloud environment and configures all recommended Nextcloud rules.
+
 
 ## Supported Environments
 
