@@ -8,6 +8,8 @@
     "eslint-plugin"
   ],
   "author": "Christoph Wurst",
+  "homepage": "https://github.com/ChristophWurst/eslint-plugin-nextcloud",
+  "repository": "git+https://github.com/ChristophWurst/eslint-plugin-nextcloud.git",
   "main": "lib/index.js",
   "scripts": {
     "test": "mocha tests --recursive"
