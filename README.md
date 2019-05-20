@@ -22,8 +22,8 @@ Add `plugin:nextcloud/recommended` to the `extends` section of your `.eslintrc` 
 
 ```json
 {
-    extends: [
-        'plugin:nextcloud/recommended',
+    "extends": [
+        "plugin:nextcloud/recommended"
     ]
 }
 ```
