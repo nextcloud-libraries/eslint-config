@@ -29,6 +29,17 @@ Add `nextcloud` to the plugins section of your `.eslintrc` configuration file. Y
 ```
 
 
+Then add the Nextcloud environment if you want to use global variables defined by Nextcloud server.
+
+```json
+{
+    "env": {
+        "nextcloud/nextcloud": true,
+    }
+}
+```
+
+
 Then configure the rules you want to use under the rules section.
 
 ```json
@@ -40,12 +51,13 @@ Then configure the rules you want to use under the rules section.
 }
 ```
 
+## Supported Environments
+
+* `nextcloud/nextcloud`: Manifests global variables defined by Nextcloud server
+
+
 ## Supported Rules
 
 * `nextcloud/no-deprecations`: Detects properties and functions that were deprecated in Nextcloud server
 * `nextcloud/no-removed-apis`: Detects previously available APIs that were removed from Nextcloud server
-
-
-
-
 
