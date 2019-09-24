@@ -6,11 +6,6 @@ module.exports = {
 		es6: true,
 		node: true,
 	},
-	globals: {
-		OC: true,
-		OCA: true,
-		OCP: true
-	},
 	parserOptions: {
 		parser: 'babel-eslint',
 		ecmaVersion: 6
