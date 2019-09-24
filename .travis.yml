@@ -1,3 +1,11 @@
 language: node_js
 node_js:
-  - lts/*
+- lts/*
+deploy:
+  provider: npm
+  email: skjnldsv
+  api_key:
+    secure: 32LXJwLtB46dC/783ZR7MaLKFQSrPRpZhXXSeXSHDLTaPDkeayIUePJJjGbfSyCIoD0SB2welToo5uPe4X7HizCIkIwPheAnRThvwVKp1EXBB9hfqaDVE0npFuelLQbIcGrruu3sGHc75alyLjybO3Y3abJ9HUkkoiR6JAMvBirvSRcmPDTnO4idPV3GauXuYLwoNjNrShURHouy7yf5x2Mhv2gRbs0qoA9K18PGM7YqOwLFasu1KQ6dxvqS7gLTpVo0L5ur1sJWVW0FqqztuBaQtOaeDFgK5KXo2cqKfBignUytdhMrYt/Ve6OM4sY7NsSEMI7+K6HRnQ9uEHJCrR3Qtiv5iXFeB9eOwkV3iC017RaVoYLD9T9OYCUZFX4KP9BVBwa85vkdqyaZZHw2AejnBJPKtzF9aaj95yqKjnZlxRqMJC1PRhFfTqIdr0x6mQ7WbcI5yB0RT4HpuGF86691//GCceQnrl8HR3SUxF11l49xN1o7nDuzLM7VQTzC/ceJXzsKLLqnSvdfVthrM19gwUTkkMrNOm+i85808i6s4Deb0oVRg1BUycm9318kY9UbC524KeftNhNoucySKWVUOjiHebE8sdBmAbYxnPBG5uEzb4NOx0fL86pwaLYGgtv06meAQK7+XJvgE4weJr7aYQb+WxA409bD7LB4+d0=
+  on:
+    tags: true
+    repo: nextcloud/eslint-config-nextcloud
