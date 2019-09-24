@@ -8,16 +8,16 @@
     "url": "git+https://github.com/nextcloud/eslint-config-nextcloud.git"
   },
   "peerDependencies": {
-    "eslint-config-standard": ">= 12.0",
-    "eslint-loader": ">= 3.0",
-    "eslint-plugin-import": ">= 2.18",
-    "eslint-plugin-nextcloud": ">= 0.3",
-    "eslint-plugin-node": ">= 10.0",
-    "eslint-plugin-promise": ">= 4.2",
-    "eslint-plugin-standard": ">= 4.0",
-    "eslint-plugin-vue": ">= 5.2",
-    "eslint": ">= 5.0",
-    "webpack": ">=4.0"
+    "eslint-config-standard": "^12.0.0",
+    "eslint-loader": "^3.0.0",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-nextcloud": "^0.3.0",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.0.0",
+    "eslint-plugin-standard": "^4.0.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "eslint": "^5.0.0",
+    "webpack": "^4.0.0"
   },
   "devDependencies": {
     "eslint-config-standard": "^12.0.0",
