@@ -25,6 +25,14 @@ module.exports = {
 		'plugin:nextcloud/recommended',
 		'standard'
 	],
+	settings: {
+		'import/resolver': {
+			node: {
+				paths: ['src'],
+				extensions: ['.js', '.vue']
+			}
+		}
+	},
 	plugins: ['vue', 'node'],
 	rules: {
 		// space before function ()
