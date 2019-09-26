@@ -21,6 +21,9 @@
     "eslint": "~6.4.0",
     "mocha": "^6.1.4"
   },
+  "peerDependencies": {
+    "eslint": ">=5.0.0"
+  },
   "engines": {
     "node": ">=0.10.0"
   },
