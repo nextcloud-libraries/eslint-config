@@ -29,8 +29,8 @@ ruleTester.run("no-removed-apis", rule, {
         {
             code: "OC.Util.isIE8()",
             errors: [{
-                message: "Fill me in.",
-                type: "Me too"
+                message: "The property or function OC.Util.isIE8 was removed in Nextcloud 15.0.0",
+                type: "MemberExpression"
             }]
         }
     ]

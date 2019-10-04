@@ -8,7 +8,7 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-var rule = require("../../../lib/rules/oc-generateurl"),
+var rule = require("../../../lib/rules/no-deprecations"),
 
     RuleTester = require("eslint").RuleTester;
 
@@ -18,7 +18,7 @@ var rule = require("../../../lib/rules/oc-generateurl"),
 //------------------------------------------------------------------------------
 
 var ruleTester = new RuleTester();
-ruleTester.run("oc-generateurl", rule, {
+ruleTester.run("no-deprecations", rule, {
 
     valid: [
 
@@ -27,10 +27,10 @@ ruleTester.run("oc-generateurl", rule, {
 
     invalid: [
         {
-            code: "OC.generateUrl()",
+            code: "OC.getHost()",
             errors: [{
-                message: "Fill me in.",
-                type: "Me too"
+                message: "The property or function OC.getHost was deprecated in Nextcloud 17.0.0",
+                type: "MemberExpression"
             }]
         }
     ]

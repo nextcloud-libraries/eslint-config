@@ -1,15 +1,16 @@
 {
-  "name": "eslint-plugin-nextcloud",
+  "name": "@nextcloud/eslint-plugin",
   "version": "0.3.0",
   "description": "Nextcloud lint plugin for ESLint",
   "keywords": [
     "eslint",
     "eslintplugin",
-    "eslint-plugin"
+    "eslint-plugin",
+    "nextcloud"
   ],
   "author": "Christoph Wurst",
   "homepage": "https://github.com/nextcloud/eslint-plugin-nextcloud",
-  "repository": "git+https://github.com/nextcloud/eslint-plugin-nextcloud.git",
+  "repository": "git+https://github.com/nextcloud/nextcloud-eslint-plugin.git",
   "main": "lib/index.js",
   "scripts": {
     "test": "mocha tests --recursive"
