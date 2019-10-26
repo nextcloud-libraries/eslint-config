@@ -8,7 +8,7 @@ module.exports = {
 	},
 	parserOptions: {
 		parser: 'babel-eslint',
-		ecmaVersion: 6
+		ecmaVersion: 6,
 	},
 	extends: [
 		'eslint:recommended',
@@ -17,15 +17,15 @@ module.exports = {
 		'plugin:node/recommended',
 		'plugin:vue/recommended',
 		'plugin:nextcloud/recommended',
-		'standard'
+		'standard',
 	],
 	settings: {
 		'import/resolver': {
 			node: {
 				paths: ['src'],
-				extensions: ['.js', '.vue']
-			}
-		}
+				extensions: ['.js', '.vue'],
+			},
+		},
 	},
 	plugins: ['vue', 'node'],
 	rules: {
@@ -48,10 +48,10 @@ module.exports = {
 		// force proper JSDocs
 		'valid-jsdoc': ['error', {
 			prefer: {
-				return: 'returns'
+				return: 'returns',
 			},
 			requireReturn: false,
-			requireReturnDescription: false
+			requireReturnDescription: false,
 		}],
 		// disallow use of "var"
 		'no-var': 'error',
@@ -66,7 +66,7 @@ module.exports = {
 		// force name
 		'vue/match-component-file-name': ['error', {
 			extensions: ['jsx', 'vue', 'js'],
-			shouldMatchCase: true
+			shouldMatchCase: true,
 		}],
 		// space before self-closing elements
 		'vue/html-closing-bracket-spacing': 'error',
@@ -74,15 +74,17 @@ module.exports = {
 		'vue/html-closing-bracket-newline': ['error', { multiline: 'never' }],
 		// check vue files too
 		'node/no-missing-import': ['error', {
-			tryExtensions: ['.js', '.vue']
+			tryExtensions: ['.js', '.vue'],
 		}],
 		// code spacing with attributes
 		'vue/max-attributes-per-line': ['error', {
 			singleline: 3,
 			multiline: {
 				max: 1,
-				allowFirstLine: true
-			}
-		}]
-	}
-};
+				allowFirstLine: true,
+			},
+		}],
+		// always add a trailing comma (for diff readability)
+		'comma-dangle': ['warn', 'always-multiline'],
+	},
+}
