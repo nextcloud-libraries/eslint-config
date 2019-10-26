@@ -8,39 +8,34 @@ module.exports = {
 	},
 	parserOptions: {
 		parser: 'babel-eslint',
-		ecmaVersion: 6
+		ecmaVersion: 6,
 	},
 	extends: [
 		'eslint:recommended',
 		'plugin:import/errors',
 		'plugin:import/warnings',
 		'plugin:node/recommended',
-		'plugin:vue/essential',
 		'plugin:vue/recommended',
 		'plugin:nextcloud/recommended',
-		'standard'
+		'standard',
 	],
 	settings: {
 		'import/resolver': {
 			node: {
 				paths: ['src'],
-				extensions: ['.js', '.vue']
-			}
-		}
+				extensions: ['.js', '.vue'],
+			},
+		},
 	},
 	plugins: ['vue', 'node'],
 	rules: {
 		// space before function ()
 		'space-before-function-paren': ['error', 'never'],
-		// curly braces always space
-		'object-curly-spacing': ['error', 'always'],
 		// stay consistent with array brackets
 		'array-bracket-newline': ['error', 'consistent'],
-		// 1tbs brace style
-		'brace-style': 'error',
-		// tabs only
+		// tabs only for indentation
 		indent: ['error', 'tab'],
-		'no-tabs': ['off'],
+		'no-tabs': ['error', { allowIndentationTabs: true }],
 		'vue/html-indent': ['error', 'tab'],
 		// only debug console
 		'no-console': ['error', { allow: ['error', 'warn', 'info', 'debug'] }],
@@ -51,13 +46,17 @@ module.exports = {
 		// ternary on multiline
 		'multiline-ternary': ['error', 'always-multiline'],
 		// force proper JSDocs
-		'valid-jsdoc': [2, {
+		'valid-jsdoc': ['error', {
 			prefer: {
-				return: 'returns'
+				return: 'returns',
 			},
 			requireReturn: false,
-			requireReturnDescription: false
+			requireReturnDescription: false,
 		}],
+		// disallow use of "var"
+		'no-var': 'error',
+		// suggest using const
+		'prefer-const': 'error',
 		// es6 import/export and require
 		'node/no-unpublished-require': ['off'],
 		'node/no-unsupported-features/es-syntax': ['off'],
@@ -67,7 +66,7 @@ module.exports = {
 		// force name
 		'vue/match-component-file-name': ['error', {
 			extensions: ['jsx', 'vue', 'js'],
-			shouldMatchCase: true
+			shouldMatchCase: true,
 		}],
 		// space before self-closing elements
 		'vue/html-closing-bracket-spacing': 'error',
@@ -75,15 +74,17 @@ module.exports = {
 		'vue/html-closing-bracket-newline': ['error', { multiline: 'never' }],
 		// check vue files too
 		'node/no-missing-import': ['error', {
-			tryExtensions: ['.js', '.vue']
+			tryExtensions: ['.js', '.vue'],
 		}],
 		// code spacing with attributes
 		'vue/max-attributes-per-line': ['error', {
 			singleline: 3,
 			multiline: {
 				max: 1,
-				allowFirstLine: true
-			}
-		}]
-	}
-};
+				allowFirstLine: true,
+			},
+		}],
+		// always add a trailing comma (for diff readability)
+		'comma-dangle': ['warn', 'always-multiline'],
+	},
+}
