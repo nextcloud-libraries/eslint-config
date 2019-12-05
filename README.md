@@ -1,4 +1,4 @@
-# eslint-plugin-nextcloud
+# @nextcloud/eslint-plugin
 
 Nextcloud lint plugin for ESLint
 
@@ -10,10 +10,10 @@ You'll first need to install [ESLint](http://eslint.org):
 $ npm i eslint --save-dev
 ```
 
-Next, install `eslint-plugin-nextcloud`:
+Next, install `@nextcloud/eslint-plugin`:
 
 ```
-$ npm install eslint-plugin-nextcloud --save-dev
+$ npm install @nextcloud/eslint-plugin --save-dev
 ```
 
 ## Usage
