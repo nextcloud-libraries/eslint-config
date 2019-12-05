@@ -1,6 +1,6 @@
 {
   "name": "@nextcloud/eslint-plugin",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "Nextcloud lint plugin for ESLint",
   "keywords": [
     "eslint",
