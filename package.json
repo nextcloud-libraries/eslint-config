@@ -9,7 +9,7 @@
     "nextcloud"
   ],
   "author": "Christoph Wurst",
-  "homepage": "https://github.com/nextcloud/eslint-plugin-nextcloud",
+  "homepage": "https://github.com/nextcloud/eslint-plugin",
   "repository": "git+https://github.com/nextcloud/nextcloud-eslint-plugin.git",
   "main": "lib/index.js",
   "scripts": {
