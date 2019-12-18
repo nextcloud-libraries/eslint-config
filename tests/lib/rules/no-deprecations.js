@@ -32,6 +32,13 @@ ruleTester.run("no-deprecations", rule, {
                 message: "The property or function OC.getHost was deprecated in Nextcloud 17.0.0",
                 type: "MemberExpression"
             }]
+        },
+        {
+            code: "var clean = DOMPurify.sanitize(dirty);",
+            errors: [{
+                message: "The global property or function DOMPurify was deprecated in Nextcloud 18.0.0",
+                type: "Identifier"
+            }]
         }
     ]
 });
