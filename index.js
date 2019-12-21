@@ -37,6 +37,8 @@ module.exports = {
 		indent: ['error', 'tab'],
 		'no-tabs': ['error', { allowIndentationTabs: true }],
 		'vue/html-indent': ['error', 'tab'],
+		// allow spaces after tabs for alignment
+		'no-mixed-spaces-and-tabs': ['error', 'smart-tabs'],
 		// only debug console
 		'no-console': ['error', { allow: ['error', 'warn', 'info', 'debug'] }],
 		// classes blocks
