@@ -10,7 +10,7 @@
   ],
   "author": "Christoph Wurst",
   "homepage": "https://github.com/nextcloud/eslint-plugin",
-  "repository": "git+https://github.com/nextcloud/nextcloud-eslint-plugin.git",
+  "repository": "git+https://github.com/nextcloud/eslint-plugin.git",
   "main": "lib/index.js",
   "scripts": {
     "test": "mocha tests --recursive"
