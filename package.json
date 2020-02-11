@@ -1,11 +1,11 @@
 {
-  "name": "eslint-config-nextcloud",
-  "version": "0.1.1",
+  "name": "@nextcloud/eslint-config",
+  "version": "1.0.0",
   "description": "Eslint shared config for nextcloud vue.js apps",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nextcloud/eslint-config-nextcloud.git"
+    "url": "git+https://github.com/nextcloud/eslint-config.git"
   },
   "peerDependencies": {
     "@nextcloud/eslint-plugin": "^1.1.0",
@@ -31,7 +31,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "eslint-plugin-vue": "^5.2.3",
-    "webpack": "^4.41.4"
+    "webpack": "^4.41.6"
   },
   "keywords": [
     "eslint",
@@ -43,7 +43,7 @@
   "author": "John Molakvoæ <skjnldsv@protonmail.com>",
   "license": "AGPL-3.0-or-later",
   "bugs": {
-    "url": "https://github.com/nextcloud/eslint-config-nextcloud/issues"
+    "url": "https://github.com/nextcloud/eslint-config/issues"
   },
-  "homepage": "https://github.com/nextcloud/eslint-config-nextcloud#readme"
+  "homepage": "https://github.com/nextcloud/eslint-config#readme"
 }
