@@ -1,6 +1,8 @@
 # @nextcloud/eslint-plugin
 
-Nextcloud lint plugin for ESLint
+Nextcloud lint plugin for ESLint. This plugin provides a set of rules in order to check compliance of your app to the Nextcloud JavaScript API.
+
+It is recommended to configure your app to use [`@nextcloud/eslint-config`](https://github.com/nextcloud/eslint-config) in advance. Then, this plugin is integrated automatically, but you profit also from the common Nextcloud coding standard.
 
 ## Installation
 
