@@ -12,8 +12,8 @@ Please always use dependabot to update your apps, OR pay attention to the peer d
 
 ## Installation
 
-```
-$ npm install @nextcloud/eslint-config --save-dev
+``` bash
+npm install @nextcloud/eslint-config --save-dev
 ```
 
 ## Usage
