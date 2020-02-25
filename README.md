@@ -12,7 +12,7 @@ Please always use dependabot to update your apps, OR pay attention to the peer d
 
 ## Installation
 
-``` bash
+```bash
 npm install @nextcloud/eslint-config --save-dev
 ```
 
