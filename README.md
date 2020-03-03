@@ -33,5 +33,5 @@ module.exports = {
 ```bash
 npm version {major|minor|patch}
 git push
-git push origin *release_version*
+git push origin *release_version_tag*
 ```
