@@ -28,3 +28,10 @@ module.exports = {
 }
 ```
 
+## Release new version
+
+```bash
+npm version {major|minor|patch}
+git push
+git push origin *release_version*
+```
