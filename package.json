@@ -16,11 +16,11 @@
     "test": "mocha tests --recursive"
   },
   "dependencies": {
-    "requireindex": "~1.2.0"
+    "requireindex": "^1.2.0"
   },
   "devDependencies": {
-    "eslint": "~6.8.0",
-    "mocha": "^7.0.0"
+    "eslint": "^6.8.0",
+    "mocha": "^7.1.1"
   },
   "peerDependencies": {
     "eslint": ">=5.0.0"
