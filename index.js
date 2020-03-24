@@ -5,6 +5,8 @@ module.exports = {
 		commonjs: true,
 		es6: true,
 		node: true,
+		// Allow jest syntax in the src folder
+		jest: true,
 	},
 	parserOptions: {
 		parser: 'babel-eslint',
@@ -88,5 +90,10 @@ module.exports = {
 		}],
 		// always add a trailing comma (for diff readability)
 		'comma-dangle': ['warn', 'always-multiline'],
+		// Allow shallow import of @vue/test-utils in order to be able to use it in 
+		// the src folder
+		"node/no-unpublished-import": ["error", {
+			"allowModules": ["@vue/test-utils"]
+		}]
 	},
 }
