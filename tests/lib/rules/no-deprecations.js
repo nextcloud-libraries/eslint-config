@@ -35,9 +35,23 @@ ruleTester.run("no-deprecations", rule, {
             }]
         },
         {
+            code: "$('body').text()",
+            errors: [{
+                message: "The global property or function $ was deprecated in Nextcloud 19.0.0",
+                type: "Identifier"
+            }]
+        },
+        {
             code: "OC.getHost()",
             errors: [{
                 message: "The property or function OC.getHost was deprecated in Nextcloud 17.0.0",
+                type: "MemberExpression"
+            }]
+        },
+        {
+            code: "OCP.Toast.success('hello')",
+            errors: [{
+                message: "The property or function OCP.Toast was deprecated in Nextcloud 19.0.0",
                 type: "MemberExpression"
             }]
         },
