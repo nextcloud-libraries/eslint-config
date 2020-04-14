@@ -21,11 +21,19 @@ var ruleTester = new RuleTester();
 ruleTester.run("no-deprecations", rule, {
 
     valid: [
-
-        // give me some code that won't trigger a warning
+        {
+            code: "var escapeHTML = require('escape-html'); var sanitized = escapeHTML('hello')",
+        }
     ],
 
     invalid: [
+        {
+            code: "var sanitized = escapeHTML('hello')",
+            errors: [{
+                message: "The global property or function escapeHTML was deprecated in Nextcloud 16.0.0",
+                type: "Identifier"
+            }]
+        },
         {
             code: "OC.getHost()",
             errors: [{
