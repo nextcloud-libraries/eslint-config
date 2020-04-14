@@ -21,8 +21,9 @@ var ruleTester = new RuleTester();
 ruleTester.run("no-removed-apis", rule, {
 
     valid: [
-
-        // give me some code that won't trigger a warning
+        {
+            code: "var fileDownloadPath = require('fileDownloadPath'); fileDownloadPath(123);"
+        }
     ],
 
     invalid: [
@@ -31,6 +32,13 @@ ruleTester.run("no-removed-apis", rule, {
             errors: [{
                 message: "The property or function OC.Util.isIE8 was removed in Nextcloud 15.0.0",
                 type: "MemberExpression"
+            }]
+        },
+        {
+            code: "fileDownloadPath()",
+            errors: [{
+                message: "The global property or function fileDownloadPath was removed in Nextcloud 15.0.0",
+                type: "Identifier"
             }]
         }
     ]
