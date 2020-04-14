@@ -8,7 +8,7 @@
     "url": "git+https://github.com/nextcloud/eslint-config.git"
   },
   "peerDependencies": {
-    "@nextcloud/eslint-plugin": "^1.1.0",
+    "@nextcloud/eslint-plugin": "^1.2.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.8.0",
     "eslint-config-standard": "^12.0.0",
@@ -21,7 +21,7 @@
     "webpack": "^4.41.4"
   },
   "devDependencies": {
-    "@nextcloud/eslint-plugin": "^1.1.0",
+    "@nextcloud/eslint-plugin": "^1.2.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.8.0",
     "eslint-config-standard": "^12.0.0",
