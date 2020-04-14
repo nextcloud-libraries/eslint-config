@@ -13,7 +13,8 @@
   "repository": "git+https://github.com/nextcloud/eslint-plugin.git",
   "main": "lib/index.js",
   "scripts": {
-    "test": "mocha tests --recursive"
+    "test": "mocha tests --recursive",
+    "test:watch": "mocha tests --recursive --watch"
   },
   "dependencies": {
     "requireindex": "~1.2.0"
