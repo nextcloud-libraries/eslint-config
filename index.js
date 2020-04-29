@@ -92,8 +92,10 @@ module.exports = {
 		'comma-dangle': ['warn', 'always-multiline'],
 		// Allow shallow import of @vue/test-utils in order to be able to use it in 
 		// the src folder
-		"node/no-unpublished-import": ["error", {
-			"allowModules": ["@vue/test-utils"]
-		}]
+		'node/no-unpublished-import': ['error', {
+			'allowModules': ['@vue/test-utils']
+		}],
+		// require object literal shorthand syntax
+		'object-shorthand': ['error', 'always'],
 	},
 }
