@@ -1,6 +1,6 @@
 {
   "name": "@nextcloud/eslint-config",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Eslint shared config for nextcloud vue.js apps",
   "main": "index.js",
   "repository": {
