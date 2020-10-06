@@ -28,9 +28,9 @@ ruleTester.run("no-deprecations", rule, {
 
     invalid: [
         {
-            code: "var sanitized = escapeHTML('hello')",
+            code: "var date = relative_modified_date(123)",
             errors: [{
-                message: "The global property or function escapeHTML was deprecated in Nextcloud 16.0.0",
+                message: "The global property or function relative_modified_date was deprecated in Nextcloud 16.0.0",
                 type: "Identifier"
             }]
         },
