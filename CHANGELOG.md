@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.0.0 - 2020-11-02
+### Changed
+- ESLint updated to v7
+
 ## 1.5.0 - 2020-10-06
 ### Added
 - Nextcloud 20 deprecations and removals
