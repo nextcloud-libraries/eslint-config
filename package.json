@@ -8,29 +8,29 @@
     "url": "git+https://github.com/nextcloud/eslint-config.git"
   },
   "peerDependencies": {
-    "@nextcloud/eslint-plugin": "^1.5.0",
+    "@nextcloud/eslint-plugin": "^2.0.0",
     "babel-eslint": "^10.1.0",
-    "eslint": "^6.8.0",
-    "eslint-config-standard": "^14.1.1",
-    "eslint-loader": "^4.0.2",
+    "eslint": "^7.12.1",
+    "eslint-config-standard": "^16.0.1",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.2",
-    "eslint-plugin-vue": "^6.2.0",
-    "webpack": "^4.41.4"
+    "eslint-plugin-vue": "^7.1.0",
+    "eslint-webpack-plugin": "^2.1.0",
+    "webpack": "^4.44.2"
   },
   "devDependencies": {
-    "@nextcloud/eslint-plugin": "^1.5.0",
+    "@nextcloud/eslint-plugin": "^2.0.0",
     "babel-eslint": "^10.1.0",
-    "eslint": "^6.8.0",
-    "eslint-config-standard": "^14.1.1",
-    "eslint-loader": "^4.0.2",
+    "eslint": "^7.12.1",
+    "eslint-config-standard": "^16.0.1",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.2",
-    "eslint-plugin-vue": "^6.2.0",
+    "eslint-plugin-vue": "^7.1.0",
+    "eslint-webpack-plugin": "^2.1.0",
     "webpack": "^4.44.2"
   },
   "keywords": [
