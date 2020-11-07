@@ -19,7 +19,7 @@
     "eslint-plugin-standard": "^4.0.2",
     "eslint-plugin-vue": "^7.1.0",
     "eslint-webpack-plugin": "^2.2.0",
-    "webpack": "^4.44.2"
+    "webpack": "^5.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.13.10",
@@ -33,7 +33,7 @@
     "eslint-plugin-standard": "^4.0.2",
     "eslint-plugin-vue": "^7.1.0",
     "eslint-webpack-plugin": "^2.2.0",
-    "webpack": "^4.44.2"
+    "webpack": "^5.4.0"
   },
   "keywords": [
     "eslint",
