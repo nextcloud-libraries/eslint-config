@@ -8,8 +8,9 @@
     "url": "git+https://github.com/nextcloud/eslint-config.git"
   },
   "peerDependencies": {
+    "@babel/core": "^7.13.10",
+    "@babel/eslint-parser": "^7.13.10",
     "@nextcloud/eslint-plugin": "^2.0.0",
-    "babel-eslint": "^10.1.0",
     "eslint": "^7.12.1",
     "eslint-config-standard": "^16.0.1",
     "eslint-plugin-import": "^2.22.1",
@@ -21,8 +22,9 @@
     "webpack": "^4.44.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.13.10",
+    "@babel/eslint-parser": "^7.13.10",
     "@nextcloud/eslint-plugin": "^2.0.0",
-    "babel-eslint": "^10.1.0",
     "eslint": "^7.12.1",
     "eslint-config-standard": "^16.0.1",
     "eslint-plugin-import": "^2.22.1",
