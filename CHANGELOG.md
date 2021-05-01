@@ -1,5 +1,13 @@
 # Changelog
 
+## [v5.1.0](https://github.com/nextcloud/eslint-config/tree/v5.1.0)
+
+[Full Changelog](https://github.com/nextcloud/eslint-config/compare/v5.0.0...v5.1.0)
+
+## [v5.0.0](https://github.com/nextcloud/eslint-config/tree/v5.0.0)
+
+[Full Changelog](https://github.com/nextcloud/eslint-config/compare/v4.0.0...v5.0.0)
+
 ## [v4.0.0](https://github.com/nextcloud/eslint-config/tree/v4.0.0)
 
 [Full Changelog](https://github.com/nextcloud/eslint-config/compare/v3.0.0...v4.0.0)
