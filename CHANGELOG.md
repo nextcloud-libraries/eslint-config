@@ -1,5 +1,11 @@
 # Changelog
 
+## [v5.1.1](https://github.com/nextcloud/eslint-config/tree/v5.1.1)
+
+[Full Changelog](https://github.com/nextcloud/eslint-config/compare/v5.1.0...v5.1.1)
+
+- fix version and changelog [\#111](https://github.com/nextcloud/eslint-config/pull/111) ([dartcafe](https://github.com/dartcafe))
+
 ## [v5.1.0](https://github.com/nextcloud/eslint-config/tree/v5.1.0) (2021-05-03)
 
 [Full Changelog](https://github.com/nextcloud/eslint-config/compare/v5.1.0...v5.1.0)
