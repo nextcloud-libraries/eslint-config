@@ -1,5 +1,67 @@
 # Changelog
 
+## [v5.1.1](https://github.com/nextcloud/eslint-config/tree/v5.1.1)
+
+[Full Changelog](https://github.com/nextcloud/eslint-config/compare/v5.1.0...v5.1.1)
+
+- fix version and changelog [\#111](https://github.com/nextcloud/eslint-config/pull/111) ([dartcafe](https://github.com/dartcafe))
+
+## [v5.1.0](https://github.com/nextcloud/eslint-config/tree/v5.1.0) (2021-05-03)
+
+[Full Changelog](https://github.com/nextcloud/eslint-config/compare/v5.1.0...v5.1.0)
+
+**Merged pull requests:**
+
+- remove eslint-plugin-standard [\#103](https://github.com/nextcloud/eslint-config/pull/103) ([dartcafe](https://github.com/dartcafe))
+
+**Updated dependencies:**
+
+- Bump webpack from 5.36.1 to 5.36.2 [\#112](https://github.com/nextcloud/eslint-config/pull/112) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump @babel/core from 7.13.16 to 7.14.0 [\#109](https://github.com/nextcloud/eslint-config/pull/109) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump webpack from 5.36.0 to 5.36.1 [\#108](https://github.com/nextcloud/eslint-config/pull/108) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump webpack from 5.35.0 to 5.36.0 [\#107](https://github.com/nextcloud/eslint-config/pull/107) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump eslint from 7.24.0 to 7.25.0 [\#104](https://github.com/nextcloud/eslint-config/pull/104) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump webpack from 5.34.0 to 5.35.0 [\#102](https://github.com/nextcloud/eslint-config/pull/102) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump @babel/core from 7.13.15 to 7.13.16 [\#100](https://github.com/nextcloud/eslint-config/pull/100) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump webpack from 5.33.2 to 5.34.0 [\#99](https://github.com/nextcloud/eslint-config/pull/99) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump eslint-webpack-plugin from 2.5.3 to 2.5.4 [\#98](https://github.com/nextcloud/eslint-config/pull/98) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump webpack from 5.32.0 to 5.33.2 [\#97](https://github.com/nextcloud/eslint-config/pull/97) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump webpack from 5.31.2 to 5.32.0 [\#96](https://github.com/nextcloud/eslint-config/pull/96) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump eslint-plugin-vue from 7.8.0 to 7.9.0 [\#95](https://github.com/nextcloud/eslint-config/pull/95) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump eslint from 7.23.0 to 7.24.0 [\#94](https://github.com/nextcloud/eslint-config/pull/94) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump webpack from 5.31.0 to 5.31.2 [\#93](https://github.com/nextcloud/eslint-config/pull/93) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump @babel/core from 7.13.14 to 7.13.15 [\#92](https://github.com/nextcloud/eslint-config/pull/92) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump webpack from 5.30.0 to 5.31.0 [\#91](https://github.com/nextcloud/eslint-config/pull/91) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump webpack from 5.28.0 to 5.30.0 [\#90](https://github.com/nextcloud/eslint-config/pull/90) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump @babel/eslint-parser from 7.13.10 to 7.13.14 [\#89](https://github.com/nextcloud/eslint-config/pull/89) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump eslint from 7.13.0 to 7.23.0 [\#88](https://github.com/nextcloud/eslint-config/pull/88) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump @babel/core from 7.13.13 to 7.13.14 [\#87](https://github.com/nextcloud/eslint-config/pull/87) ([dependabot[bot]](https://github.com/apps/dependabot))
+
+## [v5.1.0](https://github.com/nextcloud/eslint-config/tree/v5.1.0) (2021-05-01)
+
+[Full Changelog](https://github.com/nextcloud/eslint-config/compare/v5.0.0...v5.1.0)
+
+**Closed issues:**
+
+- Inconsistency between package.json and package-lock.json? [\#106](https://github.com/nextcloud/eslint-config/issues/106)
+- Is eslint-plugin-standard still necessary as peerDependency? [\#101](https://github.com/nextcloud/eslint-config/issues/101)
+
+## [v5.0.0](https://github.com/nextcloud/eslint-config/tree/v5.0.0) (2021-03-29)
+
+[Full Changelog](https://github.com/nextcloud/eslint-config/compare/v5.0.0-beta.0...v5.0.0)
+
+**Implemented enhancements:**
+
+- Bump webpack to ^5.0.0 [\#79](https://github.com/nextcloud/eslint-config/pull/79) ([skjnldsv](https://github.com/skjnldsv))
+
+**Merged pull requests:**
+
+- Bump eslint from 7.22.0 to 7.23.0 [\#86](https://github.com/nextcloud/eslint-config/pull/86) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump @babel/core from 7.13.10 to 7.13.13 [\#85](https://github.com/nextcloud/eslint-config/pull/85) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump eslint-webpack-plugin from 2.5.2 to 2.5.3 [\#84](https://github.com/nextcloud/eslint-config/pull/84) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump eslint-plugin-vue from 7.7.0 to 7.8.0 [\#83](https://github.com/nextcloud/eslint-config/pull/83) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump eslint from 7.21.0 to 7.22.0 [\#82](https://github.com/nextcloud/eslint-config/pull/82) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v4.0.0](https://github.com/nextcloud/eslint-config/tree/v4.0.0)
 
 [Full Changelog](https://github.com/nextcloud/eslint-config/compare/v3.0.0...v4.0.0)
