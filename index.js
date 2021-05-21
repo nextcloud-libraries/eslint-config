@@ -19,6 +19,7 @@ module.exports = {
 		'plugin:node/recommended',
 		'plugin:vue/recommended',
 		'plugin:@nextcloud/recommended',
+		'plugin:jsdoc/recommended',
 		'standard',
 	],
 	settings: {
@@ -28,8 +29,13 @@ module.exports = {
 				extensions: ['.js', '.vue'],
 			},
 		},
+		jsdoc: {
+			tagNamePreference: {
+				returns: 'return'
+			}
+		}
 	},
-	plugins: ['vue', 'node'],
+	plugins: ['vue', 'node', 'jsdoc'],
 	rules: {
 		// space before function ()
 		'space-before-function-paren': ['error', 'never'],
@@ -50,13 +56,8 @@ module.exports = {
 		// ternary on multiline
 		'multiline-ternary': ['error', 'always-multiline'],
 		// force proper JSDocs
-		'valid-jsdoc': ['error', {
-			prefer: {
-				return: 'returns',
-			},
-			requireReturn: false,
-			requireReturnDescription: false,
-		}],
+		'jsdoc/require-returns': 0,
+		'jsdoc/require-returns-description': 0,
 		// disallow use of "var"
 		'no-var': 'error',
 		// suggest using const
