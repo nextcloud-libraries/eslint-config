@@ -91,10 +91,10 @@ module.exports = {
 		}],
 		// always add a trailing comma (for diff readability)
 		'comma-dangle': ['warn', 'always-multiline'],
-		// Allow shallow import of @vue/test-utils in order to be able to use it in 
+		// Allow shallow import of @vue/test-utils and @testing-library/vue in order to be able to use it in
 		// the src folder
 		'node/no-unpublished-import': ['error', {
-			'allowModules': ['@vue/test-utils']
+			'allowModules': ['@vue/test-utils', '@testing-library/vue'],
 		}],
 		// require object literal shorthand syntax
 		'object-shorthand': ['error', 'always'],
