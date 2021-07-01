@@ -38,7 +38,11 @@ module.exports = {
 	plugins: ['vue', 'node', 'jsdoc'],
 	rules: {
 		// space before function ()
-		'space-before-function-paren': ['error', 'never'],
+		'space-before-function-paren': ['error', {
+			anonymous: 'never',
+			named: 'never',
+			asyncArrow: 'always',
+		}],
 		// stay consistent with array brackets
 		'array-bracket-newline': ['error', 'consistent'],
 		// tabs only for indentation
