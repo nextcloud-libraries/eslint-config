@@ -1,5 +1,21 @@
 # Changelog
 
+## [v6.0.0](https://github.com/nextcloud/eslint-config/tree/v6.0.0)
+
+[Full Changelog](https://github.com/nextcloud/eslint-config/compare/v5.1.1...v6.0.0)
+
+### Breaking
+
+- Require a space before async arrow function parentheses [\#146](https://github.com/nextcloud/eslint-config/pull/146) ([Pytal](https://github.com/Pytal))
+
+### Features
+
+- Allow testing-library in src [\#138](https://github.com/nextcloud/eslint-config/pull/138) ([artonge](https://github.com/artonge))
+
+### Fixes
+
+- Use updated jsdoc rules [\#123](https://github.com/nextcloud/eslint-config/pull/123) ([artonge](https://github.com/artonge))
+
 ## [v5.1.1](https://github.com/nextcloud/eslint-config/tree/v5.1.1)
 
 [Full Changelog](https://github.com/nextcloud/eslint-config/compare/v5.1.0...v5.1.1)
