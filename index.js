@@ -93,6 +93,8 @@ module.exports = {
 				allowFirstLine: true,
 			},
 		}],
+		// custom event naming convention
+		'vue/custom-event-name-casing': ['error', 'kebab-case'],
 		// always add a trailing comma (for diff readability)
 		'comma-dangle': ['warn', 'always-multiline'],
 		// Allow shallow import of @vue/test-utils and @testing-library/vue in order to be able to use it in
