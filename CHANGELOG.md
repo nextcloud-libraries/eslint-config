@@ -1,5 +1,13 @@
 # Changelog
 
+## [v6.1.0](https://github.com/nextcloud/eslint-config/tree/v6.1.0) (2021-08-11)
+
+[Full Changelog](https://github.com/nextcloud/eslint-config/compare/v6.0.1...v6.1.0)
+
+**Fix dependency:**
+
+- Remove undesired eslint-webpack-plugin ([skjnldsv](https://github.com/skjnldsv))
+
 ## [v6.0.1](https://github.com/nextcloud/eslint-config/tree/v6.0.1) (2021-08-11)
 
 [Full Changelog](https://github.com/nextcloud/eslint-config/compare/v6.0.0...v6.0.1)
