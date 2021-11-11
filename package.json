@@ -1,49 +1,53 @@
 {
-  "name": "@nextcloud/eslint-config",
-  "version": "6.1.0",
-  "description": "Eslint shared config for nextcloud vue.js apps",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nextcloud/eslint-config.git"
-  },
-  "peerDependencies": {
-    "@babel/core": "^7.13.10",
-    "@babel/eslint-parser": "^7.13.10",
-    "@nextcloud/eslint-plugin": "^2.0.0",
-    "eslint": "^7.13.0",
-    "eslint-config-standard": "^16.0.1",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jsdoc": "^37.0.3",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^5.1.0",
-    "eslint-plugin-vue": "^7.15.0",
-    "webpack": "^5.4.0"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.13.10",
-    "@babel/eslint-parser": "^7.13.10",
-    "@nextcloud/eslint-plugin": "^2.0.0",
-    "eslint": "^7.13.0",
-    "eslint-config-standard": "^16.0.1",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jsdoc": "^37.0.3",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^5.1.0",
-    "eslint-plugin-vue": "^7.1.0",
-    "webpack": "^5.4.0"
-  },
-  "keywords": [
-    "eslint",
-    "vue",
-    "vuejs",
-    "config",
-    "nextcloud"
-  ],
-  "author": "John Molakvoæ <skjnldsv@protonmail.com>",
-  "license": "AGPL-3.0-or-later",
-  "bugs": {
-    "url": "https://github.com/nextcloud/eslint-config/issues"
-  },
-  "homepage": "https://github.com/nextcloud/eslint-config#readme"
+	"name": "@nextcloud/eslint-config",
+	"version": "6.1.0",
+	"description": "Eslint shared config for nextcloud vue.js apps",
+	"main": "index.js",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/nextcloud/eslint-config.git"
+	},
+	"peerDependencies": {
+		"@babel/core": "^7.13.10",
+		"@babel/eslint-parser": "^7.13.10",
+		"@nextcloud/eslint-plugin": "^2.0.0",
+		"eslint": "^7.13.0",
+		"eslint-config-standard": "^16.0.1",
+		"eslint-plugin-import": "^2.22.1",
+		"eslint-plugin-jsdoc": "^37.0.3",
+		"eslint-plugin-node": "^11.1.0",
+		"eslint-plugin-promise": "^5.1.0",
+		"eslint-plugin-vue": "^7.15.0",
+		"webpack": "^5.4.0"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.13.10",
+		"@babel/eslint-parser": "^7.13.10",
+		"@nextcloud/eslint-plugin": "^2.0.0",
+		"eslint": "^7.13.0",
+		"eslint-config-standard": "^16.0.1",
+		"eslint-plugin-import": "^2.22.1",
+		"eslint-plugin-jsdoc": "^37.0.3",
+		"eslint-plugin-node": "^11.1.0",
+		"eslint-plugin-promise": "^5.1.0",
+		"eslint-plugin-vue": "^7.1.0",
+		"webpack": "^5.4.0"
+	},
+	"keywords": [
+		"eslint",
+		"vue",
+		"vuejs",
+		"config",
+		"nextcloud"
+	],
+	"author": "John Molakvoæ <skjnldsv@protonmail.com>",
+	"license": "AGPL-3.0-or-later",
+	"bugs": {
+		"url": "https://github.com/nextcloud/eslint-config/issues"
+	},
+	"homepage": "https://github.com/nextcloud/eslint-config#readme",
+	"engines": {
+		"node": "^14.0.0",
+		"npm": "^7.0.0"
+	}
 }
