@@ -1,5 +1,13 @@
 # Changelog
 
+## [v6.1.1](https://github.com/nextcloud/eslint-config/tree/v6.1.1) (2021-12-02)
+
+[Full Changelog](https://github.com/nextcloud/eslint-config/compare/v6.1.0...v6.1.1)
+
+**Fixes:**
+
+- Disable tag rule [\#248](https://github.com/nextcloud/eslint-config/pull/248) ([skjnldsv](https://github.com/skjnldsv))
+
 ## [v6.1.0](https://github.com/nextcloud/eslint-config/tree/v6.1.0) (2021-08-11)
 
 [Full Changelog](https://github.com/nextcloud/eslint-config/compare/v6.0.1...v6.1.0)
