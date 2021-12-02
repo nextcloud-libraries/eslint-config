@@ -62,11 +62,7 @@ module.exports = {
 		// force proper JSDocs
 		'jsdoc/require-returns': 0,
 		'jsdoc/require-returns-description': 0,
-		'jsdoc/tag-lines': ['warn', 'never', { count: 0, tags: {
-			copyright: { count: 1, lines: 'always' },
-			author: { count: 1, lines: 'always' },
-			license: { count: 1, lines: 'always' },
-		}}],
+		'jsdoc/tag-lines': ['off'],
 		// disallow use of "var"
 		'no-var': 'error',
 		// suggest using const
