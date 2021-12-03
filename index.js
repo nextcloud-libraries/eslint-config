@@ -95,7 +95,10 @@ module.exports = {
 			},
 		}],
 		// custom event naming convention
-		'vue/custom-event-name-casing': ['error', 'kebab-case'],
+		'vue/custom-event-name-casing': ['error', 'kebab-case', {
+			// allows custom xxxx:xxx events formats
+			ignores: ['/^[a-z]+(?:-[a-z]+)*:[a-z]+(?:-[a-z]+)*$/u'],
+		}],
 		// always add a trailing comma (for diff readability)
 		'comma-dangle': ['warn', 'always-multiline'],
 		// Allow shallow import of @vue/test-utils and @testing-library/vue in order to be able to use it in
