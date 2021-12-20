@@ -1,5 +1,13 @@
 # Changelog
 
+## [v6.1.2](https://github.com/nextcloud/eslint-config/tree/v6.1.2) (2021-12-20)
+
+[Full Changelog](https://github.com/nextcloud/eslint-config/compare/v6.1.1...v6.1.2)
+
+**Fixes:**
+
+- Fix vue custom event name casing [\#249](https://github.com/nextcloud/eslint-config/pull/249) ([Pytal](https://github.com/Pytal))
+
 ## [v6.1.1](https://github.com/nextcloud/eslint-config/tree/v6.1.1) (2021-12-02)
 
 [Full Changelog](https://github.com/nextcloud/eslint-config/compare/v6.1.0...v6.1.1)
