@@ -89,10 +89,11 @@ module.exports = {
 		// code spacing with attributes
 		'vue/max-attributes-per-line': ['error', {
 			singleline: 3,
-			multiline: {
-				max: 1,
-				allowFirstLine: true,
-			},
+			multiline: 1,
+		}],
+		'vue/first-attribute-linebreak': ['error', {
+			'singleline': 'beside',
+			'multiline': 'below',
 		}],
 		// custom event naming convention
 		'vue/custom-event-name-casing': ['error', 'kebab-case', {
