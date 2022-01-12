@@ -1,5 +1,13 @@
 # Changelog
 
+## [v7.0.0](https://github.com/nextcloud/eslint-config/tree/v7.0.0) (2022-01-12)
+
+[Full Changelog](https://github.com/nextcloud/eslint-config/compare/v6.1.2...v7.0.0)
+
+**Merged pull requests:**
+
+- Eslint 8 [\#266](https://github.com/nextcloud/eslint-config/pull/266) ([skjnldsv](https://github.com/skjnldsv))
+
 ## [v6.1.2](https://github.com/nextcloud/eslint-config/tree/v6.1.2) (2021-12-20)
 
 [Full Changelog](https://github.com/nextcloud/eslint-config/compare/v6.1.1...v6.1.2)
