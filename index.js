@@ -95,6 +95,8 @@ module.exports = {
 			'singleline': 'beside',
 			'multiline': 'below',
 		}],
+		// Allow single-word components names
+		'vue/multi-word-component-names': ['off'],
 		// custom event naming convention
 		'vue/custom-event-name-casing': ['error', 'kebab-case', {
 			// allows custom xxxx:xxx events formats
