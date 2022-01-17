@@ -1,5 +1,18 @@
 # Changelog
 
+## [v7.0.1](https://github.com/nextcloud/eslint-config/tree/v7.0.1) (2022-01-17)
+
+[Full Changelog](https://github.com/nextcloud/eslint-config/compare/v7.0.0...v7.0.1)
+
+**Fixed bugs:**
+
+- Allow component names to be single-word [\#270](https://github.com/nextcloud/eslint-config/pull/270) ([skjnldsv](https://github.com/skjnldsv))
+
+**Dependency updates:**
+
+- Bump webpack from 5.65.0 to 5.66.0 [\#269](https://github.com/nextcloud/eslint-config/pull/269) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump eslint-plugin-vue from 8.2.0 to 8.3.0 [\#268](https://github.com/nextcloud/eslint-config/pull/268) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v7.0.0](https://github.com/nextcloud/eslint-config/tree/v7.0.0) (2022-01-12)
 
 [Full Changelog](https://github.com/nextcloud/eslint-config/compare/v6.1.2...v7.0.0)
@@ -7,7 +20,7 @@
 **Merged pull requests:**
 
 - Eslint 8 [\#266](https://github.com/nextcloud/eslint-config/pull/266) ([skjnldsv](https://github.com/skjnldsv))
-
+- v7.0.0 [\#267](https://github.com/nextcloud/eslint-config/pull/267) ([skjnldsv](https://github.com/skjnldsv))
 ## [v6.1.2](https://github.com/nextcloud/eslint-config/tree/v6.1.2) (2021-12-20)
 
 [Full Changelog](https://github.com/nextcloud/eslint-config/compare/v6.1.1...v6.1.2)
