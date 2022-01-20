@@ -93,7 +93,7 @@ module.exports = {
 		}],
 		'vue/first-attribute-linebreak': ['error', {
 			'singleline': 'beside',
-			'multiline': 'below',
+			'multiline': 'beside',
 		}],
 		// Allow single-word components names
 		'vue/multi-word-component-names': ['off'],
