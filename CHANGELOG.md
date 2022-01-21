@@ -1,5 +1,18 @@
 # Changelog
 
+## [v7.0.2](https://github.com/nextcloud/eslint-config/tree/v7.0.2) (2022-01-20)
+
+[Full Changelog](https://github.com/nextcloud/eslint-config/compare/v7.0.1...v7.0.2)
+
+**Fixed:**
+
+- Fix usual same-line vue attribute behaviour [\#272](https://github.com/nextcloud/eslint-config/pull/272) ([skjnldsv](https://github.com/skjnldsv))
+
+**Dependency updates:**
+
+- Bump eslint from 8.6.0 to 8.7.0 [\#271](https://github.com/nextcloud/eslint-config/pull/271) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump @babel/core from 7.16.7 to 7.16.10 [\#273](https://github.com/nextcloud/eslint-config/pull/273) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v7.0.1](https://github.com/nextcloud/eslint-config/tree/v7.0.1) (2022-01-17)
 
 [Full Changelog](https://github.com/nextcloud/eslint-config/compare/v7.0.0...v7.0.1)
