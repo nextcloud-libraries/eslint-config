@@ -111,5 +111,9 @@ module.exports = {
 		}],
 		// require object literal shorthand syntax
 		'object-shorthand': ['error', 'always'],
+		// Warn when file extensions are not used on import paths
+		'import/extensions': ['warn', 'always', {
+			ignorePackages: true,
+		}],
 	},
 }
