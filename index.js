@@ -17,7 +17,7 @@ module.exports = {
 		'plugin:import/errors',
 		'plugin:import/warnings',
 		'plugin:node/recommended',
-		'plugin:vue/recommended',
+		'plugin:vue/vue3-recommended',
 		'plugin:@nextcloud/recommended',
 		'plugin:jsdoc/recommended',
 		'standard',
