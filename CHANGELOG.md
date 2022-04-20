@@ -1,5 +1,18 @@
 # Changelog
 
+## [v8.0.0](https://github.com/nextcloud/eslint-config/tree/v8.0.0) (2022-04-20)
+
+[Full Changelog](https://github.com/nextcloud/eslint-config/compare/v7.0.2...v8.0.0)
+
+**Breaking:**
+
+- Require file extensions on import [\#292](https://github.com/nextcloud/eslint-config/pull/292) ([Pytal](https://github.com/Pytal))
+
+**Dependency updates:**
+
+- Bump eslint from 8.7.0 to 8.8.0 [\#282](https://github.com/nextcloud/eslint-config/pull/282) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump eslint from 8.8.0 to 8.9.0 [\#296](https://github.com/nextcloud/eslint-config/pull/296) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v7.0.2](https://github.com/nextcloud/eslint-config/tree/v7.0.2) (2022-01-20)
 
 [Full Changelog](https://github.com/nextcloud/eslint-config/compare/v7.0.1...v7.0.2)
