@@ -1,5 +1,13 @@
 # Changelog
 
+## [v8.1.0](https://github.com/nextcloud/eslint-config/tree/v8.0.0) (PENDING)
+
+[Full Changelog](https://github.com/nextcloud/eslint-config/compare/v8.0.0...v8.1.0)
+
+**Dependency updates:**
+
+- Use [`eslint-plugin-n`](https://www.npmjs.com/package/eslint-plugin-n) instead of [`eslint-plugin-node`](https://www.npmjs.com/package/eslint-plugin-node)
+
 ## [v8.0.0](https://github.com/nextcloud/eslint-config/tree/v8.0.0) (2022-04-20)
 
 [Full Changelog](https://github.com/nextcloud/eslint-config/compare/v7.0.2...v8.0.0)
