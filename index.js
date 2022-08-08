@@ -16,7 +16,7 @@ module.exports = {
 		'eslint:recommended',
 		'plugin:import/errors',
 		'plugin:import/warnings',
-		'plugin:node/recommended',
+		'plugin:n/recommended',
 		'plugin:vue/recommended',
 		'plugin:@nextcloud/recommended',
 		'plugin:jsdoc/recommended',
