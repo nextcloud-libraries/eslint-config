@@ -35,7 +35,7 @@ module.exports = {
 			}
 		}
 	},
-	plugins: ['vue', 'node', 'jsdoc'],
+	plugins: ['vue', 'n', 'jsdoc'],
 	rules: {
 		// space before function ()
 		'space-before-function-paren': ['error', {
@@ -68,8 +68,8 @@ module.exports = {
 		// suggest using const
 		'prefer-const': 'error',
 		// es6 import/export and require
-		'node/no-unpublished-require': ['off'],
-		'node/no-unsupported-features/es-syntax': ['off'],
+		'n/no-unpublished-require': ['off'],
+		'n/no-unsupported-features/es-syntax': ['off'],
 		// PascalCase components names for vuejs
 		// https://vuejs.org/v2/style-guide/#Single-file-component-filename-casing-strongly-recommended
 		'vue/component-name-in-template-casing': ['error', 'PascalCase'],
@@ -83,9 +83,7 @@ module.exports = {
 		// no ending html tag on a new line
 		'vue/html-closing-bracket-newline': ['error', { multiline: 'never' }],
 		// check vue files too
-		'node/no-missing-import': ['error', {
-			tryExtensions: ['.js', '.vue'],
-		}],
+		'n/no-missing-import': ['error', {}],
 		// code spacing with attributes
 		'vue/max-attributes-per-line': ['error', {
 			singleline: 3,
@@ -106,7 +104,7 @@ module.exports = {
 		'comma-dangle': ['warn', 'always-multiline'],
 		// Allow shallow import of @vue/test-utils and @testing-library/vue in order to be able to use it in
 		// the src folder
-		'node/no-unpublished-import': ['error', {
+		'n/no-unpublished-import': ['error', {
 			'allowModules': ['@vue/test-utils', '@testing-library/vue'],
 		}],
 		// require object literal shorthand syntax
