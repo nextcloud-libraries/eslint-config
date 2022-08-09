@@ -1,8 +1,8 @@
 # Changelog
 
-## [v8.1.0](https://github.com/nextcloud/eslint-config/tree/v8.0.0) (PENDING)
+## [v8.1.2](https://github.com/nextcloud/eslint-config/tree/v8.1.2) (2022-08-09)
 
-[Full Changelog](https://github.com/nextcloud/eslint-config/compare/v8.0.0...v8.1.0)
+[Full Changelog](https://github.com/nextcloud/eslint-config/compare/v8.0.0...v8.1.2)
 
 **Dependency updates:**
 
