@@ -31,9 +31,10 @@ module.exports = {
 		},
 		jsdoc: {
 			tagNamePreference: {
-				returns: 'return'
-			}
-		}
+				returns: 'return',
+			},
+			mode: 'typescript',
+		},
 	},
 	plugins: ['vue', 'n', 'jsdoc'],
 	rules: {
