@@ -1,5 +1,21 @@
 # Changelog
 
+## [v8.1.3](https://github.com/nextcloud/eslint-config/tree/v8.1.3) (2022-11-04)
+
+[Full Changelog](https://github.com/nextcloud/eslint-config/compare/v8.1.2...v8.1.3)
+
+**Fixed:**
+- Allow TypeScript syntax in JSDoc comments by @Pytal in https://github.com/nextcloud/eslint-config/pull/413
+
+**Dependency updates:**
+- Bump @babel/core from 7.18.10 to 7.19.6 by @dependabot in https://github.com/nextcloud/eslint-config/pull/404
+- Bump @babel/eslint-parser from 7.18.9 to 7.19.1 by @dependabot in https://github.com/nextcloud/eslint-config/pull/392
+- Bump eslint from 8.21.0 to 8.26.0 by @dependabot in https://github.com/nextcloud/eslint-config/pull/406
+- Bump eslint-plugin-jsdoc from 39.3.13 to 39.6.2 by @dependabot in https://github.com/nextcloud/eslint-config/pull/414
+- Bump eslint-plugin-n from 15.2.4 to 15.4.0 by @dependabot in https://github.com/nextcloud/eslint-config/pull/409
+- Bump eslint-plugin-promise from 6.0.0 to 6.1.1 by @dependabot in https://github.com/nextcloud/eslint-config/pull/405
+- Bump eslint-plugin-vue from 9.3.0 to 9.7.0 by @dependabot in https://github.com/nextcloud/eslint-config/pull/410
+
 ## [v8.1.2](https://github.com/nextcloud/eslint-config/tree/v8.1.2) (2022-08-09)
 
 [Full Changelog](https://github.com/nextcloud/eslint-config/compare/v8.0.0...v8.1.2)
