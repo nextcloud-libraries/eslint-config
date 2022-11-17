@@ -1,5 +1,13 @@
 # Changelog
 
+## [v8.1.4](https://github.com/nextcloud/eslint-config/tree/v8.1.4) (2022-11-17)
+
+[Full Changelog](https://github.com/nextcloud/eslint-config/compare/v8.1.3...v8.1.4)
+
+**Fixed bugs:**
+
+- Fix eslint-plugin-n conflict [\#421](https://github.com/nextcloud/eslint-config/pull/421) ([skjnldsv](https://github.com/skjnldsv))
+
 ## [v8.1.3](https://github.com/nextcloud/eslint-config/tree/v8.1.3) (2022-11-04)
 
 [Full Changelog](https://github.com/nextcloud/eslint-config/compare/v8.1.2...v8.1.3)
