@@ -30,6 +30,7 @@ module.exports = {
 
 ## Release new version
 
- 1. Bump the package version with `npm version`
- 2. Push version bump commit
- 3. Create a new release with proper changelog https://github.com/nextcloud/eslint-config/releases/new
+ 1. Update CHANGELOG.md file with the latest changes
+ 2. Bump the package version with `npm version`
+ 3. Push version bump commit
+ 4. Create a new release with proper changelog https://github.com/nextcloud/eslint-config/releases/new

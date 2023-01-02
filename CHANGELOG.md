@@ -1,5 +1,13 @@
 # Changelog
 
+## [v8.1.5](https://github.com/nextcloud/eslint-config/tree/v8.1.5) (2023-01-02)
+
+[Full Changelog](https://github.com/nextcloud/eslint-config/compare/v8.1.4...v8.1.5)
+
+**Dependency updates:**
+- Bump json5 from 1.0.1 to 1.0.2 by @PVince81 in https://github.com/nextcloud/eslint-config/pull/430
+- Bump json5 from 2.2.1 to 2.2.3 by @PVince81 in https://github.com/nextcloud/eslint-config/pull/430
+
 ## [v8.1.4](https://github.com/nextcloud/eslint-config/tree/v8.1.4) (2022-11-17)
 
 [Full Changelog](https://github.com/nextcloud/eslint-config/compare/v8.1.3...v8.1.4)
