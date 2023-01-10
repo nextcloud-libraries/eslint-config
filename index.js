@@ -11,6 +11,7 @@ module.exports = {
 	parserOptions: {
 		parser: '@babel/eslint-parser',
 		ecmaVersion: 6,
+		requireConfigFile: false,
 	},
 	extends: [
 		'eslint:recommended',
@@ -91,8 +92,8 @@ module.exports = {
 			multiline: 1,
 		}],
 		'vue/first-attribute-linebreak': ['error', {
-			'singleline': 'beside',
-			'multiline': 'beside',
+			singleline: 'beside',
+			multiline: 'beside',
 		}],
 		// Allow single-word components names
 		'vue/multi-word-component-names': ['off'],
@@ -106,7 +107,7 @@ module.exports = {
 		// Allow shallow import of @vue/test-utils and @testing-library/vue in order to be able to use it in
 		// the src folder
 		'n/no-unpublished-import': ['error', {
-			'allowModules': ['@vue/test-utils', '@testing-library/vue'],
+			allowModules: ['@vue/test-utils', '@testing-library/vue'],
 		}],
 		// require object literal shorthand syntax
 		'object-shorthand': ['error', 'always'],
