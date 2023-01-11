@@ -1,5 +1,17 @@
 # Changelog
 
+## [v8.2.0](https://github.com/nextcloud/eslint-config/tree/v8.2.0) (2023-01-11)
+
+[Full Changelog](https://github.com/nextcloud/eslint-config/compare/v8.1.5...v8.2.0)
+
+**Implemented enhancements:**
+- feat: Add scripts for linting the config and fixed issues found [\#434](https://github.com/nextcloud/eslint-config/pull/434) ([susnux](https://github.com/susnux))
+- feat: Add sub config for TypeScript projects [\#433](https://github.com/nextcloud/eslint-config/pull/433) ([susnux](https://github.com/susnux))
+
+**Dependency updates:**
+- Bump @babel/core from 7.20.7 to 7.20.12 [\#432](https://github.com/nextcloud/eslint-config/pull/432) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump eslint from 8.30.0 to 8.31.0 [\#431](https://github.com/nextcloud/eslint-config/pull/431) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v8.1.5](https://github.com/nextcloud/eslint-config/tree/v8.1.5) (2023-01-02)
 
 [Full Changelog](https://github.com/nextcloud/eslint-config/compare/v8.1.4...v8.1.5)
