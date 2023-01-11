@@ -2,27 +2,41 @@
 #
 # https://github.com/nextcloud/.github
 # https://docs.github.com/en/actions/learn-github-actions/sharing-workflows-with-your-organization
+#
+# Use lint-eslint together with lint-eslint-when-unrelated to make eslint a required check for GitHub actions
+# https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/troubleshooting-required-status-checks#handling-skipped-but-required-checks
 
-name: Publish
+name: Lint
 
 on:
-  release:
-    types: [published]
+  pull_request:
+    paths:
+      - '.github/workflows/**'
+      - 'src/**'
+      - 'appinfo/info.xml'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'tsconfig.json'
+      - '.eslintrc.*'
+      - '.eslintignore'
+      - '**.js'
+      - '**.ts'
+      - '**.vue'
 
 permissions:
   contents: read
 
+concurrency:
+  group: lint-eslint-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
 jobs:
-  publish:
+  lint:
     runs-on: ubuntu-latest
 
-    name: Build and publish to npm
-    steps:
-      - name: Check actor permission level
-        uses: skjnldsv/check-actor-permission@e591dbfe838300c007028e1219ca82cc26e8d7c5 # v2.1
-        with:
-          require: admin
+    name: eslint
 
+    steps:
       - name: Checkout
         uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3
 
@@ -41,14 +55,8 @@ jobs:
       - name: Set up npm ${{ steps.versions.outputs.npmVersion }}
         run: npm i -g npm@"${{ steps.versions.outputs.npmVersion }}"
 
-      - name: Install dependencies & build
-        run: |
-          npm ci
-          npm run build --if-present
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Publish
-        run: |
-          npm config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
-          npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Lint
+        run: npm run lint
