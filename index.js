@@ -116,4 +116,39 @@ module.exports = {
 			ignorePackages: true,
 		}],
 	},
+	overrides: [
+		{
+			files: ['**/*.ts'],
+			extends: [
+				'@vue/eslint-config-typescript/recommended',
+				'plugin:import/typescript',
+			],
+			parserOptions: {
+				parser: '@typescript-eslint/parser',
+			},
+			rules: {
+				'n/no-missing-import': 'off',
+				'import/extensions': 'off',
+				'jsdoc/check-tag-names': [
+					'warn', {
+						// for projects using typedoc
+						definedTags: [
+							'notExported',
+							'packageDocumentation',
+						],
+					},
+				],
+				// Does not make sense with TypeScript
+				'jsdoc/require-param-type': 'off',
+			},
+			settings: {
+				'import/resolver': {
+					node: {
+						paths: ['src'],
+						extensions: ['.js', '.ts', '.vue'],
+					},
+				},
+			},
+		},
+	],
 }
