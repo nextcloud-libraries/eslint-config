@@ -2,15 +2,15 @@
   "name": "@nextcloud/eslint-config",
   "version": "8.3.0",
   "description": "Eslint shared config for nextcloud vue.js apps",
-  "main": "index.js",
+  "main": "eslint.config.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nextcloud-libraries/eslint-config.git"
   },
+  "type": "module",
   "scripts": {
-    "lint": "eslint parts *.js",
-    "lint:fix": "eslint --fix parts *.js",
-    "test": "jest"
+    "lint": "eslint *.js",
+    "lint:fix": "eslint --fix *.js"
   },
   "peerDependencies": {
     "@babel/core": "^7.24.4",
