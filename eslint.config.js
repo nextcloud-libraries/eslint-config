@@ -34,7 +34,7 @@ export default [
 			},
 			parserOptions: {
 				parser: '@babel/eslint-parser',
-				ecmaVersion: 6,
+				ecmaVersion: 2020,
 				requireConfigFile: false,
 			},
 		},
