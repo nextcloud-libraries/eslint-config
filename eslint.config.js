@@ -133,6 +133,8 @@ export default [
 			}],
 			// require object literal shorthand syntax
 			'object-shorthand': ['error', 'always'],
+			// Disable to not enforce install jest for not non testing files
+			'jest/no-deprecated-functions': ['off'],
 			// Warn when file extensions are not used on import paths
 			'import/extensions': ['warn', 'always', {
 				ignorePackages: true,
@@ -179,10 +181,11 @@ export default [
 		"files": ["__tests__/**/*.*s", "tests/**/*.*s"],
 		// globals are included in plugin:jest
 		rules: {
-			"n/no-unpublished-import": "off",
-			"n/no-missing-import": "off",
-			"import/no-unresolved": "off",
-			"import/extensions": "off",
+			'n/no-unpublished-import': 'off',
+			'n/no-missing-import': 'off',
+			'import/no-unresolved': 'off',
+			'import/extensions': 'off',
+			'jest/no-deprecated-functions': ['error'],
 		},
 		plugins: {
 			jest,
