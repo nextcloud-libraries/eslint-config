@@ -1,23 +1,41 @@
 // New eslint syntax
 // https://eslint.org/docs/latest/user-guide/configuring/configuration-files-new
+import { FlatCompat } from "@eslint/eslintrc";
+import { fileURLToPath } from "url";
+
+import path from "path";
 import globals from "globals"
-import vue from 'eslint-plugin-vue'
-import n from 'eslint-plugin-n'
-import jsdoc from 'eslint-plugin-jsdoc'
 import jest from 'eslint-plugin-jest'
 import cypress from 'eslint-plugin-cypress'
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const compat = new FlatCompat({
+    baseDirectory: __dirname
+});
+
 export default [
-	// 'eslint:recommended',
-	// 'plugin:import/errors',
-	// 'plugin:import/warnings',
-	// 'plugin:n/recommended',
-	// 'plugin:vue/recommended',
-	// 'plugin:@nextcloud/recommended',
-	// 'plugin:jsdoc/recommended',
-	// 'standard',
-	// 'plugin:jest/recommended',
-	// 'plugin:cypress/recommended',
+	'eslint:recommended',
+	// compat: Key "plugins": Key "0": Expected an object
+	...compat.extends('plugin:import/errors'),
+	// compat: Key "plugins": Key "0": Expected an object
+	...compat.extends('plugin:import/warnings'),
+	// compat: unexpected key: global
+	...compat.extends('plugin:n/recommended'),
+	// compat: Unexpected key "extends"
+	...compat.extends('plugin:vue/recommended'),
+	// compat: Unexpected key "env" found.
+	...compat.extends('plugin:@nextcloud/recommended'),
+	// compat: Key "plugins": Key "0": Expected an object
+	...compat.extends('plugin:jsdoc/recommended'),
+	// compat: unexpected key "parserOptions"
+	...compat.extends('standard'),
+	// compat: Key "plugins": Key "0": Expected an object.
+	...compat.extends('plugin:jest/recommended'),
+	// compat: `plugins` uses strings instead of objects
+	// & does not work with compat: "languageOptions": Key "globals": Global "AudioWorkletGlobalScope " has leading or trailing whitespace
+	//...compat.extends('plugin:cypress/recommended'),
 	{
 		files: [
 			'**/*.js',
@@ -37,11 +55,6 @@ export default [
 				ecmaVersion: 2020,
 				requireConfigFile: false,
 			},
-		},
-		plugins: {
-			vue,
-			n,
-			jsdoc,
 		},
 		settings: {
 			'import/resolver': {
@@ -178,7 +191,7 @@ export default [
 	},
 	{
 		// Match jest test files
-		"files": ["__tests__/**/*.*s", "tests/**/*.*s"],
+		'files': ['__tests__/**/*.*s', 'tests/**/*.*s'],
 		// globals are included in plugin:jest
 		rules: {
 			'n/no-unpublished-import': 'off',
@@ -204,7 +217,7 @@ export default [
 		},
 		plugins: {
 			cypress,
-		},	
+		},
 	},
 	{
 		// Match config files like babel.config.js, webpack.config.mjs, eslint.config.cjs etc.
@@ -212,6 +225,6 @@ export default [
 		"rules": {
 			"n/no-unpublished-import": "off",
 			"n/no-extraneous-import": "off",
-		}
-	}
+		},
+	},
 ]
