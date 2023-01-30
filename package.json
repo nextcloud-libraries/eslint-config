@@ -2,7 +2,13 @@
   "name": "@nextcloud/eslint-config",
   "version": "8.3.0",
   "description": "Eslint shared config for nextcloud vue.js apps",
-  "main": "eslint.config.js",
+  "module": "eslint.config.js",
+  "exports": {
+    ".": {
+      "import": "./eslint.config.js",
+      "default": "./eslint.config.js"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nextcloud-libraries/eslint-config.git"
