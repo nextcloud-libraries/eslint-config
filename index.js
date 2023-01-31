@@ -29,6 +29,9 @@ module.exports = {
 				paths: ['src'],
 				extensions: ['.js', '.vue'],
 			},
+			exports: {
+				conditions: ['import'],
+			},
 		},
 		jsdoc: {
 			tagNamePreference: {
