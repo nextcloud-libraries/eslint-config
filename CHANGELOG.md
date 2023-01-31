@@ -1,5 +1,15 @@
 # Changelog
 
+## [v8.2.1](https://github.com/nextcloud/eslint-config/tree/v8.2.1) (2023-01-30)
+
+[Full Changelog](https://github.com/nextcloud/eslint-config/compare/v8.2.0...v8.2.1)
+
+**Fixed:**
+- Fix resolving packages that use the package `exports` feature by @susnux in https://github.com/nextcloud/eslint-config/pull/452
+
+**Merged pull requests:**
+- Various dependencies upgrades
+
 ## [v8.2.0](https://github.com/nextcloud/eslint-config/tree/v8.2.0) (2023-01-11)
 
 [Full Changelog](https://github.com/nextcloud/eslint-config/compare/v8.1.5...v8.2.0)
@@ -24,8 +34,7 @@
 
 [Full Changelog](https://github.com/nextcloud/eslint-config/compare/v8.1.3...v8.1.4)
 
-**Fixed bugs:**
-
+**Fixed:**
 - Fix eslint-plugin-n conflict [\#421](https://github.com/nextcloud/eslint-config/pull/421) ([skjnldsv](https://github.com/skjnldsv))
 
 ## [v8.1.3](https://github.com/nextcloud/eslint-config/tree/v8.1.3) (2022-11-04)
@@ -49,7 +58,6 @@
 [Full Changelog](https://github.com/nextcloud/eslint-config/compare/v8.0.0...v8.1.2)
 
 **Dependency updates:**
-
 - Use [`eslint-plugin-n`](https://www.npmjs.com/package/eslint-plugin-n) instead of [`eslint-plugin-node`](https://www.npmjs.com/package/eslint-plugin-node)
 
 ## [v8.0.0](https://github.com/nextcloud/eslint-config/tree/v8.0.0) (2022-04-20)
@@ -57,11 +65,9 @@
 [Full Changelog](https://github.com/nextcloud/eslint-config/compare/v7.0.2...v8.0.0)
 
 **Breaking:**
-
 - Require file extensions on import [\#292](https://github.com/nextcloud/eslint-config/pull/292) ([Pytal](https://github.com/Pytal))
 
 **Dependency updates:**
-
 - Bump eslint from 8.7.0 to 8.8.0 [\#282](https://github.com/nextcloud/eslint-config/pull/282) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump eslint from 8.8.0 to 8.9.0 [\#296](https://github.com/nextcloud/eslint-config/pull/296) ([dependabot[bot]](https://github.com/apps/dependabot))
 
@@ -70,11 +76,9 @@
 [Full Changelog](https://github.com/nextcloud/eslint-config/compare/v7.0.1...v7.0.2)
 
 **Fixed:**
-
 - Fix usual same-line vue attribute behaviour [\#272](https://github.com/nextcloud/eslint-config/pull/272) ([skjnldsv](https://github.com/skjnldsv))
 
 **Dependency updates:**
-
 - Bump eslint from 8.6.0 to 8.7.0 [\#271](https://github.com/nextcloud/eslint-config/pull/271) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump @babel/core from 7.16.7 to 7.16.10 [\#273](https://github.com/nextcloud/eslint-config/pull/273) ([dependabot[bot]](https://github.com/apps/dependabot))
 
@@ -83,11 +87,9 @@
 [Full Changelog](https://github.com/nextcloud/eslint-config/compare/v7.0.0...v7.0.1)
 
 **Fixed bugs:**
-
 - Allow component names to be single-word [\#270](https://github.com/nextcloud/eslint-config/pull/270) ([skjnldsv](https://github.com/skjnldsv))
 
 **Dependency updates:**
-
 - Bump webpack from 5.65.0 to 5.66.0 [\#269](https://github.com/nextcloud/eslint-config/pull/269) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump eslint-plugin-vue from 8.2.0 to 8.3.0 [\#268](https://github.com/nextcloud/eslint-config/pull/268) ([dependabot[bot]](https://github.com/apps/dependabot))
 
@@ -96,7 +98,6 @@
 [Full Changelog](https://github.com/nextcloud/eslint-config/compare/v6.1.2...v7.0.0)
 
 **Merged pull requests:**
-
 - Eslint 8 [\#266](https://github.com/nextcloud/eslint-config/pull/266) ([skjnldsv](https://github.com/skjnldsv))
 - v7.0.0 [\#267](https://github.com/nextcloud/eslint-config/pull/267) ([skjnldsv](https://github.com/skjnldsv))
 ## [v6.1.2](https://github.com/nextcloud/eslint-config/tree/v6.1.2) (2021-12-20)
@@ -104,7 +105,6 @@
 [Full Changelog](https://github.com/nextcloud/eslint-config/compare/v6.1.1...v6.1.2)
 
 **Fixes:**
-
 - Fix vue custom event name casing [\#249](https://github.com/nextcloud/eslint-config/pull/249) ([Pytal](https://github.com/Pytal))
 
 ## [v6.1.1](https://github.com/nextcloud/eslint-config/tree/v6.1.1) (2021-12-02)
@@ -112,7 +112,6 @@
 [Full Changelog](https://github.com/nextcloud/eslint-config/compare/v6.1.0...v6.1.1)
 
 **Fixes:**
-
 - Disable tag rule [\#248](https://github.com/nextcloud/eslint-config/pull/248) ([skjnldsv](https://github.com/skjnldsv))
 
 ## [v6.1.0](https://github.com/nextcloud/eslint-config/tree/v6.1.0) (2021-08-11)
@@ -120,7 +119,6 @@
 [Full Changelog](https://github.com/nextcloud/eslint-config/compare/v6.0.1...v6.1.0)
 
 **Fix dependency:**
-
 - Remove undesired eslint-webpack-plugin ([skjnldsv](https://github.com/skjnldsv))
 
 ## [v6.0.1](https://github.com/nextcloud/eslint-config/tree/v6.0.1) (2021-08-11)
@@ -128,7 +126,6 @@
 [Full Changelog](https://github.com/nextcloud/eslint-config/compare/v6.0.0...v6.0.1)
 
 **Merged pull requests:**
-
 - Fix license header tags spacing [\#180](https://github.com/nextcloud/eslint-config/pull/180) ([skjnldsv](https://github.com/skjnldsv))
 
 ## [v6.0.0](https://github.com/nextcloud/eslint-config/tree/v6.0.0)
