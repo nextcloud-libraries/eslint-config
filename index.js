@@ -121,7 +121,7 @@ module.exports = {
 	},
 	overrides: [
 		{
-			files: ['**/*.ts'],
+			files: ['**/*.ts', '**/*.tsx'],
 			extends: [
 				'@vue/eslint-config-typescript/recommended',
 				'plugin:import/typescript',
@@ -148,7 +148,7 @@ module.exports = {
 				'import/resolver': {
 					node: {
 						paths: ['src'],
-						extensions: ['.js', '.ts', '.vue'],
+						extensions: ['.(m|c)?js', '.ts', '.tsx', '.vue'],
 					},
 				},
 			},
