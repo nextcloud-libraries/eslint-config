@@ -1,5 +1,13 @@
 # Changelog
 
+## [v8.3.0-beta.0](https://github.com/nextcloud/eslint-config/tree/v8.3.0-beta.0) (2023-05-12)
+
+[Full Changelog](https://github.com/nextcloud/eslint-config/compare/v8.2.1...v8.3.0-beta.0)
+
+**Merged pull requests:**
+- Typescript 5 support
+- Various dependencies upgrades
+
 ## [v8.2.1](https://github.com/nextcloud/eslint-config/tree/v8.2.1) (2023-01-30)
 
 [Full Changelog](https://github.com/nextcloud/eslint-config/compare/v8.2.0...v8.2.1)
