@@ -146,6 +146,9 @@ module.exports = {
 			},
 			settings: {
 				'import/resolver': {
+					typescript: {
+						alwaysTryTypes: true,
+					},
 					node: {
 						paths: ['src'],
 						extensions: ['.(m|c)?js', '.ts', '.tsx', '.vue'],
