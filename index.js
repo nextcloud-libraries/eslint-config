@@ -118,6 +118,12 @@ module.exports = {
 		'import/extensions': ['warn', 'always', {
 			ignorePackages: true,
 		}],
+		// ignore camelcase for __webpack variables
+		camelcase: ['error', {
+			allow: ['^UNSAFE_', '^__webpack_'],
+			properties: 'never',
+			ignoreGlobals: true,
+		}],
 	},
 	overrides: [
 		{

@@ -29,3 +29,9 @@ test('TSX is linted', async () => {
 	expect(results).toHaveIssue({ruleId: '@typescript-eslint/no-unused-vars', line: 7})
 	expect(results).toHaveIssueCount(2)
 })
+
+test('ignore camelcase for webpack', async () => {
+	const results = await lintFile('fixtures/webpack-nonce.js')
+	expect(results).toHaveIssueCount(1)
+	expect(results).toHaveIssue({ruleId: 'no-undef', line: 2 })
+})
