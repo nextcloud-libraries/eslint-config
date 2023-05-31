@@ -40,6 +40,13 @@ ruleTester.run("no-removed-apis", rule, {
                 message: "The global property or function fileDownloadPath was removed in Nextcloud 15.0.0",
                 type: "Identifier"
             }]
+        },
+        {
+            code: "OC.addTranslations()",
+            errors: [{
+                message: "The property or function OC.addTranslations was removed in Nextcloud 26.0.0",
+                type: "MemberExpression"
+            }]
         }
     ]
 });
