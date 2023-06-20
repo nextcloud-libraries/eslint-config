@@ -35,3 +35,8 @@ test('ignore camelcase for webpack', async () => {
 	expect(results).toHaveIssueCount(1)
 	expect(results).toHaveIssue({ruleId: 'no-undef', line: 2 })
 })
+
+test('works with Vue Composition API', async () => {
+	const results = await lintFile('fixtures/composition-test.vue')
+	expect(results).toHaveIssueCount(0)
+})
