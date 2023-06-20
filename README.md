@@ -28,6 +28,20 @@ module.exports = {
 }
 ```
 
+### Usage with Typescript projects
+
+If your projects uses Typescript for vue files, like `<script lang="ts">` then use the Typescript config instead:
+
+Add a file `.eslintrc.js` in the root directory of your app repository with the following content:
+
+```js
+module.exports = {
+	extends: [
+		'@nextcloud/eslint-config/typescript',
+	],
+}
+```
+
 ## Release new version
 
  1. Update CHANGELOG.md file with the latest changes
