@@ -1,6 +1,6 @@
 /** Rules for typescript */
 module.exports = {
-    files: ['**/*.ts', '**/*.tsx'],
+    files: ['**/*.ts', '**/*.cts', '**/*.mts', '**/*.tsx'],
     extends: [
         '@vue/eslint-config-typescript/recommended',
         'plugin:import/typescript',
