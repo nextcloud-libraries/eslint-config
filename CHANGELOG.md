@@ -2,7 +2,9 @@
 
 ## Unreleased
 
-[Full Changelog](https://github.com/nextcloud/eslint-config/compare/v8.2.1...master)
+## [v8.3.0-beta.1](https://github.com/nextcloud/eslint-config/tree/v8.3.0-beta.1) (2023-06-27)
+
+[Full Changelog](https://github.com/nextcloud/eslint-config/compare/v8.3.0-beta.0...v8.3.0-beta.1)
 
 **Features:**
 - Provide config for vue files written in Typescript, use `extends: "@nextcloud/eslint-config/typescript"`.
