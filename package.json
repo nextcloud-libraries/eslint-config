@@ -8,8 +8,8 @@
     "url": "git+https://github.com/nextcloud/eslint-config.git"
   },
   "scripts": {
-    "lint": "eslint -c index.js *.js",
-    "lint:fix": "eslint -c index.js --fix *.js",
+    "lint": "eslint parts *.js",
+    "lint:fix": "eslint --fix parts *.js",
     "test": "jest"
   },
   "peerDependencies": {
@@ -64,6 +64,9 @@
   "engines": {
     "node": "^20.0.0",
     "npm": "^9.0.0"
+  },
+  "eslintConfig": {
+    "extends": "./index.js"
   },
   "jest": {
     "preset": "ts-jest",
