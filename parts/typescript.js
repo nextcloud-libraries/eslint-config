@@ -8,6 +8,10 @@ module.exports = {
 	parser: '@typescript-eslint/parser',
 	parserOptions: {},
 	rules: {
+		// allow for generic type parameters on function calls
+		'func-call-spacing': 'off',
+		'@typescript-eslint/func-call-spacing': 'error',
+		//
 		'n/no-missing-import': 'off',
 		'import/extensions': 'off',
 		'jsdoc/check-tag-names': [
