@@ -8,6 +8,7 @@
 
 **Fixed:**
 - chore: update typescript deps and co by @skjnldsv in https://github.com/nextcloud/eslint-config/pull/569
+- fix: allow empty functions by @skjnldsv in https://github.com/nextcloud/eslint-config/pull/570
 
 ## [v8.3.0-beta.1](https://github.com/nextcloud/eslint-config/tree/v8.3.0-beta.1) (2023-06-27)
 
