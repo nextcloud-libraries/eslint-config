@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+## [v8.3.0-beta.2](https://github.com/nextcloud/eslint-config/tree/v8.3.0-beta.2) (2023-06-27)
+
+[Full Changelog](https://github.com/nextcloud/eslint-config/compare/v8.3.0-beta.1...v8.3.0-beta.2)
+
+**Fixed:**
+- chore: update typescript deps and co by @skjnldsv in https://github.com/nextcloud/eslint-config/pull/569
+
 ## [v8.3.0-beta.1](https://github.com/nextcloud/eslint-config/tree/v8.3.0-beta.1) (2023-06-27)
 
 [Full Changelog](https://github.com/nextcloud/eslint-config/compare/v8.3.0-beta.0...v8.3.0-beta.1)
