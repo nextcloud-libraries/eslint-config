@@ -21,6 +21,7 @@ module.exports = {
         ],
         // Does not make sense with TypeScript
         'jsdoc/require-param-type': 'off',
+        '@typescript-eslint/no-empty-function': 'off',
     },
     settings: {
         'import/resolver': {
