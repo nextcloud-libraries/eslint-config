@@ -2,24 +2,34 @@ const base = require('./parts/base.js')
 const typescriptOverrides = require('./parts/typescript.js')
 const vueOverrides = require('./parts/vue.js')
 
+// Use different parser for vue files script section
+vueOverrides.parserOptions = {
+	parser: '@typescript-eslint/parser',
+	sourceType: 'module',
+}
+
+// Override vue rules with rules for Typescript
+vueOverrides.rules = {
+	...vueOverrides.rules,
+	...typescriptOverrides.rules,
+}
+
+// Also extend from vue typescript eslint
+vueOverrides.extends.push('@vue/eslint-config-typescript/recommended')
+
 /**
  * Config for projects written in Typescript + vue including vue files written in Typescript (`<script lang='ts'>`)
  */
 module.exports = {
 	...base,
 	overrides: [
-		// Add Typescript rules also for vue files
+		// Overrides for Typescript files
 		{
 			...typescriptOverrides,
-			files: ['**/*.ts', '**/*.tsx', '**/*.vue'],
 		},
-		// Use different parser for vue files script section
+		// Setup different vue parser to support `<script setup>` correctly, especially for `lang="ts"`
 		{
 			...vueOverrides,
-			parserOptions: {
-				parser: '@typescript-eslint/parser',
-				sourceType: 'module',
-			},
 		},
 	],
 }
