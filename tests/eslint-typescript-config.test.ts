@@ -1,11 +1,10 @@
-import { ESLint } from "eslint"
-import type { Linter } from "eslint"
+import { ESLint } from 'eslint'
+import type { Linter } from 'eslint'
 import * as path from 'path'
 import * as eslintConfig from '../typescript.js'
 
-
 const eslint = new ESLint({
-	baseConfig: eslintConfig as unknown as Linter.Config<Linter.RulesRecord>
+	baseConfig: eslintConfig as unknown as Linter.Config<Linter.RulesRecord>,
 })
 
 const lintFile = async (file) => {
@@ -15,5 +14,10 @@ const lintFile = async (file) => {
 
 test('works with Typescript + Vue', async () => {
 	const results = await lintFile('fixtures/typescript-test.vue')
+	expect(results).toHaveIssueCount(0)
+})
+
+test('Typescript overrides have higher priority than vue', async () => {
+	const results = await lintFile('fixtures/typescript-vue-overrides.vue')
 	expect(results).toHaveIssueCount(0)
 })
