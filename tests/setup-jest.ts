@@ -1,4 +1,4 @@
-import { ESLint, Linter } from "eslint"
+import { ESLint, Linter } from 'eslint'
 
 /**
  * Add some custom matchers for ESLint to jest
@@ -6,7 +6,7 @@ import { ESLint, Linter } from "eslint"
 expect.extend({
 	toPass: assertLintingPassed,
 	toHaveIssueCount: assertHavingNIssues,
-	toHaveIssue: assertHavingIssue
+	toHaveIssue: assertHavingIssue,
 })
 
 /**
@@ -24,8 +24,8 @@ function hasNoIssues(received: ESLint.LintResult) {
 /**
  * Check if linting of multiple fils
  *
- * @param received 
- * @returns {}
+ * @param received
+ * @return {}
  */
 function assertLintingPassed(received: ESLint.LintResult | ESLint.LintResult[]) {
 	// allow single ESLintResult
@@ -36,7 +36,7 @@ function assertLintingPassed(received: ESLint.LintResult | ESLint.LintResult[]) 
 	const errors = [] as {file: string, errors: Linter.LintMessage[]}[]
 	const pass = received.every((result) => {
 		// save issues
-		errors.push({file: result.filePath, errors: result.messages})
+		errors.push({ file: result.filePath, errors: result.messages })
 		return hasNoIssues(result)
 	})
 
@@ -46,12 +46,12 @@ function assertLintingPassed(received: ESLint.LintResult | ESLint.LintResult[]) 
 			if (pass) {
 				return 'Expected file to not pass eslint, but got no issues'
 			} else {
-				const errorMessages = errors.map((m) => 
-					`file: ${m.file}\n` + m.errors.map((e) => 'line: ' + e.line + ': ' + (e.ruleId || e.message))
+				const errorMessages = errors.map((m) =>
+					`file: ${m.file}\n` + m.errors.map((e) => 'line: ' + e.line + ': ' + (e.ruleId || e.message)),
 				)
 				return 'Expected file to pass eslint, got issues:\n' + errorMessages.join('\n')
 			}
-		}
+		},
 	}
 }
 
@@ -59,7 +59,7 @@ function assertLintingPassed(received: ESLint.LintResult | ESLint.LintResult[]) 
  * Count the total amount of issues
  *
  * @param received lint result
- * @returns total amount of issues
+ * @return total amount of issues
  */
 function countIssues(received: ESLint.LintResult) {
 	return received.errorCount + received.warningCount
@@ -70,7 +70,7 @@ function countIssues(received: ESLint.LintResult) {
  *
  * @param received the lint result
  * @param expected number of expected issues
- * @returns jest matcher result
+ * @return jest matcher result
  */
 function assertHavingNIssues(received: ESLint.LintResult | ESLint.LintResult[], expected: number) {
 	if (!(typeof expected === 'number')) throw new Error('Expected a number as expected value')
@@ -84,7 +84,7 @@ function assertHavingNIssues(received: ESLint.LintResult | ESLint.LintResult[], 
 
 	return {
 		pass,
-		message: () => pass ? `Expected not to find exactly ${expected} issues.` : `Expected ${expected} issues, found ${issues}`
+		message: () => pass ? `Expected not to find exactly ${expected} issues.` : `Expected ${expected} issues, found ${issues}`,
 	}
 }
 
@@ -93,7 +93,7 @@ function assertHavingNIssues(received: ESLint.LintResult | ESLint.LintResult[], 
  *
  * @param received the lint result
  * @param issue the expected issue
- * @returns jest matcher result
+ * @return jest matcher result
  */
 function assertHavingIssue(received: ESLint.LintResult | ESLint.LintResult[], issue: string | {ruleId: string, line?: number}) {
 	if (!Array.isArray(received)) {
@@ -104,7 +104,7 @@ function assertHavingIssue(received: ESLint.LintResult | ESLint.LintResult[], is
 	if (assertLintingPassed(received).pass) {
 		return {
 			pass: false,
-			message: () => 'Expected issue, but no linting issues found.'
+			message: () => 'Expected issue, but no linting issues found.',
 		}
 	}
 
@@ -115,14 +115,14 @@ function assertHavingIssue(received: ESLint.LintResult | ESLint.LintResult[], is
 			if (message.ruleId !== name) return false
 			// if line is requested ignore not matching ones
 			if (typeof issue === 'object' && issue.line !== undefined && issue.line !== message.line) return false
-			// otherwise matched	
+			// otherwise matched
 			return true
 		})
-	});
+	})
 
 	const onLine = typeof issue === 'string' ? '' : ` on line ${issue.line}`
 	return {
 		pass: result,
-		message: () => result ? `Unexpected error '${name}'${onLine} found.`  : `Expected error '${name}'${onLine} not found.`
+		message: () => result ? `Unexpected error '${name}'${onLine} found.` : `Expected error '${name}'${onLine} not found.`,
 	}
 }
