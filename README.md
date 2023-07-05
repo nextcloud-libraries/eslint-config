@@ -64,6 +64,30 @@ Configure the rules you want to use under the rules section.
 }
 ```
 
+### Limit the Nextcloud version to report
+By default all removed or deprecated API is reported, but if your app targets an older version of Nextcloud then you can limit the reported issues to changes before and with that version.
+
+For example you target Nextcloud 25 and you use `OC.L10n` which was deprecated with Nextcloud 26. To disable reporting that deprecation you can set the target version to *25*:
+
+```json
+{
+    "rules": {
+        "nextcloud/no-deprecations": ["warn", { "targetVersion": "25.0.0" }],
+        "nextcloud/no-removed-apis": ["error", { "targetVersion": "25.0.0" }],
+    }
+}
+```
+
+It is also possible to detect that your supported Nextcloud version from your `appinfo/info.xml` (`max-version` of your `nextcloud` dependency):
+```json
+{
+    "rules": {
+        "nextcloud/no-deprecations": ["warn", { "parseAppInfo": true }],
+        "nextcloud/no-removed-apis": ["error", { "parseAppInfo": true }],
+    }
+}
+```
+
 ## Supported Shared Configurations
 
 * `nextcloud/recommended`: Recommended configuration that loads the Nextcloud ESlint plugin, adds the Nextcloud environment and configures all recommended Nextcloud rules.
