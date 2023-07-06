@@ -13,10 +13,12 @@
   "repository": "git+https://github.com/nextcloud/eslint-plugin.git",
   "main": "lib/index.js",
   "scripts": {
-    "test": "mocha tests --recursive",
-    "test:watch": "mocha tests --recursive --watch"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
+    "jest": "^29.6.0",
     "requireindex": "^1.2.0"
   },
   "devDependencies": {
@@ -30,5 +32,10 @@
     "node": "^20.0.0",
     "npm": "^9.0.0"
   },
-  "license": "ISC"
+  "license": "ISC",
+  "jest": {
+    "collectCoverageFrom": [
+      "lib/**/*.js"
+    ]
+  }
 }
