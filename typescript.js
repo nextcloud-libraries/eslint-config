@@ -1,4 +1,5 @@
 const base = require('./parts/base.js')
+const cypressOverrides = require('./parts/cypress.js')
 const typescriptOverrides = require('./parts/typescript.js')
 const vueOverrides = require('./parts/vue.js')
 
@@ -30,6 +31,10 @@ module.exports = {
 		// Setup different vue parser to support `<script setup>` correctly, especially for `lang="ts"`
 		{
 			...vueOverrides,
+		},
+		// additional configuration for cypress tests
+		{
+			...cypressOverrides,
 		},
 	],
 }

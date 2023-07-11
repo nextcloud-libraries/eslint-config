@@ -1,42 +1,58 @@
-import { ESLint } from "eslint"
-import type { Linter } from "eslint"
+import type { Linter } from 'eslint'
+import { ESLint } from 'eslint'
+import { readFile } from 'fs/promises'
 import * as path from 'path'
 import * as eslintConfig from '../index.js'
 
-
 const eslint = new ESLint({
-	baseConfig: eslintConfig as unknown as Linter.Config<Linter.RulesRecord>
+	baseConfig: eslintConfig as unknown as Linter.Config<Linter.RulesRecord>,
+	cwd: path.resolve(__dirname, 'fixtures'),
 })
 
+/**
+ * Lints a given with ESLint, the file is virtually mounted at `<project-root>/<file-path>`
+ *
+ * @param file Virtual file path, the file content is loaded from the file path relative to the fixures folder `tests/fixtures/<file-path>`
+ */
 const lintFile = async (file) => {
-	const real = path.resolve(path.join(__dirname, file))
-	return await eslint.lintFiles(real)
+	const real = path.resolve(path.join(__dirname, 'fixtures', file))
+	const buffer = await readFile(real)
+	return await eslint.lintText(buffer.toString(), {
+		filePath: file,
+	})
 }
 
 test('some basic issues should fail', async () => {
-	const results = await lintFile('fixtures/example-fail.js')
+	const results = await lintFile('example-fail.js')
 	expect(results).toHaveIssueCount(3)
 	expect(results).toHaveIssue('spaced-comment')
 	expect(results).toHaveIssue({ ruleId: 'no-console', line: 3 })
 })
 
 test('TSX is linted', async () => {
-	const ignored = await eslint.isPathIgnored('./fixtures/some.tsx')
+	const ignored = await eslint.isPathIgnored('some.tsx')
 	expect(ignored).toBe(false)
 
-	const results = await lintFile('fixtures/some.tsx')
-	expect(results).toHaveIssue({ruleId: 'jsdoc/check-tag-names', line: 5})
-	expect(results).toHaveIssue({ruleId: '@typescript-eslint/no-unused-vars', line: 7})
+	const results = await lintFile('some.tsx')
+	expect(results).toHaveIssue({ ruleId: 'jsdoc/check-tag-names', line: 5 })
+	expect(results).toHaveIssue({ ruleId: '@typescript-eslint/no-unused-vars', line: 7 })
 	expect(results).toHaveIssueCount(2)
 })
 
 test('ignore camelcase for webpack', async () => {
-	const results = await lintFile('fixtures/webpack-nonce.js')
+	const results = await lintFile('webpack-nonce.js')
 	expect(results).toHaveIssueCount(1)
-	expect(results).toHaveIssue({ruleId: 'no-undef', line: 2 })
+	expect(results).toHaveIssue({ ruleId: 'no-undef', line: 2 })
 })
 
 test('works with Vue Composition API', async () => {
-	const results = await lintFile('fixtures/composition-test.vue')
+	const results = await lintFile('composition-test.vue')
+	expect(results).toHaveIssueCount(0)
+})
+
+test('works with chai expressions', async () => {
+	const results = await eslint.lintText('', {
+		filePath: 'cypress/component/foo.cy.ts',
+	})
 	expect(results).toHaveIssueCount(0)
 })
