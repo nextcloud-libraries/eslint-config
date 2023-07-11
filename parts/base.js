@@ -93,4 +93,13 @@ module.exports = {
 			ignoreGlobals: true,
 		}],
 	},
+	overrides: [
+		{
+			// Allow "unpublished" == devDependencies to be imported in config files
+			files: ['*.config.*', 'cypress/**/*', 'tests/**/*', '__tests__/**/*', '__mocks__/**/*'],
+			rules: {
+				'n/no-unpublished-import': 'off',
+			},
+		},
+	],
 }
