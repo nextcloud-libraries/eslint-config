@@ -16,10 +16,12 @@ module.exports = {
 		'import/extensions': 'off',
 		'jsdoc/check-tag-names': [
 			'warn', {
-				// for projects using typedoc
 				definedTags: [
+					// for projects using typedoc
 					'notExported',
 					'packageDocumentation',
+					// for jest
+					'jest-environment',
 				],
 			},
 		],

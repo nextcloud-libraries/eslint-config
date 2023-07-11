@@ -63,6 +63,14 @@ module.exports = {
 		// ternary on multiline
 		'multiline-ternary': ['error', 'always-multiline'],
 		// force proper JSDocs
+		'jsdoc/check-tag-names': [
+			'warn', {
+				definedTags: [
+					// for jest
+					'jest-environment',
+				],
+			},
+		],
 		'jsdoc/require-returns': 0,
 		'jsdoc/require-returns-description': 0,
 		'jsdoc/tag-lines': ['off'],
