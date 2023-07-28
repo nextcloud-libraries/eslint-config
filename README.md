@@ -1,7 +1,7 @@
 ## @nextcloud/eslint-config
 
 [![npm last version](https://img.shields.io/npm/v/@nextcloud/eslint-config.svg?style=flat-square)](https://www.npmjs.com/package/@nextcloud/eslint-config)
-[![Lint status](https://img.shields.io/github/actions/workflow/status/nextcloud/eslint-config/lint-eslint.yml?label=lint&style=flat-square)](https://github.com/nextcloud/eslint-config/actions/workflows/lint.yml)
+[![Lint status](https://img.shields.io/github/actions/workflow/status/nextcloud-libraries/eslint-config/lint-eslint.yml?label=lint&style=flat-square)](https://github.com/nextcloud-libraries/eslint-config/actions/workflows/lint.yml)
 [![Dependabot status](https://img.shields.io/badge/Dependabot-enabled-brightgreen.svg?longCache=true&style=flat-square&logo=dependabot)](https://dependabot.com)
 
 
@@ -47,4 +47,4 @@ module.exports = {
  1. Update CHANGELOG.md file with the latest changes
  2. Bump the package version with `npm version`
  3. Push version bump commit
- 4. Create a new release with proper changelog https://github.com/nextcloud/eslint-config/releases/new
+ 4. Create a new release with proper changelog https://github.com/nextcloud-libraries/eslint-config/releases/new
