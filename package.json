@@ -1,6 +1,7 @@
 {
   "name": "@nextcloud/eslint-plugin",
-  "version": "2.0.0",
+  "version": "2.1.0",
+  "license": "ISC",
   "description": "Nextcloud lint plugin for ESLint",
   "keywords": [
     "eslint",
@@ -9,8 +10,8 @@
     "nextcloud"
   ],
   "author": "Christoph Wurst",
-  "homepage": "https://github.com/nextcloud/eslint-plugin",
-  "repository": "git+https://github.com/nextcloud/eslint-plugin.git",
+  "homepage": "https://github.com/nextcloud-libraries/eslint-plugin",
+  "repository": "git+https://github.com/nextcloud-libraries/eslint-plugin.git",
   "main": "lib/index.js",
   "scripts": {
     "test": "jest",
@@ -32,7 +33,6 @@
     "node": "^20.0.0",
     "npm": "^9.0.0"
   },
-  "license": "ISC",
   "jest": {
     "collectCoverageFrom": [
       "lib/**/*.js"
