@@ -14,6 +14,12 @@ vueOverrides.rules = {
 	...typescriptOverrides.rules,
 }
 
+// Add settings, required for import resolver
+vueOverrides.settings = {
+	...(vueOverrides.settings || []),
+	...typescriptOverrides.settings,
+}
+
 // Also extend from vue typescript eslint
 vueOverrides.extends.push('@vue/eslint-config-typescript/recommended')
 
