@@ -1,33 +1,33 @@
 # Changelog
 
-## Unreleased
+## [v8.3.0](https://github.com/nextcloud-libraries/eslint-config/tree/v8.3.0) (2023-09-25)
+[Full Changelog](https://github.com/nextcloud-libraries/eslint-config/compare/v8.2.1...v8.3.0)
 
-## [v8.3.0-beta.2](https://github.com/nextcloud-libraries/eslint-config/tree/v8.3.0-beta.2) (2023-06-27)
+### Features
+* Typescript 5 support
+* Allow linting of typescript with module resolution set to `node16` or `nodenext` by @susnux in https://github.com/nextcloud-libraries/eslint-config/pull/527
+* Support Composition API & Typescript + Vue projects by @susnux in https://github.com/nextcloud-libraries/eslint-config/pull/562
+* Allow linting of TSX files by @susnux in https://github.com/nextcloud-libraries/eslint-config/pull/456
 
-[Full Changelog](https://github.com/nextcloud-libraries/eslint-config/compare/v8.3.0-beta.1...v8.3.0-beta.2)
+### Fixes
+* Ignore camelcase rule for __webpack variables by @kesselb in https://github.com/nextcloud-libraries/eslint-config/pull/530
+* Add Typescript overrides for all valid Typescript file extensions by @susnux in https://github.com/nextcloud-libraries/eslint-config/pull/567
+* Allow empty functions by @skjnldsv in https://github.com/nextcloud-libraries/eslint-config/pull/570
+* fix(typescript): Also set the typescript settings to the vue overrides for typescript import resolving by @susnux in https://github.com/nextcloud-libraries/eslint-config/pull/639
+* fix(typescript): Allow generic type parameters on function calls by @susnux in https://github.com/nextcloud-libraries/eslint-config/pull/571
+* Make sure vue files written in Typescript are linted correctly by @susnux in https://github.com/nextcloud-libraries/eslint-config/pull/579
+* fix: Allow to import packages from `devDependencies` within config files by @susnux in https://github.com/nextcloud-libraries/eslint-config/pull/580
+* fix: Allow `@jest-environment` docblock for jest tests by @susnux in https://github.com/nextcloud-libraries/eslint-config/pull/592
 
-**Fixed:**
-- chore: update typescript deps and co by @skjnldsv in https://github.com/nextcloud-libraries/eslint-config/pull/569
-- fix: allow empty functions by @skjnldsv in https://github.com/nextcloud-libraries/eslint-config/pull/570
-
-## [v8.3.0-beta.1](https://github.com/nextcloud-libraries/eslint-config/tree/v8.3.0-beta.1) (2023-06-27)
-
-[Full Changelog](https://github.com/nextcloud-libraries/eslint-config/compare/v8.3.0-beta.0...v8.3.0-beta.1)
-
-**Features:**
-- Provide config for vue files written in Typescript, use `extends: "@nextcloud/eslint-config/typescript"`.
-- Fully support vue files using the Composition API `<script setup>`.
-
-**Fixed:**
-- fix: Add Typescript overrides for all valid Typescript file extensions by @susnux in https://github.com/nextcloud-libraries/eslint-config/pull/567
-
-## [v8.3.0-beta.0](https://github.com/nextcloud-libraries/eslint-config/tree/v8.3.0-beta.0) (2023-05-12)
-
-[Full Changelog](https://github.com/nextcloud-libraries/eslint-config/compare/v8.2.1...v8.3.0-beta.0)
-
-**Merged pull requests:**
-- Typescript 5 support
-- Various dependencies upgrades
+### Changed
+* Various dependencies upgrades
+* chore: Update `@nextcloud/eslint-plugin` to version 2.1.0 by @susnux in https://github.com/nextcloud-libraries/eslint-config/pull/605
+* Drop webpack dependency by @susnux in https://github.com/nextcloud-libraries/eslint-config/pull/528
+538
+* Update node engines to next LTS (node 20 and NPM 9) by @nextcloud-command in https://github.com/nextcloud-libraries/eslint-config/pull/563
+565
+* Make eslint to take this config for linting the config by @susnux in https://github.com/nextcloud-libraries/eslint-config/pull/572
+* chore: Fix URLs after package got transfered by @susnux in https://github.com/nextcloud-libraries/eslint-config/pull/602
 
 ## [v8.2.1](https://github.com/nextcloud-libraries/eslint-config/tree/v8.2.1) (2023-01-30)
 
