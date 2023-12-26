@@ -11,6 +11,7 @@ on:
 
 permissions:
   contents: read
+  packages: write
 
 jobs:
   publish:
@@ -30,11 +31,11 @@ jobs:
         uses: skjnldsv/read-package-engines-version-actions@8205673bab74a63eb9b8093402fd9e0e018663a1 # v2.2
         id: versions
         with:
-          fallbackNode: '^16'
-          fallbackNpm: '^7'
+          fallbackNode: '^20'
+          fallbackNpm: '^9'
 
       - name: Set up node ${{ steps.versions.outputs.nodeVersion }}
-        uses: actions/setup-node@5e21ff4d9bc1a8cf6de233a3057d20ec6b3fb69d # v3
+        uses: actions/setup-node@8f152de45cc393bb48ce5d89d36b731f54556e65 # v3
         with:
           node-version: ${{ steps.versions.outputs.nodeVersion }}
 
@@ -42,6 +43,8 @@ jobs:
         run: npm i -g npm@"${{ steps.versions.outputs.npmVersion }}"
 
       - name: Install dependencies & build
+        env:
+          CYPRESS_INSTALL_BINARY: 0
         run: |
           npm ci
           npm run build --if-present
@@ -52,3 +55,13 @@ jobs:
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Setup Github Package Registry
+        uses: actions/setup-node@8f152de45cc393bb48ce5d89d36b731f54556e65 # v3
+        with:
+          registry-url: 'https://npm.pkg.github.com'
+
+      - name: Publish package on GPR
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
