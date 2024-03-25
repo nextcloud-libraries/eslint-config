@@ -64,4 +64,39 @@ describe('no-deprecations', () => {
             }
         ]
     })
+
+    ruleTester.run('no-deprecations with target version', rule, {
+        valid: [
+            {
+                name: 'manual target version lower than deprecation',
+                code: "OCP.Toast.success('hello')",
+                options: [{ targetVersion: '18.0.0' }],
+            },
+            {
+                name: 'manual target version lower than deprecation (short version)',
+                code: "OCP.Toast.success('hello')",
+                options: [{ targetVersion: '18' }],
+            },
+            {
+                name: 'appinfo max-version lower than deprecation',
+                code: 'OC.L10n.translate()',
+                options: [{ parseAppInfo: true }],
+                filename: 'tests/fixtures/valid-appinfo/some-file.js',
+            },
+        ],
+    
+        invalid: [
+            {
+                name: 'manual target version higher than deprecation',
+                code: 'OC.L10n.translate()',
+                options: [{ targetVersion: '27.0.0' }],
+                errors: [
+                    {
+                        message: 'The property or function OC.L10n was deprecated in Nextcloud 26.0.0',
+                        type: 'MemberExpression',
+                    },
+                ],
+            },
+        ],
+    })
 })

@@ -50,4 +50,48 @@ describe('no-removed-api', () => {
             }
         ]
     })
+
+    ruleTester.run('no-removed-api (with target version parsing)', rule, {
+        valid: [
+            // Removed in 26, but accept if our target is 25
+            {
+                name: 'manual target version lower than removed',
+                code: 'OC.addTranslations()',
+                options: [{ targetVersion: '25.0.0' }],
+            },
+            {
+                name: 'appinfo max-version lower than removed',
+                code: 'OC.addTranslations()',
+                // enable appinfo parsing for testing only the target versions
+                options: [{ parseAppInfo: true }],
+                filename: 'tests/fixtures/valid-appinfo/some-file.js',
+            },
+        ],
+    
+        invalid: [
+            // Removed in 26, so also fail if target is set to 26
+            {
+                name: 'manual target version equals removed',
+                code: 'OC.addTranslations()',
+                options: [{ targetVersion: '26.0.0' }],
+                errors: [
+                    {
+                        message: 'The property or function OC.addTranslations was removed in Nextcloud 26.0.0',
+                        type: 'MemberExpression',
+                    },
+                ],
+            },
+            {
+                name: 'manual target version greater than removed',
+                code: 'OC.addTranslations()',
+                options: [{ targetVersion: '27.0.0' }],
+                errors: [
+                    {
+                        message: 'The property or function OC.addTranslations was removed in Nextcloud 26.0.0',
+                        type: 'MemberExpression',
+                    },
+                ],
+            },
+        ],
+    })
 })
