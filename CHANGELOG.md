@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.2.0 - 2024-03-26
+### Added
+* feat: Add option to set a Nextcloud target version or parse the appinfo \([\#164](https://github.com/nextcloud-libraries/eslint-plugin/pull/164)\)
+* feat: Add removed API from 28 and 29 \([\#180](https://github.com/nextcloud-libraries/eslint-plugin/pull/180)\)
+
+### Fixed
+* Fix dependencies - `jest` is only a development dependency \([\#173](https://github.com/nextcloud-libraries/eslint-plugin/pull/173)\)
+
+### Changed
+- Dependency updates
+- Node version updates to LTS (Node 20 and NPM 10)
+
 ## 2.1.0 - 2023-08-03
 ### Added
 - Nextcloud 20 removal of `OCA.Search` \([\#165](https://github.com/nextcloud-libraries/eslint-plugin/pull/165)\)
