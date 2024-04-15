@@ -15,7 +15,7 @@
   "peerDependencies": {
     "@babel/core": "^7.24.4",
     "@babel/eslint-parser": "^7.16.5",
-    "@nextcloud/eslint-plugin": "^2.1.0",
+    "@nextcloud/eslint-plugin": "^2.2.0",
     "@vue/eslint-config-typescript": "^13.0.0",
     "eslint": "^8.27.0",
     "eslint-config-standard": "^17.1.0",
@@ -31,7 +31,7 @@
   "devDependencies": {
     "@babel/core": "^7.24.4",
     "@babel/eslint-parser": "^7.24.1",
-    "@nextcloud/eslint-plugin": "^2.1.0",
+    "@nextcloud/eslint-plugin": "^2.2.0",
     "@types/eslint": "^8.56.7",
     "@types/jest": "^29.5.12",
     "@vue/eslint-config-typescript": "^13.0.0",
