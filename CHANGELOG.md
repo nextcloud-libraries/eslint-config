@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.2.1 - 2024-04-21
+### Fixed
+* fix: Relax recommended config to work also with libraries \([\#180](https://github.com/nextcloud-libraries/eslint-plugin/pull/185)\)
+
 ## 2.2.0 - 2024-03-26
 ### Added
 * feat: Add option to set a Nextcloud target version or parse the appinfo \([\#164](https://github.com/nextcloud-libraries/eslint-plugin/pull/164)\)
