@@ -1,5 +1,9 @@
 # Changelog
 
+## [v8.4.0](https://github.com/nextcloud-libraries/eslint-config/tree/v8.4.0) (2024-05-15)
+### Features
+* Vue 3 support: There is a new sub-configuration for projects using Vue 3
+
 ## [v8.3.0](https://github.com/nextcloud-libraries/eslint-config/tree/v8.3.0) (2023-09-25)
 [Full Changelog](https://github.com/nextcloud-libraries/eslint-config/compare/v8.2.1...v8.3.0)
 
