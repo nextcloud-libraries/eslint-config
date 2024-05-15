@@ -64,7 +64,7 @@
   "homepage": "https://github.com/nextcloud-libraries/eslint-config#readme",
   "engines": {
     "node": "^20.0.0",
-    "npm": "^9.0.0"
+    "npm": "^10.0.0"
   },
   "eslintConfig": {
     "extends": "./index.js"
