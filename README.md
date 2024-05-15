@@ -42,6 +42,21 @@ module.exports = {
 }
 ```
 
+### Usage with Vue 3 projects
+
+If your projects uses Vue 3 you have to use the `vue3` sub-configuration.
+This configuration also includes Typescript support by default.
+
+Add a file `.eslintrc.js` in the root directory of your app repository with the following content:
+
+```js
+module.exports = {
+	extends: [
+		'@nextcloud/eslint-config/vue3',
+	],
+}
+```
+
 ## Release new version
 
  1. Update CHANGELOG.md file with the latest changes
