@@ -34,6 +34,6 @@ module.exports = {
 		// Prevent conflicts with native HTML elements
 		'vue/multi-word-component-names': 'error',
 		// custom event naming convention
-		'vue/custom-event-name-casing': 'warning',
+		'vue/custom-event-name-casing': 'warn',
 	},
 }
