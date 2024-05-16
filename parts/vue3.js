@@ -4,7 +4,7 @@ module.exports = {
 	parserOptions: {
 		parser: '@babel/eslint-parser',
 	},
-	extends: ['plugin:vue3/recommended'],
+	extends: ['plugin:vue/vue3-recommended'],
 	rules: {
 		'vue/html-indent': ['error', 'tab'],
 		// PascalCase components names for vuejs
