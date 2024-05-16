@@ -1,5 +1,16 @@
 # Changelog
 
+## [v8.4.1](https://github.com/nextcloud-libraries/eslint-config/tree/v8.4.1) (2024-05-16)
+
+[Full Changelog](https://github.com/nextcloud-libraries/eslint-config/compare/v8.4.0...v8.4.1)
+
+### Fixes
+* fix(vue3): align rules with Vue 2 rules by @ShGKme in https://github.com/nextcloud-libraries/eslint-config/pull/771
+* fix(vue3): config crashes ESLint by @ShGKme in https://github.com/nextcloud-libraries/eslint-config/pull/770
+
+### Changed
+* build(deps-dev): Bump eslint-plugin-jsdoc from 48.2.4 to 48.2.5 by @dependabot in https://github.com/nextcloud-libraries/eslint-config/pull/769
+
 ## [v8.4.0](https://github.com/nextcloud-libraries/eslint-config/tree/v8.4.0) (2024-05-15)
 ### Features
 * Vue 3 support: There is a new sub-configuration for projects using Vue 3
