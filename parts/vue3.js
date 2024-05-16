@@ -29,10 +29,10 @@ module.exports = {
 		// See https://vuejs.org/style-guide/rules-strongly-recommended.html#multi-attribute-elements
 		'vue/first-attribute-linebreak': ['error', {
 			singleline: 'beside',
-			multiline: 'below',
+			multiline: 'beside',
 		}],
-		// Prevent conflicts with native HTML elements
-		'vue/multi-word-component-names': 'error',
+		// Allow single-word components names
+		'vue/multi-word-component-names': ['off'],
 		// custom event naming convention
 		'vue/custom-event-name-casing': 'warning',
 	},
