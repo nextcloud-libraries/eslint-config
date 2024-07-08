@@ -1,3 +1,7 @@
+/**
+ * SPDX-FileCopyrightText: 2019 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
 const base = require('./parts/base.js')
 const typescriptOverrides = require('./parts/typescript.js')
 const vueOverrides = require('./parts/vue.js')

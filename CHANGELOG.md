@@ -1,3 +1,7 @@
+<!--
+  - SPDX-FileCopyrightText: 2019 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: AGPL-3.0-or-later
+-->	
 # Changelog
 
 ## [v8.4.1](https://github.com/nextcloud-libraries/eslint-config/tree/v8.4.1) (2024-05-16)

@@ -1,5 +1,10 @@
+<!--
+  - SPDX-FileCopyrightText: 2019 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: AGPL-3.0-or-later
+-->	
 ## @nextcloud/eslint-config
 
+[![REUSE status](https://api.reuse.software/badge/github.com/nextcloud-libraries/eslint-config)](https://api.reuse.software/info/github.com/nextcloud-libraries/eslint-config)
 [![npm last version](https://img.shields.io/npm/v/@nextcloud/eslint-config.svg?style=flat-square)](https://www.npmjs.com/package/@nextcloud/eslint-config)
 [![Lint status](https://img.shields.io/github/actions/workflow/status/nextcloud-libraries/eslint-config/lint-eslint.yml?label=lint&style=flat-square)](https://github.com/nextcloud-libraries/eslint-config/actions/workflows/lint.yml)
 [![Dependabot status](https://img.shields.io/badge/Dependabot-enabled-brightgreen.svg?longCache=true&style=flat-square&logo=dependabot)](https://dependabot.com)
