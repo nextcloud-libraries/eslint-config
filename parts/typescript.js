@@ -31,6 +31,8 @@ module.exports = {
 		],
 		// Does not make sense with TypeScript
 		'jsdoc/require-param-type': 'off',
+		'jsdoc/require-returns-type': 'off',
+		//
 		'@typescript-eslint/no-empty-function': 'off',
 	},
 	settings: {
