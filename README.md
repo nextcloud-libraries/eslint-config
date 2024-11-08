@@ -92,12 +92,6 @@ It is also possible to detect that your supported Nextcloud version from your `a
 
 * `nextcloud/recommended`: Recommended configuration that loads the Nextcloud ESlint plugin, adds the Nextcloud environment and configures all recommended Nextcloud rules.
 
-
-## Supported Environments
-
-* `nextcloud/nextcloud`: Manifests global variables defined by Nextcloud server
-
-
 ## Supported Rules
 
 * `nextcloud/no-deprecations`: Detects properties and functions that were deprecated in Nextcloud server

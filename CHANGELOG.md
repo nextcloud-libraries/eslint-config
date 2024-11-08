@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 3.0.0 - unreleased
+### Breaking
+* Added ESLint v9 and flat config compatibility - ESLint v8 is no longer supported.
+
 ## 2.2.1 - 2024-04-21
 ### Fixed
 * fix: Relax recommended config to work also with libraries \([\#180](https://github.com/nextcloud-libraries/eslint-plugin/pull/185)\)
