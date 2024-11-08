@@ -10,15 +10,3 @@ updates:
   versioning-strategy: increase
   reviewers:
   - ChristophWurst
-  ignore:
-  - dependency-name: eslint
-    versions:
-    - 7.18.0
-    - 7.19.0
-    - 7.20.0
-    - 7.21.0
-    - 7.22.0
-  - dependency-name: mocha
-    versions:
-    - 8.3.0
-    - 8.3.1
