@@ -35,9 +35,9 @@
   ],
   "scripts": {
     "build": "vite --mode production build",
-    "lint": "eslint parts *.js",
-    "lint:fix": "eslint --fix parts *.js",
-    "test": "jest"
+    "lint": "npm run build && eslint",
+    "lint:fix": "eslint --fix",
+    "test": "vitest"
   },
   "dependencies": {
     "@eslint/json": "^0.10.0",

@@ -32,9 +32,7 @@ export const GLOB_FILES_JAVASCRIPT = [
 export const GLOB_FILES_JSON = ['**/*.json']
 
 /** Glob pattern for JSONC files */
-export const GLOB_FILES_JSONC = [
-	'**/*.jsonc',
-]
+export const GLOB_FILES_JSONC = ['**/*.jsonc']
 
 /** Glob pattern for Microsoft JSON files which use a slightly different JSONC implementation */
 export const GLOB_FILES_MS_JSON = [
