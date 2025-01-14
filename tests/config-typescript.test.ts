@@ -2,13 +2,16 @@
  * SPDX-FileCopyrightText: 2023 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
-import { ESLint } from 'eslint'
 import type { Linter } from 'eslint'
+
+import { ESLint } from 'eslint'
+import { expect, test } from 'vitest'
 import * as path from 'path'
-import * as eslintConfig from '../typescript.js'
+import * as eslintConfig from '../lib/index.js'
 
 const eslint = new ESLint({
-	baseConfig: eslintConfig as unknown as Linter.Config<Linter.RulesRecord>,
+	overrideConfigFile: true,
+	overrideConfig: eslintConfig.recommended as Linter.Config<Linter.RulesRecord>,
 })
 
 const lintFile = async (file) => {
@@ -23,5 +26,10 @@ test('works with Typescript + Vue', async () => {
 
 test('Typescript overrides have higher priority than vue', async () => {
 	const results = await lintFile('fixtures/typescript-vue-overrides.vue')
-	expect(results).toHaveIssueCount(0)
+	expect(results).toHaveIssueCount(1)
+	// Expect "'@type' is redundant when using a type system."
+	expect(results).toHaveIssue({
+		ruleId: 'jsdoc/check-tag-names',
+		line: 15,
+	})
 })

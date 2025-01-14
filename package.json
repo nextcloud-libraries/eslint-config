@@ -37,7 +37,7 @@
     "build": "vite --mode production build",
     "lint": "npm run build && eslint",
     "lint:fix": "eslint --fix",
-    "test": "vitest"
+    "test": "vitest run"
   },
   "dependencies": {
     "@eslint/json": "^0.10.0",
@@ -52,7 +52,8 @@
     "@nextcloud/vite-config": "^2.3.1",
     "@types/node": "^22.13.4",
     "eslint": "^9.20.1",
-    "vite": "^6.1.0"
+    "vite": "^6.1.0",
+    "vitest": "^3.0.5"
   },
   "peerDependencies": {
     "eslint": ">=9"

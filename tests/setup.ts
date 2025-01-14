@@ -3,15 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 import { ESLint, Linter } from 'eslint'
-
-/**
- * Add some custom matchers for ESLint to jest
- */
-expect.extend({
-	toPass: assertLintingPassed,
-	toHaveIssueCount: assertHavingNIssues,
-	toHaveIssue: assertHavingIssue,
-})
+import { expect } from 'vitest'
 
 /**
  * Check if linting a file did not throw any errors or warnings
@@ -20,7 +12,9 @@ expect.extend({
  */
 function hasNoIssues(received: ESLint.LintResult) {
 	// dirty type check
-	if (received?.errorCount === undefined) throw new Error('Expected ESLintResult')
+	if (received?.errorCount === undefined) {
+		throw new Error('Expected ESLintResult')
+	}
 
 	return received.errorCount === 0 && received.warningCount === 0
 }
@@ -28,8 +22,7 @@ function hasNoIssues(received: ESLint.LintResult) {
 /**
  * Check if linting of multiple fils
  *
- * @param received
- * @return {}
+ * @param received The result of the linting
  */
 function assertLintingPassed(received: ESLint.LintResult | ESLint.LintResult[]) {
 	// allow single ESLintResult
@@ -37,10 +30,16 @@ function assertLintingPassed(received: ESLint.LintResult | ESLint.LintResult[]) 
 		received = [received]
 	}
 
-	const errors = [] as {file: string, errors: Linter.LintMessage[]}[]
+	const errors = [] as {
+		file: string
+		errors: Linter.LintMessage[]
+	}[]
 	const pass = received.every((result) => {
 		// save issues
-		errors.push({ file: result.filePath, errors: result.messages })
+		errors.push({
+			file: result.filePath,
+			errors: result.messages,
+		})
 		return hasNoIssues(result)
 	})
 
@@ -50,10 +49,8 @@ function assertLintingPassed(received: ESLint.LintResult | ESLint.LintResult[]) 
 			if (pass) {
 				return 'Expected file to not pass eslint, but got no issues'
 			} else {
-				const errorMessages = errors.map((m) =>
-					`file: ${m.file}\n` + m.errors.map((e) => 'line: ' + e.line + ': ' + (e.ruleId || e.message)),
-				)
-				return 'Expected file to pass eslint, got issues:\n' + errorMessages.join('\n')
+				const errorMessages = errors.map((m) => `file: ${m.file}\n${m.errors.map((e) => `line: ${e.line}: ${e.ruleId || e.message}`)}`)
+				return `Expected file to pass eslint, got issues:\n${errorMessages.join('\n')}`
 			}
 		},
 	}
@@ -63,7 +60,7 @@ function assertLintingPassed(received: ESLint.LintResult | ESLint.LintResult[]) 
  * Count the total amount of issues
  *
  * @param received lint result
- * @return total amount of issues
+ * @returns total amount of issues
  */
 function countIssues(received: ESLint.LintResult) {
 	return received.errorCount + received.warningCount
@@ -74,10 +71,12 @@ function countIssues(received: ESLint.LintResult) {
  *
  * @param received the lint result
  * @param expected number of expected issues
- * @return jest matcher result
+ * @returns jest matcher result
  */
 function assertHavingNIssues(received: ESLint.LintResult | ESLint.LintResult[], expected: number) {
-	if (!(typeof expected === 'number')) throw new Error('Expected a number as expected value')
+	if (!(typeof expected === 'number')) {
+		throw new Error('Expected a number as expected value')
+	}
 
 	if (!Array.isArray(received)) {
 		received = [received]
@@ -97,9 +96,12 @@ function assertHavingNIssues(received: ESLint.LintResult | ESLint.LintResult[], 
  *
  * @param received the lint result
  * @param issue the expected issue
- * @return jest matcher result
+ * @returns jest matcher result
  */
-function assertHavingIssue(received: ESLint.LintResult | ESLint.LintResult[], issue: string | {ruleId: string, line?: number}) {
+function assertHavingIssue(received: ESLint.LintResult | ESLint.LintResult[], issue: string | {
+	ruleId: string
+	line?: number
+}) {
 	if (!Array.isArray(received)) {
 		received = [received]
 	}
@@ -113,12 +115,16 @@ function assertHavingIssue(received: ESLint.LintResult | ESLint.LintResult[], is
 	}
 
 	const name = typeof issue === 'string' ? issue : issue.ruleId
-	const result = received.some((result) => {
-		return result.messages.some((message) => {
+	const result = received.some((data) => {
+		return data.messages.some((message) => {
 			// ensure name matches
-			if (message.ruleId !== name) return false
+			if (message.ruleId !== name) {
+				return false
+			}
 			// if line is requested ignore not matching ones
-			if (typeof issue === 'object' && issue.line !== undefined && issue.line !== message.line) return false
+			if (typeof issue === 'object' && issue.line !== undefined && issue.line !== message.line) {
+				return false
+			}
 			// otherwise matched
 			return true
 		})
@@ -130,3 +136,12 @@ function assertHavingIssue(received: ESLint.LintResult | ESLint.LintResult[], is
 		message: () => result ? `Unexpected error '${name}'${onLine} found.` : `Expected error '${name}'${onLine} not found.`,
 	}
 }
+
+/**
+ * Add some custom matchers for ESLint to jest
+ */
+expect.extend({
+	toPass: assertLintingPassed,
+	toHaveIssueCount: assertHavingNIssues,
+	toHaveIssue: assertHavingIssue,
+})

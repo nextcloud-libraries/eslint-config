@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
 # SPDX-License-Identifier: AGPL-3.0-or-later
+
 version = 1
 SPDX-PackageName = "eslint-config"
 SPDX-PackageSupplier = "Nextcloud <info@nextcloud.com>"
@@ -12,7 +13,19 @@ SPDX-FileCopyrightText = "2019 Nextcloud GmbH and Nextcloud contributors"
 SPDX-License-Identifier = "AGPL-3.0-or-later"
 
 [[annotations]]
-path = ["tsconfig.json"]
+path = ["tsconfig.json", "tests/tsconfig.json"]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2025 Nextcloud GmbH and Nextcloud contributors"
 SPDX-License-Identifier = "CC0-1.0"
+
+# Test fixtures might not be able to have headers (as e.g. the header is tested)
+[[annotations]]
+path = [
+	"tests/fixtures/codestyle/input/*.ts",
+	"tests/fixtures/codestyle/input/*.js",
+	"tests/fixtures/codestyle/output/*.ts",
+	"tests/fixtures/codestyle/output/*.js"
+]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2025 Nextcloud GmbH and Nextcloud contributors"
+SPDX-License-Identifier = "AGPL-3.0-or-later"

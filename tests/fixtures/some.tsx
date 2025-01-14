@@ -6,7 +6,7 @@
  */
 
 /**
- * @notExported <- should work
+ * @since 31.0.0
  * @aaabbbcccddd <- should fail
  */
 const foo = '' // <- should fail, as unused

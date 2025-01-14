@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: CC0-1.0
  */
 
+import type { UserConfig } from 'vite'
 import { createLibConfig } from '@nextcloud/vite-config'
 
 export default createLibConfig({
@@ -14,4 +15,10 @@ export default createLibConfig({
 	replace: {
 		__PACKAGE_VERSION__: JSON.stringify(process.env.npm_package_version),
 	},
+
+	config: {
+		test: {
+			setupFiles: ['tests/setup.ts'],
+		},
+	} as UserConfig,
 })
