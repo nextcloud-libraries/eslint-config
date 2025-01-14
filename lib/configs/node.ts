@@ -17,12 +17,14 @@ export const node: Linter.Config[] = [
 		name: 'nextcloud/node/setup',
 		files: [
 			'**/*.config.*',
+			'**/*.cjs',
+			'**/*.cts',
 			...GLOB_FILES_TESTING,
 		],
 		languageOptions: {
 			globals: {
-				...globals.browser,
-				...globals.es2022,
+				...globals.es2023,
+				...globals.node,
 				...globals.nodeBuiltin,
 			},
 		},

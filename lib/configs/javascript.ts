@@ -28,6 +28,8 @@ export const javascript: Linter.Config[] = [
 				// legacy global Nextcloud translation function
 				t: 'readonly',
 				n: 'readonly',
+				// webpack support
+				__webpack_nonce__: 'writable',
 			},
 			parserOptions: {
 				ecmaFeatures: {
