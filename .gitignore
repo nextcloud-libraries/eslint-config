@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2019 Nextcloud GmbH and Nextcloud contributors
 # SPDX-License-Identifier: AGPL-3.0-or-later
+
 # Logs
 logs
 *.log
@@ -36,10 +37,9 @@ build/Release
 
 # Dependency directories
 node_modules/
-jspm_packages/
 
-# TypeScript v1 declaration files
-typings/
+# Output
+dist/
 
 # Optional npm cache directory
 .npm
