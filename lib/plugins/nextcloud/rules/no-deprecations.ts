@@ -1,9 +1,9 @@
 import type { Rule } from 'eslint'
 import { createVersionValidator } from '../utils/version-parser.js'
 
-//------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------
 // Rule Definition
-//------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------
 
 const global = {
 	$: '19.0.0',
@@ -72,7 +72,7 @@ const ocp = {
 	Toast: '19.0.0',
 }
 
-const oc_sub = {
+const ocNested = {
 	Util: {
 		formatDate: '20.0.0',
 		humanFileSize: '20.0.0',
@@ -118,11 +118,11 @@ const rule: Rule.RuleModule = {
 			MemberExpression: function (node) {
 				// OC.x
 				if (
-					'name' in node.object &&
-					'name' in node.property &&
-					node.object.name === 'OC' &&
-					oc.hasOwnProperty(node.property.name) &&
-					checkTargetVersion(oc[node.property.name])
+					'name' in node.object
+					&& 'name' in node.property
+					&& node.object.name === 'OC'
+					&& Object.hasOwn(oc, node.property.name)
+					&& checkTargetVersion(oc[node.property.name])
 				) {
 					context.report({
 						node,
@@ -131,11 +131,11 @@ const rule: Rule.RuleModule = {
 				}
 				// OCA.x
 				if (
-					'name' in node.object &&
-					'name' in node.property &&
-					node.object.name === 'OCA' &&
-					oca.hasOwnProperty(node.property.name) &&
-					checkTargetVersion(oca[node.property.name])
+					'name' in node.object
+					&& 'name' in node.property
+					&& node.object.name === 'OCA'
+					&& Object.hasOwn(oca, node.property.name)
+					&& checkTargetVersion(oca[node.property.name])
 				) {
 					context.report({
 						node,
@@ -144,11 +144,11 @@ const rule: Rule.RuleModule = {
 				}
 				// OCP.x
 				if (
-					'name' in node.object &&
-					'name' in node.property &&
-					node.object.name === 'OCP' &&
-					ocp.hasOwnProperty(node.property.name) &&
-					checkTargetVersion(ocp[node.property.name])
+					'name' in node.object
+					&& 'name' in node.property
+					&& node.object.name === 'OCP'
+					&& Object.hasOwn(ocp, node.property.name)
+					&& checkTargetVersion(ocp[node.property.name])
 				) {
 					context.report({
 						node,
@@ -158,28 +158,25 @@ const rule: Rule.RuleModule = {
 
 				// OC.x.y
 				if (
-					node.object.type === 'MemberExpression' &&
-					'name' in node.object.object &&
-					node.object.object.name === 'OC' &&
-					'name' in node.property &&
-					'name' in node.object.property &&
-					oc_sub.hasOwnProperty(node.object.property.name) &&
-					oc_sub[node.object.property.name].hasOwnProperty(
-						node.property.name,
-					)
+					node.object.type === 'MemberExpression'
+					&& 'name' in node.object.object
+					&& node.object.object.name === 'OC'
+					&& 'name' in node.property
+					&& 'name' in node.object.property
+					&& Object.hasOwn(ocNested, node.object.property.name)
+					&& Object.hasOwn(ocNested[node.object.property.name], node.property.name)
 				) {
-					const version =
-						oc_sub[node.object.property.name][node.property.name]
+					const version = ocNested[node.object.property.name][node.property.name]
 					if (checkTargetVersion(version)) {
 						const prop = [
 							'OC',
 							node.object.property.name,
 							node.property.name,
 						].join('.')
-						const version = oc_sub[node.object.property.name][node.property.name]
+						const deprecatedSince = ocNested[node.object.property.name][node.property.name]
 						context.report({
 							node,
-							message: `The property or function ${prop} was deprecated in Nextcloud ${version}`,
+							message: `The property or function ${prop} was deprecated in Nextcloud ${deprecatedSince}`,
 						})
 					}
 				}
@@ -187,15 +184,14 @@ const rule: Rule.RuleModule = {
 			Program(node) {
 				// Logic adapted from https://github.com/eslint/eslint/blob/master/lib/rules/no-restricted-globals.js
 				const scope = context.sourceCode.getScope(node)
-				const report = (ref) => {
-					const node = ref.identifier
-					if (checkTargetVersion(global[node.name])) {
+				const report = ({ identifier }) => {
+					if (checkTargetVersion(global[identifier.name])) {
 						context.report({
 							node,
 							messageId: 'deprecatedGlobal',
 							data: {
-								name: node.name,
-								version: global[node.name],
+								name: identifier.name,
+								version: global[identifier.name],
 							},
 						})
 					}
@@ -204,8 +200,8 @@ const rule: Rule.RuleModule = {
 				// Report variables declared elsewhere (ex: variables defined as "global" by eslint)
 				scope.variables.forEach((variable) => {
 					if (
-						!variable.defs.length &&
-						global.hasOwnProperty(variable.name)
+						!variable.defs.length
+						&& Object.hasOwn(global, variable.name)
 					) {
 						variable.references.forEach(report)
 					}
@@ -213,7 +209,7 @@ const rule: Rule.RuleModule = {
 
 				// Report variables not declared at all
 				scope.through.forEach((reference) => {
-					if (global.hasOwnProperty(reference.identifier.name)) {
+					if (Object.hasOwn(global, reference.identifier.name)) {
 						report(reference)
 					}
 				})

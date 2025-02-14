@@ -31,5 +31,5 @@ test.for([
 ])('Code style', async (testCase: string) => {
 	const results = await lintFile(`fixtures/codestyle/input/${testCase}.{t,j}s`)
 	expect(results).toHaveLength(1)
-	expect(results[0].output).toMatchFileSnapshot(results[0].filePath.replace('input', 'output'))
+	await expect(results[0].output).toMatchFileSnapshot(results[0].filePath.replace('input', 'output'))
 })

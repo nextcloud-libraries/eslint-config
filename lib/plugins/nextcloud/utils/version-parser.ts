@@ -6,8 +6,7 @@ import { valid, lte } from 'semver'
 /**
  * Check if a given path exists and is a directory
  *
- * @param {string} filePath The path
- * @return {boolean}
+ * @param filePath The path
  */
 export function isDirectory(filePath: string): boolean {
 	const stats = lstatSync(filePath, { throwIfNoEntry: false })
@@ -17,8 +16,7 @@ export function isDirectory(filePath: string): boolean {
 /**
  * Check if a given path exists and is a directory
  *
- * @param {string} filePath The path
- * @return {boolean}
+ * @param filePath The path
  */
 export function isFile(filePath: string): boolean {
 	const stats = lstatSync(filePath, { throwIfNoEntry: false })
@@ -28,15 +26,15 @@ export function isFile(filePath: string): boolean {
 /**
  * Find the path of nearest `appinfo/info.xml` relative to given path
  *
- * @param {string} currentPath
- * @return {string|undefined} Either the full path including the `info.xml` part or `undefined` if no found
+ * @param currentPath Path to lookup
+ * @returns Either the full path including the `info.xml` part or `undefined` if no found
  */
-export function findAppinfo(currentPath: string): string|undefined {
+export function findAppinfo(currentPath: string): string | undefined {
 	while (currentPath && currentPath !== sep) {
 		const appinfoPath = `${currentPath}${sep}appinfo`
 		if (
-			isDirectory(appinfoPath) &&
-			isFile(`${appinfoPath}${sep}info.xml`)
+			isDirectory(appinfoPath)
+			&& isFile(`${appinfoPath}${sep}info.xml`)
 		) {
 			return `${appinfoPath}${sep}info.xml`
 		}
@@ -48,8 +46,8 @@ export function findAppinfo(currentPath: string): string|undefined {
 /**
  * Make sure that versions like '25' can be handled by semver
  *
- * @param {string} version The pure version string
- * @return {string} Sanitized version string
+ * @param version The pure version string
+ * @returns Sanitized version string
  */
 export function sanitizeTargetVersion(version: string): string {
 	let sanitizedVersion = version
@@ -59,14 +57,21 @@ export function sanitizeTargetVersion(version: string): string {
 	}
 	// now version should look like '25.0.0'
 	if (!valid(sanitizedVersion)) {
-		throw Error(
-			`[@nextcloud/eslint-plugin] Invalid target version ${version} found`,
-		)
+		throw Error(`[@nextcloud/eslint-plugin] Invalid target version ${version} found`)
 	}
 	return sanitizedVersion
 }
 
-export function createVersionValidator({ cwd, physicalFilename, options }) {
+/**
+ * Create a callback that takes a version number an checks if the version
+ * is valid compared to configured version / detected version.
+ *
+ * @param options Options
+ * @param options.cwd The current working directory
+ * @param options.physicalFilename The real filename where ESLint is linting currently
+ * @param options.options The plugin options
+ */
+export function createVersionValidator({ cwd, physicalFilename, options }): ((version: string) => boolean) {
 	const settings = options[0]
 
 	if (settings?.targetVersion) {
@@ -92,9 +97,7 @@ export function createVersionValidator({ cwd, physicalFilename, options }) {
 			const xml = parser.parse(readFileSync(appinfoPath))
 			let maxVersion = xml?.info?.dependencies?.nextcloud?.['@max-version']
 			if (typeof maxVersion !== 'string') {
-				throw new Error(
-					`[@nextcloud/eslint-plugin] AppInfo does not contain a max-version (location: ${appinfoPath})`,
-				)
+				throw new Error(`[@nextcloud/eslint-plugin] AppInfo does not contain a max-version (location: ${appinfoPath})`)
 			}
 			maxVersion = sanitizeTargetVersion(maxVersion)
 			return (version) => lte(version, maxVersion)
@@ -102,9 +105,7 @@ export function createVersionValidator({ cwd, physicalFilename, options }) {
 
 		if (settings?.parseAppInfo === true) {
 			// User enforced app info parsing, so we throw an error - otherwise just fallback to default
-			throw new Error(
-				'[@nextcloud/eslint-plugin] AppInfo parsing was enabled, but no `appinfo/info.xml` was found.',
-			)
+			throw new Error('[@nextcloud/eslint-plugin] AppInfo parsing was enabled, but no `appinfo/info.xml` was found.')
 		}
 	}
 

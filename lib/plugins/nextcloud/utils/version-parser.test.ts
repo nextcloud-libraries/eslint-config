@@ -1,4 +1,4 @@
-import { vol } from 'memfs'
+import { fs, vol } from 'memfs'
 import { join } from 'node:path'
 import { afterAll, afterEach, beforeAll, describe, expect, it, test, vi } from 'vitest'
 import {
@@ -7,12 +7,15 @@ import {
 	sanitizeTargetVersion,
 	findAppinfo,
 	createVersionValidator,
-} from '../../../lib/utils/version-parser.ts'
+} from './version-parser.ts'
 
-vi.mock('node:fs')
+vi.mock('node:fs', () => fs)
 
 describe('version-parser', () => {
-	beforeAll(() => vol.fromNestedJSON({ [__dirname]: {}, [__filename]: '...'}))
+	beforeAll(() => vol.fromNestedJSON({
+		[__dirname]: {},
+		[__filename]: '...',
+	}))
 	afterAll(() => vol.reset())
 
 	test('isDirectory', () => {
@@ -49,57 +52,51 @@ describe('version-parser', () => {
 
 	describe('findAppinfo', () => {
 		afterEach(() => vol.reset())
-		
+
 		it('finds an appinfo if provided', () => {
-			vol.fromNestedJSON(
-				{
-					'/a': {
-						appinfo: {
-							'info.xml': '...',
-						},
-						src: {},
+			vol.fromNestedJSON({
+				'/a': {
+					appinfo: {
+						'info.xml': '...',
 					},
+					src: {},
 				},
-			)
+			})
 
 			expect(findAppinfo('/a/src')).toBe('/a/appinfo/info.xml')
 		})
 
 		it('finds an appinfo if provided on lower directory', () => {
-			vol.fromNestedJSON(
-				{
-					'/a': {
-						appinfo: {
-							'info.xml': '...',
-						},
-						src: {
-							b: {
-								c: {},
-							},
+			vol.fromNestedJSON({
+				'/a': {
+					appinfo: {
+						'info.xml': '...',
+					},
+					src: {
+						b: {
+							c: {},
 						},
 					},
 				},
-			)
+			})
 
 			expect(findAppinfo('/a/src/b/c')).toBe('/a/appinfo/info.xml')
 		})
 
 		it('returns undefined if not found', () => {
-			vol.fromNestedJSON(
-				{
-					'/a/src/b/c': {},
-				},
-			)
+			vol.fromNestedJSON({
+				'/a/src/b/c': {},
+			})
 
 			expect(findAppinfo('/a/src/b/c')).toBe(undefined)
 		})
 
 		it('required info.xml to exist', () => {
 			vol.fromNestedJSON({
-				'/a': { 
-					'appinfo': { },
-					'src': { },
-				}
+				'/a': {
+					appinfo: { },
+					src: { },
+				},
 			})
 
 			expect(findAppinfo('/a/src')).toBe(undefined)
@@ -108,7 +105,11 @@ describe('version-parser', () => {
 
 	describe('createVersionValidator', () => {
 		it('static target version', () => {
-			const fn = createVersionValidator({ cwd: '', physicalFilename: '', options: [{ targetVersion: '25.0.0' }] })
+			const fn = createVersionValidator({
+				cwd: '',
+				physicalFilename: '',
+				options: [{ targetVersion: '25.0.0' }],
+			})
 			expect(fn('26.0.0')).toBe(false)
 			expect(fn('25.0.1')).toBe(false)
 			expect(fn('25.0.0')).toBe(true)
@@ -116,7 +117,11 @@ describe('version-parser', () => {
 		})
 
 		it('no config', () => {
-			const fn = createVersionValidator({ cwd: '', physicalFilename: '', options: [] })
+			const fn = createVersionValidator({
+				cwd: '',
+				physicalFilename: '',
+				options: [],
+			})
 			expect(fn('26.0.0')).toBe(true)
 			expect(fn('25.0.1')).toBe(true)
 			expect(fn('25.0.0')).toBe(true)
@@ -135,7 +140,11 @@ describe('version-parser', () => {
 						src: { },
 					},
 				})
-				const fn = createVersionValidator({ cwd: '', physicalFilename: '/a/src/b.js', options: [{ parseAppInfo: true }] })
+				const fn = createVersionValidator({
+					cwd: '',
+					physicalFilename: '/a/src/b.js',
+					options: [{ parseAppInfo: true }],
+				})
 				expect(fn('28.0.0')).toBe(false)
 				expect(fn('27.0.0')).toBe(true)
 				expect(fn('26.0.0')).toBe(true)
@@ -151,7 +160,11 @@ describe('version-parser', () => {
 						src: { },
 					},
 				})
-				const fn = createVersionValidator({ cwd: '/a', physicalFilename: 'src/b.js', options: [{ parseAppInfo: true }] })
+				const fn = createVersionValidator({
+					cwd: '/a',
+					physicalFilename: 'src/b.js',
+					options: [{ parseAppInfo: true }],
+				})
 				expect(fn('28.0.0')).toBe(false)
 				expect(fn('27.0.0')).toBe(true)
 				expect(fn('26.0.0')).toBe(true)
@@ -168,11 +181,11 @@ describe('version-parser', () => {
 					},
 				})
 
-				expect(
-					() => createVersionValidator({ cwd: '/a', physicalFilename: 'src/b.js', options: [{ parseAppInfo: true }] })
-				).toThrowErrorMatchingInlineSnapshot(
-					`[Error: [@nextcloud/eslint-plugin] AppInfo does not contain a max-version (location: /a/appinfo/info.xml)]`
-				)
+				expect(() => createVersionValidator({
+					cwd: '/a',
+					physicalFilename: 'src/b.js',
+					options: [{ parseAppInfo: true }],
+				})).toThrowErrorMatchingInlineSnapshot('[Error: [@nextcloud/eslint-plugin] AppInfo does not contain a max-version (location: /a/appinfo/info.xml)]')
 			})
 
 			it('throws an error if appinfo was not found', () => {
@@ -183,11 +196,11 @@ describe('version-parser', () => {
 					},
 				})
 
-				expect(
-					() => createVersionValidator({ cwd: '/a', physicalFilename: 'src/b.js', options: [{ parseAppInfo: true }] })
-				).toThrowErrorMatchingInlineSnapshot(
-					`[Error: [@nextcloud/eslint-plugin] AppInfo parsing was enabled, but no \`appinfo/info.xml\` was found.]`
-				)
+				expect(() => createVersionValidator({
+					cwd: '/a',
+					physicalFilename: 'src/b.js',
+					options: [{ parseAppInfo: true }],
+				})).toThrowErrorMatchingInlineSnapshot('[Error: [@nextcloud/eslint-plugin] AppInfo parsing was enabled, but no `appinfo/info.xml` was found.]')
 			})
 		})
 	})

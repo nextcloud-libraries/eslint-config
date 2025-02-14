@@ -1,9 +1,9 @@
 import { Rule } from 'eslint'
 import { createVersionValidator } from '../utils/version-parser.js'
 
-//------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------
 // Rule Definition
-//------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------
 
 const global = {
 	autosize: '29.0.0',
@@ -25,7 +25,7 @@ const oc = {
 	loadStyle: '28.0.0',
 }
 
-const oc_sub = {
+const ocNested = {
 	AppConfig: {
 		hasKey: '15.0.0',
 		deleteApp: '15.0.0',
@@ -85,10 +85,10 @@ const rule: Rule.RuleModule = {
 			MemberExpression: function (node) {
 				// OCA.x
 				if (
-					'name' in node.object &&
-					'name' in node.property &&
-					node.object.name === 'OCA' &&
-					oca.hasOwnProperty(node.property.name)
+					'name' in node.object
+					&& 'name' in node.property
+					&& node.object.name === 'OCA'
+					&& Object.hasOwn(oca, node.property.name)
 				) {
 					context.report({
 						node,
@@ -98,11 +98,11 @@ const rule: Rule.RuleModule = {
 
 				// OC.x
 				if (
-					'name' in node.object &&
-					'name' in node.property &&
-					node.object.name === 'OC' &&
-					oc.hasOwnProperty(node.property.name) &&
-					checkTargetVersion(oc[node.property.name])
+					'name' in node.object
+					&& 'name' in node.property
+					&& node.object.name === 'OC'
+					&& Object.hasOwn(oc, node.property.name)
+					&& checkTargetVersion(oc[node.property.name])
 				) {
 					context.report({
 						node,
@@ -112,18 +112,16 @@ const rule: Rule.RuleModule = {
 
 				// OC.x.y
 				if (
-					node.object.type === 'MemberExpression' &&
-					'name' in node.object.object &&
-					node.object.object.name === 'OC' &&
-					'name' in node.object.property &&
-					oc_sub.hasOwnProperty(node.object.property.name) &&
-					'name' in node.property &&
-					oc_sub[node.object.property.name].hasOwnProperty(
-						node.property.name,
-					)
+					node.object.type === 'MemberExpression'
+					&& 'name' in node.object.object
+					&& node.object.object.name === 'OC'
+					&& 'name' in node.object.property
+					&& Object.hasOwn(ocNested, node.object.property.name)
+					&& 'name' in node.property
+					&& Object.hasOwn(ocNested[node.object.property.name], node.property.name)
 				) {
-					const version =
-						oc_sub[node.object.property.name][node.property.name]
+					const version
+						= ocNested[node.object.property.name][node.property.name]
 					if (checkTargetVersion(version)) {
 						const prop = [
 							'OC',
@@ -142,14 +140,14 @@ const rule: Rule.RuleModule = {
 				const scope = context.sourceCode.getScope(node)
 
 				const report = (ref) => {
-					const node = ref.identifier
-					if (checkTargetVersion(global[node.name])) {
+					const { identifier } = ref
+					if (checkTargetVersion(global[identifier.name])) {
 						context.report({
 							node,
 							messageId: 'removedGlobal',
 							data: {
-								name: node.name,
-								version: global[node.name],
+								name: identifier.name,
+								version: global[identifier.name],
 							},
 						})
 					}
@@ -158,8 +156,8 @@ const rule: Rule.RuleModule = {
 				// Report variables declared elsewhere (ex: variables defined as "global" by eslint)
 				scope.variables.forEach((variable) => {
 					if (
-						!variable.defs.length &&
-						global.hasOwnProperty(variable.name)
+						!variable.defs.length
+						&& Object.hasOwn(global, variable.name)
 					) {
 						variable.references.forEach(report)
 					}
@@ -167,7 +165,7 @@ const rule: Rule.RuleModule = {
 
 				// Report variables not declared at all
 				scope.through.forEach((reference) => {
-					if (global.hasOwnProperty(reference.identifier.name)) {
+					if (Object.hasOwn(global, reference.identifier.name)) {
 						report(reference)
 					}
 				})
