@@ -1,3 +1,7 @@
+/*!
+ * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
 import { XMLParser } from 'fast-xml-parser'
 import { lstatSync, readFileSync } from 'node:fs'
 import { sep, resolve, isAbsolute, dirname } from 'node:path'

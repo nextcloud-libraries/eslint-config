@@ -1,3 +1,7 @@
+/*!
+ * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
 import { fs, vol } from 'memfs'
 import { join } from 'node:path'
 import { afterAll, afterEach, beforeAll, describe, expect, it, test, vi } from 'vitest'

@@ -1,3 +1,7 @@
+/*!
+ * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
 import { RuleTester } from 'eslint'
 import { describe, test } from 'vitest'
 import rule from './no-deprecations.ts'
