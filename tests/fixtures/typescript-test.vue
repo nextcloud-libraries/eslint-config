@@ -1,7 +1,7 @@
 <!--
   - SPDX-FileCopyrightText: 2023 Nextcloud GmbH and Nextcloud contributors
   - SPDX-License-Identifier: AGPL-3.0-or-later
--->	
+-->
 <template>
 	<code>String: "{{ props.someString }}"
 		Int: {{ props.someInt }}
@@ -10,7 +10,9 @@
 
 <script setup lang="ts">
 const props = defineProps<{
-	someString: string,
-	someInt: number,
+	/** A string */
+	someString: string
+	/** A number */
+	someInt: number
 }>()
 </script>

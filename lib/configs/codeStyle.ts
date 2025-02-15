@@ -1,0 +1,173 @@
+/*!
+ * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+
+import type { Linter } from 'eslint'
+import stylistic from '@stylistic/eslint-plugin'
+import {
+	GLOB_FILES_JAVASCRIPT,
+	GLOB_FILES_TYPESCRIPT,
+	GLOB_FILES_VUE,
+} from '../globs.ts'
+import { ConfigOptions } from '../types'
+
+/**
+ * Config factory for general code style related rules
+ * See also: https://docs.nextcloud.com/server/latest/developer_manual/getting_started/coding_standards/javascript.html#code-style
+ *
+ * @param options options defining the config preset flavor
+ */
+export function codeStyle(options: ConfigOptions): (Linter.Config | Linter.BaseConfig)[] {
+	return [
+		// Nextcloud code style
+		{
+			name: '@stylistic/configs/recommended',
+			files: [
+				...GLOB_FILES_JAVASCRIPT,
+				...GLOB_FILES_TYPESCRIPT,
+				...GLOB_FILES_VUE,
+			],
+			...stylistic.configs.customize({
+				flat: true,
+				indent: 'tab',
+				semi: false,
+				quotes: 'single',
+				quoteProps: 'as-needed',
+				commaDangle: 'always-multiline',
+				arrowParens: true,
+				braceStyle: '1tbs',
+			}),
+		},
+
+		{
+			files: [
+				...GLOB_FILES_JAVASCRIPT,
+				...GLOB_FILES_TYPESCRIPT,
+				...GLOB_FILES_VUE,
+			],
+			rules: {
+				// Overrides for the stylistic recommended rules
+
+				// Tabs should only be used for indention
+				'@stylistic/no-tabs': [
+					'error',
+					{ allowIndentationTabs: true },
+				],
+				// allow spaces after tabs for alignment
+				'@stylistic/no-mixed-spaces-and-tabs': [
+					'error',
+					'smart-tabs',
+				],
+				// allow backticks for strings that contain single quotes
+				'@stylistic/quotes': [
+					'error',
+					'single',
+					{
+						allowTemplateLiterals: false,
+						avoidEscape: true,
+					},
+				],
+
+				// Not included in stylistic preset but set by us:
+
+				// Enforce camelCase but allow legacy webpack variables
+				camelcase: [
+					'error',
+					{
+						allow: ['^__webpack_'],
+						properties: 'never',
+						ignoreGlobals: true,
+					},
+				],
+
+				// Make sure to use object shorthand properties
+				'object-shorthand': [
+					'error',
+					'properties',
+					{ avoidQuotes: true },
+				],
+
+				// Enforce new lines after [ and before ] if there are multiline entries or more than 1 item in the array (better git diff)
+				'@stylistic/array-bracket-newline': [
+					'error',
+					{
+						multiline: true,
+						minItems: 2,
+					},
+				],
+				// Enforce new lines between array elements (better git diff)
+				'@stylistic/array-element-newline': [
+					'error',
+					'always',
+				],
+				// Same for objects as for arrays
+				'@stylistic/object-curly-newline': [
+					'error',
+					{
+						consistent: true,
+						multiline: true,
+					},
+				],
+				'@stylistic/object-property-newline': 'error',
+
+				// No space between function name and parenthesis. Enforce fn() instead of fn ()
+				'@stylistic/function-call-spacing': [
+					'error',
+					'never',
+				],
+				// Enforce consistent newlines in function parameters, if one parameter is separated by newline, than all should
+				'@stylistic/function-call-argument-newline': [
+					'error',
+					'consistent',
+				],
+				// If parameters are separated by newlines, then the first one should also be separated by a newline from the parenthesis
+				'@stylistic/function-paren-newline': [
+					'error',
+					'multiline',
+				],
+				// Generator functions should have the * on the function keyword as this defines the type of function. "function* generator()"
+				'@stylistic/generator-star-spacing': [
+					'error',
+					'after',
+				],
+				// Arrow functions with implicit return should not have line breaks
+				// TODO: Discuss
+				'@stylistic/implicit-arrow-linebreak': [
+					'error',
+					'beside',
+				],
+				// Prevent issues with different OS by enforcing single line feed for new lien
+				'@stylistic/linebreak-style': [
+					'error',
+					'unix',
+				],
+				// Chained calls should be separated by newline (e.g. foo().forEach().map()...)
+				'@stylistic/newline-per-chained-call': ['error'],
+				// No useless semicolons
+				'@stylistic/no-extra-semi': ['error'],
+				'no-useless-concat': 'error',
+				// Prefer { ...foo } over Object.assign({}, foo)
+				'prefer-object-spread': 'warn',
+				// Prefer string templates
+				'prefer-template': 'warn',
+			},
+			name: 'nextcloud/stylistic/rules',
+		},
+
+		{
+			files: [
+				...GLOB_FILES_TYPESCRIPT,
+				...(options.vueIsTypescript ? GLOB_FILES_VUE : []),
+			],
+			rules: {
+				// consistent spacing for types
+				'@stylistic/type-annotation-spacing': 'error',
+				// consistent spacing for generics
+				'@stylistic/type-generic-spacing': 'error',
+				'@stylistic/type-named-tuple-spacing': 'error',
+			},
+			name: 'nextcloud/stylistic/ts-rules',
+		},
+	]
+}

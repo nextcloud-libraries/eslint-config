@@ -10,10 +10,9 @@
 [![Dependabot status](https://img.shields.io/badge/Dependabot-enabled-brightgreen.svg?longCache=true&style=flat-square&logo=dependabot)](https://dependabot.com)
 
 
-This is a package containing the unified global eslint config used by all nextcloud apps.
+This is a package containing the unified global eslint config used by all nextcloud apps and libraries.
 It contains the necessary dependencies and peerDependencies so that other apps cannot update if this config does not support it.
 Please always use dependabot to update your apps, OR pay attention to the peer dependencies error messages!
-
 
 ## Installation
 
@@ -23,44 +22,35 @@ npm install @nextcloud/eslint-config --save-dev
 
 ## Usage
 
-Add a file `.eslintrc.js` in the root directory of your app repository with the following content:
+> [!NOTE]  
+> Since version 9 this package depends on ESLint 9, which uses the new flat config system.
+
+This package provides some predefined configurations you can choose from.
+For the recommended setup add a file `eslint.config.js` in the root directory of your app repository with the following content:
 
 ```js
-module.exports = {
-	extends: [
-		'@nextcloud',
-	],
-}
+import { recommended } from './dist/index.mjs'
+
+export default [
+	...recommended,
+]
 ```
 
-### Usage with Typescript projects
+### Available configurations
 
-If your projects uses Typescript for vue files, like `<script lang="ts">` then use the Typescript config instead:
+Instead of the `recommended` configuration this package also provides some alternatives, depending on your app setup you can also choose:
 
-Add a file `.eslintrc.js` in the root directory of your app repository with the following content:
-
-```js
-module.exports = {
-	extends: [
-		'@nextcloud/eslint-config/typescript',
-	],
-}
-```
-
-### Usage with Vue 3 projects
-
-If your projects uses Vue 3 you have to use the `vue3` sub-configuration.
-This configuration also includes Typescript support by default.
-
-Add a file `.eslintrc.js` in the root directory of your app repository with the following content:
-
-```js
-module.exports = {
-	extends: [
-		'@nextcloud/eslint-config/vue3',
-	],
-}
-```
+* `recommended`
+  * General rules including code style
+  * Support for Typescript
+  * Support for Vue **3**
+  * Support Vue files with Typescript syntax (the script within `.vue` files will be handled as Typescript).
+* `recommendedJavascript`
+  * Same as `recommended` but Vue files (the script part) will be handled as Javascript.
+* `recommendedVue2`
+  * Same as `recommended` but Vue files are considered in Vue 2 syntax.
+* `recommendedVue2Javascript`
+  * Same as `recommended` but Vue files are considered in Vue 2 syntax and the script part will be handled as Javascript instead of Typescript.
 
 ## Release new version
 
