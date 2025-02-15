@@ -4,8 +4,16 @@
 -->	
 # Changelog
 
-## [v8.4.1](https://github.com/nextcloud-libraries/eslint-config/tree/v8.4.1) (2024-05-16)
+## [v8.4.2](https://github.com/nextcloud-libraries/eslint-config/tree/v8.4.2) (2025-02-16)
+### Fixed
+* fix(typescript): do not require returns type in jsdoc by @ShGKme in https://github.com/nextcloud-libraries/eslint-config/pull/857
 
+### Changed
+* Updated development dependencies
+* Add SPDX header  by @AndyScherzinger in https://github.com/nextcloud-libraries/eslint-config/pull/802
+* enh(git): ignore formatting commits in git blame by @max-nextcloud in https://github.com/nextcloud-libraries/eslint-config/pull/854
+
+## [v8.4.1](https://github.com/nextcloud-libraries/eslint-config/tree/v8.4.1) (2024-05-16)
 [Full Changelog](https://github.com/nextcloud-libraries/eslint-config/compare/v8.4.0...v8.4.1)
 
 ### Fixes
