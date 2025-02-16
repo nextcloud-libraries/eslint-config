@@ -59,12 +59,14 @@ export function codeStyle(options: ConfigOptions): (Linter.Config | Linter.BaseC
 					'error',
 					'smart-tabs',
 				],
-				// allow backticks for strings that contain single quotes
+				// Always use single quotes for strings
+				// except if the string contains a single quote, for reability do not escape but use double quotes then.
+				// We never use backticks as those should only be used for template strings.
 				'@stylistic/quotes': [
 					'error',
 					'single',
 					{
-						allowTemplateLiterals: false,
+						allowTemplateLiterals: 'never',
 						avoidEscape: true,
 					},
 				],
