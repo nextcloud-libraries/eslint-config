@@ -1,9 +1,18 @@
 /**
+ * A function with an additional space before the parenthesis
+ *
+ * @param name
+ */
+export function foo (name: string): boolean {
+	return true
+}
+
+/**
  * A function with the { on the wrong line
  *
  * @param name
  */
-export function foo(name: string): boolean
+export function bar(name: string): boolean
 {
 	return true
 }
@@ -14,7 +23,7 @@ export function foo(name: string): boolean
  * @param firstName
  * @param lastName
  */
-export function bar(
+export function baz(
 	firstName: string,
 	lastName: string,
 ): boolean
@@ -44,3 +53,18 @@ export function doSomethingDifferent(
 ) {
 	// ...
 }
+
+// Anonymous function with additional space before parenthesis
+const a = async function () {
+	// ...
+}
+
+// Tests for function calling
+
+// This is valid syntax
+doSomething(1, true)
+// This has an invalid space before the parenthesis
+doSomething (1, true)
+
+// invalid space for optional chaining
+a ?.()?. catch ?. (() => {})
