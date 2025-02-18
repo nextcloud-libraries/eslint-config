@@ -68,3 +68,6 @@ export const recommended = [
 	...documentation({ vueIsTypescript: true }),
 	...codeStyle({ vueIsTypescript: true }),
 ]
+
+export { default as packageJsonPlugin } from './plugins/packageJson.ts'
+export { default as nextcloudPlugin } from './plugins/nextcloud/index.ts'

@@ -29,7 +29,7 @@ This package provides some predefined configurations you can choose from.
 For the recommended setup add a file `eslint.config.js` in the root directory of your app repository with the following content:
 
 ```js
-import { recommended } from './dist/index.mjs'
+import { recommended } from '@nextcloud/eslint-config'
 
 export default [
 	...recommended,
@@ -51,6 +51,90 @@ Instead of the `recommended` configuration this package also provides some alter
   * Same as `recommended` but Vue files are considered in Vue 2 syntax.
 * `recommendedVue2Javascript`
   * Same as `recommended` but Vue files are considered in Vue 2 syntax and the script part will be handled as Javascript instead of Typescript.
+
+### Bundled plugins
+
+This configuration also provides some bundled plugins with new rules, those options are already included in the recommended configurations.
+
+It is possible to override the recommended configurations:
+```js
+// eslint.config.js
+import { recommended } from '@nextcloud/eslint-config'
+export default [
+  ...recommended,
+  {
+    files: ['**/*.js'],
+    rules: {
+      // Make deprecations error instead of warning level
+      '@nextcloud/no-deprecations': ['error'],
+    }
+  }
+]
+```
+
+You can even use the plugins without using the Nextcloud ESLint config:
+```js
+// eslint.config.js
+import { nextcloudPlugin } from '@nextcloud/eslint-config'
+export default [
+  {
+    files: ['**/*.js'],
+    plugins: {
+			'@nextcloud': nextcloudPlugin,
+		},
+		rules: {
+			'@nextcloud/no-removed-apis': ['error', { targetVersion: '29.0.0' }],
+	  },
+  }
+]
+```
+
+#### `package-json` plugin
+Rules:
+- `sort-package-json`
+  - Ensures the `package.json` is sorted in consistent order
+  - Included as `error` level in recommended configurations
+
+#### `@nextcloud` plugin
+Rules:
+- `no-deprecations`
+  - Report usage of deprecated Nextcloud API
+  - Included as `warn` level in recommended configuration
+  - Available options
+    ```ts
+    {
+      /**
+       * Limit deprecated API to specified Nextcloud version
+       * @example '29.0.0'
+       * @default ''
+       */
+      targetVersion?: string
+      /**
+       * Try to find appinfo.xml to detect targetVersion
+       * @default true
+       */
+      parseAppInfo?: boolean
+    }
+    ```
+- `no-removed-apis`
+  - Report usage of removed Nextcloud API
+  - Included as `error` level in recommended configuration
+  - Available options
+    ```ts
+    {
+      /**
+       * Limit removed API to specified Nextcloud version
+       * @example '29.0.0'
+       * @default ''
+       */
+      targetVersion?: string
+      /**
+       * Try to find appinfo.xml to detect targetVersion
+       * @default true
+       */
+      parseAppInfo?: boolean
+    }
+    ```
 
 ## Release new version
 
