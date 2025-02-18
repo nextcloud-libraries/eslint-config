@@ -116,6 +116,19 @@ export function codeStyle(options: ConfigOptions): (Linter.Config | Linter.BaseC
 					'error',
 					'never',
 				],
+				// No space between function name and parenthesis on definition. Enforce `function foo()` instead of `function foo ()`.
+				'@stylistic/space-before-function-paren': [
+					'error',
+					{
+						// good: `function() {}` bad: `function () {}`
+						anonymous: 'never',
+						// good `function foo() {}` bad: `function foo () {}`
+						named: 'never',
+						// consistency for arrow functions regardless of async or sync:
+						// good `async () => {}` bad `async() => {}`
+						asyncArrow: 'always',
+					},
+				],
 				// Enforce consistent newlines in function parameters, if one parameter is separated by newline, than all should
 				'@stylistic/function-call-argument-newline': [
 					'error',
