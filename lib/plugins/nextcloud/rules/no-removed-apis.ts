@@ -82,11 +82,11 @@ const rule: Rule.RuleModule = {
 		},
 	},
 
-	create: function (context) {
+	create: function(context) {
 		const checkTargetVersion = createVersionValidator(context)
 
 		return {
-			MemberExpression: function (node) {
+			MemberExpression: function(node) {
 				// OCA.x
 				if (
 					'name' in node.object
