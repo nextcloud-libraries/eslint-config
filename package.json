@@ -47,7 +47,7 @@
     "fast-xml-parser": "^4.5.1",
     "globals": "^16.0.0",
     "semver": "^7.7.1",
-    "sort-package-json": "^2.14.0",
+    "sort-package-json": "^2.15.0",
     "typescript-eslint": "^8.25.0"
   },
   "devDependencies": {
