@@ -29,7 +29,6 @@ export function codeStyle(options: ConfigOptions): (Linter.Config | Linter.BaseC
 				...GLOB_FILES_VUE,
 			],
 			...stylistic.configs.customize({
-				flat: true,
 				indent: 'tab',
 				semi: false,
 				quotes: 'single',
