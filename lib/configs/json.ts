@@ -47,7 +47,6 @@ export const json: Linter.Config[] = [
 		files: GLOB_FILES_MS_JSON,
 		language: 'json/jsonc',
 		languageOptions: {
-			// @ts-expect-error Currently this type is not overwritten by the @eslint/json package
 			allowTrailingCommas: true,
 		},
 		...jsonPlugin.configs.recommended,
