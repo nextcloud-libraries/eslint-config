@@ -7,7 +7,7 @@ import type { Linter } from 'eslint'
 import eslintRules from '@eslint/js'
 import { GLOB_FILES_JAVASCRIPT, GLOB_FILES_TESTING, GLOB_FILES_TYPESCRIPT, GLOB_FILES_VUE } from '../globs'
 import globals from 'globals'
-// import nextcloudPlugin from '@nextcloud/eslint-plugin'
+import nextcloudPlugin from '../plugins/nextcloud/index.ts'
 
 /**
  * This config provides the base rules for code quality,
@@ -56,7 +56,22 @@ export const javascript: Linter.Config[] = [
 		...eslintRules.configs.recommended,
 	},
 
-	// nextcloudPlugin.configs.recommended,
+	// The Nextcloud plugin for detecting deprecated and removed global API
+	{
+		name: 'nextcloud/javascript/plugin',
+		plugins: {
+			'@nextcloud': nextcloudPlugin,
+		},
+		rules: {
+			'@nextcloud/no-deprecations': ['warn'],
+			'@nextcloud/no-removed-apis': ['error'],
+		},
+		files: [
+			...GLOB_FILES_JAVASCRIPT,
+			...GLOB_FILES_TYPESCRIPT,
+			...GLOB_FILES_VUE,
+		],
+	},
 
 	// Nextcloud specific overwrite
 	{
