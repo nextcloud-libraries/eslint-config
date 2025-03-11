@@ -44,7 +44,7 @@
     "@stylistic/eslint-plugin": "^4.2.0",
     "eslint-plugin-jsdoc": "^50.6.6",
     "eslint-plugin-vue": "^9.32.0",
-    "fast-xml-parser": "^4.5.1",
+    "fast-xml-parser": "^5.0.8",
     "globals": "^16.0.0",
     "semver": "^7.7.1",
     "sort-package-json": "^2.15.1",
