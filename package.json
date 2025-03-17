@@ -40,7 +40,7 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@eslint/json": "^0.10.0",
+    "@eslint/json": "^0.11.0",
     "@stylistic/eslint-plugin": "^4.2.0",
     "eslint-plugin-jsdoc": "^50.6.8",
     "eslint-plugin-vue": "^9.32.0",
