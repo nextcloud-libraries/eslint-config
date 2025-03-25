@@ -4,6 +4,41 @@
 -->	
 # Changelog
 
+## [v9.0.0](https://github.com/nextcloud-libraries/eslint-config/tree/v9.0.0) (2025)
+
+### Breaking
+This package now is using ESLint v9 and requires ESLint flat configurations.
+Please refer to the README on how to adjust your configuration for flat config.
+
+### Added
+* feat: New modular config for (and with) ESLint v9 support [#887](https://github.com/nextcloud-libraries/eslint-config/pull/887)
+* Merge plugin repository [#899](https://github.com/nextcloud-libraries/eslint-config/pull/899)
+
+### Fixed
+* fix(codestyle): Enforce no space before function parenthesis [#901](https://github.com/nextcloud-libraries/eslint-config/pull/901)
+* fix(codeStyle): Adjust `stylistic` rules config [#914](https://github.com/nextcloud-libraries/eslint-config/pull/914)
+
+### Changed
+* Add SPDX header [#802](https://github.com/nextcloud-libraries/eslint-config/pull/802)
+* Updated development dependencies
+* refactor(json): drop now unneeded `@ts-expect-error` [#915](https://github.com/nextcloud-libraries/eslint-config/pull/915)
+* Updated `@eslint/json` to 0.11.0
+* Updated `@stylistic/eslint-plugin` 4.2.0
+* Updated `eslint-plugin-jsdoc` to 50.6.9
+* Updated `eslint-plugin-vue` to 10.0.0
+* Updated `fast-xml-parser` to 5.0.9
+* Updated `sort-package-json` to 3.0.0
+* Updated `typescript-eslint` to 8.28.0
+
+## [v8.4.2](https://github.com/nextcloud-libraries/eslint-config/tree/v8.4.2) (2025-02-16)
+### Fixed
+* fix(typescript): do not require returns type in jsdoc by @ShGKme in https://github.com/nextcloud-libraries/eslint-config/pull/857
+
+### Changed
+* Updated development dependencies
+* Add SPDX header  by @AndyScherzinger in https://github.com/nextcloud-libraries/eslint-config/pull/802
+* enh(git): ignore formatting commits in git blame by @max-nextcloud in https://github.com/nextcloud-libraries/eslint-config/pull/854
+
 ## [v8.4.1](https://github.com/nextcloud-libraries/eslint-config/tree/v8.4.1) (2024-05-16)
 
 [Full Changelog](https://github.com/nextcloud-libraries/eslint-config/compare/v8.4.0...v8.4.1)
