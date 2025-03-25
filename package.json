@@ -62,7 +62,16 @@
     "eslint": ">=9"
   },
   "engines": {
-    "node": "^22",
-    "npm": "^10"
+    "node": "^20.9 || ^22"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "npm",
+      "version": "^10"
+    },
+    "runtime": {
+      "name": "node",
+      "version": "^22"
+    }
   }
 }
