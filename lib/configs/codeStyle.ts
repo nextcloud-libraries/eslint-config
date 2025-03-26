@@ -4,13 +4,15 @@
  */
 
 import type { Linter } from 'eslint'
-import stylistic from '@stylistic/eslint-plugin'
 import {
 	GLOB_FILES_JAVASCRIPT,
 	GLOB_FILES_TYPESCRIPT,
 	GLOB_FILES_VUE,
 } from '../globs.ts'
 import { ConfigOptions } from '../types'
+
+import stylistic from '@stylistic/eslint-plugin'
+import l10nPlugin from '../plugins/l10n/index.ts'
 
 /**
  * Config factory for general code style related rules
@@ -40,6 +42,7 @@ export function codeStyle(options: ConfigOptions): (Linter.Config | Linter.BaseC
 		},
 
 		{
+			name: 'nextcloud/stylistic/rules',
 			files: [
 				...GLOB_FILES_JAVASCRIPT,
 				...GLOB_FILES_TYPESCRIPT,
@@ -160,10 +163,10 @@ export function codeStyle(options: ConfigOptions): (Linter.Config | Linter.BaseC
 				// Prefer { ...foo } over Object.assign({}, foo)
 				'prefer-object-spread': 'warn',
 			},
-			name: 'nextcloud/stylistic/rules',
 		},
 
 		{
+			name: 'nextcloud/stylistic/ts-rules',
 			files: [
 				...GLOB_FILES_TYPESCRIPT,
 				...(options.vueIsTypescript ? GLOB_FILES_VUE : []),
@@ -175,7 +178,23 @@ export function codeStyle(options: ConfigOptions): (Linter.Config | Linter.BaseC
 				'@stylistic/type-generic-spacing': 'error',
 				'@stylistic/type-named-tuple-spacing': 'error',
 			},
-			name: 'nextcloud/stylistic/ts-rules',
+		},
+
+		{
+			name: 'nextcloud/stylistic/l10n',
+			files: [
+				...GLOB_FILES_JAVASCRIPT,
+				...GLOB_FILES_TYPESCRIPT,
+				...GLOB_FILES_VUE,
+			],
+			plugins: {
+				'@nextcloud-l10n': l10nPlugin,
+			},
+			// Enforce that translations use ellipsis instead of tripple dots
+			rules: {
+				'@nextcloud-l10n/non-breaking-space': 'error',
+				'@nextcloud-l10n/enforce-ellipsis': 'error',
+			},
 		},
 	]
 }
