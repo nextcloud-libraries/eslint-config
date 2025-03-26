@@ -42,7 +42,12 @@ export function typescript(options: ConfigOptions): Linter.Config[] {
 				'@typescript-eslint/no-non-null-asserted-nullish-coalescing': 'error',
 				// Do not use types, variables etc before they are defined
 				'no-use-before-define': 'off',
-				'@typescript-eslint/no-use-before-define': 'error',
+				'@typescript-eslint/no-use-before-define': [
+					'error',
+					{
+						functions: false,
+					},
+				],
 				// Do not shadow outer variables / functions - this can lead to wrong assumptions
 				'no-shadow': 'off',
 				'@typescript-eslint/no-shadow': 'error',

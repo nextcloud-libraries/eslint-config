@@ -33,3 +33,13 @@ test('Typescript overrides have higher priority than vue', async () => {
 		line: 15,
 	})
 })
+
+test('Typescript no-use-before-define allows functions', async () => {
+	const results = await lintFile('fixtures/use-before-define.ts')
+
+	expect(results).toHaveIssueCount(1)
+	expect(results).toHaveIssue({
+		ruleId: '@typescript-eslint/no-use-before-define',
+		line: 7,
+	})
+})
