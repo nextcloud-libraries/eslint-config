@@ -154,15 +154,11 @@ export function codeStyle(options: ConfigOptions): (Linter.Config | Linter.BaseC
 					'error',
 					'unix',
 				],
-				// Chained calls should be separated by newline (e.g. foo().forEach().map()...)
-				'@stylistic/newline-per-chained-call': ['error'],
 				// No useless semicolons
 				'@stylistic/no-extra-semi': ['error'],
 				'no-useless-concat': 'error',
 				// Prefer { ...foo } over Object.assign({}, foo)
 				'prefer-object-spread': 'warn',
-				// Prefer string templates
-				'prefer-template': 'warn',
 			},
 			name: 'nextcloud/stylistic/rules',
 		},
