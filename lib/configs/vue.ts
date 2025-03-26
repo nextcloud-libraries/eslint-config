@@ -10,11 +10,13 @@ import { codeStyle } from './codeStyle'
 import { GLOB_FILES_VUE } from '../globs'
 import { ConfigOptions } from '../types'
 
-const stylisticRules = codeStyle({ vueIsTypescript: false })
-	.reduce((rules, config) => ({
-		...rules,
-		...(config.rules ?? {}),
-	}), {})
+const stylisticRules = codeStyle({
+	isLibrary: false,
+	vueIsTypescript: false,
+}).reduce((rules, config) => ({
+	...rules,
+	...(config.rules ?? {}),
+}), {})
 
 const vueStylisticRules = Object.keys(vuePlugin.rules)
 	.filter((rule) => `@stylistic/${rule}` in stylisticRules)
@@ -60,12 +62,14 @@ export function vue(options: ConfigOptions): Linter.Config[] {
 					},
 				],
 				// Enforce documentation of properties
-				'vue/require-prop-comment': [
-					'error',
-					{
-						type: 'JSDoc',
-					},
-				],
+				'vue/require-prop-comment': options.isLibrary
+					? [
+							'error',
+							{
+								type: 'JSDoc',
+							},
+						]
+					: 'off',
 				// When a prop allows Boolean and some other type, then Boolean should come first to allow short-hand properties
 				'vue/prefer-prop-type-boolean-first': 'error',
 				// Prevent useless string interpolation where not needed

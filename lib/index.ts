@@ -12,62 +12,80 @@ import { node } from './configs/node.ts'
 import { typescript } from './configs/typescript.ts'
 import { vue2 } from './configs/vue2'
 import { vue3 } from './configs/vue3.ts'
+import { ConfigOptions } from './types'
 
 /**
  * Nextcloud shared configuration for projects using Vue 2 with Javascript <script> blocks
  */
-export const recommendedVue2Javascript = [
-	...filesystem,
-	...javascript,
-	...json,
-	...node,
-	...typescript({ vueIsTypescript: false }),
-	...vue2({ vueIsTypescript: false }),
-	...documentation({ vueIsTypescript: false }),
-	...codeStyle({ vueIsTypescript: false }),
-]
+export const recommendedVue2Javascript = createConfig({
+	isLibrary: false,
+	vue2: true,
+	vueIsTypescript: false,
+})
 
 /**
  * Nextcloud shared configuration for projects using Vue 2 with Typescript <script> blocks
  */
-export const recommendedVue2 = [
-	...filesystem,
-	...javascript,
-	...json,
-	...node,
-	...typescript({ vueIsTypescript: true }),
-	...vue2({ vueIsTypescript: true }),
-	...documentation({ vueIsTypescript: true }),
-	...codeStyle({ vueIsTypescript: true }),
-]
+export const recommendedVue2 = createConfig({
+	isLibrary: false,
+	vue2: true,
+	vueIsTypescript: true,
+})
 
 /**
  * Nextcloud shared configuration for projects using Vue 3 with Javascript <script> blocks
  */
-export const recommendedJavascript = [
-	...filesystem,
-	...javascript,
-	...json,
-	...node,
-	...typescript({ vueIsTypescript: false }),
-	...vue3({ vueIsTypescript: false }),
-	...documentation({ vueIsTypescript: false }),
-	...codeStyle({ vueIsTypescript: false }),
-]
+export const recommendedJavascript = createConfig({
+	isLibrary: false,
+	vueIsTypescript: false,
+})
 
 /**
  * Nextcloud shared configuration for projects using Vue 3 with Typescript <script> blocks
  */
-export const recommended = [
-	...filesystem,
-	...javascript,
-	...json,
-	...node,
-	...typescript({ vueIsTypescript: true }),
-	...vue3({ vueIsTypescript: true }),
-	...documentation({ vueIsTypescript: true }),
-	...codeStyle({ vueIsTypescript: true }),
-]
+export const recommended = createConfig({
+	isLibrary: false,
+	vueIsTypescript: true,
+})
+
+/**
+ * Nextcloud shared configuration for projects using Vue 3 with Typescript <script> blocks
+ */
+export const recommendedLibrary = createConfig({
+	isLibrary: true,
+	vueIsTypescript: true,
+})
+
+/**
+ * Nextcloud shared configuration for projects using Vue 3 with Typescript <script> blocks
+ */
+export const recommendedVue2Library = createConfig({
+	isLibrary: true,
+	vue2: true,
+	vueIsTypescript: true,
+})
 
 export { default as packageJsonPlugin } from './plugins/packageJson.ts'
 export { default as nextcloudPlugin } from './plugins/nextcloud/index.ts'
+
+/**
+ * Generate a configuration based on given options
+ *
+ * @param options - Configuration options
+ */
+function createConfig(options: ConfigOptions & { vue2?: boolean }) {
+	return [
+		...filesystem,
+		...javascript(options),
+		...json,
+		...node,
+		...typescript(options),
+		...(
+			options.vue2
+				? vue2(options)
+				: vue3(options)
+		),
+		...documentation(options),
+		...codeStyle(options),
+	]
+}

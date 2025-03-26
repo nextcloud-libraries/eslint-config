@@ -52,6 +52,15 @@ Instead of the `recommended` configuration this package also provides some alter
 * `recommendedVue2Javascript`
   * Same as `recommended` but Vue files are considered in Vue 2 syntax and the script part will be handled as Javascript instead of Typescript.
 
+#### Configurations for Nextcloud libraries
+
+For libraries some of the presets make no sense, like checking Nextcloud deprecated API.
+But on the otherhand some rules should be enforced, like documenting all properties.
+So for libraries use following configurations:
+
+* `recommendedLibrary`
+* `recommendedVue2Library`
+
 ### Bundled plugins
 
 This configuration also provides some bundled plugins with new rules, those options are already included in the recommended configurations.

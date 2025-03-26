@@ -4,5 +4,6 @@
  */
 
 export interface ConfigOptions {
+	isLibrary: boolean
 	vueIsTypescript: boolean
 }
