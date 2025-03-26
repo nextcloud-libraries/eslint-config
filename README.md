@@ -22,7 +22,7 @@ npm install @nextcloud/eslint-config --save-dev
 
 ## Usage
 
-> [!NOTE]  
+> [!NOTE]
 > Since version 9 this package depends on ESLint 9, which uses the new flat config system.
 
 This package provides some predefined configurations you can choose from.
@@ -135,6 +135,36 @@ Rules:
       parseAppInfo?: boolean
     }
     ```
+
+### Adding custom overrides
+
+Sometimes additional rules need to be added for individual projects,
+and while we do not recommend to override Nextcloud rules for code style (it should be consistent across all Nextcloud projects!),
+it is possible to add such custom rules.
+
+For example to enforce chains to be on separate lines:
+
+```diff
+- const a = foo().then((a) => a.b).catch((e) => e.c)
++ const a = foo()
++ 	.then((a) => a.b)
++ 	.catch((e) => e.c)
+```
+
+Adjust your `eslint.config.js` like this:
+
+```js
+import { recommended } from '@nextcloud/eslint-config'
+
+export default [
+	...recommended,
+	{
+		rules: {
+			'@stylistic/newline-per-chained-call': ['error'],
+		}
+	},
+]
+```
 
 ## Release new version
 
