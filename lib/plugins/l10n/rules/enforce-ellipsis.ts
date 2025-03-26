@@ -12,7 +12,7 @@ export default defineRule({
 		type: 'suggestion',
 		schema: [],
 		docs: {
-			description: 'Enforce consistent translation format for Nextcloud',
+			description: 'Enforce consistent usageof ellipsis instead of tripple dots',
 		},
 	},
 
