@@ -70,14 +70,14 @@ It is possible to override the recommended configurations:
 // eslint.config.js
 import { recommended } from '@nextcloud/eslint-config'
 export default [
-  ...recommended,
-  {
-    files: ['**/*.js'],
-    rules: {
-      // Make deprecations error instead of warning level
-      '@nextcloud/no-deprecations': ['error'],
-    }
-  }
+	...recommended,
+	{
+		files: ['**/*.js'],
+		rules: {
+			// Make deprecations error instead of warning level
+			'@nextcloud/no-deprecations': ['error'],
+		}
+	}
 ]
 ```
 
@@ -86,15 +86,15 @@ You can even use the plugins without using the Nextcloud ESLint config:
 // eslint.config.js
 import { nextcloudPlugin } from '@nextcloud/eslint-config'
 export default [
-  {
-    files: ['**/*.js'],
-    plugins: {
+	{
+		files: ['**/*.js'],
+		plugins: {
 			'@nextcloud': nextcloudPlugin,
 		},
 		rules: {
 			'@nextcloud/no-removed-apis': ['error', { targetVersion: '29.0.0' }],
-	  },
-  }
+		},
+	}
 ]
 ```
 
