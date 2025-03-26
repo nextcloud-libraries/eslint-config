@@ -60,7 +60,7 @@ function assertLintingPassed(received: ESLint.LintResult | ESLint.LintResult[]) 
  * Count the total amount of issues
  *
  * @param received lint result
- * @returns total amount of issues
+ * @return total amount of issues
  */
 function countIssues(received: ESLint.LintResult) {
 	return received.errorCount + received.warningCount
@@ -71,7 +71,7 @@ function countIssues(received: ESLint.LintResult) {
  *
  * @param received the lint result
  * @param expected number of expected issues
- * @returns jest matcher result
+ * @return jest matcher result
  */
 function assertHavingNIssues(received: ESLint.LintResult | ESLint.LintResult[], expected: number) {
 	if (!(typeof expected === 'number')) {
@@ -96,7 +96,7 @@ function assertHavingNIssues(received: ESLint.LintResult | ESLint.LintResult[], 
  *
  * @param received the lint result
  * @param issue the expected issue
- * @returns jest matcher result
+ * @return jest matcher result
  */
 function assertHavingIssue(received: ESLint.LintResult | ESLint.LintResult[], issue: string | {
 	ruleId: string

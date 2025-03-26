@@ -22,7 +22,6 @@ import jsdocPlugin from 'eslint-plugin-jsdoc'
 export function documentation(options: ConfigOptions): Linter.Config[] {
 	return [
 		{
-			...jsdocPlugin.configs['flat/recommended-typescript'],
 			files: [
 				...GLOB_FILES_JAVASCRIPT,
 				...GLOB_FILES_TYPESCRIPT,
@@ -34,11 +33,16 @@ export function documentation(options: ConfigOptions): Linter.Config[] {
 		},
 
 		{
-			...jsdocPlugin.configs['flat/recommended'],
+			...jsdocPlugin.configs['flat/recommended-typescript-flavor'],
 			files: [
 				...GLOB_FILES_JAVASCRIPT,
 				...(options.vueIsTypescript ? [] : GLOB_FILES_VUE),
 			],
+			settings: {
+				jsdoc: {
+					mode: 'permissive',
+				},
+			},
 			ignores: GLOB_FILES_TESTING,
 		},
 
@@ -70,6 +74,14 @@ export function documentation(options: ConfigOptions): Linter.Config[] {
 				...GLOB_FILES_TYPESCRIPT,
 				...GLOB_FILES_VUE,
 			],
+			settings: {
+				jsdoc: {
+					// We use the alias for legacy reasons to prevent unnecessary noise
+					tagNamePreference: {
+						returns: 'return',
+					},
+				},
+			},
 			name: 'nextcloud/documentation/rules',
 		},
 
