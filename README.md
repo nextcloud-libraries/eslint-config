@@ -145,6 +145,19 @@ Rules:
     }
     ```
 
+#### `@nextcloud-l10n`
+```ts
+import { l10nPlugin  } from '@nextcloud/eslint-config'
+```
+
+Rules:
+- `enforce-ellipsis`
+  - Enforce consistent usageof ellipsis instead of tripple dots
+  - Included as `error` level in recommended configuration
+- `non-breaking-space`
+  - Enforce non-breaking spaces before ellipsis
+  - Included as `error` level in recommended configuration
+
 ### Adding custom overrides
 
 Sometimes additional rules need to be added for individual projects,
