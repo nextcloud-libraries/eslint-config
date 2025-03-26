@@ -95,13 +95,19 @@ export function codeStyle(options: ConfigOptions): (Linter.Config | Linter.BaseC
 					'error',
 					{
 						multiline: true,
-						minItems: 2,
+						minItems: null, // disable
 					},
 				],
-				// Enforce new lines between array elements (better git diff)
+				// Enforce new lines between array elements (better git diff) but allow to have single line arrays for array parameters
 				'@stylistic/array-element-newline': [
 					'error',
-					'always',
+					{
+						ArrayExpression: 'always',
+						ArrayPattern: {
+							consistent: true,
+							multiline: true,
+						},
+					},
 				],
 				// Same for objects as for arrays
 				'@stylistic/object-curly-newline': [

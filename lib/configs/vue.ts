@@ -123,6 +123,8 @@ export function vue(options: ConfigOptions): Linter.Config[] {
 				],
 				// Consistent style of props
 				'vue/new-line-between-multi-line-property': 'error',
+				// Add consistent padding between blocks
+				'vue/padding-line-between-blocks': 'error',
 			},
 			name: 'nextcloud/vue/stylistic-rules',
 		},
