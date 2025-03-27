@@ -30,6 +30,7 @@ export function vue3(options: ConfigOptions): Linter.Config[] {
 			rules: {
 			// Deprecated thus we should not use it
 				'vue/no-deprecated-delete-set': 'error',
+				'@nextcloud/vue/no-long-imports': 'error',
 			},
 			name: 'nextcloud/vue3/rules',
 		},
