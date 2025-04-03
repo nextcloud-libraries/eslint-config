@@ -39,6 +39,11 @@ export function documentation(options: ConfigOptions): Linter.Config[] {
 				...GLOB_FILES_JAVASCRIPT,
 				...(options.vueIsTypescript ? [] : GLOB_FILES_VUE),
 			],
+			settings: {
+				jsdoc: {
+					mode: 'jsdoc',
+				},
+			},
 			ignores: GLOB_FILES_TESTING,
 		},
 
@@ -70,6 +75,14 @@ export function documentation(options: ConfigOptions): Linter.Config[] {
 				...GLOB_FILES_TYPESCRIPT,
 				...GLOB_FILES_VUE,
 			],
+			settings: {
+				jsdoc: {
+					// We use the alias for legacy reasons to prevent unnecessary noise
+					tagNamePreference: {
+						returns: 'return',
+					},
+				},
+			},
 			name: 'nextcloud/documentation/rules',
 		},
 
