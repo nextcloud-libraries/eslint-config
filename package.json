@@ -55,7 +55,7 @@
     "@types/node": "^22.14.0",
     "eslint": "^9.23.0",
     "memfs": "^4.17.0",
-    "vite": "^6.2.4",
+    "vite": "^6.2.5",
     "vitest": "^3.1.1"
   },
   "peerDependencies": {
