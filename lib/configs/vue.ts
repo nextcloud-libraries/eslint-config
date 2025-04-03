@@ -9,6 +9,7 @@ import vuePlugin from 'eslint-plugin-vue'
 import { codeStyle } from './codeStyle'
 import { GLOB_FILES_VUE } from '../globs'
 import { ConfigOptions } from '../types'
+import nextcloudVuePlugin from '../plugins/nextcloud-vue/index.ts'
 
 const stylisticRules = codeStyle({
 	isLibrary: false,
@@ -138,6 +139,17 @@ export function vue(options: ConfigOptions): Linter.Config[] {
 				'vue/padding-line-between-blocks': 'error',
 			},
 			name: 'nextcloud/vue/stylistic-rules',
+		},
+
+		{
+			files: GLOB_FILES_VUE,
+			plugins: {
+				'@nextcloud/vue': nextcloudVuePlugin,
+			},
+			rules: {
+				'@nextcloud/vue/no-long-imports': 'warn',
+			},
+			name: 'nextcloud/vue/migration-rules',
 		},
 	]
 }
