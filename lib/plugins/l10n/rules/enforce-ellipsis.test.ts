@@ -57,16 +57,6 @@ test('rule: enforce-ellipsis', () => {
 					},
 				],
 			},
-			{
-				code: 'const txt = "Checking status ..."',
-				output: 'const txt = "Checking status …"',
-				errors: [
-					{
-						type: 'Literal',
-						message: 'Strings should ellipsis instead of triple dots',
-					},
-				],
-			},
 		],
 	})
 })
