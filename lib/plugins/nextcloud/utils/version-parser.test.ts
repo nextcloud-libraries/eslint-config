@@ -11,7 +11,7 @@ import {
 	sanitizeTargetVersion,
 	findAppinfo,
 	createVersionValidator,
-} from './version-parser.ts'
+} from './version-parser.js'
 
 vi.mock('node:fs', () => fs)
 

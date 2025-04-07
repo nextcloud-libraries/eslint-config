@@ -6,9 +6,9 @@
 import type { Linter } from 'eslint'
 
 import vuePlugin from 'eslint-plugin-vue'
-import { codeStyle } from './codeStyle'
-import { GLOB_FILES_VUE } from '../globs'
-import { ConfigOptions } from '../types'
+import { codeStyle } from './codeStyle.js'
+import { GLOB_FILES_VUE } from '../globs.js'
+import { ConfigOptions } from '../types.js'
 
 const stylisticRules = codeStyle({
 	isLibrary: false,

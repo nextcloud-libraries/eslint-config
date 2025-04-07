@@ -4,8 +4,9 @@
  */
 
 import type { ESLint } from 'eslint'
-import RuleEllipsis from './rules/enforce-ellipsis.ts'
-import RuleNonBreakingSpace from './rules/non-breaking-space.ts'
+import { __PACKAGE_VERSION__ } from '../../version.js'
+import RuleEllipsis from './rules/enforce-ellipsis.js'
+import RuleNonBreakingSpace from './rules/non-breaking-space.js'
 
 /**
  * ESLint plugin to enforce consistent translations

@@ -3,16 +3,16 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { codeStyle } from './configs/codeStyle'
-import { documentation } from './configs/documentation.ts'
-import { filesystem } from './configs/filesystem.ts'
-import { javascript } from './configs/javascript'
-import { json } from './configs/json.ts'
-import { node } from './configs/node.ts'
-import { typescript } from './configs/typescript.ts'
-import { vue2 } from './configs/vue2'
-import { vue3 } from './configs/vue3.ts'
-import { ConfigOptions } from './types'
+import { codeStyle } from './configs/codeStyle.js'
+import { documentation } from './configs/documentation.js'
+import { filesystem } from './configs/filesystem.js'
+import { javascript } from './configs/javascript.js'
+import { json } from './configs/json.js'
+import { node } from './configs/node.js'
+import { typescript } from './configs/typescript.js'
+import { vue2 } from './configs/vue2.js'
+import { vue3 } from './configs/vue3.js'
+import { ConfigOptions } from './types.js'
 
 /**
  * Nextcloud shared configuration for projects using Vue 2 with Javascript <script> blocks
@@ -65,9 +65,9 @@ export const recommendedVue2Library = createConfig({
 	vueIsTypescript: true,
 })
 
-export { default as packageJsonPlugin } from './plugins/packageJson.ts'
-export { default as nextcloudPlugin } from './plugins/nextcloud/index.ts'
-export { default as l10nPlugin } from './plugins/l10n/index.ts'
+export { default as packageJsonPlugin } from './plugins/packageJson.js'
+export { default as nextcloudPlugin } from './plugins/nextcloud/index.js'
+export { default as l10nPlugin } from './plugins/l10n/index.js'
 
 /**
  * Generate a configuration based on given options

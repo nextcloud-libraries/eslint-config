@@ -6,9 +6,9 @@
 import type { Linter } from 'eslint'
 import type { ConfigOptions } from '../types.d.ts'
 import eslintRules from '@eslint/js'
-import { GLOB_FILES_JAVASCRIPT, GLOB_FILES_TESTING, GLOB_FILES_TYPESCRIPT, GLOB_FILES_VUE } from '../globs.ts'
+import { GLOB_FILES_JAVASCRIPT, GLOB_FILES_TESTING, GLOB_FILES_TYPESCRIPT, GLOB_FILES_VUE } from '../globs.js'
 import globals from 'globals'
-import nextcloudPlugin from '../plugins/nextcloud/index.ts'
+import nextcloudPlugin from '../plugins/nextcloud/index.js'
 
 /**
  * This config provides the base rules for code quality,

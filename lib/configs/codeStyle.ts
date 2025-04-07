@@ -8,11 +8,11 @@ import {
 	GLOB_FILES_JAVASCRIPT,
 	GLOB_FILES_TYPESCRIPT,
 	GLOB_FILES_VUE,
-} from '../globs.ts'
-import { ConfigOptions } from '../types'
+} from '../globs.js'
+import { ConfigOptions } from '../types.js'
 
 import stylistic from '@stylistic/eslint-plugin'
-import l10nPlugin from '../plugins/l10n/index.ts'
+import l10nPlugin from '../plugins/l10n/index.js'
 
 /**
  * Config factory for general code style related rules

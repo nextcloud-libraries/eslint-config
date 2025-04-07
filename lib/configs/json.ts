@@ -5,8 +5,8 @@
 
 import type { ESLint, Linter } from 'eslint'
 import jsonPlugin from '@eslint/json'
-import packageJsonPlugin from '../plugins/packageJson.ts'
-import { GLOB_FILES_JSON, GLOB_FILES_JSONC, GLOB_FILES_MS_JSON } from '../globs.ts'
+import packageJsonPlugin from '../plugins/packageJson.js'
+import { GLOB_FILES_JSON, GLOB_FILES_JSONC, GLOB_FILES_MS_JSON } from '../globs.js'
 
 /**
  * JSON related ESLint rules for Nextcloud

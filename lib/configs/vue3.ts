@@ -5,10 +5,10 @@
 
 import type { Linter } from 'eslint'
 import vuePlugin from 'eslint-plugin-vue'
-import { vue } from './vue.ts'
-import { GLOB_FILES_VUE } from '../globs.ts'
-import { restrictConfigFiles } from '../utils.ts'
-import { ConfigOptions } from '../types'
+import { vue } from './vue.js'
+import { GLOB_FILES_VUE } from '../globs.js'
+import { restrictConfigFiles } from '../utils.js'
+import { ConfigOptions } from '../types.js'
 
 /**
  * Vue3 related ESLint rules for Nextcloud

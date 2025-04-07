@@ -5,9 +5,9 @@
 
 import type { Linter } from 'eslint'
 import typescriptPlugin from 'typescript-eslint'
-import { GLOB_FILES_TESTING, GLOB_FILES_TYPESCRIPT, GLOB_FILES_VUE } from '../globs'
-import { restrictConfigFiles } from '../utils'
-import { ConfigOptions } from '../types'
+import { GLOB_FILES_TESTING, GLOB_FILES_TYPESCRIPT, GLOB_FILES_VUE } from '../globs.js'
+import { restrictConfigFiles } from '../utils.js'
+import { ConfigOptions } from '../types.js'
 
 /**
  * Typescript related ESLint rules for Nextcloud

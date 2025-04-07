@@ -4,14 +4,14 @@
  */
 
 import type { Linter } from 'eslint'
-import type { ConfigOptions } from '../types'
+import type { ConfigOptions } from '../types.js'
 
 import {
 	GLOB_FILES_JAVASCRIPT,
 	GLOB_FILES_TESTING,
 	GLOB_FILES_TYPESCRIPT,
 	GLOB_FILES_VUE,
-} from '../globs'
+} from '../globs.js'
 import jsdocPlugin from 'eslint-plugin-jsdoc'
 
 /**

@@ -5,7 +5,7 @@
 
 import type { Linter } from 'eslint'
 
-import { GLOB_FILES_TESTING } from '../globs'
+import { GLOB_FILES_TESTING } from '../globs.js'
 import globals from 'globals'
 
 /**

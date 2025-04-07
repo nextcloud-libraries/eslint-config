@@ -4,7 +4,7 @@
  */
 import { RuleTester } from 'eslint'
 import { describe, test } from 'vitest'
-import rule from './no-removed-apis.ts'
+import rule from './no-removed-apis.js'
 
 // ------------------------------------------------------------------------------
 // Tests

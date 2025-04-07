@@ -9,10 +9,10 @@ import type {
 import vuePlugin from 'eslint-plugin-vue'
 import {
 	vue,
-} from './vue.ts'
-import { restrictConfigFiles } from '../utils.ts'
-import { GLOB_FILES_VUE } from '../globs.ts'
-import { ConfigOptions } from '../types'
+} from './vue.js'
+import { restrictConfigFiles } from '../utils.js'
+import { GLOB_FILES_VUE } from '../globs.js'
+import { ConfigOptions } from '../types.js'
 
 /**
  * Vue2 related ESLint rules for Nextcloud

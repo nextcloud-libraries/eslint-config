@@ -4,6 +4,7 @@
  */
 
 import type { ESLint, Rule } from 'eslint'
+import { __PACKAGE_VERSION__ } from '../version.js'
 
 import path from 'node:path'
 import sortPackageJson from 'sort-package-json'

@@ -4,7 +4,7 @@
  */
 import { RuleTester } from 'eslint'
 import { test } from 'vitest'
-import rule from './enforce-ellipsis.ts'
+import rule from './enforce-ellipsis.js'
 
 test('rule: enforce-ellipsis', () => {
 	const ruleTester = new RuleTester()

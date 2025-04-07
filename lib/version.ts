@@ -3,8 +3,5 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-declare global {
-	const __PACKAGE_VERSION__: string
-}
-
-export {}
+// this will be replaced on built-time
+export const __PACKAGE_VERSION__: string = '0.0.0'
