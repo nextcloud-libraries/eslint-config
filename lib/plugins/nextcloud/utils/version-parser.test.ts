@@ -2,6 +2,8 @@
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
+import type { Rule } from 'eslint'
+
 import { fs, vol } from 'memfs'
 import { join } from 'node:path'
 import { afterAll, afterEach, beforeAll, describe, expect, it, test, vi } from 'vitest'
@@ -113,7 +115,7 @@ describe('version-parser', () => {
 				cwd: '',
 				physicalFilename: '',
 				options: [{ targetVersion: '25.0.0' }],
-			})
+			} as Rule.RuleContext)
 			expect(fn('26.0.0')).toBe(false)
 			expect(fn('25.0.1')).toBe(false)
 			expect(fn('25.0.0')).toBe(true)
@@ -125,7 +127,7 @@ describe('version-parser', () => {
 				cwd: '',
 				physicalFilename: '',
 				options: [],
-			})
+			} as unknown as Rule.RuleContext)
 			expect(fn('26.0.0')).toBe(true)
 			expect(fn('25.0.1')).toBe(true)
 			expect(fn('25.0.0')).toBe(true)
@@ -148,7 +150,7 @@ describe('version-parser', () => {
 					cwd: '',
 					physicalFilename: '/a/src/b.js',
 					options: [{ parseAppInfo: true }],
-				})
+				} as Rule.RuleContext)
 				expect(fn('28.0.0')).toBe(false)
 				expect(fn('27.0.0')).toBe(true)
 				expect(fn('26.0.0')).toBe(true)
@@ -168,7 +170,7 @@ describe('version-parser', () => {
 					cwd: '/a',
 					physicalFilename: 'src/b.js',
 					options: [{ parseAppInfo: true }],
-				})
+				} as Rule.RuleContext)
 				expect(fn('28.0.0')).toBe(false)
 				expect(fn('27.0.0')).toBe(true)
 				expect(fn('26.0.0')).toBe(true)
@@ -189,7 +191,7 @@ describe('version-parser', () => {
 					cwd: '/a',
 					physicalFilename: 'src/b.js',
 					options: [{ parseAppInfo: true }],
-				})).toThrowErrorMatchingInlineSnapshot('[Error: [@nextcloud/eslint-plugin] AppInfo does not contain a max-version (location: /a/appinfo/info.xml)]')
+				} as Rule.RuleContext)).toThrowErrorMatchingInlineSnapshot('[Error: [@nextcloud/eslint-plugin] AppInfo does not contain a max-version (location: /a/appinfo/info.xml)]')
 			})
 
 			it('throws an error if appinfo was not found', () => {
@@ -204,7 +206,7 @@ describe('version-parser', () => {
 					cwd: '/a',
 					physicalFilename: 'src/b.js',
 					options: [{ parseAppInfo: true }],
-				})).toThrowErrorMatchingInlineSnapshot('[Error: [@nextcloud/eslint-plugin] AppInfo parsing was enabled, but no `appinfo/info.xml` was found.]')
+				} as Rule.RuleContext)).toThrowErrorMatchingInlineSnapshot('[Error: [@nextcloud/eslint-plugin] AppInfo parsing was enabled, but no `appinfo/info.xml` was found.]')
 			})
 		})
 	})

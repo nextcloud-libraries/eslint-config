@@ -2,6 +2,9 @@
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
+import type { PluginOption } from '../plugin.d.ts'
+import type { Rule } from 'eslint'
+
 import { XMLParser } from 'fast-xml-parser'
 import { lstatSync, readFileSync } from 'node:fs'
 import { sep, resolve, isAbsolute, dirname } from 'node:path'
@@ -75,8 +78,8 @@ export function sanitizeTargetVersion(version: string): string {
  * @param options.physicalFilename The real filename where ESLint is linting currently
  * @param options.options The plugin options
  */
-export function createVersionValidator({ cwd, physicalFilename, options }): ((version: string) => boolean) {
-	const settings = options[0]
+export function createVersionValidator({ cwd, physicalFilename, options }: Rule.RuleContext): ((version: string) => boolean) {
+	const settings = options[0] as PluginOption | undefined
 
 	if (settings?.targetVersion) {
 		// check if the rule version is lower than the current target version

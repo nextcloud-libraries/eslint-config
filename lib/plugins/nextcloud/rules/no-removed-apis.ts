@@ -2,14 +2,14 @@
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
-import { Rule } from 'eslint'
+import { Rule, Scope } from 'eslint'
 import { createVersionValidator } from '../utils/version-parser.js'
 
 // ------------------------------------------------------------------------------
 // Rule Definition
 // ------------------------------------------------------------------------------
 
-const global = {
+const global: Record<string, string | undefined> = {
 	autosize: '29.0.0',
 	escapeHTML: '20.0.0',
 	fileDownloadPath: '15.0.0',
@@ -21,7 +21,7 @@ const global = {
 	relative_modified_date: '19.0.0',
 }
 
-const oc = {
+const oc: Record<string, string | undefined> = {
 	getScrollBarWidth: '15.0.0',
 	addTranslations: '26.0.0',
 	appSettings: '28.0.0',
@@ -29,7 +29,7 @@ const oc = {
 	loadStyle: '28.0.0',
 }
 
-const ocNested = {
+const ocNested: Record<string, Record<string, string | undefined> | undefined> = {
 	AppConfig: {
 		hasKey: '15.0.0',
 		deleteApp: '15.0.0',
@@ -43,7 +43,7 @@ const ocNested = {
 	},
 }
 
-const oca = {
+const oca: Record<string, string | undefined> = {
 	// ref: https://github.com/nextcloud/server/commit/6eced42b7a40f5b0ea0489244583219d0ee2e7af
 	Search: '20.0.0',
 }
@@ -82,21 +82,22 @@ const rule: Rule.RuleModule = {
 		},
 	},
 
-	create: function(context) {
+	create(context) {
 		const checkTargetVersion = createVersionValidator(context)
 
 		return {
-			MemberExpression: function(node) {
+			MemberExpression(node) {
 				// OCA.x
 				if (
 					'name' in node.object
 					&& 'name' in node.property
 					&& node.object.name === 'OCA'
-					&& Object.hasOwn(oca, node.property.name)
+					&& oca[node.property.name]
+					&& checkTargetVersion(oca[node.property.name]!)
 				) {
 					context.report({
 						node,
-						message: `The property or function OCA.${node.property.name} was removed in Nextcloud ${oc[node.property.name]}`,
+						message: `The property or function OCA.${node.property.name} was removed in Nextcloud ${oca[node.property.name]}`,
 					})
 				}
 
@@ -106,7 +107,7 @@ const rule: Rule.RuleModule = {
 					&& 'name' in node.property
 					&& node.object.name === 'OC'
 					&& Object.hasOwn(oc, node.property.name)
-					&& checkTargetVersion(oc[node.property.name])
+					&& checkTargetVersion(oc[node.property.name]!)
 				) {
 					context.report({
 						node,
@@ -120,12 +121,11 @@ const rule: Rule.RuleModule = {
 					&& 'name' in node.object.object
 					&& node.object.object.name === 'OC'
 					&& 'name' in node.object.property
-					&& Object.hasOwn(ocNested, node.object.property.name)
+					&& ocNested[node.object.property.name]
 					&& 'name' in node.property
-					&& Object.hasOwn(ocNested[node.object.property.name], node.property.name)
+					&& ocNested[node.object.property.name]![node.property.name]
 				) {
-					const version
-						= ocNested[node.object.property.name][node.property.name]
+					const version = ocNested[node.object.property.name]![node.property.name]!
 					if (checkTargetVersion(version)) {
 						const prop = [
 							'OC',
@@ -143,15 +143,15 @@ const rule: Rule.RuleModule = {
 				// Logic adapted from https://github.com/eslint/eslint/blob/master/lib/rules/no-restricted-globals.js
 				const scope = context.sourceCode.getScope(node)
 
-				const report = (ref) => {
+				const report = (ref: Scope.Reference) => {
 					const { identifier } = ref
-					if (checkTargetVersion(global[identifier.name])) {
+					if (global[identifier.name] && checkTargetVersion(global[identifier.name]!)) {
 						context.report({
 							node,
 							messageId: 'removedGlobal',
 							data: {
 								name: identifier.name,
-								version: global[identifier.name],
+								version: global[identifier.name]!,
 							},
 						})
 					}
