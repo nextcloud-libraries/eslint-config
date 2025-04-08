@@ -6,6 +6,7 @@ import type { Linter } from 'eslint'
 
 import { ESLint } from 'eslint'
 import { afterAll, beforeAll, describe, expect, test } from 'vitest'
+
 import * as path from 'path'
 import * as eslintConfig from '../lib/index.js'
 import { access, copyFile, rm } from 'fs/promises'
@@ -54,6 +55,16 @@ test('ignore camelcase for webpack', async () => {
 
 test('works with Vue Composition API', async () => {
 	const results = await lintFile('fixtures/composition-test.vue')
+	expect(results).toHaveIssueCount(0)
+})
+
+test('allows Typescript like JSDoc', async () => {
+	const results = await lintFile('fixtures/typescript-like-jsdoc.js')
+	expect(results).toHaveIssueCount(0)
+})
+
+test('allows JSDoc syntax', async () => {
+	const results = await lintFile('fixtures/jsdoc.js')
 	expect(results).toHaveIssueCount(0)
 })
 

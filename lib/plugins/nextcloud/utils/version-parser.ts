@@ -31,7 +31,7 @@ export function isFile(filePath: string): boolean {
  * Find the path of nearest `appinfo/info.xml` relative to given path
  *
  * @param currentPath Path to lookup
- * @returns Either the full path including the `info.xml` part or `undefined` if no found
+ * @return Either the full path including the `info.xml` part or `undefined` if no found
  */
 export function findAppinfo(currentPath: string): string | undefined {
 	while (currentPath && currentPath !== sep) {
@@ -51,7 +51,7 @@ export function findAppinfo(currentPath: string): string | undefined {
  * Make sure that versions like '25' can be handled by semver
  *
  * @param version The pure version string
- * @returns Sanitized version string
+ * @return Sanitized version string
  */
 export function sanitizeTargetVersion(version: string): string {
 	let sanitizedVersion = version
