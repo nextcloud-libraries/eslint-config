@@ -109,7 +109,10 @@ export function javascript(options: ConfigOptions): Linter.Config[] {
 				// We support ES2022 so we should use `hasOwn` instead
 				'prefer-object-has-own': 'error',
 				// Allow to write code in reading order for functions
-				'no-use-before-define': ['error'],
+				'no-use-before-define': [
+					'error',
+					{ functions: false },
+				],
 			},
 		},
 
