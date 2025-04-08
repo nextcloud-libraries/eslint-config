@@ -5,9 +5,10 @@
 import type { Linter } from 'eslint'
 
 import { ESLint } from 'eslint'
-import { expect, test } from 'vitest'
+import { afterAll, beforeAll, describe, expect, test } from 'vitest'
 import * as path from 'path'
 import * as eslintConfig from '../lib/index.js'
+import { access, copyFile, rm } from 'fs/promises'
 
 const eslint = new ESLint({
 	overrideConfigFile: true,
@@ -54,4 +55,33 @@ test('ignore camelcase for webpack', async () => {
 test('works with Vue Composition API', async () => {
 	const results = await lintFile('fixtures/composition-test.vue')
 	expect(results).toHaveIssueCount(0)
+})
+
+describe('no-use-before-define', () => {
+	beforeAll(async () => {
+		const fixture = path.resolve(path.join(__dirname, 'fixtures/use-before-define.ts'))
+		await copyFile(fixture, fixture.replace(/\.ts$/, '.js'))
+	})
+
+	afterAll(async () => {
+		const fixture = path.resolve(path.join(__dirname, 'fixtures/use-before-define.ts'))
+			.replace(/\.ts$/, '.js')
+
+		try {
+			await access(fixture)
+			await rm(fixture)
+		} catch {
+			// skip
+		}
+	})
+
+	test('allows functions', async () => {
+		const results = await lintFile('fixtures/use-before-define.js')
+
+		expect(results).toHaveIssueCount(1)
+		expect(results).toHaveIssue({
+			ruleId: 'no-use-before-define',
+			line: 7,
+		})
+	})
 })
