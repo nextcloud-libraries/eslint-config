@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 import type { Rule, Scope } from 'eslint'
+
 import { createVersionValidator } from '../utils/version-parser.ts'
 
 // ------------------------------------------------------------------------------

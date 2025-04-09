@@ -7,8 +7,8 @@ import type { Rule } from 'eslint'
 
 import { XMLParser } from 'fast-xml-parser'
 import { lstatSync, readFileSync } from 'node:fs'
-import { sep, resolve, isAbsolute, dirname } from 'node:path'
-import { valid, lte } from 'semver'
+import { dirname, isAbsolute, resolve, sep } from 'node:path'
+import { lte, valid } from 'semver'
 
 /**
  * Check if a given path exists and is a directory
