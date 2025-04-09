@@ -30,12 +30,15 @@ export function typescript(options: ConfigOptions): Linter.Config[] {
 		),
 
 		{
+			name: 'nextcloud/typescript/rules',
 			files: [
 				...GLOB_FILES_TYPESCRIPT,
 				...(options.vueIsTypescript ? GLOB_FILES_VUE : []),
 			],
 			rules: {
-			// Allow expect-error as we can sometimes not prevent it...
+				// Do not allow to import types with `import` but require `import type`
+				'@typescript-eslint/consistent-type-imports': 'error',
+				// Allow expect-error as we can sometimes not prevent it...
 				'@typescript-eslint/ban-ts-comment': [
 					'error',
 					{
@@ -57,7 +60,6 @@ export function typescript(options: ConfigOptions): Linter.Config[] {
 				'no-shadow': 'off',
 				'@typescript-eslint/no-shadow': 'error',
 			},
-			name: 'nextcloud/typescript/rules',
 		},
 
 		{
