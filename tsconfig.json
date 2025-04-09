@@ -4,6 +4,7 @@
 		"declaration": true,
 		"esModuleInterop": true,
 		"rewriteRelativeImportExtensions": true,
+		"resolveJsonModule": true,
 		"moduleResolution": "NodeNext",
 		"module": "NodeNext",
 		"target": "ES2022",

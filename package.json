@@ -34,10 +34,9 @@
     "dist"
   ],
   "scripts": {
-    "build": "npm run build:cleanup && npm run build:source && npm run build:version",
+    "build": "npm run build:cleanup && npm run build:source",
     "build:cleanup": "tsc --build --clean",
     "build:source": "tsc",
-    "build:version": "echo \"export const __PACKAGE_VERSION__ = '$npm_package_version'\" > dist/version.js",
     "lint": "npm run build && eslint",
     "lint:fix": "eslint --fix",
     "test": "vitest run"
@@ -64,7 +63,7 @@
     "eslint": ">=9"
   },
   "engines": {
-    "node": "^20.9 || ^22"
+    "node": "^20.10 || ^22"
   },
   "devEngines": {
     "packageManager": {
