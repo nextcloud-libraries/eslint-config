@@ -3,8 +3,8 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 import { ESLint } from 'eslint'
-import { rules } from './rules/index.js'
-import { __PACKAGE_VERSION__ } from '../../version.js'
+import { rules } from './rules/index.ts'
+import { __PACKAGE_VERSION__ } from '../../version.ts'
 
 export default {
 	rules,

@@ -2,9 +2,8 @@
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
-
 import type { Linter } from 'eslint'
-import type { ConfigOptions } from '../types.js'
+import type { ConfigOptions } from '../types.d.ts'
 
 import {
 	GLOB_FILES_JAVASCRIPT,

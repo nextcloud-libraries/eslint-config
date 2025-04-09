@@ -7,13 +7,14 @@ import type { Rule } from 'eslint'
 import { fs, vol } from 'memfs'
 import { join } from 'node:path'
 import { afterAll, afterEach, beforeAll, describe, expect, it, test, vi } from 'vitest'
+
 import {
 	isDirectory,
 	isFile,
 	sanitizeTargetVersion,
 	findAppinfo,
 	createVersionValidator,
-} from './version-parser.js'
+} from './version-parser.ts'
 
 vi.mock('node:fs', () => fs)
 

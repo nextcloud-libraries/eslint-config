@@ -4,7 +4,8 @@
  */
 import { RuleTester } from 'eslint'
 import { describe, test } from 'vitest'
-import rule from './no-deprecations.js'
+
+import rule from './no-deprecations.ts'
 
 // ------------------------------------------------------------------------------
 // Tests

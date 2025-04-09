@@ -2,10 +2,9 @@
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
-
 import type { Linter } from 'eslint'
 
-import { GLOB_FILES_TESTING } from '../globs.js'
+import { GLOB_FILES_TESTING } from '../globs.ts'
 import globals from 'globals'
 
 /**

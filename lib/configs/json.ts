@@ -2,11 +2,16 @@
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
-
 import type { ESLint, Linter } from 'eslint'
+
+import {
+	GLOB_FILES_JSON,
+	GLOB_FILES_JSONC,
+	GLOB_FILES_MS_JSON,
+} from '../globs.ts'
+
 import jsonPlugin from '@eslint/json'
-import packageJsonPlugin from '../plugins/packageJson.js'
-import { GLOB_FILES_JSON, GLOB_FILES_JSONC, GLOB_FILES_MS_JSON } from '../globs.js'
+import packageJsonPlugin from '../plugins/packageJson.ts'
 
 /**
  * JSON related ESLint rules for Nextcloud
