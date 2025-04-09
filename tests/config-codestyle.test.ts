@@ -5,9 +5,10 @@
 import type { Linter } from 'eslint'
 
 import { ESLint } from 'eslint'
-import { expect, test } from 'vitest'
 import * as path from 'path'
-import * as eslintConfig from '../lib/index.js'
+import { expect, test } from 'vitest'
+
+import * as eslintConfig from '../lib/index.ts'
 
 const eslint = new ESLint({
 	fix: true,
