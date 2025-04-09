@@ -4,6 +4,7 @@
  */
 import { RuleTester } from 'eslint'
 import { test } from 'vitest'
+
 import rule from './enforce-ellipsis.ts'
 
 test('rule: enforce-ellipsis', () => {

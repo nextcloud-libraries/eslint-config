@@ -3,5 +3,6 @@
 	"compilerOptions": {
 		"rootDir": ".."
 	},
-	"include": ["./vitest.d.ts", ".", "../lib"]
+	"exclude": [],
+	"include": ["./vitest.d.ts", ".", "../lib"],
 }

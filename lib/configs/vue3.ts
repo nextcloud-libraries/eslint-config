@@ -2,13 +2,14 @@
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
-
 import type { Linter } from 'eslint'
-import vuePlugin from 'eslint-plugin-vue'
+import type { ConfigOptions } from '../types.d.ts'
+
 import { vue } from './vue.ts'
 import { GLOB_FILES_VUE } from '../globs.ts'
 import { restrictConfigFiles } from '../utils.ts'
-import { ConfigOptions } from '../types'
+
+import vuePlugin from 'eslint-plugin-vue'
 
 /**
  * Vue3 related ESLint rules for Nextcloud

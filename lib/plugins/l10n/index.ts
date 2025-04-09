@@ -2,8 +2,10 @@
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
-
 import type { ESLint } from 'eslint'
+
+import { __PACKAGE_VERSION__ } from '../../version.ts'
+
 import RuleEllipsis from './rules/enforce-ellipsis.ts'
 import RuleNonBreakingSpace from './rules/non-breaking-space.ts'
 

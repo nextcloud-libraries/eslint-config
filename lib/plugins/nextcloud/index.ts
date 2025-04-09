@@ -4,6 +4,7 @@
  */
 import { ESLint } from 'eslint'
 import { rules } from './rules/index.ts'
+import { __PACKAGE_VERSION__ } from '../../version.ts'
 
 export default {
 	rules,

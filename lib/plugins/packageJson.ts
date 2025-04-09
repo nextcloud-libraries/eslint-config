@@ -5,6 +5,8 @@
 
 import type { ESLint, Rule } from 'eslint'
 
+import { __PACKAGE_VERSION__ } from '../version.ts'
+
 import path from 'node:path'
 import sortPackageJson from 'sort-package-json'
 
@@ -33,8 +35,7 @@ const SortPackageJsonRule: Rule.RuleModule = {
 	},
 
 	create(context: Rule.RuleContext): Rule.RuleListener {
-		const filename = context.getFilename()
-		if (path.basename(filename) !== 'package.json') {
+		if (path.basename(context.filename) !== 'package.json') {
 			return {}
 		}
 
@@ -44,7 +45,7 @@ const SortPackageJsonRule: Rule.RuleModule = {
 			Document({ body }) {
 				const sourceCode = context.sourceCode.text
 				const packageJsonText = sourceCode.slice(...body.range)
-				const sortedPackageJsonText = sortPackageJson(packageJsonText, options)
+				const sortedPackageJsonText = sortPackageJson(packageJsonText, options as never)
 
 				if (packageJsonText !== sortedPackageJsonText) {
 					context.report({
@@ -56,7 +57,7 @@ const SortPackageJsonRule: Rule.RuleModule = {
 					})
 				}
 			},
-		}
+		} satisfies Rule.NodeListener
 	},
 }
 
