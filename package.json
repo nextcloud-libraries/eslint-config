@@ -37,6 +37,7 @@
     "build": "npm run build:cleanup && npm run build:source",
     "build:cleanup": "tsc --build --clean",
     "build:source": "tsc",
+    "prepare": "npm run build",
     "lint": "npx --node-options='--experimental-strip-types' eslint --flag unstable_native_nodejs_ts_config",
     "lint:fix": "npx --node-options='--experimental-strip-types' eslint --flag unstable_native_nodejs_ts_config --fix",
     "test": "vitest run"
