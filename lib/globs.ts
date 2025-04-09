@@ -5,9 +5,9 @@
 
 /** Glob pattern for test files (specs) */
 export const GLOB_FILES_TESTING = [
-	'**.test.*',
-	'**.spec.*',
-	'**.cy.*',
+	'**/*.test.*',
+	'**/*.spec.*',
+	'**/*.cy.*',
 	'**/test',
 	'**/tests',
 ]
