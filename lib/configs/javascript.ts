@@ -32,9 +32,12 @@ export function javascript(options: ConfigOptions): Linter.Config[] {
 				globals: {
 					...globals.browser,
 					...globals.es2025,
-					OC: 'writable',
-					OCA: 'readonly',
+					OC: 'readonly',
+					OCA: 'writable',
 					OCP: 'readonly',
+					// injected by shared Vite and Webpack config
+					appName: 'readonly',
+					appVersion: 'readonly',
 					// legacy global Nextcloud translation function
 					t: 'readonly',
 					n: 'readonly',
