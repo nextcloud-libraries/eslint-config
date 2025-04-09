@@ -87,6 +87,53 @@ export const imports: Linter.Config[] = [
 			'import/first': 'error',
 			// Require a newline after each import (so not multiple `import` statements on the same line)
 			'import/newline-after-import': 'error',
+			// Consistent import order
+			'import/order': [
+				'error',
+				{
+					groups: [
+						'type',
+						[
+							'builtin',
+							'external',
+						],
+						'internal',
+						[
+							'parent',
+							'sibling',
+							'index',
+						],
+						'unknown',
+					],
+					pathGroups: [
+						{
+						// group all style imports at the end
+							pattern: '{*.css,*.scss}',
+							patternOptions: { matchBase: true },
+							group: 'unknown',
+							position: 'after',
+						},
+						{
+							// group components
+							pattern: '*.vue',
+							patternOptions: { matchBase: true },
+							group: 'parent',
+							position: 'before',
+						},
+					],
+					// needed so that 'vue-material-design-icons' are considered components
+					pathGroupsExcludedImportTypes: ['builtin'],
+					'newlines-between': 'always',
+					alphabetize: {
+						order: 'asc',
+					},
+					named: true,
+					// enable with next eslint-plugin-import release
+					// sortTypesGroup: true,
+					// 'newlines-between-types': 'never',
+					warnOnUnassignedImports: true,
+				},
+			],
 		},
 	},
 ]
