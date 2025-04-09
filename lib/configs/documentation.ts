@@ -10,7 +10,7 @@ import {
 	GLOB_FILES_TESTING,
 	GLOB_FILES_TYPESCRIPT,
 	GLOB_FILES_VUE,
-} from '../globs.js'
+} from '../globs.ts'
 import jsdocPlugin from 'eslint-plugin-jsdoc'
 
 /**

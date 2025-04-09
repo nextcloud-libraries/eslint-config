@@ -37,8 +37,8 @@
     "build": "npm run build:cleanup && npm run build:source",
     "build:cleanup": "tsc --build --clean",
     "build:source": "tsc",
-    "lint": "npm run build && eslint",
-    "lint:fix": "eslint --fix",
+    "lint": "npx --node-options='--experimental-strip-types' eslint --flag unstable_native_nodejs_ts_config",
+    "lint:fix": "npx --node-options='--experimental-strip-types' eslint --flag unstable_native_nodejs_ts_config --fix",
     "test": "vitest run"
   },
   "dependencies": {
@@ -72,7 +72,7 @@
     },
     "runtime": {
       "name": "node",
-      "version": "^22"
+      "version": "^22.10"
     }
   }
 }
