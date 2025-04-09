@@ -4,8 +4,7 @@
  */
 import type { ESLint } from 'eslint'
 
-import { __PACKAGE_VERSION__ } from '../../version.ts'
-
+import { packageVersion } from '../../version.ts'
 import RuleEllipsis from './rules/enforce-ellipsis.ts'
 import RuleNonBreakingSpace from './rules/non-breaking-space.ts'
 
@@ -15,7 +14,7 @@ import RuleNonBreakingSpace from './rules/non-breaking-space.ts'
 const Plugin: ESLint.Plugin = {
 	meta: {
 		name: '@nextcloud/l10n-plugin',
-		version: __PACKAGE_VERSION__,
+		version: packageVersion,
 	},
 	rules: {
 		'non-breaking-space': RuleNonBreakingSpace,

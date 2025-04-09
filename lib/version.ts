@@ -4,4 +4,4 @@
  */
 import packageJson from '../package.json' with { type: 'json' }
 
-export const __PACKAGE_VERSION__: string = packageJson.version
+export const packageVersion: string = packageJson.version
