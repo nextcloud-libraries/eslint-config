@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: CC0-1.0
  */
 
-import { recommended } from './dist/index.js'
+import { recommended } from './lib/index.ts'
 
 export default [
 	{
