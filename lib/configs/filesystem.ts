@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { Linter } from 'eslint'
+import type { Linter } from 'eslint'
 
 /**
  * General config to exclude known non-source directories from linting
