@@ -4,8 +4,8 @@
  */
 import type { ESLint } from 'eslint'
 
-import { rules } from './rules/index.ts'
 import { packageVersion } from '../../version.ts'
+import { rules } from './rules/index.ts'
 
 export default {
 	rules,
