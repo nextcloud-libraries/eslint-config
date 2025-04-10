@@ -25,6 +25,11 @@ export const imports: Linter.Config[] = [
 			...importPlugin.flatConfigs.errors.rules,
 			...makeErrorLevel(importPlugin.flatConfigs.warnings.rules),
 		},
+		languageOptions: {
+			// eslint-plugin-import resets ecmaVersion to 2018 for compatibility
+			// Setting back to latest
+			ecmaVersion: 'latest',
+		},
 	},
 
 	// Additional import related rules not included in errors-preset
