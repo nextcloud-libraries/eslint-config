@@ -5,7 +5,7 @@
 import type { Linter } from 'eslint'
 
 import { ESLint } from 'eslint'
-import * as path from 'path'
+import { join, resolve } from 'path'
 import { describe, expect, test } from 'vitest'
 
 import * as eslintConfig from '../lib/index.ts'
@@ -17,7 +17,7 @@ const eslint = new ESLint({
 
 describe('Typescript', () => {
 	async function lintFile(file: string) {
-		const real = path.resolve(path.join(__dirname, file))
+		const real = resolve(join(__dirname, file))
 		return await eslint.lintFiles(real)
 	}
 

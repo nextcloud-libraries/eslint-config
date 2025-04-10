@@ -2,16 +2,16 @@
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
-import type { Linter } from 'eslint'
 import type { ConfigOptions } from '../types.d.ts'
+import type { Linter } from 'eslint'
+
+import stylistic from '@stylistic/eslint-plugin'
 
 import {
 	GLOB_FILES_JAVASCRIPT,
 	GLOB_FILES_TYPESCRIPT,
 	GLOB_FILES_VUE,
 } from '../globs.ts'
-
-import stylistic from '@stylistic/eslint-plugin'
 import l10nPlugin from '../plugins/l10n/index.ts'
 
 /**
@@ -91,6 +91,7 @@ export function codeStyle(options: ConfigOptions): (Linter.Config | Linter.BaseC
 				],
 
 				// Enforce new lines after [ and before ] if there are multiline entries or more than 1 item in the array (better git diff)
+				// TODO: Adjust once implemented: https://github.com/eslint-stylistic/eslint-stylistic/issues/761
 				'@stylistic/array-bracket-newline': [
 					'error',
 					{

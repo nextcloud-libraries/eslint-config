@@ -1,0 +1,8 @@
+import type Foo from 'foo'
+import MyComponent from '../components/MyComponent.vue'
+import { b, a } from 'foo'
+import { resolve } from 'path'
+import type { basename } from 'path'
+import AClass from '../class.ts'
+import Bar from 'a-package'
+import IconCheck from 'vue-material-design-icons/Check.vue'

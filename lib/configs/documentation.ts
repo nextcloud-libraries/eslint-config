@@ -57,7 +57,7 @@ export function documentation(options: ConfigOptions): Linter.Config[] {
 
 		{
 			rules: {
-			// Force proper documentation
+				// Force proper documentation
 				'jsdoc/check-tag-names': 'error',
 				// But ignore return values
 				'jsdoc/require-returns': 'off',
@@ -87,7 +87,7 @@ export function documentation(options: ConfigOptions): Linter.Config[] {
 
 		{
 			rules: {
-			// Overwrites for documentation as types are already provided by Typescript
+				// Overwrites for documentation as types are already provided by Typescript
 				'jsdoc/require-param-type': 'off',
 				'jsdoc/require-property-type': 'off',
 				'jsdoc/require-returns-type': 'off',
