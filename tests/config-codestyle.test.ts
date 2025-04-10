@@ -5,8 +5,8 @@
 import type { Linter } from 'eslint'
 
 import { ESLint } from 'eslint'
+import { join, resolve } from 'path'
 import { expect, test } from 'vitest'
-import * as path from 'path'
 import * as eslintConfig from '../lib/index.js'
 
 const eslint = new ESLint({
@@ -16,7 +16,7 @@ const eslint = new ESLint({
 })
 
 const lintFile = async (file) => {
-	const real = path.resolve(path.join(__dirname, file))
+	const real = resolve(join(__dirname, file))
 	return await eslint.lintFiles(real)
 }
 
@@ -24,6 +24,8 @@ test.for([
 	'array',
 	'arrow-function',
 	'function',
+	'exports',
+	'imports',
 	'indention',
 	'objects',
 	'quotes',

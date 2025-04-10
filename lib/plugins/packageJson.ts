@@ -7,7 +7,6 @@ import type { ESLint, Rule } from 'eslint'
 
 import path from 'node:path'
 import sortPackageJson from 'sort-package-json'
-
 import { packageVersion } from '../version.ts'
 
 const SortPackageJsonRule: Rule.RuleModule = {

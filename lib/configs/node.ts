@@ -4,8 +4,8 @@
  */
 import type { Linter } from 'eslint'
 
-import { GLOB_FILES_TESTING } from '../globs.ts'
 import globals from 'globals'
+import { GLOB_FILES_TESTING } from '../globs.ts'
 
 /**
  * Config setup for the node environment.

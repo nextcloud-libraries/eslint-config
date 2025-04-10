@@ -5,13 +5,13 @@
 import type { Linter } from 'eslint'
 import type { ConfigOptions } from '../types.d.ts'
 
+import jsdocPlugin from 'eslint-plugin-jsdoc'
 import {
 	GLOB_FILES_JAVASCRIPT,
 	GLOB_FILES_TESTING,
 	GLOB_FILES_TYPESCRIPT,
 	GLOB_FILES_VUE,
 } from '../globs.ts'
-import jsdocPlugin from 'eslint-plugin-jsdoc'
 
 /**
  * Config factory for code documentation related rules (JSDoc)

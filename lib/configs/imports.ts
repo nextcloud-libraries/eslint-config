@@ -1,12 +1,11 @@
+import type { Linter } from 'eslint'
 /*!
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 import type { ConfigOptions } from '../types.d.ts'
-import type { Linter } from 'eslint'
 
 import perfectionist from 'eslint-plugin-perfectionist'
-
 import {
 	GLOB_FILES_JAVASCRIPT,
 	GLOB_FILES_TYPESCRIPT,
@@ -53,9 +52,10 @@ export function imports(options: ConfigOptions): Linter.Config[] {
 					'error',
 					{
 						type: 'natural',
-						newlinesBetween: 'ignore',
+						newlinesBetween: 'never',
 						groups: [
 							// type first
+							'external-type',
 							'type',
 							{ newlinesBetween: 'always' },
 							// external things
@@ -66,18 +66,31 @@ export function imports(options: ConfigOptions): Linter.Config[] {
 							],
 							// everything else which is everything internal
 							'unknown',
-							// import style from 'my.module.css'
-							'style',
 							// Vue components
-							'vue',
+							'vue', // external modules (e.g. nextcloud-vue)
+							'internalVue', // internal local vue components
+							{ newlinesBetween: 'always' },
 							// side effect only: import 'sideeffect.js'
 							'side-effect',
+							// import style from 'my.module.css'
+							'style',
 						],
-						customGroups: {
-							value: {
-								vue: '\\.vue$',
+						customGroups: [
+							{
+								groupName: 'vue',
+								selector: 'external',
+								modifiers: ['value'],
+								elementNamePattern: [
+									'\\.vue$',
+									'@nextcloud/vue/components/',
+								],
 							},
-						},
+							{
+								groupName: 'internalVue',
+								modifiers: ['value'],
+								elementNamePattern: ['\\.vue$'],
+							},
+						],
 					},
 				],
 				'perfectionist/sort-named-exports': [
@@ -98,19 +111,17 @@ export function imports(options: ConfigOptions): Linter.Config[] {
  *
  * @param type The type for which to create the config
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function createSortingConfig(type: 'export' | 'import') {
 	return {
 		type: 'natural',
-		groupKind: 'types-first',
-
-		/* eslint-disable @stylistic/no-tabs */
-		// TODO: use when 4.12.0+ is released
-		// newlinesBetween: 'always',
-		// partitionByNewLine: false,
-		// groups: [
-		// 	`type-${type}`,
-		// 	[`value-${type}`, 'unknown'],
-		// ],
+		newlinesBetween: 'always',
+		partitionByNewLine: false,
+		groups: [
+			`type-${type}`,
+			[
+				`value-${type}`,
+				'unknown',
+			],
+		],
 	}
 }

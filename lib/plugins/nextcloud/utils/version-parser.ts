@@ -2,13 +2,14 @@
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
-import type { PluginOption } from '../plugin.d.ts'
+
 import type { Rule } from 'eslint'
+import type { PluginOption } from '../plugin.d.ts'
 
 import { XMLParser } from 'fast-xml-parser'
 import { lstatSync, readFileSync } from 'node:fs'
-import { sep, resolve, isAbsolute, dirname } from 'node:path'
-import { valid, lte } from 'semver'
+import { dirname, isAbsolute, resolve, sep } from 'node:path'
+import { lte, valid } from 'semver'
 
 /**
  * Check if a given path exists and is a directory
