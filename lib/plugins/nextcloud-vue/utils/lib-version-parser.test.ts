@@ -154,6 +154,24 @@ describe('version-parser', () => {
 				expect(fn('8.24.0')).toBe(true)
 				expect(fn('9.0.0')).toBe(true)
 			})
+
+			it('works with several dependency sources', () => {
+				vol.fromNestedJSON({
+					'/a': {
+						'package.json': '{"name": "my-app","version": "0.1.0","dependencies":{"@nextcloud/vue":"^8.24.0"},"devDependencies":{"@nextcloud/vue":"^8.24.0"},"peerDependencies":{"@nextcloud/vue":"^8.23.1"}}',
+						src: { },
+					},
+				})
+				const fn = createLibVersionValidator({
+					cwd: '/a',
+					physicalFilename: 'src/b.js',
+				})
+				expect(fn('8.22.0')).toBe(false)
+				expect(fn('8.23.0')).toBe(false)
+				expect(fn('8.23.1')).toBe(true)
+				expect(fn('8.24.0')).toBe(true)
+				expect(fn('9.0.0')).toBe(true)
+			})
 		})
 	})
 })
