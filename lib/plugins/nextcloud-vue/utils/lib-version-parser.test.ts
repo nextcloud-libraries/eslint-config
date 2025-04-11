@@ -83,38 +83,13 @@ describe('version-parser', () => {
 
 			expect(findPackageJson('/a/src/b/c')).toBe(undefined)
 		})
-
-		it('required info.xml to exist', () => {
-			vol.fromNestedJSON({
-				'/a': {
-					appinfo: { },
-					src: { },
-				},
-			})
-
-			expect(findPackageJson('/a/src')).toBe(undefined)
-		})
 	})
 
 	describe('createLibVersionValidator', () => {
-		it('static target version', () => {
-			const fn = createLibVersionValidator({
-				cwd: '',
-				physicalFilename: '',
-				options: [{ targetVersion: '8.23.0' }],
-			})
-			expect(fn('8.22.0')).toBe(true)
-			expect(fn('8.23.0')).toBe(true)
-			expect(fn('8.23.1')).toBe(false)
-			expect(fn('8.24.0')).toBe(false)
-			expect(fn('9.0.0')).toBe(false)
-		})
-
 		it('no config', () => {
 			const fn = createLibVersionValidator({
 				cwd: '',
 				physicalFilename: '',
-				options: [],
 			})
 			expect(fn('8.22.0')).toBe(false)
 			expect(fn('8.23.0')).toBe(false)
@@ -123,8 +98,26 @@ describe('version-parser', () => {
 			expect(fn('9.0.0')).toBe(false)
 		})
 
-		describe('app info', () => {
+		describe('package.json', () => {
 			afterEach(() => vol.reset())
+
+			it('returns false without nextcloud/vue in dependencies', () => {
+				vol.fromNestedJSON({
+					'/a': {
+						'package.json': '{"name": "my-app","version": "0.1.0","dependencies":{}}',
+						src: { },
+					},
+				})
+				const fn = createLibVersionValidator({
+					cwd: '',
+					physicalFilename: '/a/src/b.js',
+				})
+				expect(fn('8.22.0')).toBe(false)
+				expect(fn('8.23.0')).toBe(false)
+				expect(fn('8.23.1')).toBe(false)
+				expect(fn('8.24.0')).toBe(false)
+				expect(fn('9.0.0')).toBe(false)
+			})
 
 			it('works with physical filename', () => {
 				vol.fromNestedJSON({
@@ -136,13 +129,12 @@ describe('version-parser', () => {
 				const fn = createLibVersionValidator({
 					cwd: '',
 					physicalFilename: '/a/src/b.js',
-					options: [{ parsePackageJson: true }],
 				})
-				expect(fn('8.22.0')).toBe(true)
-				expect(fn('8.23.0')).toBe(true)
-				expect(fn('8.23.1')).toBe(false)
-				expect(fn('8.24.0')).toBe(false)
-				expect(fn('9.0.0')).toBe(false)
+				expect(fn('8.22.0')).toBe(false)
+				expect(fn('8.23.0')).toBe(false)
+				expect(fn('8.23.1')).toBe(true)
+				expect(fn('8.24.0')).toBe(true)
+				expect(fn('9.0.0')).toBe(true)
 			})
 
 			it('works with cwd', () => {
@@ -155,42 +147,12 @@ describe('version-parser', () => {
 				const fn = createLibVersionValidator({
 					cwd: '/a',
 					physicalFilename: 'src/b.js',
-					options: [{ parsePackageJson: true }],
 				})
-				expect(fn('8.22.0')).toBe(true)
-				expect(fn('8.23.0')).toBe(true)
-				expect(fn('8.23.1')).toBe(false)
-				expect(fn('8.24.0')).toBe(false)
-				expect(fn('9.0.0')).toBe(false)
-			})
-
-			it('throws error on missing max-version', () => {
-				vol.fromNestedJSON({
-					'/a': {
-						'package.json': '{"name": "my-app","version": "0.1.0","dependencies":{"@nextcloud/l10n":"^2.2.0"}}',
-						src: { },
-					},
-				})
-
-				expect(() => createLibVersionValidator({
-					cwd: '/a',
-					physicalFilename: 'src/b.js',
-					options: [{ parsePackageJson: true }],
-				})).toThrowErrorMatchingInlineSnapshot('[Error: [@nextcloud/eslint-plugin] package.json does not contain a max-version (location: /a/package.json)]')
-			})
-
-			it('throws an error if appinfo was not found', () => {
-				vol.fromNestedJSON({
-					'/a': {
-						src: { },
-					},
-				})
-
-				expect(() => createLibVersionValidator({
-					cwd: '/a',
-					physicalFilename: 'src/b.js',
-					options: [{ parsePackageJson: true }],
-				})).toThrowErrorMatchingInlineSnapshot('[Error: [@nextcloud/eslint-plugin] package.json parsing was enabled, but no `package.json` was found.]')
+				expect(fn('8.22.0')).toBe(false)
+				expect(fn('8.23.0')).toBe(false)
+				expect(fn('8.23.1')).toBe(true)
+				expect(fn('8.24.0')).toBe(true)
+				expect(fn('9.0.0')).toBe(true)
 			})
 		})
 	})
