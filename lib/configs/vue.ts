@@ -155,7 +155,7 @@ export function vue(options: ConfigOptions): Linter.Config[] {
 				'@nextcloud/vue': nextcloudVuePlugin,
 			},
 			rules: {
-				'@nextcloud/vue/no-deprecated-exports': 'warn',
+				'@nextcloud/vue/no-deprecated-exports': 'error',
 			},
 			name: 'nextcloud/vue/migration-rules',
 		},

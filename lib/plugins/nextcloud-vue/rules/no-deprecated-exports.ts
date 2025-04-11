@@ -18,31 +18,10 @@ const rule: Rule.RuleModule = {
 	meta: {
 		docs: {
 			description: 'Deprecated @nextcloud/vue import syntax',
-			category: 'Nextcloud',
 			recommended: true,
 		},
 		fixable: 'code',
-		schema: [
-			{
-				// We accept one option which is an object
-				type: 'object',
-				properties: {
-					// if we should try to find an appinfo and only handle APIs removed before the max-version
-					parseAppInfo: {
-						type: 'boolean',
-					},
-					// Set a Nextcloud target version, only APIs removed before that versions are checked
-					targetVersion: {
-						type: 'string',
-					},
-				},
-				additionalProperties: false,
-			},
-		],
-		messages: {
-			removedGlobal:
-				'The global property or function {{name}} was removed in Nextcloud {{version}}',
-		},
+		schema: [],
 	},
 
 	create(context) {
