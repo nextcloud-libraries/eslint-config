@@ -25,13 +25,13 @@ const rule: Rule.RuleModule = {
 	},
 
 	create(context) {
-		const checkTargetVersion = createLibVersionValidator(context)
+		const versionSatisfies = createLibVersionValidator(context)
 
 		const oldPattern = '@nextcloud/vue/dist/([^/]+)/([^/.]+)'
 
 		return {
 			ImportDeclaration: function(node) {
-				if (!checkTargetVersion('8.23.0')) {
+				if (!versionSatisfies('8.23.0')) {
 					// Can't fix, ignore the rule
 					return
 				}
