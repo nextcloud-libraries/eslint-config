@@ -1,9 +1,11 @@
+import type { ConfigOptions } from '../types.d.ts'
 /*!
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 import type { Linter } from 'eslint'
-import type { ConfigOptions } from '../types.d.ts'
+
+import typescriptPlugin from 'typescript-eslint'
 
 import {
 	GLOB_FILES_TESTING,
@@ -11,8 +13,6 @@ import {
 	GLOB_FILES_VUE,
 } from '../globs.ts'
 import { restrictConfigFiles } from '../utils.ts'
-
-import typescriptPlugin from 'typescript-eslint'
 
 /**
  * Typescript related ESLint rules for Nextcloud
