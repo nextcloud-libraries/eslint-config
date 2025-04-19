@@ -7,6 +7,7 @@ import type { ConfigOptions } from './types.d.ts'
 import { codeStyle } from './configs/codeStyle.ts'
 import { documentation } from './configs/documentation.ts'
 import { filesystem } from './configs/filesystem.ts'
+import { imports } from './configs/imports.ts'
 import { javascript } from './configs/javascript.ts'
 import { json } from './configs/json.ts'
 import { node } from './configs/node.ts'
@@ -81,6 +82,7 @@ function createConfig(options: ConfigOptions & { vue2?: boolean }) {
 		...json,
 		...node,
 		...typescript(options),
+		...imports,
 		...(
 			options.vue2
 				? vue2(options)

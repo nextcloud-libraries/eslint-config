@@ -2,8 +2,10 @@
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
-import type { Linter } from 'eslint'
 import type { ConfigOptions } from '../types.d.ts'
+import type { Linter } from 'eslint'
+
+import jsdocPlugin from 'eslint-plugin-jsdoc'
 
 import {
 	GLOB_FILES_JAVASCRIPT,
@@ -11,7 +13,6 @@ import {
 	GLOB_FILES_TYPESCRIPT,
 	GLOB_FILES_VUE,
 } from '../globs.ts'
-import jsdocPlugin from 'eslint-plugin-jsdoc'
 
 /**
  * Config factory for code documentation related rules (JSDoc)
