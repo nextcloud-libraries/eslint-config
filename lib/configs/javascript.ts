@@ -1,9 +1,12 @@
+import type { ConfigOptions } from '../types.d.ts'
 /*!
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 import type { Linter } from 'eslint'
-import type { ConfigOptions } from '../types.d.ts'
+
+import eslintRules from '@eslint/js'
+import globals from 'globals'
 
 import {
 	GLOB_FILES_JAVASCRIPT,
@@ -11,9 +14,6 @@ import {
 	GLOB_FILES_TYPESCRIPT,
 	GLOB_FILES_VUE,
 } from '../globs.ts'
-
-import eslintRules from '@eslint/js'
-import globals from 'globals'
 import nextcloudPlugin from '../plugins/nextcloud/index.ts'
 
 /**
