@@ -188,6 +188,34 @@ export default [
 ]
 ```
 
+#### Mixed Js + TS Vue projects
+
+In mixed projects, meaning projects that use Typescript and Javascript for Vue components,
+always the Typescript rules are applied.
+This is because ESLint can only set rules based on the file extension (`.vue`) not based
+on the content like `<script type="ts">`.
+
+In general this is not a problem but some rules might not work as intended within those Vue components:
+
+- JSDoc types are removed.
+  When using Typescript it makes no sense to also have JSDoc types, often they are forgotten
+  and will diverge overtime from the real Typescript types of the annotated code.
+
+In those cases you can disable the rule like this:
+```js
+import { recommended } from '@nextcloud/eslint-config'
+
+export default [
+	...recommended,
+	{
+		files: ['**/*.vue'],
+		rules: {
+			'jsdoc/no-types': 'off',
+		}
+	},
+]
+```
+
 ## Release new version
 
  1. Update CHANGELOG.md file with the latest changes
