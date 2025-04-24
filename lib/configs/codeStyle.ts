@@ -117,7 +117,10 @@ export function codeStyle(options: ConfigOptions): (Linter.Config | Linter.BaseC
 						multiline: true,
 					},
 				],
-				'@stylistic/object-property-newline': 'error',
+				'@stylistic/object-property-newline': [
+					'error',
+					{ allowAllPropertiesOnSameLine: true },
+				],
 
 				// No space between function name and parenthesis. Enforce fn() instead of fn ()
 				'@stylistic/function-call-spacing': [

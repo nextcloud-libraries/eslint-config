@@ -14,11 +14,8 @@ const obj2 = {
 // Require spaces around braces
 const obj3 = { first: 1 }
 
-// Prefer multi line objects
-const obj4 = {
-	first: 1,
-	second: 'two',
-}
+// Allow all properties in one line
+const obj4 = { first: 1, second: 'two' }
 
 // Use trailing commas to be git diff friendly
 const obj5 = {
