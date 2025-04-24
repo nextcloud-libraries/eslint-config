@@ -64,11 +64,11 @@ export function imports(options: ConfigOptions): Linter.Config[] {
 								'external',
 								'object',
 							],
+							// everything else which is everything internal
+							'unknown',
 							// Vue components
 							'vue', // external modules (e.g. nextcloud-vue)
 							'internalVue', // internal local vue components
-							// everything else which is everything internal
-							'unknown',
 							{ newlinesBetween: 'always' },
 							// side effect only: import 'sideeffect.js'
 							'side-effect',
