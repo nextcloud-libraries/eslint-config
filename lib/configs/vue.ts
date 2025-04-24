@@ -107,17 +107,6 @@ export function vue(options: ConfigOptions): Linter.Config[] {
 				'vue/no-unused-refs': 'warn',
 				// Warn on unused props
 				'vue/no-unused-properties': 'warn',
-				// Warn when there are non-typescript Vue files in Typescript project
-				'vue/block-lang': options.vueIsTypescript
-					? [
-							'warn',
-							{
-								script: {
-									lang: 'ts',
-								},
-							},
-						]
-					: 'off',
 			},
 			name: 'nextcloud/vue/rules',
 		},
