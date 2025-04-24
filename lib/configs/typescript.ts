@@ -56,9 +56,6 @@ export function typescript(options: ConfigOptions): Linter.Config[] {
 						functions: false,
 					},
 				],
-				// Do not shadow outer variables / functions - this can lead to wrong assumptions
-				'no-shadow': 'off',
-				'@typescript-eslint/no-shadow': 'error',
 			},
 		},
 
