@@ -5,7 +5,6 @@
 /* eslint-disable @nextcloud-l10n/non-breaking-space */
 import { RuleTester } from 'eslint'
 import { test } from 'vitest'
-
 import rule from './non-breaking-space.ts'
 
 test('rule: non-breaking-space', () => {

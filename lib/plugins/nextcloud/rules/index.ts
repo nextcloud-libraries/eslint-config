@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 import type { Rule } from 'eslint'
+
 import noDeprecations from './no-deprecations.ts'
 import noRemovedApis from './no-removed-apis.ts'
 

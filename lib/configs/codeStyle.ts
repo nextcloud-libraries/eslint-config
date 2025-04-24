@@ -5,13 +5,12 @@
 import type { Linter } from 'eslint'
 import type { ConfigOptions } from '../types.d.ts'
 
+import stylistic from '@stylistic/eslint-plugin'
 import {
 	GLOB_FILES_JAVASCRIPT,
 	GLOB_FILES_TYPESCRIPT,
 	GLOB_FILES_VUE,
 } from '../globs.ts'
-
-import stylistic from '@stylistic/eslint-plugin'
 import l10nPlugin from '../plugins/l10n/index.ts'
 
 /**

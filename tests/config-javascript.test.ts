@@ -5,11 +5,10 @@
 import type { Linter } from 'eslint'
 
 import { ESLint } from 'eslint'
-import { afterAll, beforeAll, describe, expect, test } from 'vitest'
-
-import * as path from 'path'
-import * as eslintConfig from '../lib/index.js'
 import { access, copyFile, rm } from 'fs/promises'
+import { join, resolve } from 'path'
+import { afterAll, beforeAll, describe, expect, test } from 'vitest'
+import * as eslintConfig from '../lib/index.js'
 
 const eslint = new ESLint({
 	overrideConfigFile: true,
@@ -17,7 +16,7 @@ const eslint = new ESLint({
 })
 
 const lintFile = async (file) => {
-	const real = path.resolve(path.join(__dirname, file))
+	const real = resolve(join(__dirname, file))
 	return await eslint.lintFiles(real)
 }
 
@@ -70,12 +69,12 @@ test('allows JSDoc syntax', async () => {
 
 describe('no-use-before-define', () => {
 	beforeAll(async () => {
-		const fixture = path.resolve(path.join(__dirname, 'fixtures/use-before-define.ts'))
+		const fixture = resolve(join(__dirname, 'fixtures/use-before-define.ts'))
 		await copyFile(fixture, fixture.replace(/\.ts$/, '.js'))
 	})
 
 	afterAll(async () => {
-		const fixture = path.resolve(path.join(__dirname, 'fixtures/use-before-define.ts'))
+		const fixture = resolve(join(__dirname, 'fixtures/use-before-define.ts'))
 			.replace(/\.ts$/, '.js')
 
 		try {
