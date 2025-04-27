@@ -1,6 +1,6 @@
 {
   "name": "@nextcloud/eslint-config",
-  "version": "9.0.0-rc.0",
+  "version": "9.0.0-rc.1",
   "description": "Eslint shared config for nextcloud apps and libraries",
   "keywords": [
     "eslint",
