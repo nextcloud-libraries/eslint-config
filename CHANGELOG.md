@@ -11,24 +11,41 @@ This package now is using ESLint v9 and requires ESLint flat configurations.
 Please refer to the README on how to adjust your configuration for flat config.
 
 ### Added
-* feat: New modular config for (and with) ESLint v9 support [#887](https://github.com/nextcloud-libraries/eslint-config/pull/887)
-* Merge plugin repository [#899](https://github.com/nextcloud-libraries/eslint-config/pull/899)
+* feat: new modular config for (and with) ESLint v9 support [#887](https://github.com/nextcloud-libraries/eslint-config/pull/887)
+* feat: merge plugin repository [#899](https://github.com/nextcloud-libraries/eslint-config/pull/899)
+* feat: enforce non-breaking spaces before ellipsis for translations [\#948](https://github.com/nextcloud-libraries/eslint-config/pull/948)
+* feat: add special config for libraries [\#949](https://github.com/nextcloud-libraries/eslint-config/pull/949)
+* feat: add import and export rules [\#981](https://github.com/nextcloud-libraries/eslint-config/pull/981)
+* feat: introduce @nextcloud/vue eslint plugin [\#939](https://github.com/nextcloud-libraries/eslint-config/pull/939)
 
 ### Fixed
+* fix(codestyle): do not require splitting chains [\#951](https://github.com/nextcloud-libraries/eslint-config/pull/951)
+* fix(codestyle): adjust empty lines style [\#952](https://github.com/nextcloud-libraries/eslint-config/pull/952)
 * fix(codestyle): Enforce no space before function parenthesis [#901](https://github.com/nextcloud-libraries/eslint-config/pull/901)
 * fix(codeStyle): Adjust `stylistic` rules config [#914](https://github.com/nextcloud-libraries/eslint-config/pull/914)
+* fix(codeStyle): allow single line arrays [\#997](https://github.com/nextcloud-libraries/eslint-config/pull/997)
+* fix(codeStyle): allow devs write small objects in one line [\#996](https://github.com/nextcloud-libraries/eslint-config/pull/996)
+* fix(globs): properly ignore test files [\#974](https://github.com/nextcloud-libraries/eslint-config/pull/974)
+* fix(imports): do not mix externals and internals [\#1000](https://github.com/nextcloud-libraries/eslint-config/pull/1000)
+* fix(javascript): allow using functions before they are defined [\#970](https://github.com/nextcloud-libraries/eslint-config/pull/970)
+* fix(javascript): add missing `appName` and `appVersion` global + fix access [\#972](https://github.com/nextcloud-libraries/eslint-config/pull/972)
+* fix(typescript): allow to use function before definition [\#950](https://github.com/nextcloud-libraries/eslint-config/pull/950)
+* fix(typescript): remove `@typescript-eslint/no-shadow` [\#993](https://github.com/nextcloud-libraries/eslint-config/pull/993)
+* fix(typescript): enforce `import type` for type only imports [\#977](https://github.com/nextcloud-libraries/eslint-config/pull/977)
 
 ### Changed
 * Add SPDX header [#802](https://github.com/nextcloud-libraries/eslint-config/pull/802)
 * Updated development dependencies
 * refactor(json): drop now unneeded `@ts-expect-error` [#915](https://github.com/nextcloud-libraries/eslint-config/pull/915)
-* Updated `@eslint/json` to 0.11.0
+* chore: do not bundle config but just use Typescript [#967](https://github.com/nextcloud-libraries/eslint-config/pull/967)
+* chore: require node ^20.19 [\#982](https://github.com/nextcloud-libraries/eslint-config/pull/982)
+* Updated `@eslint/json` to 0.12.0
 * Updated `@stylistic/eslint-plugin` 4.2.0
-* Updated `eslint-plugin-jsdoc` to 50.6.9
+* Updated `eslint-plugin-jsdoc` to 50.6.11
 * Updated `eslint-plugin-vue` to 10.0.0
-* Updated `fast-xml-parser` to 5.0.9
+* Updated `fast-xml-parser` to 5.2.1
 * Updated `sort-package-json` to 3.0.0
-* Updated `typescript-eslint` to 8.28.0
+* Updated `typescript-eslint` to 8.31.0
 
 ## [v8.4.2](https://github.com/nextcloud-libraries/eslint-config/tree/v8.4.2) (2025-02-16)
 ### Fixed
