@@ -47,7 +47,7 @@
     "eslint-plugin-jsdoc": "^50.6.11",
     "eslint-plugin-perfectionist": "^4.12.3",
     "eslint-plugin-vue": "^10.1.0",
-    "fast-xml-parser": "^5.2.1",
+    "fast-xml-parser": "^5.2.2",
     "globals": "^16.0.0",
     "semver": "^7.7.1",
     "sort-package-json": "^3.2.0",
