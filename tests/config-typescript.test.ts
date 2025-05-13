@@ -20,18 +20,40 @@ describe('Typescript', () => {
 		return await eslint.lintFiles(real)
 	}
 
-	test('works with Typescript + Vue', async () => {
-		const results = await lintFile('fixtures/typescript-test.vue')
-		expect(results).toHaveIssueCount(0)
-	})
+	// Vue files can be both Javascript and Typescript
+	describe('Vue', () => {
+		test('works with Typescript + Vue', async () => {
+			const results = await lintFile('fixtures/typescript-test.vue')
+			expect(results).toHaveIssueCount(0)
+		})
 
-	test('overrides have higher priority than vue', async () => {
-		const results = await lintFile('fixtures/typescript-vue-overrides.vue')
-		expect(results).toHaveIssueCount(1)
-		// Expect "'@type' is redundant when using a type system."
-		expect(results).toHaveIssue({
-			ruleId: 'jsdoc/check-tag-names',
-			line: 15,
+		test('overrides have higher priority than vue', async () => {
+			const results = await lintFile('fixtures/typescript-vue-overrides.vue')
+			// In Javascript rules this rule is no-use-before-define, not @typescript-eslint/no-use-before-define
+			expect(results).toHaveIssueCount(1)
+			expect(results).toHaveIssue('@typescript-eslint/no-use-before-define')
+		})
+
+		test('with lang="ts" does not require types in JSDoc', async () => {
+			const results = await lintFile('fixtures/JsdocTypescriptWithoutTypes.vue')
+			expect(results).toHaveIssueCount(0)
+		})
+
+		test('without lang="ts" requires types in JSDoc like in Javascript files', async () => {
+			const results = await lintFile('fixtures/JsdocJavascriptWithoutTypes.vue')
+			expect(results).toHaveIssueCount(20)
+			expect(results).toHaveIssue('jsdoc/require-param-type')
+		})
+
+		test('with lang="ts" does not allow types in JSDoc', async () => {
+			const results = await lintFile('fixtures/JsdocTypescriptWithTypes.vue')
+			expect(results).toHaveIssueCount(24)
+			expect(results).toHaveIssue('jsdoc/no-types')
+		})
+
+		test('without lang="ts" allows types in JSDoc like in Javascript files', async () => {
+			const results = await lintFile('fixtures/JsdocJavascriptWithTypes.vue')
+			expect(results).toHaveIssueCount(0)
 		})
 	})
 
