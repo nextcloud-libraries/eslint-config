@@ -15,7 +15,13 @@ const eslint = new ESLint({
 	overrideConfig: eslintConfig.recommended as Linter.Config<Linter.RulesRecord>,
 })
 
-const lintFile = async (file) => {
+/**
+ * Lint a file with ESLint
+ *
+ * @param file - File path to lint
+ * @return Lint result
+ */
+async function lintFile(file) {
 	const real = resolve(join(__dirname, file))
 	return await eslint.lintFiles(real)
 }

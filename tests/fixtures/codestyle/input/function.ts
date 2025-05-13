@@ -3,7 +3,7 @@
  *
  * @param name
  */
-export function foo (name: string): boolean {
+export async function foo (name: string): Promise<boolean> {
 	return true
 }
 
@@ -54,8 +54,22 @@ export function doSomethingDifferent(
 	// ...
 }
 
-// Anonymous function with additional space before parenthesis
-const a = async function () {
+/**
+ * Top Level Function,
+ * Should be function declaration
+ */
+const top1 = function() {
+	// Anonymous function with additional space before parenthesis
+	const a = async function () {
+		// ...
+	}
+}
+
+/**
+ * Top Level Function
+ * Should be function declaration
+ */
+const top2 = () => {
 	// ...
 }
 
@@ -67,4 +81,4 @@ doSomething(1, true)
 doSomething (1, true)
 
 // invalid space for optional chaining
-a ?.()?. catch ?. (() => {})
+foo ?.()?. catch ?. (() => {})
