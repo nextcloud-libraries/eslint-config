@@ -9,10 +9,6 @@
 </template>
 
 <script lang="ts" setup>
-/**
- * This will result in no error on JS but one in TS as type is duplicated
- *
- * @type {string}
- */
-const foo: string = 'Foo bar'
+const foo = 'Foo ' + bar
+const bar = 'Bar'
 </script>
