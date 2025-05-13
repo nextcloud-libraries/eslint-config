@@ -9,6 +9,7 @@ import typescriptPlugin from 'typescript-eslint'
 import {
 	GLOB_FILES_TESTING,
 	GLOB_FILES_TYPESCRIPT,
+	GLOB_FILES_TYPESCRIPT_DECLARATIONS,
 	GLOB_FILES_VUE,
 } from '../globs.ts'
 import { restrictConfigFiles } from '../utils.ts'
@@ -55,6 +56,14 @@ export function typescript(options: ConfigOptions): Linter.Config[] {
 						functions: false,
 					},
 				],
+			},
+		},
+
+		{
+			name: 'nextcloud/typescript/declaration-rules',
+			files: [...GLOB_FILES_TYPESCRIPT_DECLARATIONS],
+			rules: {
+				'@typescript-eslint/consistent-type-imports': ['error', { disallowTypeAnnotations: false }],
 			},
 		},
 
