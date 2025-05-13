@@ -6,6 +6,7 @@ import type { Linter } from 'eslint'
 import type { ConfigOptions } from '../types.d.ts'
 
 import stylistic from '@stylistic/eslint-plugin'
+import eslintAntfuPlugin from 'eslint-plugin-antfu'
 import {
 	GLOB_FILES_JAVASCRIPT,
 	GLOB_FILES_TYPESCRIPT,
@@ -47,6 +48,9 @@ export function codeStyle(options: ConfigOptions): (Linter.Config | Linter.BaseC
 				...GLOB_FILES_TYPESCRIPT,
 				...GLOB_FILES_VUE,
 			],
+			plugins: {
+				antfu: eslintAntfuPlugin,
+			},
 			rules: {
 				// Overrides for the stylistic recommended rules
 
@@ -161,6 +165,9 @@ export function codeStyle(options: ConfigOptions): (Linter.Config | Linter.BaseC
 				'no-useless-concat': 'error',
 				// Prefer { ...foo } over Object.assign({}, foo)
 				'prefer-object-spread': 'warn',
+
+				// Enforce function declarations for top level functions
+				'antfu/top-level-function': 'error',
 			},
 		},
 
