@@ -20,6 +20,9 @@ export const GLOB_FILES_TYPESCRIPT = [
 	'**/*.tsx',
 ]
 
+/** Glob pattern for Typescript declaration files */
+export const GLOB_FILES_TYPESCRIPT_DECLARATIONS = ['**/*.d.ts']
+
 /** Glob pattern for Javascript files */
 export const GLOB_FILES_JAVASCRIPT = [
 	'**/*.js',
