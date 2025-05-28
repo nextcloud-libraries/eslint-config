@@ -6,6 +6,7 @@
 <script>
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable jsdoc/require-returns-check */
+/* eslint-disable antfu/top-level-function */
 
 // This is a .vue file in JavaScript
 // Missing required types in JSDocs

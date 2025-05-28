@@ -6,6 +6,7 @@
 <script lang="ts">
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable jsdoc/require-returns-check */
+/* eslint-disable antfu/top-level-function */
 
 type Foo = {
 	/**
