@@ -5,6 +5,7 @@
 
 <script>
 /* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable antfu/top-level-function */
 
 // This is a valid .vue file in JavaScript
 // With required types in JSDocs
