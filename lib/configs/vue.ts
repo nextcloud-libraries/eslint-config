@@ -144,6 +144,7 @@ export function vue(options: ConfigOptions): Linter.Config[] {
 			},
 			rules: {
 				'@nextcloud/vue/no-deprecated-exports': 'error',
+				'@nextcloud/vue/no-deprecated-props': 'error',
 			},
 			name: 'nextcloud/vue/migration-rules',
 		},
