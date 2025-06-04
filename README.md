@@ -14,13 +14,18 @@ This is a package containing the unified global eslint config used by all nextcl
 It contains the necessary dependencies and peerDependencies so that other apps cannot update if this config does not support it.
 Please always use dependabot to update your apps, OR pay attention to the peer dependencies error messages!
 
-## Installation
+The rules within this configuration are based on, and enforce, the Nextcloud [coding style](https://docs.nextcloud.com/server/latest/developer_manual/getting_started/coding_standards/javascript.html#code-style). Additionally, we follow the common code styles and best practices used in the Vue ecosystem as we strongly focussed on Vue based UI code.
+
+> [!TIP]
+> For backend code there is also a similar configuration for PHP code available enforcing our PHP codestyle, see [Nextcloud cs-fixer](https://github.com/nextcloud/coding-standard/).
+
+### Installation
 
 ```bash
-npm install @nextcloud/eslint-config --save-dev
+npm install --save-dev @nextcloud/eslint-config
 ```
 
-## Usage
+### Usage
 
 > [!NOTE]
 > Since version 9 this package depends on ESLint 9, which uses the new flat config system.
@@ -36,7 +41,7 @@ export default [
 ]
 ```
 
-### Available configurations
+#### Available configurations
 
 Instead of the `recommended` configuration this package also provides some alternatives, depending on your app setup you can also choose:
 
@@ -52,7 +57,7 @@ Instead of the `recommended` configuration this package also provides some alter
 * `recommendedVue2Javascript`
   * Same as `recommended` but Vue files are considered in Vue 2 syntax and the script part will be handled as Javascript instead of Typescript.
 
-#### Configurations for Nextcloud libraries
+##### Configurations for Nextcloud libraries
 
 For libraries some of the presets make no sense, like checking Nextcloud deprecated API.
 But on the otherhand some rules should be enforced, like documenting all properties.
@@ -61,7 +66,7 @@ So for libraries use following configurations:
 * `recommendedLibrary`
 * `recommendedVue2Library`
 
-### Bundled plugins
+#### Bundled plugins
 
 This configuration also provides some bundled plugins with new rules, those options are already included in the recommended configurations.
 
@@ -98,13 +103,13 @@ export default [
 ]
 ```
 
-#### `package-json` plugin
+##### `package-json` plugin
 Rules:
 - `sort-package-json`
   - Ensures the `package.json` is sorted in consistent order
   - Included as `error` level in recommended configurations
 
-#### `@nextcloud` plugin
+##### `@nextcloud` plugin
 Rules:
 - `no-deprecations`
   - Report usage of deprecated Nextcloud API
@@ -145,7 +150,7 @@ Rules:
     }
     ```
 
-#### `@nextcloud-l10n`
+##### `@nextcloud-l10n`
 ```ts
 import { l10nPlugin  } from '@nextcloud/eslint-config'
 ```
@@ -158,7 +163,7 @@ Rules:
   - Enforce non-breaking spaces before ellipsis
   - Included as `error` level in recommended configuration
 
-### Adding custom overrides
+#### Adding custom overrides
 
 Sometimes additional rules need to be added for individual projects,
 and while we do not recommend to override Nextcloud rules for code style (it should be consistent across all Nextcloud projects!),
@@ -188,7 +193,48 @@ export default [
 ]
 ```
 
-## Release new version
+### Update policy
+
+We follow semantic versioning.
+
+#### 💥 Breaking changes
+
+For breaking changes, we consider those changes that break linting in a technical term, so linting itself is broken with the update.
+This means, for example, require a new config format (ESLint legacy vs flat configuration). But it does not mean new errors or warnings while linting.
+
+#### ✨ Minor changes
+
+For minor changes we consider adding new rules or adding or removing plugins.
+This means after updating a minor version, there can be new warnings or errors when linting the same code base.
+
+#### 🐛 Patch changes
+
+For this configuration we consider following changes fixes:
+- Adjusting rules to follow our official code style.
+- Adjusting rules if the current behavior is considered a bug.
+- Removing rules
+
+### Development
+
+#### New rules
+
+Adding new rules that enforce our code style can always be added.
+Rules that are not directly covered by our code style should be discussed before.
+
+If those rules are code style related, the matching section of the [Nextcloud developer documentation](https://github.com/nextcloud/documentation/) has to be updated to keep both in sync.
+
+#### Rule severity
+
+Either you care about a rule or you do not.
+As such we only enforce rules that we consider either important for code quality or to have consistent code style.
+For this reason all rules should be set to **error** severity, as all rules are considered must-follow.
+
+Of course, in some edge cases rules do not apply, in such cases the users can still opt-in to disable that rule for a line or file.
+
+To not break projects during updates new rules with non critical impact (code style related rules)
+should be introduced with **warn** severity and moved to severity **error** only with a new major release or after a sane timeframe for migration.
+
+#### Release new version
 
  1. Update CHANGELOG.md file with the latest changes
  2. Bump the package version with `npm version`
