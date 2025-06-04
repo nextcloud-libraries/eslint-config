@@ -133,6 +133,19 @@ export function vue(options: ConfigOptions): Linter.Config[] {
 				'vue/padding-line-between-blocks': 'error',
 				// Prefer separated static and dynamic class attributes
 				'vue/prefer-separate-static-class': 'error',
+				// For consistent layout of components
+				'vue/define-macros-order': [
+					'error', {
+						order: [
+							'defineOptions',
+							'defineModel',
+							'defineProps',
+							'defineEmits',
+							'defineSlots',
+							'defineExpose',
+						],
+					},
+				],
 			},
 			name: 'nextcloud/vue/stylistic-rules',
 		},
