@@ -69,6 +69,13 @@ export function documentation(options: ConfigOptions): Linter.Config[] {
 		},
 
 		{
+			name: 'nextcloud/documentation/rules',
+			files: [
+				...GLOB_FILES_JAVASCRIPT,
+				...GLOB_FILES_TYPESCRIPT,
+				...GLOB_FILES_VUE,
+			],
+			ignores: GLOB_FILES_TESTING,
 			rules: {
 				// Force proper documentation
 				'jsdoc/check-tag-names': 'error',
@@ -82,11 +89,6 @@ export function documentation(options: ConfigOptions): Linter.Config[] {
 					{ startLines: 1 },
 				],
 			},
-			files: [
-				...GLOB_FILES_JAVASCRIPT,
-				...GLOB_FILES_TYPESCRIPT,
-				...GLOB_FILES_VUE,
-			],
 			settings: {
 				jsdoc: {
 					// We use the alias for legacy reasons to prevent unnecessary noise
@@ -95,23 +97,26 @@ export function documentation(options: ConfigOptions): Linter.Config[] {
 					},
 				},
 			},
-			name: 'nextcloud/documentation/rules',
 		},
 
 		{
+			name: 'nextcloud/documentation/rules-typescript',
+			files: [...GLOB_FILES_TYPESCRIPT],
+			ignores: GLOB_FILES_TESTING,
 			rules: {
 				// Overwrites for documentation as types are already provided by Typescript
 				'jsdoc/no-types': 'error',
 				'jsdoc/require-param-type': 'off',
 				'jsdoc/require-returns-type': 'off',
 			},
-			files: [...GLOB_FILES_TYPESCRIPT],
-			name: 'nextcloud/documentation/rules-typescript',
 		},
 
 		...(options.vueIsTypescript
 			? [
 					{
+						name: 'nextcloud/documentation/rules-vue',
+						files: [...(options.vueIsTypescript ? GLOB_FILES_VUE : [])],
+						ignores: GLOB_FILES_TESTING,
 						rules: {
 							// Vue files can be both Javascript and Typescript
 							// Try to apply TS files only for functions with TS definitions
@@ -131,8 +136,6 @@ export function documentation(options: ConfigOptions): Linter.Config[] {
 								{ typed: false },
 							],
 						},
-						files: [...(options.vueIsTypescript ? GLOB_FILES_VUE : [])],
-						name: 'nextcloud/documentation/rules-vue',
 					} satisfies Linter.Config,
 				]
 			: []
