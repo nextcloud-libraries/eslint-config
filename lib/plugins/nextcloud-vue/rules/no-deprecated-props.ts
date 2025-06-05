@@ -16,6 +16,18 @@ export default {
 		messages: {
 			useTypeInstead: 'Using `native-type` for button variant is deprecated - use `type` instead.',
 			useVariantInstead: 'Using `type` for button variant is deprecated - use `variant` instead.',
+			useDisableSwipeForNavInstead: 'Using `allow-swipe-navigation` is deprecated - use `disable-swipe` instead',
+			useHideStatusInstead: 'Using `show-user-status` is deprecated - use `hide-status` instead',
+			useVerboseStatusInstead: 'Using `show-user-status-compact` is deprecated - use `verbose-status` instead',
+			useNoPlaceholderInstead: 'Using `allow-placeholder` is deprecated - use `no-placeholder` instead',
+			useFormatInstead: 'Using `formatter` is deprecated - use `format` instead',
+			useTypeDateRangeInstead: 'Using `range` is deprecated - use `type` with `date-range` or `datetime-range` instead',
+			useNoCloseInstead: 'Using `can-close` is deprecated - use `no-close` instead',
+			useDisableSwipeForModalInstead: 'Using `enable-swipe` is deprecated - use `disable-swipe` instead',
+			useNoFocusTrapInstead: 'Using `focus-trap` is deprecated - use `no-focus-trap` instead',
+			useKeepOpenInstead: 'Using `close-on-select` is deprecated - use `keep-open` instead',
+			useNcSelectUsersInstead: 'Using `user-select` is deprecated - use `NcSelectUsers` component instead',
+			removeAriaHidden: 'Using `aria-hidden` is deprecated - remove prop from components, otherwise root element will inherit incorrect attribute.',
 		},
 	},
 
@@ -83,6 +95,99 @@ export default {
 							return fixer.replaceTextRange(node.key.argument.range, 'type')
 						}
 					},
+				})
+			},
+
+			'VElement VAttribute:has(VIdentifier[name="aria-hidden"])': function(node) {
+				if (node.parent.parent.name.startsWith('ncaction')
+					|| node.parent.parent.name === 'ncbutton') {
+					context.report({
+						node,
+						messageId: 'removeAriaHidden',
+					})
+				}
+			},
+
+			'VElement[name="ncappcontent"] VAttribute:has(VIdentifier[name="allow-swipe-navigation"])': function(node) {
+				context.report({
+					node,
+					messageId: 'useDisableSwipeForNavInstead',
+				})
+			},
+
+			'VElement[name="ncavatar"] VAttribute:has(VIdentifier[name="show-user-status"])': function(node) {
+				context.report({
+					node,
+					messageId: 'useHideStatusInstead',
+				})
+			},
+
+			'VElement[name="ncavatar"] VAttribute:has(VIdentifier[name="show-user-status-compact"])': function(node) {
+				context.report({
+					node,
+					messageId: 'useVerboseStatusInstead',
+				})
+			},
+
+			'VElement[name="ncavatar"] VAttribute:has(VIdentifier[name="allow-placeholder"])': function(node) {
+				context.report({
+					node,
+					messageId: 'useNoPlaceholderInstead',
+				})
+			},
+
+			'VElement[name="ncdatetimepicker"] VAttribute:has(VIdentifier[name="formatter"])': function(node) {
+				context.report({
+					node,
+					messageId: 'useFormatInstead',
+				})
+			},
+
+			'VElement[name="ncdatetimepicker"] VAttribute:has(VIdentifier[name="range"])': function(node) {
+				context.report({
+					node,
+					messageId: 'useTypeDateRangeInstead',
+				})
+			},
+
+			'VElement VAttribute:has(VIdentifier[name="can-close"])': function(node) {
+				if (![
+					'ncdialog',
+					'ncmodal',
+				].includes(node.parent.parent.name)) {
+					return
+				}
+				context.report({
+					node,
+					messageId: 'useNoCloseInstead',
+				})
+			},
+
+			'VElement[name="ncmodal"] VAttribute:has(VIdentifier[name="enable-swipe"])': function(node) {
+				context.report({
+					node,
+					messageId: 'useDisableSwipeForModalInstead',
+				})
+			},
+
+			'VElement[name="ncpopover"] VAttribute:has(VIdentifier[name="focus-trap"])': function(node) {
+				context.report({
+					node,
+					messageId: 'useNoFocusTrapInstead',
+				})
+			},
+
+			'VElement[name="ncselect"] VAttribute:has(VIdentifier[name="close-on-select"])': function(node) {
+				context.report({
+					node,
+					messageId: 'useKeepOpenInstead',
+				})
+			},
+
+			'VElement[name="ncselect"] VAttribute:has(VIdentifier[name="user-select"])': function(node) {
+				context.report({
+					node,
+					messageId: 'useNcSelectUsersInstead',
 				})
 			},
 		})

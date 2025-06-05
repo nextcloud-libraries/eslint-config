@@ -121,5 +121,85 @@ ruleTester.run('no-deprecated-props', rule, {
 			errors: [{ messageId: 'useVariantInstead' }],
 			output: '<template><NcButton v-show="!loading" variant="tertiary" @click="handle"><template #icon><IconDelete /></template></NcButton></template>',
 		},
+		{
+			code: '<template><NcActionButton aria-hidden @click="handle">Hello</NcActionButton></template>',
+			filename: 'test.vue',
+			errors: [{ messageId: 'removeAriaHidden' }],
+		},
+		{
+			code: '<template><NcButton aria-hidden @click="handle">Hello</NcButton></template>',
+			filename: 'test.vue',
+			errors: [{ messageId: 'removeAriaHidden' }],
+		},
+		{
+			code: '<template><NcActionButton :aria-hidden="true" @click="handle">Hello</NcActionButton></template>',
+			filename: 'test.vue',
+			errors: [{ messageId: 'removeAriaHidden' }],
+		},
+		{
+			code: '<template><NcAppContent allow-swipe-navigation @click="handle">Hello</NcAppContent></template>',
+			filename: 'test.vue',
+			errors: [{ messageId: 'useDisableSwipeForNavInstead' }],
+		},
+		{
+			code: '<template><NcAppContent :allow-swipe-navigation="false" @click="handle">Hello</NcAppContent></template>',
+			filename: 'test.vue',
+			errors: [{ messageId: 'useDisableSwipeForNavInstead' }],
+		},
+		{
+			code: '<template><NcAvatar :show-user-status="false" /></template>',
+			filename: 'test.vue',
+			errors: [{ messageId: 'useHideStatusInstead' }],
+		},
+		{
+			code: '<template><NcAvatar :show-user-status-compact="false" /></template>',
+			filename: 'test.vue',
+			errors: [{ messageId: 'useVerboseStatusInstead' }],
+		},
+		{
+			code: '<template><NcAvatar :allow-placeholder="false" /></template>',
+			filename: 'test.vue',
+			errors: [{ messageId: 'useNoPlaceholderInstead' }],
+		},
+		{
+			code: '<template><NcDateTimePicker :formatter="customFormatter" /></template>',
+			filename: 'test.vue',
+			errors: [{ messageId: 'useFormatInstead' }],
+		},
+		{
+			code: '<template><NcDateTimePicker range /></template>',
+			filename: 'test.vue',
+			errors: [{ messageId: 'useTypeDateRangeInstead' }],
+		},
+		{
+			code: '<template><NcDialog :can-close="false" /></template>',
+			filename: 'test.vue',
+			errors: [{ messageId: 'useNoCloseInstead' }],
+		},
+		{
+			code: '<template><NcModal :can-close="false" /></template>',
+			filename: 'test.vue',
+			errors: [{ messageId: 'useNoCloseInstead' }],
+		},
+		{
+			code: '<template><NcModal :enable-swipe="false" /></template>',
+			filename: 'test.vue',
+			errors: [{ messageId: 'useDisableSwipeForModalInstead' }],
+		},
+		{
+			code: '<template><NcPopover :focus-trap="false" /></template>',
+			filename: 'test.vue',
+			errors: [{ messageId: 'useNoFocusTrapInstead' }],
+		},
+		{
+			code: '<template><NcSelect :close-on-select="false" /></template>',
+			filename: 'test.vue',
+			errors: [{ messageId: 'useKeepOpenInstead' }],
+		},
+		{
+			code: '<template><NcSelect user-select /></template>',
+			filename: 'test.vue',
+			errors: [{ messageId: 'useNcSelectUsersInstead' }],
+		},
 	],
 })
