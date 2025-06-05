@@ -49,6 +49,30 @@ ruleTester.run('no-deprecated-props', rule, {
 			output: '<template><NcButton variant="primary">Hello</NcButton></template>',
 		},
 		{
+			code: '<template><NcActions type="primary">Hello</NcActions></template>',
+			filename: 'test.vue',
+			errors: [{ messageId: 'useVariantInstead' }],
+			output: '<template><NcActions variant="primary">Hello</NcActions></template>',
+		},
+		{
+			code: '<template><NcAppNavigationNew type="primary" text="Hello" /></template>',
+			filename: 'test.vue',
+			errors: [{ messageId: 'useVariantInstead' }],
+			output: '<template><NcAppNavigationNew variant="primary" text="Hello" /></template>',
+		},
+		{
+			code: '<template><NcChip type="primary" text="Hello" /></template>',
+			filename: 'test.vue',
+			errors: [{ messageId: 'useVariantInstead' }],
+			output: '<template><NcChip variant="primary" text="Hello" /></template>',
+		},
+		{
+			code: '<template><NcDialogButton type="primary">Hello</NcDialogButton></template>',
+			filename: 'test.vue',
+			errors: [{ messageId: 'useVariantInstead' }],
+			output: '<template><NcDialogButton variant="primary">Hello</NcDialogButton></template>',
+		},
+		{
 			code: '<template><NcButton type="tertiary">Hello</NcButton></template>',
 			filename: 'test.vue',
 			errors: [{ messageId: 'useVariantInstead' }],
@@ -65,6 +89,12 @@ ruleTester.run('no-deprecated-props', rule, {
 			filename: 'test.vue',
 			errors: [{ messageId: 'useTypeInstead' }],
 			output: '<template><NcButton type="button">Hello</NcButton></template>',
+		},
+		{
+			code: '<template><NcDialogButton native-type="button">Hello</NcDialogButton></template>',
+			filename: 'test.vue',
+			errors: [{ messageId: 'useTypeInstead' }],
+			output: '<template><NcDialogButton type="button">Hello</NcDialogButton></template>',
 		},
 		{
 			code: '<template><NcButton type="primary" native-type="button">Hello</NcButton></template>',

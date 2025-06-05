@@ -23,7 +23,17 @@ export default {
 		const legacyTypes = ['primary', 'error', 'warning', 'success', 'secondary', 'tertiary', 'tertiary-no-background']
 
 		return vueUtils.defineTemplateBodyVisitor(context, {
-			'VElement[name="ncbutton"] VAttribute:has(VIdentifier[name="type"])': function(node) {
+			'VElement VAttribute:has(VIdentifier[name="type"])': function(node) {
+				if (![
+					'ncactions',
+					'ncappnavigationnew',
+					'ncbutton',
+					'ncchip',
+					'ncdialogbutton',
+				].includes(node.parent.parent.name)) {
+					return
+				}
+
 				const hasNativeType = node.parent.attributes.find((attr) => (
 					attr.key.name === 'native-type'
 					|| (attr.key.type === 'VDirectiveKey' && attr.key.argument && attr.key.argument.name === 'native-type')))
@@ -55,7 +65,14 @@ export default {
 				}
 			},
 
-			'VElement[name="ncbutton"] VAttribute:has(VIdentifier[name="native-type"])': function(node) {
+			'VElement VAttribute:has(VIdentifier[name="native-type"])': function(node) {
+				if (![
+					'ncbutton',
+					'ncdialogbutton',
+				].includes(node.parent.parent.name)) {
+					return
+				}
+
 				context.report({
 					node,
 					messageId: 'useTypeInstead',
