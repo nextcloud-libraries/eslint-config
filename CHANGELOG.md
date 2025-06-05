@@ -49,23 +49,23 @@ Please refer to the README on how to adjust your configuration for flat config.
 
 ## [v8.4.2](https://github.com/nextcloud-libraries/eslint-config/tree/v8.4.2) (2025-02-16)
 ### Fixed
-* fix(typescript): do not require returns type in jsdoc by @ShGKme in https://github.com/nextcloud-libraries/eslint-config/pull/857
+* fix(typescript): do not require returns type in jsdoc [#857](https://github.com/nextcloud-libraries/eslint-config/pull/857) ([ShGKme](https://github.com/ShGKme))
 
 ### Changed
 * Updated development dependencies
-* Add SPDX header  by @AndyScherzinger in https://github.com/nextcloud-libraries/eslint-config/pull/802
-* enh(git): ignore formatting commits in git blame by @max-nextcloud in https://github.com/nextcloud-libraries/eslint-config/pull/854
+* Add SPDX header  [#802](https://github.com/nextcloud-libraries/eslint-config/pull/802) ([AndyScherzinger](https://github.com/AndyScherzinger))
+* enh(git): ignore formatting commits in git blame [#854](https://github.com/nextcloud-libraries/eslint-config/pull/854) ([max-nextcloud](https://github.com/max-nextcloud))
 
 ## [v8.4.1](https://github.com/nextcloud-libraries/eslint-config/tree/v8.4.1) (2024-05-16)
 
 [Full Changelog](https://github.com/nextcloud-libraries/eslint-config/compare/v8.4.0...v8.4.1)
 
 ### Fixes
-* fix(vue3): align rules with Vue 2 rules by @ShGKme in https://github.com/nextcloud-libraries/eslint-config/pull/771
-* fix(vue3): config crashes ESLint by @ShGKme in https://github.com/nextcloud-libraries/eslint-config/pull/770
+* fix(vue3): align rules with Vue 2 rules [#771](https://github.com/nextcloud-libraries/eslint-config/pull/771) ([ShGKme](https://github.com/ShGKme))
+* fix(vue3): config crashes ESLint [#770](https://github.com/nextcloud-libraries/eslint-config/pull/770) ([ShGKme](https://github.com/ShGKme))
 
 ### Changed
-* build(deps-dev): Bump eslint-plugin-jsdoc from 48.2.4 to 48.2.5 by @dependabot in https://github.com/nextcloud-libraries/eslint-config/pull/769
+* build(deps-dev): Bump eslint-plugin-jsdoc from 48.2.4 to 48.2.5 [#769](https://github.com/nextcloud-libraries/eslint-config/pull/769) ([dependabot](https://github.com/dependabot))
 
 ## [v8.4.0](https://github.com/nextcloud-libraries/eslint-config/tree/v8.4.0) (2024-05-15)
 ### Features
@@ -76,36 +76,36 @@ Please refer to the README on how to adjust your configuration for flat config.
 
 ### Features
 * Typescript 5 support
-* Allow linting of typescript with module resolution set to `node16` or `nodenext` by @susnux in https://github.com/nextcloud-libraries/eslint-config/pull/527
-* Support Composition API & Typescript + Vue projects by @susnux in https://github.com/nextcloud-libraries/eslint-config/pull/562
-* Allow linting of TSX files by @susnux in https://github.com/nextcloud-libraries/eslint-config/pull/456
+* Allow linting of typescript with module resolution set to `node16` or `nodenext` [#527](https://github.com/nextcloud-libraries/eslint-config/pull/527) ([susnux](https://github.com/susnux))
+* Support Composition API & Typescript + Vue projects [#562](https://github.com/nextcloud-libraries/eslint-config/pull/562) ([susnux](https://github.com/susnux))
+* Allow linting of TSX files [#456](https://github.com/nextcloud-libraries/eslint-config/pull/456) ([susnux](https://github.com/susnux))
 
 ### Fixes
-* Ignore camelcase rule for __webpack variables by @kesselb in https://github.com/nextcloud-libraries/eslint-config/pull/530
-* Add Typescript overrides for all valid Typescript file extensions by @susnux in https://github.com/nextcloud-libraries/eslint-config/pull/567
-* Allow empty functions by @skjnldsv in https://github.com/nextcloud-libraries/eslint-config/pull/570
-* fix(typescript): Also set the typescript settings to the vue overrides for typescript import resolving by @susnux in https://github.com/nextcloud-libraries/eslint-config/pull/639
-* fix(typescript): Allow generic type parameters on function calls by @susnux in https://github.com/nextcloud-libraries/eslint-config/pull/571
-* Make sure vue files written in Typescript are linted correctly by @susnux in https://github.com/nextcloud-libraries/eslint-config/pull/579
-* fix: Allow to import packages from `devDependencies` within config files by @susnux in https://github.com/nextcloud-libraries/eslint-config/pull/580
-* fix: Allow `@jest-environment` docblock for jest tests by @susnux in https://github.com/nextcloud-libraries/eslint-config/pull/592
+* Ignore camelcase rule for __webpack variables [#530](https://github.com/nextcloud-libraries/eslint-config/pull/530) ([kesselb](https://github.com/kesselb))
+* Add Typescript overrides for all valid Typescript file extensions [#567](https://github.com/nextcloud-libraries/eslint-config/pull/567) ([susnux](https://github.com/susnux))
+* Allow empty functions [#570](https://github.com/nextcloud-libraries/eslint-config/pull/570) ([skjnldsv](https://github.com/skjnldsv))
+* fix(typescript): Also set the typescript settings to the vue overrides for typescript import resolving [#639](https://github.com/nextcloud-libraries/eslint-config/pull/639) ([susnux](https://github.com/susnux))
+* fix(typescript): Allow generic type parameters on function calls [#571](https://github.com/nextcloud-libraries/eslint-config/pull/571) ([susnux](https://github.com/susnux))
+* Make sure vue files written in Typescript are linted correctly [#579](https://github.com/nextcloud-libraries/eslint-config/pull/579) ([susnux](https://github.com/susnux))
+* fix: Allow to import packages from `devDependencies` within config files [#580](https://github.com/nextcloud-libraries/eslint-config/pull/580) ([susnux](https://github.com/susnux))
+* fix: Allow `@jest-environment` docblock for jest tests [#592](https://github.com/nextcloud-libraries/eslint-config/pull/592) ([susnux](https://github.com/susnux))
 
 ### Changed
 * Various dependencies upgrades
-* chore: Update `@nextcloud/eslint-plugin` to version 2.1.0 by @susnux in https://github.com/nextcloud-libraries/eslint-config/pull/605
-* Drop webpack dependency by @susnux in https://github.com/nextcloud-libraries/eslint-config/pull/528
+* chore: Update `@nextcloud/eslint-plugin` to version 2.1.0 [#605](https://github.com/nextcloud-libraries/eslint-config/pull/605) ([susnux](https://github.com/susnux))
+* Drop webpack dependency [#528](https://github.com/nextcloud-libraries/eslint-config/pull/528) ([susnux](https://github.com/susnux))
 538
-* Update node engines to next LTS (node 20 and NPM 9) by @nextcloud-command in https://github.com/nextcloud-libraries/eslint-config/pull/563
+* Update node engines to next LTS (node 20 and NPM 9) [#563](https://github.com/nextcloud-libraries/eslint-config/pull/563) ([nextcloud-command](https://github.com/nextcloud-command))
 565
-* Make eslint to take this config for linting the config by @susnux in https://github.com/nextcloud-libraries/eslint-config/pull/572
-* chore: Fix URLs after package got transfered by @susnux in https://github.com/nextcloud-libraries/eslint-config/pull/602
+* Make eslint to take this config for linting the config [#572](https://github.com/nextcloud-libraries/eslint-config/pull/572) ([susnux](https://github.com/susnux))
+* chore: Fix URLs after package got transfered [#602](https://github.com/nextcloud-libraries/eslint-config/pull/602) ([susnux](https://github.com/susnux))
 
 ## [v8.2.1](https://github.com/nextcloud-libraries/eslint-config/tree/v8.2.1) (2023-01-30)
 
 [Full Changelog](https://github.com/nextcloud-libraries/eslint-config/compare/v8.2.0...v8.2.1)
 
 **Fixed:**
-- Fix resolving packages that use the package `exports` feature by @susnux in https://github.com/nextcloud-libraries/eslint-config/pull/452
+- Fix resolving packages that use the package `exports` feature [#452](https://github.com/nextcloud-libraries/eslint-config/pull/452) ([susnux](https://github.com/susnux))
 
 **Merged pull requests:**
 - Various dependencies upgrades
@@ -127,8 +127,8 @@ Please refer to the README on how to adjust your configuration for flat config.
 [Full Changelog](https://github.com/nextcloud-libraries/eslint-config/compare/v8.1.4...v8.1.5)
 
 **Dependency updates:**
-- Bump json5 from 1.0.1 to 1.0.2 by @PVince81 in https://github.com/nextcloud-libraries/eslint-config/pull/430
-- Bump json5 from 2.2.1 to 2.2.3 by @PVince81 in https://github.com/nextcloud-libraries/eslint-config/pull/430
+- Bump json5 from 1.0.1 to 1.0.2 [#430](https://github.com/nextcloud-libraries/eslint-config/pull/430) ([PVince81](https://github.com/PVince81))
+- Bump json5 from 2.2.1 to 2.2.3 [#430](https://github.com/nextcloud-libraries/eslint-config/pull/430) ([PVince81](https://github.com/PVince81))
 
 ## [v8.1.4](https://github.com/nextcloud-libraries/eslint-config/tree/v8.1.4) (2022-11-17)
 
@@ -142,16 +142,16 @@ Please refer to the README on how to adjust your configuration for flat config.
 [Full Changelog](https://github.com/nextcloud-libraries/eslint-config/compare/v8.1.2...v8.1.3)
 
 **Fixed:**
-- Allow TypeScript syntax in JSDoc comments by @Pytal in https://github.com/nextcloud-libraries/eslint-config/pull/413
+- Allow TypeScript syntax in JSDoc comments [#413](https://github.com/nextcloud-libraries/eslint-config/pull/413) ([Pytal](https://github.com/Pytal))
 
 **Dependency updates:**
-- Bump @babel/core from 7.18.10 to 7.19.6 by @dependabot in https://github.com/nextcloud-libraries/eslint-config/pull/404
-- Bump @babel/eslint-parser from 7.18.9 to 7.19.1 by @dependabot in https://github.com/nextcloud-libraries/eslint-config/pull/392
-- Bump eslint from 8.21.0 to 8.26.0 by @dependabot in https://github.com/nextcloud-libraries/eslint-config/pull/406
-- Bump eslint-plugin-jsdoc from 39.3.13 to 39.6.2 by @dependabot in https://github.com/nextcloud-libraries/eslint-config/pull/414
-- Bump eslint-plugin-n from 15.2.4 to 15.4.0 by @dependabot in https://github.com/nextcloud-libraries/eslint-config/pull/409
-- Bump eslint-plugin-promise from 6.0.0 to 6.1.1 by @dependabot in https://github.com/nextcloud-libraries/eslint-config/pull/405
-- Bump eslint-plugin-vue from 9.3.0 to 9.7.0 by @dependabot in https://github.com/nextcloud-libraries/eslint-config/pull/410
+- Bump @babel/core from 7.18.10 to 7.19.6 [#404](https://github.com/nextcloud-libraries/eslint-config/pull/404) ([dependabot](https://github.com/dependabot))
+- Bump @babel/eslint-parser from 7.18.9 to 7.19.1 [#392](https://github.com/nextcloud-libraries/eslint-config/pull/392) ([dependabot](https://github.com/dependabot))
+- Bump eslint from 8.21.0 to 8.26.0 [#406](https://github.com/nextcloud-libraries/eslint-config/pull/406) ([dependabot](https://github.com/dependabot))
+- Bump eslint-plugin-jsdoc from 39.3.13 to 39.6.2 [#414](https://github.com/nextcloud-libraries/eslint-config/pull/414) ([dependabot](https://github.com/dependabot))
+- Bump eslint-plugin-n from 15.2.4 to 15.4.0 [#409](https://github.com/nextcloud-libraries/eslint-config/pull/409) ([dependabot](https://github.com/dependabot))
+- Bump eslint-plugin-promise from 6.0.0 to 6.1.1 [#405](https://github.com/nextcloud-libraries/eslint-config/pull/405) ([dependabot](https://github.com/dependabot))
+- Bump eslint-plugin-vue from 9.3.0 to 9.7.0 [#410](https://github.com/nextcloud-libraries/eslint-config/pull/410) ([dependabot](https://github.com/dependabot))
 
 ## [v8.1.2](https://github.com/nextcloud-libraries/eslint-config/tree/v8.1.2) (2022-08-09)
 
