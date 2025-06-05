@@ -4,7 +4,7 @@
 -->	
 # Changelog
 
-## [v9.0.0](https://github.com/nextcloud-libraries/eslint-config/tree/v9.0.0) (2025)
+## [v9.0.0](https://github.com/nextcloud-libraries/eslint-config/tree/v9.0.0) (unreleased)
 
 ### Breaking
 This package now is using ESLint v9 and requires ESLint flat configurations.
@@ -17,6 +17,11 @@ Please refer to the README on how to adjust your configuration for flat config.
 * feat: add special config for libraries [\#949](https://github.com/nextcloud-libraries/eslint-config/pull/949)
 * feat: add import and export rules [\#981](https://github.com/nextcloud-libraries/eslint-config/pull/981)
 * feat: introduce @nextcloud/vue eslint plugin [\#939](https://github.com/nextcloud-libraries/eslint-config/pull/939)
+* feat(codeStyle): enforce top-level-function [#1033](https://github.com/nextcloud-libraries/eslint-config/pull/1033) ([ShGKme](https://github.com/ShGKme))
+* feat(nextcloud-vue): add rule for deprecated NcButton props [#1045](https://github.com/nextcloud-libraries/eslint-config/pull/1045) ([susnux](https://github.com/susnux))
+* feat(vue): add `vue/no-useless-v-bind` rule [#1063](https://github.com/nextcloud-libraries/eslint-config/pull/1063) ([susnux](https://github.com/susnux))
+* feat(vue): add `vue/prefer-separate-static-class` rule [#1065](https://github.com/nextcloud-libraries/eslint-config/pull/1065) ([susnux](https://github.com/susnux))
+* feat(vue3): add script-setup releated rules [#1064](https://github.com/nextcloud-libraries/eslint-config/pull/1064) ([susnux](https://github.com/susnux))
 
 ### Fixed
 * fix(codestyle): do not require splitting chains [\#951](https://github.com/nextcloud-libraries/eslint-config/pull/951)
@@ -32,13 +37,31 @@ Please refer to the README on how to adjust your configuration for flat config.
 * fix(typescript): allow to use function before definition [\#950](https://github.com/nextcloud-libraries/eslint-config/pull/950)
 * fix(typescript): remove `@typescript-eslint/no-shadow` [\#993](https://github.com/nextcloud-libraries/eslint-config/pull/993)
 * fix(typescript): enforce `import type` for type only imports [\#977](https://github.com/nextcloud-libraries/eslint-config/pull/977)
+* fix(vue): allow JS Vue files [#998](https://github.com/nextcloud-libraries/eslint-config/pull/998) ([ShGKme](https://github.com/ShGKme))
+* fix(documentation): do not remove JSDoc types in Vue JS files [#995](https://github.com/nextcloud-libraries/eslint-config/pull/995) ([ShGKme](https://github.com/ShGKme))
+* fix(typescript): allow import in type annotation [#1034](https://github.com/nextcloud-libraries/eslint-config/pull/1034) ([ShGKme](https://github.com/ShGKme))
+* fix(documentation): do not lint tests for documentation issues [#1062](https://github.com/nextcloud-libraries/eslint-config/pull/1062) ([susnux](https://github.com/susnux))
+* fix: ignore `l10n` and `js` directory for apps [#1061](https://github.com/nextcloud-libraries/eslint-config/pull/1061) ([susnux](https://github.com/susnux))
+* fix(imports): do not mix externals and internals [#1000](https://github.com/nextcloud-libraries/eslint-config/pull/1000) ([ShGKme](https://github.com/ShGKme))
+* fix(codeStyle): allow single line arrays [#997](https://github.com/nextcloud-libraries/eslint-config/pull/997) ([ShGKme](https://github.com/ShGKme))
+* fix(typescript): remove `@typescript-eslint/no-shadow` [#993](https://github.com/nextcloud-libraries/eslint-config/pull/993) ([ShGKme](https://github.com/ShGKme))
+* fix(codeStyle): allow devs write small objects in one line [#996](https://github.com/nextcloud-libraries/eslint-config/pull/996) ([ShGKme](https://github.com/ShGKme))
 
 ### Changed
 * Add SPDX header [#802](https://github.com/nextcloud-libraries/eslint-config/pull/802)
 * Updated development dependencies
 * refactor(json): drop now unneeded `@ts-expect-error` [#915](https://github.com/nextcloud-libraries/eslint-config/pull/915)
+* refactor: use camelCase for internal variables [#971](https://github.com/nextcloud-libraries/eslint-config/pull/971) ([susnux](https://github.com/susnux))
 * chore: do not bundle config but just use Typescript [#967](https://github.com/nextcloud-libraries/eslint-config/pull/967)
 * chore: require node ^20.19 [\#982](https://github.com/nextcloud-libraries/eslint-config/pull/982)
+* chore: allow to run `npm lint` without compile step [#975](https://github.com/nextcloud-libraries/eslint-config/pull/975) ([susnux](https://github.com/susnux))
+* chore: prepare v9.0.0-rc.1 [#1010](https://github.com/nextcloud-libraries/eslint-config/pull/1010) ([susnux](https://github.com/susnux))
+* docs: consistent badge style with the reuse one [#1060](https://github.com/nextcloud-libraries/eslint-config/pull/1060) ([susnux](https://github.com/susnux))
+* docs: add documentation about update policy and development [#1009](https://github.com/nextcloud-libraries/eslint-config/pull/1009) ([susnux](https://github.com/susnux))
+* test: fix tests and add workflow to run them on CI [#1046](https://github.com/nextcloud-libraries/eslint-config/pull/1046) ([susnux](https://github.com/susnux))
+* ci: update workflows from organization [#1047](https://github.com/nextcloud-libraries/eslint-config/pull/1047) ([susnux](https://github.com/susnux))
+* chore: add active node version (24) to supported engines [#1066](https://github.com/nextcloud-libraries/eslint-config/pull/1066) ([susnux](https://github.com/susnux))
+* build: add common changelog formatting and documentation for it [#1067](https://github.com/nextcloud-libraries/eslint-config/pull/1067) ([susnux](https://github.com/susnux))
 * Updated `@eslint/json` to 0.12.0
 * Updated `@stylistic/eslint-plugin` 4.2.0
 * Updated `eslint-plugin-jsdoc` to 50.6.11
