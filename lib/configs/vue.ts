@@ -129,7 +129,7 @@ export function vue(options: ConfigOptions): Linter.Config[] {
 				'vue/new-line-between-multi-line-property': 'error',
 				// Add consistent padding between blocks
 				'vue/padding-line-between-blocks': 'error',
-				// prefer separated static and dynamic class attributes
+				// Prefer separated static and dynamic class attributes
 				'vue/prefer-separate-static-class': 'error',
 			},
 			name: 'nextcloud/vue/stylistic-rules',
