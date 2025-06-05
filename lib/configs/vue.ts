@@ -99,7 +99,7 @@ export function vue(options: ConfigOptions): Linter.Config[] {
 				// Component names should match their export names - readability and maintainability ("where does this component come from?")
 				'vue/match-component-import-name': 'error',
 				'vue/match-component-file-name': 'error',
-				// prevent useless v-bind like `<foo :bar="'bar'"/>`
+				// Prevent useless v-bind like `<foo :bar="'bar'"/>`
 				'vue/no-useless-v-bind': 'error',
 				// Warn on undefined components - we need this on warning level as long as people use mixins (then we can move to error)
 				'vue/no-undef-components': [
