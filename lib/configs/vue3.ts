@@ -28,8 +28,10 @@ export function vue3(options: ConfigOptions): Linter.Config[] {
 		{
 			files: GLOB_FILES_VUE,
 			rules: {
-			// Deprecated thus we should not use it
+				// Deprecated thus we should not use it
 				'vue/no-deprecated-delete-set': 'error',
+				// When using script-setup the modern approach should be used
+				'vue/prefer-define-options': 'error',
 			},
 			name: 'nextcloud/vue3/rules',
 		},
