@@ -31,7 +31,8 @@
     "CHANGELOG.md",
     "LICENSE",
     "README.md",
-    "dist"
+    "dist",
+    "lib"
   ],
   "scripts": {
     "build": "npm run build:cleanup && npm run build:source",

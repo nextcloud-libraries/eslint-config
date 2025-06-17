@@ -2,6 +2,9 @@
 	"$schema": "https://json.schemastore.org/tsconfig",
 	"compilerOptions": {
 		"declaration": true,
+		"declarationMap": true,
+		"sourceMap": true,
+		"sourceRoot": "../lib",
 		"esModuleInterop": true,
 		"erasableSyntaxOnly": true,
 		"rewriteRelativeImportExtensions": true,
