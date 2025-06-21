@@ -5,6 +5,7 @@
 import type { Rule } from 'eslint'
 
 import * as vueUtils from 'eslint-plugin-vue/lib/utils/index.js'
+import { createLibVersionValidator } from '../utils/lib-version-parser.ts'
 
 export default {
 	meta: {
@@ -14,6 +15,7 @@ export default {
 		type: 'problem',
 		fixable: 'code',
 		messages: {
+			outdatedVueLibrary: 'Installed @nextcloud/vue library is outdated and does not support all reported errors. Install latest compatible version',
 			useTypeInstead: 'Using `native-type` for button variant is deprecated - use `type` instead.',
 			useVariantInstead: 'Using `type` for button variant is deprecated - use `variant` instead.',
 			useDisableSwipeForNavInstead: 'Using `allow-swipe-navigation` is deprecated - use `disable-swipe` instead',
@@ -32,6 +34,16 @@ export default {
 	},
 
 	create(context) {
+		const versionSatisfies = createLibVersionValidator(context)
+		const isAriaHiddenValid = versionSatisfies('8.2.0') // #4835
+		const isDisableSwipeValid = versionSatisfies('8.23.0') // #6452
+		const isVariantTypeValid = versionSatisfies('8.24.0') // #6472
+		const isDefaultBooleanFalseValid = versionSatisfies('8.24.0') // #6656
+		const isDateTimePickerFormatValid = versionSatisfies('8.25.0') // #6738
+		const isNcSelectKeepOpenValid = versionSatisfies('8.25.0') // #6791
+		const isNcPopoverNoFocusTrapValid = versionSatisfies('8.26.0') // #6808
+		const isNcSelectUsersValid = versionSatisfies('8.27.1') // #7032
+
 		const legacyTypes = ['primary', 'error', 'warning', 'success', 'secondary', 'tertiary', 'tertiary-no-background']
 
 		return vueUtils.defineTemplateBodyVisitor(context, {
@@ -43,6 +55,11 @@ export default {
 					'ncchip',
 					'ncdialogbutton',
 				].includes(node.parent.parent.name)) {
+					return
+				}
+
+				if (!isVariantTypeValid) {
+					context.report({ node, messageId: 'outdatedVueLibrary' })
 					return
 				}
 
@@ -85,6 +102,11 @@ export default {
 					return
 				}
 
+				if (!isVariantTypeValid) {
+					context.report({ node, messageId: 'outdatedVueLibrary' })
+					return
+				}
+
 				context.report({
 					node,
 					messageId: 'useTypeInstead',
@@ -101,6 +123,11 @@ export default {
 			'VElement VAttribute:has(VIdentifier[name="aria-hidden"])': function(node) {
 				if (node.parent.parent.name.startsWith('ncaction')
 					|| node.parent.parent.name === 'ncbutton') {
+					if (!isAriaHiddenValid) {
+						context.report({ node, messageId: 'outdatedVueLibrary' })
+						return
+					}
+
 					context.report({
 						node,
 						messageId: 'removeAriaHidden',
@@ -109,6 +136,11 @@ export default {
 			},
 
 			'VElement[name="ncappcontent"] VAttribute:has(VIdentifier[name="allow-swipe-navigation"])': function(node) {
+				if (!isDisableSwipeValid) {
+					context.report({ node, messageId: 'outdatedVueLibrary' })
+					return
+				}
+
 				context.report({
 					node,
 					messageId: 'useDisableSwipeForNavInstead',
@@ -116,6 +148,11 @@ export default {
 			},
 
 			'VElement[name="ncavatar"] VAttribute:has(VIdentifier[name="show-user-status"])': function(node) {
+				if (!isDefaultBooleanFalseValid) {
+					context.report({ node, messageId: 'outdatedVueLibrary' })
+					return
+				}
+
 				context.report({
 					node,
 					messageId: 'useHideStatusInstead',
@@ -123,6 +160,11 @@ export default {
 			},
 
 			'VElement[name="ncavatar"] VAttribute:has(VIdentifier[name="show-user-status-compact"])': function(node) {
+				if (!isDefaultBooleanFalseValid) {
+					context.report({ node, messageId: 'outdatedVueLibrary' })
+					return
+				}
+
 				context.report({
 					node,
 					messageId: 'useVerboseStatusInstead',
@@ -130,6 +172,11 @@ export default {
 			},
 
 			'VElement[name="ncavatar"] VAttribute:has(VIdentifier[name="allow-placeholder"])': function(node) {
+				if (!isDefaultBooleanFalseValid) {
+					context.report({ node, messageId: 'outdatedVueLibrary' })
+					return
+				}
+
 				context.report({
 					node,
 					messageId: 'useNoPlaceholderInstead',
@@ -137,6 +184,11 @@ export default {
 			},
 
 			'VElement[name="ncdatetimepicker"] VAttribute:has(VIdentifier[name="formatter"])': function(node) {
+				if (!isDateTimePickerFormatValid) {
+					context.report({ node, messageId: 'outdatedVueLibrary' })
+					return
+				}
+
 				context.report({
 					node,
 					messageId: 'useFormatInstead',
@@ -144,6 +196,11 @@ export default {
 			},
 
 			'VElement[name="ncdatetimepicker"] VAttribute:has(VIdentifier[name="range"])': function(node) {
+				if (!isDateTimePickerFormatValid) {
+					context.report({ node, messageId: 'outdatedVueLibrary' })
+					return
+				}
+
 				context.report({
 					node,
 					messageId: 'useTypeDateRangeInstead',
@@ -157,6 +214,12 @@ export default {
 				].includes(node.parent.parent.name)) {
 					return
 				}
+
+				if (!isDefaultBooleanFalseValid) {
+					context.report({ node, messageId: 'outdatedVueLibrary' })
+					return
+				}
+
 				context.report({
 					node,
 					messageId: 'useNoCloseInstead',
@@ -164,6 +227,11 @@ export default {
 			},
 
 			'VElement[name="ncmodal"] VAttribute:has(VIdentifier[name="enable-swipe"])': function(node) {
+				if (!isDisableSwipeValid) {
+					context.report({ node, messageId: 'outdatedVueLibrary' })
+					return
+				}
+
 				context.report({
 					node,
 					messageId: 'useDisableSwipeForModalInstead',
@@ -171,6 +239,11 @@ export default {
 			},
 
 			'VElement[name="ncpopover"] VAttribute:has(VIdentifier[name="focus-trap"])': function(node) {
+				if (!isNcPopoverNoFocusTrapValid) {
+					context.report({ node, messageId: 'outdatedVueLibrary' })
+					return
+				}
+
 				context.report({
 					node,
 					messageId: 'useNoFocusTrapInstead',
@@ -178,6 +251,11 @@ export default {
 			},
 
 			'VElement[name="ncselect"] VAttribute:has(VIdentifier[name="close-on-select"])': function(node) {
+				if (!isNcSelectKeepOpenValid) {
+					context.report({ node, messageId: 'outdatedVueLibrary' })
+					return
+				}
+
 				context.report({
 					node,
 					messageId: 'useKeepOpenInstead',
@@ -185,6 +263,11 @@ export default {
 			},
 
 			'VElement[name="ncselect"] VAttribute:has(VIdentifier[name="user-select"])': function(node) {
+				if (!isNcSelectUsersValid) {
+					context.report({ node, messageId: 'outdatedVueLibrary' })
+					return
+				}
+
 				context.report({
 					node,
 					messageId: 'useNcSelectUsersInstead',
