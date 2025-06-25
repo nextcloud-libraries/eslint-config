@@ -2,14 +2,12 @@
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
+
 import { RuleTester } from 'eslint'
 import { fs, vol } from 'memfs'
 import { afterAll, beforeAll, describe, test, vi } from 'vitest'
+import vueParser from 'vue-eslint-parser'
 import rule from './no-deprecated-exports.ts'
-
-// ------------------------------------------------------------------------------
-// Tests
-// ------------------------------------------------------------------------------
 
 vi.mock('node:fs', () => fs)
 
@@ -20,7 +18,12 @@ describe('no-deprecated-exports', () => {
 	}))
 	afterAll(() => vol.reset())
 
-	const ruleTester = new RuleTester()
+	const ruleTester = new RuleTester({
+		languageOptions: {
+			parser: vueParser,
+			ecmaVersion: 2015,
+		},
+	})
 
 	test('no-deprecated-exports if library is not in use', () => {
 		vol.fromNestedJSON({
@@ -32,11 +35,17 @@ describe('no-deprecated-exports', () => {
 		ruleTester.run('no-deprecated-exports', rule, {
 			valid: [
 				{
-					code: "import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'",
-					filename: '/a/src/component.js',
+					code: '<script>import anything from \'anywhere\'</script>',
+					filename: '/a/src/component.vue',
 				},
 			],
-			invalid: [],
+			invalid: [
+				{
+					code: '<script>import NcButton from \'@nextcloud/vue/dist/Components/NcButton.js\'</script>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'outdatedVueLibrary' }],
+				},
+			],
 		})
 	})
 
@@ -50,11 +59,17 @@ describe('no-deprecated-exports', () => {
 		ruleTester.run('no-deprecated-exports', rule, {
 			valid: [
 				{
-					code: "import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'",
-					filename: '/a/src/component.js',
+					code: '<script>import anything from \'anywhere\'</script>',
+					filename: '/a/src/component.vue',
 				},
 			],
-			invalid: [],
+			invalid: [
+				{
+					code: '<script>import NcButton from \'@nextcloud/vue/dist/Components/NcButton.js\'</script>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'outdatedVueLibrary' }],
+				},
+			],
 		})
 	})
 
@@ -68,77 +83,47 @@ describe('no-deprecated-exports', () => {
 		ruleTester.run('no-deprecated-exports', rule, {
 			valid: [
 				{
-					code: "import NcButton from '@nextcloud/vue/components/NcButton'",
-					filename: '/a/src/component.js',
+					code: '<script>import NcButton from \'@nextcloud/vue/components/NcButton\'</script>',
+					filename: '/a/src/component.vue',
 				},
 			],
 
 			invalid: [
 				{
-					code: "import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'",
-					filename: '/a/src/component.js',
-					errors: [
-						{
-							message: 'Import from "@nextcloud/vue/dist" is deprecated',
-							type: 'ImportDeclaration',
-						},
-					],
-					output: 'import NcButton from \'@nextcloud/vue/components/NcButton\'',
+					code: '<script>import NcButton from \'@nextcloud/vue/dist/Components/NcButton.js\'</script>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'deprecatedDist' }],
+					output: '<script>import NcButton from \'@nextcloud/vue/components/NcButton\'</script>',
 				},
 				{
-					code: "import Tooltip from '@nextcloud/vue/dist/Directives/Tooltip.js'",
-					filename: '/a/src/component.js',
-					errors: [
-						{
-							message: 'Import from "@nextcloud/vue/dist" is deprecated',
-							type: 'ImportDeclaration',
-						},
-					],
-					output: 'import Tooltip from \'@nextcloud/vue/directives/Tooltip\'',
+					code: '<script>import Tooltip from \'@nextcloud/vue/dist/Directives/Tooltip.js\'</script>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'deprecatedDist' }],
+					output: '<script>import Tooltip from \'@nextcloud/vue/directives/Tooltip\'</script>',
 				},
 				{
-					code: "import { emojiSearch } from '@nextcloud/vue/dist/Functions/emoji.js'",
-					filename: '/a/src/component.js',
-					errors: [
-						{
-							message: 'Import from "@nextcloud/vue/dist" is deprecated',
-							type: 'ImportDeclaration',
-						},
-					],
-					output: 'import { emojiSearch } from \'@nextcloud/vue/functions/emoji\'',
+					code: '<script>import { emojiSearch } from \'@nextcloud/vue/dist/Functions/emoji.js\'</script>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'deprecatedDist' }],
+					output: '<script>import { emojiSearch } from \'@nextcloud/vue/functions/emoji\'</script>',
 				},
 				{
-					code: "import { useHotKey } from '@nextcloud/vue/dist/Composables/useHotKey.js'",
-					filename: '/a/src/component.js',
-					errors: [
-						{
-							message: 'Import from "@nextcloud/vue/dist" is deprecated',
-							type: 'ImportDeclaration',
-						},
-					],
-					output: 'import { useHotKey } from \'@nextcloud/vue/composables/useHotKey\'',
+					code: '<script>import { useHotKey } from \'@nextcloud/vue/dist/Composables/useHotKey.js\'</script>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'deprecatedDist' }],
+					output: '<script>import { useHotKey } from \'@nextcloud/vue/composables/useHotKey\'</script>',
 				},
 				{
-					code: "import { useHotKey } from '@nextcloud/vue/dist/Composables/useHotKey/index.js'",
-					filename: '/a/src/component.js',
-					errors: [
-						{
-							message: 'Import from "@nextcloud/vue/dist" is deprecated',
-							type: 'ImportDeclaration',
-						},
-					],
-					output: 'import { useHotKey } from \'@nextcloud/vue/composables/useHotKey\'',
+					code: '<script>import { useHotKey } from \'@nextcloud/vue/dist/Composables/useHotKey/index.js\'</script>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'deprecatedDist' }],
+					output: '<script>import { useHotKey } from \'@nextcloud/vue/composables/useHotKey\'</script>',
 				},
 				{
-					code: "import isMobile from '@nextcloud/vue/dist/Mixins/isMobile.js'",
-					filename: '/a/src/component.js',
-					errors: [
-						{
-							message: 'Import from "@nextcloud/vue/dist" is deprecated',
-							type: 'ImportDeclaration',
-						},
-					],
-					output: 'import isMobile from \'@nextcloud/vue/mixins/isMobile\'',
+					code: '<script>import isMobile from \'@nextcloud/vue/dist/Mixins/isMobile.js\'</script>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'deprecatedDist' }],
+					output: '<script>import isMobile from \'@nextcloud/vue/mixins/isMobile\'</script>',
 				},
 			],
 		})
