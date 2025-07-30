@@ -22,6 +22,9 @@ Please refer to the README on how to adjust your configuration for flat config.
 * feat(vue): add `vue/no-useless-v-bind` rule [#1063](https://github.com/nextcloud-libraries/eslint-config/pull/1063) ([susnux](https://github.com/susnux))
 * feat(vue): add `vue/prefer-separate-static-class` rule [#1065](https://github.com/nextcloud-libraries/eslint-config/pull/1065) ([susnux](https://github.com/susnux))
 * feat(vue3): add script-setup releated rules [#1064](https://github.com/nextcloud-libraries/eslint-config/pull/1064) ([susnux](https://github.com/susnux))
+* feat(no-deprecated-props): extend existing rules to support other components [\#1069](https://github.com/nextcloud-libraries/eslint-config/pull/1069) \([Antreesy](https://github.com/Antreesy)\)
+* feat(imports): add custom plugin to suggest file extensions [\#1110](https://github.com/nextcloud-libraries/eslint-config/pull/1110) \([susnux](https://github.com/susnux)\)
+* feat(filesystem): ignore all files within the `.gitignore` [\#1108](https://github.com/nextcloud-libraries/eslint-config/pull/1108) \([susnux](https://github.com/susnux)\)
 
 ### Fixed
 * fix(codestyle): do not require splitting chains [\#951](https://github.com/nextcloud-libraries/eslint-config/pull/951)
@@ -46,6 +49,10 @@ Please refer to the README on how to adjust your configuration for flat config.
 * fix(codeStyle): allow single line arrays [#997](https://github.com/nextcloud-libraries/eslint-config/pull/997) ([ShGKme](https://github.com/ShGKme))
 * fix(typescript): remove `@typescript-eslint/no-shadow` [#993](https://github.com/nextcloud-libraries/eslint-config/pull/993) ([ShGKme](https://github.com/ShGKme))
 * fix(codeStyle): allow devs write small objects in one line [#996](https://github.com/nextcloud-libraries/eslint-config/pull/996) ([ShGKme](https://github.com/ShGKme))
+* fix: ignore test report directories from linting [\#1096](https://github.com/nextcloud-libraries/eslint-config/pull/1096) \([Antreesy](https://github.com/Antreesy)\)
+* fix(vue): also ignore the global router link component [\#1097](https://github.com/nextcloud-libraries/eslint-config/pull/1097) \([susnux](https://github.com/susnux)\)
+* fix(no-deprecated-props): respect nextcloud/vue library version for the rule [\#1084](https://github.com/nextcloud-libraries/eslint-config/pull/1084) \([Antreesy](https://github.com/Antreesy)\)
+* fix(codestyle): replace deprecated config in `@stylistic/quotes` rule [\#1109](https://github.com/nextcloud-libraries/eslint-config/pull/1109) \([susnux](https://github.com/susnux)\)
 
 ### Changed
 * Add SPDX header [#802](https://github.com/nextcloud-libraries/eslint-config/pull/802)
