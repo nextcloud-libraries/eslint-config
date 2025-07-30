@@ -5,7 +5,7 @@ updates:
   - package-ecosystem: npm
     directory: "/"
     schedule:
-      interval: daily
+      interval: weekly
       timezone: Europe/Paris
     open-pull-requests-limit: 10
     versioning-strategy: increase
@@ -15,7 +15,7 @@ updates:
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
-      interval: daily
+      interval: weekly
       timezone: Europe/Paris
     open-pull-requests-limit: 10
     labels:

@@ -69,10 +69,10 @@
     "node": "^20.19 || ^22 || ^24"
   },
   "devEngines": {
-    "packageManager": {
+    "packageManager": [{
       "name": "npm",
       "version": "^10"
-    },
+    }],
     "runtime": {
       "name": "node",
       "version": "^22.10"
