@@ -22,7 +22,10 @@ const rule: Rule.RuleModule = {
 			recommended: true,
 		},
 		fixable: 'code',
-		schema: [],
+		messages: {
+			outdatedVueLibrary: 'Installed @nextcloud/vue library is outdated and does not support all reported errors. Install latest compatible version',
+			deprecatedDist: 'Import from "@nextcloud/vue/dist" is deprecated',
+		},
 	},
 
 	create(context) {
@@ -33,19 +36,19 @@ const rule: Rule.RuleModule = {
 
 		return {
 			ImportDeclaration: function(node) {
-				if (!isVersionValid) {
-					// Can't fix, ignore the rule
-					return
-				}
-
 				const importPath = node.source.value as string
 				const match = importPath.match(new RegExp(oldPattern))
 
 				if (match) {
+					if (!isVersionValid) {
+						context.report({ node, messageId: 'outdatedVueLibrary' })
+						return
+					}
+
 					const newImportPath = `'@nextcloud/vue/${match[1].toLowerCase()}/${match[2]}'`
 					context.report({
 						node,
-						message: 'Import from "@nextcloud/vue/dist" is deprecated',
+						messageId: 'deprecatedDist',
 						fix(fixer) {
 							return fixer.replaceText(node.source, newImportPath)
 						},
