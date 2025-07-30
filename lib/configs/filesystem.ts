@@ -5,10 +5,16 @@
 
 import type { Linter } from 'eslint'
 
+import gitignore from 'eslint-config-flat-gitignore'
+
 /**
  * General config to exclude known non-source directories from linting
  */
 export const filesystem: Linter.Config[] = [
+	{
+		...gitignore(),
+		name: 'nextcloud/filesystem/gitignore',
+	},
 	{
 		name: 'nextcloud/filesystem/ignores',
 		ignores: [
