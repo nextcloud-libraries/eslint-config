@@ -51,7 +51,7 @@ export function vue(options: ConfigOptions): Linter.Config[] {
 		{
 			files: GLOB_FILES_VUE,
 			rules: {
-			// PascalCase components names for vuejs
+				// PascalCase components names for vuejs
 				'vue/component-name-in-template-casing': [
 					'error',
 					'PascalCase',
@@ -105,8 +105,8 @@ export function vue(options: ConfigOptions): Linter.Config[] {
 				'vue/no-undef-components': [
 					'warn',
 					{
-					// Ignore the router view as this is most often globally registered
-						ignorePatterns: ['router-?view'],
+						// Ignore the router link and view as this is (most often) globally registered
+						ignorePatterns: ['RouterLink', 'RouterView'],
 					},
 				],
 				// Warn on unused refs
