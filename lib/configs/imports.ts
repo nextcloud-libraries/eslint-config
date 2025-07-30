@@ -11,6 +11,7 @@ import {
 	GLOB_FILES_TYPESCRIPT,
 	GLOB_FILES_VUE,
 } from '../globs.ts'
+import importExtensions from '../plugins/import-extensions/index.ts'
 
 /**
  * Generate imports and exports related ESLint rules.
@@ -24,6 +25,7 @@ export function imports(options: ConfigOptions): Linter.Config[] {
 			name: 'nextcloud/imports/setup',
 			plugins: {
 				perfectionist,
+				'import-extensions': importExtensions,
 			},
 		},
 		{
@@ -35,17 +37,7 @@ export function imports(options: ConfigOptions): Linter.Config[] {
 			],
 			rules: {
 				// Require file extensions
-				'no-restricted-imports': [
-					'error',
-					{
-						patterns: [
-							{
-								regex: '^(\\.*)/(.+/)*[^/.]+$',
-								message: 'Import is missing the file extension.',
-							},
-						],
-					},
-				],
+				'import-extensions/extensions': 'error',
 				// Sorting of imports
 				'sort-imports': 'off',
 				'perfectionist/sort-imports': [
