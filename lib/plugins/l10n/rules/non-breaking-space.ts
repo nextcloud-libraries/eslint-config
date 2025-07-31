@@ -14,6 +14,9 @@ export default defineRule({
 		docs: {
 			description: 'Enforce non-breaking spaces before ellipsis',
 		},
+		messages: {
+			precedeWithNonbreakingSpace: 'Ellipsis must be preceded by non-breaking spaces',
+		},
 	},
 
 	create(context) {
@@ -27,7 +30,7 @@ export default defineRule({
 				if (matches && matches[1] !== ' ') {
 					context.report({
 						node,
-						message: 'Ellipsis must be preceded by non-breaking spaces',
+						messageId: 'precedeWithNonbreakingSpace',
 						fix(fixer) {
 							return fixer.replaceText(node, node.raw.replaceAll(/\s+…/g, ' …'))
 						},
