@@ -25,6 +25,7 @@ Please refer to the README on how to adjust your configuration for flat config.
 * feat(no-deprecated-props): extend existing rules to support other components [\#1069](https://github.com/nextcloud-libraries/eslint-config/pull/1069) \([Antreesy](https://github.com/Antreesy)\)
 * feat(imports): add custom plugin to suggest file extensions [\#1110](https://github.com/nextcloud-libraries/eslint-config/pull/1110) \([susnux](https://github.com/susnux)\)
 * feat(filesystem): ignore all files within the `.gitignore` [\#1108](https://github.com/nextcloud-libraries/eslint-config/pull/1108) \([susnux](https://github.com/susnux)\)
+* feat(l10n-plugin): also handle vue templates by @susnux in https://github.com/nextcloud-libraries/eslint-config/pull/1113
 
 ### Fixed
 * fix(codestyle): do not require splitting chains [\#951](https://github.com/nextcloud-libraries/eslint-config/pull/951)
@@ -53,6 +54,8 @@ Please refer to the README on how to adjust your configuration for flat config.
 * fix(vue): also ignore the global router link component [\#1097](https://github.com/nextcloud-libraries/eslint-config/pull/1097) \([susnux](https://github.com/susnux)\)
 * fix(no-deprecated-props): respect nextcloud/vue library version for the rule [\#1084](https://github.com/nextcloud-libraries/eslint-config/pull/1084) \([Antreesy](https://github.com/Antreesy)\)
 * fix(codestyle): replace deprecated config in `@stylistic/quotes` rule [\#1109](https://github.com/nextcloud-libraries/eslint-config/pull/1109) \([susnux](https://github.com/susnux)\)
+* fix(l10n-plugin): also check translation strings in `n` method by @susnux in https://github.com/nextcloud-libraries/eslint-config/pull/1112
+* fix(filesystem): relax ignored files by @susnux in https://github.com/nextcloud-libraries/eslint-config/pull/1114
 
 ### Changed
 * Add SPDX header [#802](https://github.com/nextcloud-libraries/eslint-config/pull/802)
