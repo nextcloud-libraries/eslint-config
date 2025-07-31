@@ -50,6 +50,7 @@ export function vue(options: ConfigOptions): Linter.Config[] {
 
 		{
 			files: GLOB_FILES_VUE,
+			name: 'nextcloud/vue/rules',
 			rules: {
 				// PascalCase components names for vuejs
 				'vue/component-name-in-template-casing': [
@@ -114,14 +115,17 @@ export function vue(options: ConfigOptions): Linter.Config[] {
 				// Warn on unused props
 				'vue/no-unused-properties': 'warn',
 			},
-			name: 'nextcloud/vue/rules',
 		},
 
 		{
 			files: GLOB_FILES_VUE,
+			name: 'nextcloud/vue/stylistic-rules',
 			rules: {
-			// same as the stylistic rules but for the <template> in Vue files
+				// same as the stylistic rules but for the <template> in Vue files
 				...Object.fromEntries(vueStylisticRules),
+				// same as in the codeStyle config but for the <template> in Vue files
+				'@nextcloud-l10n/non-breaking-space-vue': 'error',
+				'@nextcloud-l10n/enforce-ellipsis-vue': 'error',
 				// Also enforce tabs for template
 				'vue/html-indent': [
 					'error',
@@ -147,7 +151,6 @@ export function vue(options: ConfigOptions): Linter.Config[] {
 					},
 				],
 			},
-			name: 'nextcloud/vue/stylistic-rules',
 		},
 
 		{
