@@ -14,27 +14,34 @@ export default defineRule({
 		docs: {
 			description: 'Enforce consistent usageof ellipsis instead of tripple dots',
 		},
+		messages: {
+			shoudUseEllipsis: 'Translated strings should use ellipsis character instead of triple dots',
+		}
 	},
 
 	create(context) {
 		return {
-			Literal(node) {
-				if (typeof node.value !== 'string'
-					|| node.parent.type !== 'CallExpression'
-					|| node.parent.callee.type !== 'Identifier'
-					|| node.parent.callee.name !== 't'
+			CallExpression(node) {
+				if (node.callee.type !== 'Identifier'
+					|| (node.callee.name !== 't' && node.callee.name !== 'n')
 				) {
 					return
 				}
 
-				if (node.raw?.match(/(?<=[^.])\.\.\.(?!\.)/)) {
-					context.report({
-						node,
-						message: 'Strings should ellipsis instead of triple dots',
-						fix(fixer) {
-							return fixer.replaceText(node, node.raw!.replaceAll(/(?<=[^.])\.\.\.(?!\.)/g, '…'))
-						},
-					})
+				for (const argument of node.arguments) {
+					if (argument.type !== 'Literal') {
+						continue
+					}
+
+					if (argument.raw?.match(/(?<=[^.])\.\.\.(?!\.)/)) {
+						context.report({
+							node,
+							messageId: 'shoudUseEllipsis',
+							fix(fixer) {
+								return fixer.replaceText(argument, argument.raw!.replaceAll(/(?<=[^.])\.\.\.(?!\.)/g, '…'))
+							},
+						})
+					}
 				}
 			},
 		}

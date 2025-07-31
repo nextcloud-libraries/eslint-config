@@ -13,6 +13,15 @@ test('rule: enforce-ellipsis', () => {
 		/* eslint-disable @nextcloud-l10n/non-breaking-space */
 		valid: [
 			{
+				code: 'const foo = t("Loading…")',
+			},
+			{
+				code: 'const foo = n("Loading…", "Loading…", num)',
+			},
+			{
+				code: 'const foo = n("files", "Loading…", "Loading…", num)',
+			},
+			{
 				code: "const foo = '..... done'",
 			},
 			{
@@ -30,32 +39,39 @@ test('rule: enforce-ellipsis', () => {
 			{
 				code: 't("Loading...")',
 				output: 't("Loading…")',
-				errors: [
-					{
-						type: 'Literal',
-						message: 'Strings should ellipsis instead of triple dots',
-					},
-				],
+				errors: [{
+					messageId: 'shoudUseEllipsis',
+				}],
 			},
 			{
 				code: 't("files", "Loading...")',
 				output: 't("files", "Loading…")',
-				errors: [
-					{
-						type: 'Literal',
-						message: 'Strings should ellipsis instead of triple dots',
-					},
-				],
+				errors: [{
+					messageId: 'shoudUseEllipsis',
+				}],
 			},
 			{
 				code: "t('Loading ...')",
 				output: "t('Loading …')",
-				errors: [
-					{
-						type: 'Literal',
-						message: 'Strings should ellipsis instead of triple dots',
-					},
-				],
+				errors: [{
+					messageId: 'shoudUseEllipsis',
+				}],
+			},
+			{
+				code: "const foo = n('Loading %n …', 'Loading %n ...', num)",
+				output: "const foo = n('Loading %n …', 'Loading %n …', num)",
+				errors: [{
+					messageId: 'shoudUseEllipsis',
+				}],
+			},
+			{
+				code: "const foo = n('files', 'Loading %n ...', 'Loading %n ...', num)",
+				output: "const foo = n('files', 'Loading %n …', 'Loading %n …', num)",
+				errors: [{
+					messageId: 'shoudUseEllipsis',
+				}, {
+					messageId: 'shoudUseEllipsis',
+				}],
 			},
 		],
 	})
