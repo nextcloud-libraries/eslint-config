@@ -18,13 +18,11 @@ export const filesystem: Linter.Config[] = [
 	{
 		name: 'nextcloud/filesystem/ignores',
 		ignores: [
-			'**/coverage',
-			'**/dist',
-			'**/js',
-			'**/l10n',
-			'**/playwright-report',
-			'**/vendor',
-			'**/vendor-bin',
+			'dist/',
+			'js/',
+			'l10n/',
+			'vendor/',
+			'vendor-bin/',
 			'**/package-lock.json',
 		],
 	},
