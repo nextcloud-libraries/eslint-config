@@ -30,23 +30,17 @@ test('rule: non-breaking-space', () => {
 			{
 				code: "t('files', 'Loading …')",
 				output: "t('files', 'Loading …')",
-				errors: [
-					{
-						type: 'Literal',
-						message: 'Ellipsis must be preceded by non-breaking spaces',
-					},
-				],
+				errors: [{
+					messageId: 'precedeWithNonbreakingSpace',
+				}],
 			},
 			{
 				// eslint-disable-next-line @stylistic/no-tabs
 				code: "const foo = 'Loading	…'",
 				output: "const foo = 'Loading …'",
-				errors: [
-					{
-						type: 'Literal',
-						message: 'Ellipsis must be preceded by non-breaking spaces',
-					},
-				],
+				errors: [{
+					messageId: 'precedeWithNonbreakingSpace',
+				}],
 			},
 		],
 	})

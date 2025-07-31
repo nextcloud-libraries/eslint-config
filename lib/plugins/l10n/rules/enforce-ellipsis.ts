@@ -16,7 +16,7 @@ export default defineRule({
 		},
 		messages: {
 			shoudUseEllipsis: 'Translated strings should use ellipsis character instead of triple dots',
-		}
+		},
 	},
 
 	create(context) {
