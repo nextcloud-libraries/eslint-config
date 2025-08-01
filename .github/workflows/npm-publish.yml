@@ -32,6 +32,17 @@ jobs:
         with:
           node-version-file: 'package.json'
 
+      - name: Check tag matches package.json
+        run: |
+          VERSION=$(node -p -e "require('./package.json').version")
+          GH_VERSION=$(echo "$GH_VERSION" | sed s,\^v,,)
+          if [ "$VERSION" != "$GH_VERSION" ]; then
+            echo "$VERSION does not match $GH_VERSION"
+            exit 1;
+          fi;
+        env:
+          GH_VERSION: ${{ github.event.release.tag_name }}
+
       - name: Install dependencies & build
         env:
           CYPRESS_INSTALL_BINARY: 0
