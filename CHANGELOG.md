@@ -25,7 +25,7 @@ Please refer to the README on how to adjust your configuration for flat config.
 * feat(no-deprecated-props): extend existing rules to support other components [\#1069](https://github.com/nextcloud-libraries/eslint-config/pull/1069) \([Antreesy](https://github.com/Antreesy)\)
 * feat(imports): add custom plugin to suggest file extensions [\#1110](https://github.com/nextcloud-libraries/eslint-config/pull/1110) \([susnux](https://github.com/susnux)\)
 * feat(filesystem): ignore all files within the `.gitignore` [\#1108](https://github.com/nextcloud-libraries/eslint-config/pull/1108) \([susnux](https://github.com/susnux)\)
-* feat(l10n-plugin): also handle vue templates by @susnux in https://github.com/nextcloud-libraries/eslint-config/pull/1113
+* feat(l10n-plugin): also handle vue templates [\#1113](https://github.com/nextcloud-libraries/eslint-config/pull/1113) \([susnux](https://github.com/susnux)\)
 
 ### Fixed
 * fix(codestyle): do not require splitting chains [\#951](https://github.com/nextcloud-libraries/eslint-config/pull/951)
@@ -54,8 +54,10 @@ Please refer to the README on how to adjust your configuration for flat config.
 * fix(vue): also ignore the global router link component [\#1097](https://github.com/nextcloud-libraries/eslint-config/pull/1097) \([susnux](https://github.com/susnux)\)
 * fix(no-deprecated-props): respect nextcloud/vue library version for the rule [\#1084](https://github.com/nextcloud-libraries/eslint-config/pull/1084) \([Antreesy](https://github.com/Antreesy)\)
 * fix(codestyle): replace deprecated config in `@stylistic/quotes` rule [\#1109](https://github.com/nextcloud-libraries/eslint-config/pull/1109) \([susnux](https://github.com/susnux)\)
-* fix(l10n-plugin): also check translation strings in `n` method by @susnux in https://github.com/nextcloud-libraries/eslint-config/pull/1112
-* fix(filesystem): relax ignored files by @susnux in https://github.com/nextcloud-libraries/eslint-config/pull/1114
+* fix(l10n-plugin): also check translation strings in `n` method [\#1112](https://github.com/nextcloud-libraries/eslint-config/pull/1112) \([susnux](https://github.com/susnux)\)
+* fix(filesystem): relax ignored files [\#1114](https://github.com/nextcloud-libraries/eslint-config/pull/1114) \([susnux](https://github.com/susnux)\)
+* fix(globs): adjust globs for test related files [\#1128](https://github.com/nextcloud-libraries/eslint-config/pull/1128) \([susnux](https://github.com/susnux)\)
+* fix(vue): use vue variant of `no-irregular-whitespace` [\#1129](https://github.com/nextcloud-libraries/eslint-config/pull/1129) \([susnux](https://github.com/susnux)\)
 
 ### Changed
 * Add SPDX header [#802](https://github.com/nextcloud-libraries/eslint-config/pull/802)
@@ -72,6 +74,7 @@ Please refer to the README on how to adjust your configuration for flat config.
 * ci: update workflows from organization [#1047](https://github.com/nextcloud-libraries/eslint-config/pull/1047) ([susnux](https://github.com/susnux))
 * chore: add active node version (24) to supported engines [#1066](https://github.com/nextcloud-libraries/eslint-config/pull/1066) ([susnux](https://github.com/susnux))
 * build: add common changelog formatting and documentation for it [#1067](https://github.com/nextcloud-libraries/eslint-config/pull/1067) ([susnux](https://github.com/susnux))
+* chore: lint this project as a library [\#1130](https://github.com/nextcloud-libraries/eslint-config/pull/1130) \([susnux](https://github.com/susnux)\)
 * Updated `@eslint/json` to 0.12.0
 * Updated `@stylistic/eslint-plugin` 4.2.0
 * Updated `eslint-plugin-jsdoc` to 50.6.11
