@@ -8,8 +8,10 @@ export const GLOB_FILES_TESTING = [
 	'**/*.test.*',
 	'**/*.spec.*',
 	'**/*.cy.*',
-	'**/test',
-	'**/tests',
+	'**/test/**',
+	'**/tests/**',
+	'**/__tests__/**',
+	'**/__mocks__/**',
 ]
 
 /** Glob pattern for Typescript files */
