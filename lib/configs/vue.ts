@@ -114,6 +114,10 @@ export function vue(options: ConfigOptions): Linter.Config[] {
 				'vue/no-unused-refs': 'warn',
 				// Warn on unused props
 				'vue/no-unused-properties': 'warn',
+
+				// This rule does not work in vue files, we must use the vue one
+				'no-irregular-whitespace': 'off',
+				'vue/no-irregular-whitespace': 'error',
 			},
 		},
 
