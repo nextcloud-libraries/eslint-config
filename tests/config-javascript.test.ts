@@ -5,7 +5,7 @@
 import type { Linter } from 'eslint'
 
 import { ESLint } from 'eslint'
-import { access, copyFile, rm } from 'fs/promises'
+import { access, copyFile, readFile, rm } from 'fs/promises'
 import { join, resolve } from 'path'
 import { afterAll, beforeAll, describe, expect, test } from 'vitest'
 import * as eslintConfig from '../lib/index.js'
@@ -21,9 +21,10 @@ const eslint = new ESLint({
  * @param file - File path to lint
  * @return Lint result
  */
-async function lintFile(file) {
+async function lintFile(file: string) {
 	const real = resolve(join(__dirname, file))
-	return await eslint.lintFiles(real)
+	const content = await readFile(real)
+	return await eslint.lintText(content.toString(), { filePath: join('src', file) })
 }
 
 test('some basic issues should fail', async () => {
