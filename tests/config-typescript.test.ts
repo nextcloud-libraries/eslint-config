@@ -5,6 +5,7 @@
 import type { Linter } from 'eslint'
 
 import { ESLint } from 'eslint'
+import { readFile } from 'fs/promises'
 import { join, resolve } from 'path'
 import { describe, expect, test } from 'vitest'
 import * as eslintConfig from '../lib/index.js'
@@ -17,7 +18,8 @@ const eslint = new ESLint({
 describe('Typescript', () => {
 	async function lintFile(file: string) {
 		const real = resolve(join(__dirname, file))
-		return await eslint.lintFiles(real)
+		const content = await readFile(real)
+		return await eslint.lintText(content.toString(), { filePath: join('src', file) })
 	}
 
 	// Vue files can be both Javascript and Typescript
