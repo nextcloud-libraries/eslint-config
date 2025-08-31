@@ -4,7 +4,7 @@
 -->	
 # Changelog
 
-## [v9.0.0](https://github.com/nextcloud-libraries/eslint-config/tree/v9.0.0) (unreleased)
+## [v9.0.0](https://github.com/nextcloud-libraries/eslint-config/tree/v9.0.0) (2025-09-01)
 
 ### Breaking
 This package now is using ESLint v9 and requires ESLint flat configurations.
