@@ -4,7 +4,7 @@
 -->	
 # Changelog
 
-## [v9.0.0](https://github.com/nextcloud-libraries/eslint-config/tree/v9.0.0) (unreleased)
+## [v9.0.0](https://github.com/nextcloud-libraries/eslint-config/tree/v9.0.0) (2025-09-10)
 
 ### Breaking
 This package now is using ESLint v9 and requires ESLint flat configurations.
@@ -75,13 +75,13 @@ Please refer to the README on how to adjust your configuration for flat config.
 * chore: add active node version (24) to supported engines [#1066](https://github.com/nextcloud-libraries/eslint-config/pull/1066) ([susnux](https://github.com/susnux))
 * build: add common changelog formatting and documentation for it [#1067](https://github.com/nextcloud-libraries/eslint-config/pull/1067) ([susnux](https://github.com/susnux))
 * chore: lint this project as a library [\#1130](https://github.com/nextcloud-libraries/eslint-config/pull/1130) \([susnux](https://github.com/susnux)\)
-* Updated `@eslint/json` to 0.12.0
-* Updated `@stylistic/eslint-plugin` 4.2.0
-* Updated `eslint-plugin-jsdoc` to 50.6.11
-* Updated `eslint-plugin-vue` to 10.0.0
-* Updated `fast-xml-parser` to 5.2.1
-* Updated `sort-package-json` to 3.0.0
-* Updated `typescript-eslint` to 8.31.0
+* Updated `@eslint/json` to 0.13.2
+* Updated `@stylistic/eslint-plugin` 5.3.1
+* Updated `eslint-plugin-jsdoc` to 55.2.0
+* Updated `eslint-plugin-vue` to 10.4.0
+* Updated `fast-xml-parser` to 5.2.5
+* Updated `sort-package-json` to 3.4.0
+* Updated `typescript-eslint` to 8.42.0
 
 ## [v8.4.2](https://github.com/nextcloud-libraries/eslint-config/tree/v8.4.2) (2025-02-16)
 ### Fixed
