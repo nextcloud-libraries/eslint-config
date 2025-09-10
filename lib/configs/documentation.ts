@@ -3,9 +3,10 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 import type { Linter } from 'eslint'
+import type { Settings } from 'eslint-plugin-jsdoc/iterateJsdoc.js'
 import type { ConfigOptions } from '../types.d.ts'
 
-import jsdocPlugin from 'eslint-plugin-jsdoc'
+import { jsdoc } from 'eslint-plugin-jsdoc'
 import {
 	GLOB_FILES_JAVASCRIPT,
 	GLOB_FILES_TESTING,
@@ -27,6 +28,13 @@ const JS_FUNCTION_CONTEXTS = [
 	'MethodDefinition:not(:has(TSTypeAnnotation))',
 ]
 
+const SHARED_JSDOC_SETTINGS: Partial<Settings> = {
+	// We use the alias for legacy reasons to prevent unnecessary noise
+	tagNamePreference: {
+		returns: 'return',
+	},
+}
+
 /**
  * Config factory for code documentation related rules (JSDoc)
  *
@@ -35,32 +43,27 @@ const JS_FUNCTION_CONTEXTS = [
 export function documentation(options: ConfigOptions): Linter.Config[] {
 	return [
 		{
-			files: [
-				...GLOB_FILES_JAVASCRIPT,
-				...GLOB_FILES_TYPESCRIPT,
-				...GLOB_FILES_VUE,
-			],
-			plugins: {
-				jsdoc: jsdocPlugin,
-			},
-		},
-
-		{
-			...jsdocPlugin.configs['flat/recommended-typescript-flavor'],
+			...jsdoc({
+				config: 'flat/recommended-typescript-flavor',
+				settings: {
+					...SHARED_JSDOC_SETTINGS,
+					mode: 'permissive',
+				},
+			}),
+			name: 'nextcloud/documentation/javascript',
 			files: [
 				...GLOB_FILES_JAVASCRIPT,
 				...(options.vueIsTypescript ? [] : GLOB_FILES_VUE),
 			],
-			settings: {
-				jsdoc: {
-					mode: 'permissive',
-				},
-			},
 			ignores: GLOB_FILES_TESTING,
 		},
 
 		{
-			...jsdocPlugin.configs['flat/recommended-typescript'],
+			...jsdoc({
+				config: 'flat/recommended-typescript',
+				settings: SHARED_JSDOC_SETTINGS,
+			}),
+			name: 'nextcloud/documentation/typescript',
 			files: [
 				...GLOB_FILES_TYPESCRIPT,
 				...(options.vueIsTypescript ? GLOB_FILES_VUE : []),
@@ -88,14 +91,6 @@ export function documentation(options: ConfigOptions): Linter.Config[] {
 					'any',
 					{ startLines: 1 },
 				],
-			},
-			settings: {
-				jsdoc: {
-					// We use the alias for legacy reasons to prevent unnecessary noise
-					tagNamePreference: {
-						returns: 'return',
-					},
-				},
 			},
 		},
 
