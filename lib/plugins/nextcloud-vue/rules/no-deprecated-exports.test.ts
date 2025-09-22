@@ -150,6 +150,11 @@ describe('no-deprecated-exports', () => {
 					filename: '/a/src/component.vue',
 					errors: [{ messageId: 'deprecatedMixin' }],
 				},
+				{
+					code: '<script>import NcSettingsInputText from \'@nextcloud/vue/components/NcSettingsInputText\'</script>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'deprecatedNcSettingsInputText' }],
+				},
 			],
 		})
 	})
