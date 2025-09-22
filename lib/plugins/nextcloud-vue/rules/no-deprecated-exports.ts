@@ -25,22 +25,38 @@ const rule: Rule.RuleModule = {
 		messages: {
 			outdatedVueLibrary: 'Installed @nextcloud/vue library is outdated and does not support all reported errors. Install latest compatible version',
 			deprecatedDist: 'Import from "@nextcloud/vue/dist" is deprecated',
+			deprecatedMixin: 'Mixins are no longer recommended by Vue. Consider using available alternatives',
 		},
 	},
 
 	create(context) {
 		const versionSatisfies = createLibVersionValidator(context)
-		const isVersionValid = versionSatisfies('8.23.0')
+		const isVersionValidForDist = versionSatisfies('8.23.0')
 
 		const oldPattern = '@nextcloud/vue/dist/([^/]+)/([^/.]+)'
+		const mixinPattern = '@nextcloud/vue/mixins/([^/.]+)'
 
 		return {
 			ImportDeclaration: function(node) {
 				const importPath = node.source.value as string
+
+				const mixinMatch = importPath.match(new RegExp(mixinPattern, 'i'))
+				if (mixinMatch) {
+					if (!isVersionValidForDist) {
+						context.report({ node, messageId: 'outdatedVueLibrary' })
+						return
+					}
+
+					context.report({
+						node,
+						messageId: 'deprecatedMixin',
+					})
+				}
+
 				const match = importPath.match(new RegExp(oldPattern))
 
 				if (match) {
-					if (!isVersionValid) {
+					if (!isVersionValidForDist) {
 						context.report({ node, messageId: 'outdatedVueLibrary' })
 						return
 					}
