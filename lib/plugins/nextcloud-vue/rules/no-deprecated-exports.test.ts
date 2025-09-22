@@ -73,7 +73,7 @@ describe('no-deprecated-exports', () => {
 		})
 	})
 
-	test('no-deprecated-exports', () => {
+	test('no-deprecated-exports for dist syntax', () => {
 		vol.fromNestedJSON({
 			'/a': {
 				'package.json': '{"name": "my-app","version": "0.1.0","dependencies":{"@nextcloud/vue":"^8.23.1"}}',
@@ -124,6 +124,41 @@ describe('no-deprecated-exports', () => {
 					filename: '/a/src/component.vue',
 					errors: [{ messageId: 'deprecatedDist' }],
 					output: '<script>import isMobile from \'@nextcloud/vue/mixins/isMobile\'</script>',
+				},
+			],
+		})
+	})
+
+	test('no-deprecated-exports for removed content', () => {
+		vol.fromNestedJSON({
+			'/a': {
+				'package.json': '{"name": "my-app","version": "0.1.0","dependencies":{"@nextcloud/vue":"^8.31.0"}}',
+				src: { },
+			},
+		})
+		ruleTester.run('no-deprecated-exports', rule, {
+			valid: [
+				{
+					code: '<script>import NcButton from \'@nextcloud/vue/components/NcButton\'</script>',
+					filename: '/a/src/component.vue',
+				},
+			],
+
+			invalid: [
+				{
+					code: '<script>import isMobile from \'@nextcloud/vue/mixins/isMobile\'</script>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'deprecatedMixin' }],
+				},
+				{
+					code: '<script>import NcSettingsInputText from \'@nextcloud/vue/components/NcSettingsInputText\'</script>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'deprecatedNcSettingsInputText' }],
+				},
+				{
+					code: '<script>import Tooltip from \'@nextcloud/vue/directives/Tooltip\'</script>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'deprecatedTooltip' }],
 				},
 			],
 		})

@@ -25,22 +25,72 @@ const rule: Rule.RuleModule = {
 		messages: {
 			outdatedVueLibrary: 'Installed @nextcloud/vue library is outdated and does not support all reported errors. Install latest compatible version',
 			deprecatedDist: 'Import from "@nextcloud/vue/dist" is deprecated',
+			deprecatedMixin: 'Mixins are no longer recommended by Vue. Consider using available alternatives',
+			deprecatedNcSettingsInputText: 'NcSettingsInputText is deprecated. Consider using available alternatives',
+			deprecatedTooltip: 'Tooltip directive is deprecated. use native title attribute or NcPopover instead',
 		},
 	},
 
 	create(context) {
 		const versionSatisfies = createLibVersionValidator(context)
-		const isVersionValid = versionSatisfies('8.23.0')
+		const isVersionValidForDist = versionSatisfies('8.23.0')
 
 		const oldPattern = '@nextcloud/vue/dist/([^/]+)/([^/.]+)'
+		const mixinPattern = '@nextcloud/vue/mixins/([^/.]+)'
+
+		const isVersionValidForTooltip = versionSatisfies('8.25.0')
+		const tooltipPattern = '@nextcloud/vue/directives/Tooltip'
+
+		const isVersionValidForNcSettingsInputText = versionSatisfies('8.31.0')
+		const patternForNcSettingsInputText = '@nextcloud/vue/components/NcSettingsInputText'
 
 		return {
 			ImportDeclaration: function(node) {
 				const importPath = node.source.value as string
+
+				const matchForNcSettingsInputText = importPath.match(new RegExp(patternForNcSettingsInputText))
+				if (matchForNcSettingsInputText) {
+					if (!isVersionValidForNcSettingsInputText) {
+						context.report({ node, messageId: 'outdatedVueLibrary' })
+						return
+					}
+
+					context.report({
+						node,
+						messageId: 'deprecatedNcSettingsInputText',
+					})
+				}
+
+				const mixinMatch = importPath.match(new RegExp(mixinPattern, 'i'))
+				if (mixinMatch) {
+					if (!isVersionValidForDist) {
+						context.report({ node, messageId: 'outdatedVueLibrary' })
+						return
+					}
+
+					context.report({
+						node,
+						messageId: 'deprecatedMixin',
+					})
+				}
+
+				const tooltipMatch = importPath.match(new RegExp(tooltipPattern))
+				if (tooltipMatch) {
+					if (!isVersionValidForTooltip) {
+						context.report({ node, messageId: 'outdatedVueLibrary' })
+						return
+					}
+
+					context.report({
+						node,
+						messageId: 'deprecatedTooltip',
+					})
+				}
+
 				const match = importPath.match(new RegExp(oldPattern))
 
 				if (match) {
-					if (!isVersionValid) {
+					if (!isVersionValidForDist) {
 						context.report({ node, messageId: 'outdatedVueLibrary' })
 						return
 					}
