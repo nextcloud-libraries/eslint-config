@@ -269,6 +269,18 @@ describe('no-deprecated-props', () => {
 					filename: '/a/src/component.vue',
 					errors: [{ messageId: 'useNcSelectUsersInstead' }],
 				},
+				{
+					code: '<template><NcTextField trailing-button-icon="arrowRight" /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useArrowEndInstead' }],
+					output: '<template><NcTextField trailing-button-icon="arrowEnd" /></template>',
+				},
+				{
+					code: '<template><NcTextField :trailing-button-icon="isRTL ? \'arrowLeft\' : \'arrowRight\'" /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useArrowEndInstead' }],
+					output: '<template><NcTextField :trailing-button-icon="isRTL ? \'arrowLeft\' : \'arrowEnd\'" /></template>',
+				},
 			],
 		})
 	})

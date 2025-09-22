@@ -29,6 +29,7 @@ export default {
 			useNoFocusTrapInstead: 'Using `focus-trap` is deprecated - use `no-focus-trap` instead',
 			useKeepOpenInstead: 'Using `close-on-select` is deprecated - use `keep-open` instead',
 			useNcSelectUsersInstead: 'Using `user-select` is deprecated - use `NcSelectUsers` component instead',
+			useArrowEndInstead: 'Using `arrow-right` is deprecated - use `arrow-end` instead',
 			removeAriaHidden: 'Using `aria-hidden` is deprecated - remove prop from components, otherwise root element will inherit incorrect attribute.',
 		},
 	},
@@ -43,6 +44,7 @@ export default {
 		const isNcSelectKeepOpenValid = versionSatisfies('8.25.0') // #6791
 		const isNcPopoverNoFocusTrapValid = versionSatisfies('8.26.0') // #6808
 		const isNcSelectUsersValid = versionSatisfies('8.27.1') // #7032
+		const isNcTextFieldArrowEndValid = versionSatisfies('8.28.0') // #7002
 
 		const legacyTypes = ['primary', 'error', 'warning', 'success', 'secondary', 'tertiary', 'tertiary-no-background']
 
@@ -272,6 +274,42 @@ export default {
 					node,
 					messageId: 'useNcSelectUsersInstead',
 				})
+			},
+
+			'VElement VAttribute:has(VIdentifier[name="trailing-button-icon"])': function(node) {
+				if (node.parent.parent.name !== 'nctextfield') {
+					return
+				}
+
+				if (!isNcTextFieldArrowEndValid) {
+					context.report({ node, messageId: 'outdatedVueLibrary' })
+					return
+				}
+
+				const isLiteral = node.value.type === 'VLiteral' && node.value.value === 'arrowRight'
+
+				const isExpression = node.value.type === 'VExpressionContainer' && node.value.expression?.type === 'ConditionalExpression'
+					&& (node.value.expression.consequent.value === 'arrowRight' || node.value.expression.alternate.value === 'arrowRight')
+
+				/**
+				 * if it is a literal with a deprecated value -> we migrate
+				 * if it is an expression with a defined deprecated value -> we migrate
+				 */
+				if (isLiteral || isExpression) {
+					context.report({
+						node,
+						messageId: 'useArrowEndInstead',
+						fix: (fixer) => {
+							if (node.key.type === 'VIdentifier') {
+								return fixer.replaceTextRange(node.value.range, '"arrowEnd"')
+							} else if (node.key.type === 'VDirectiveKey') {
+								return (node.value.expression.consequent.value === 'arrowRight')
+									? fixer.replaceTextRange(node.value.expression.consequent.range, '\'arrowEnd\'')
+									: fixer.replaceTextRange(node.value.expression.alternate.range, '\'arrowEnd\'')
+							}
+						},
+					})
+				}
 			},
 		})
 	},
