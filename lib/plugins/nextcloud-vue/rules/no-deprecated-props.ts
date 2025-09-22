@@ -33,6 +33,7 @@ export default {
 			useArrowEndInstead: 'Using `arrow-right` is deprecated - use `arrow-end` instead',
 			removeAriaHidden: 'Using `aria-hidden` is deprecated - remove prop from components, otherwise root element will inherit incorrect attribute.',
 			removeLimitWidth: 'Using `limit-width` is deprecated - remove prop from components, otherwise root element will inherit incorrect attribute.',
+			useCloseButtonOutsideInstead: 'Using `close-button-contained` is deprecated - use `close-button-outside` instead',
 		},
 	},
 
@@ -48,6 +49,7 @@ export default {
 		const isNcPopoverNoFocusTrapValid = versionSatisfies('8.26.0') // #6808
 		const isNcSelectUsersValid = versionSatisfies('8.27.1') // #7032
 		const isNcTextFieldArrowEndValid = versionSatisfies('8.28.0') // #7002
+		const isCloseButtonOutsideValid = versionSatisfies('8.32.0') // #7553
 
 		const legacyTypes = ['primary', 'error', 'warning', 'success', 'secondary', 'tertiary', 'tertiary-no-background']
 
@@ -252,6 +254,18 @@ export default {
 				context.report({
 					node,
 					messageId: 'useDisableSwipeForModalInstead',
+				})
+			},
+
+			'VElement[name="ncmodal"] VAttribute:has(VIdentifier[name="close-button-contained"])': function(node) {
+				if (!isCloseButtonOutsideValid) {
+					context.report({ node, messageId: 'outdatedVueLibrary' })
+					return
+				}
+
+				context.report({
+					node,
+					messageId: 'useCloseButtonOutsideInstead',
 				})
 			},
 

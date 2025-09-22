@@ -264,6 +264,11 @@ describe('no-deprecated-props', () => {
 					errors: [{ messageId: 'useDisableSwipeForModalInstead' }],
 				},
 				{
+					code: '<template><NcModal :close-button-contained="false" /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useCloseButtonOutsideInstead' }],
+				},
+				{
 					code: '<template><NcPopover :focus-trap="false" /></template>',
 					filename: '/a/src/component.vue',
 					errors: [{ messageId: 'useNoFocusTrapInstead' }],
