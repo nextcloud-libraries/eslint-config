@@ -300,6 +300,11 @@ describe('no-deprecated-props', () => {
 					filename: '/a/src/component.vue',
 					errors: [{ messageId: 'removeLimitWidth' }],
 				},
+				{
+					code: '<template><NcButton :to="toObject" exact @click="handle">Hello</NcButton></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'removeExact' }],
+				},
 			],
 		})
 	})

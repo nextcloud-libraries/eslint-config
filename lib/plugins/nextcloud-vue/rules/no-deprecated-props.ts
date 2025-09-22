@@ -33,6 +33,7 @@ export default {
 			useArrowEndInstead: 'Using `arrow-right` is deprecated - use `arrow-end` instead',
 			removeAriaHidden: 'Using `aria-hidden` is deprecated - remove prop from components, otherwise root element will inherit incorrect attribute.',
 			removeLimitWidth: 'Using `limit-width` is deprecated - remove prop from components, otherwise root element will inherit incorrect attribute.',
+			removeExact: 'Using `exact` is deprecated - consult Vue Router documentation for alternatives.',
 			useCloseButtonOutsideInstead: 'Using `close-button-contained` is deprecated - use `close-button-outside` instead',
 		},
 	},
@@ -346,6 +347,28 @@ export default {
 				context.report({
 					node,
 					messageId: 'removeLimitWidth',
+				})
+			},
+
+			'VElement VAttribute:has(VIdentifier[name="exact"])': function(node) {
+				if (![
+					'ncactionrouter',
+					'ncappnavigationitem',
+					'ncbreadcrumb',
+					'ncbutton',
+					'nclistitem',
+				].includes(node.parent.parent.name)) {
+					return
+				}
+
+				if (!isVue3Valid) {
+					// Do not throw for v8.X.X
+					return
+				}
+
+				context.report({
+					node,
+					messageId: 'removeExact',
 				})
 			},
 		})
