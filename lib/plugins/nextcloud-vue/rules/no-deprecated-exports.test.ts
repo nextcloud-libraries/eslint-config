@@ -155,6 +155,11 @@ describe('no-deprecated-exports', () => {
 					filename: '/a/src/component.vue',
 					errors: [{ messageId: 'deprecatedNcSettingsInputText' }],
 				},
+				{
+					code: '<script>import Tooltip from \'@nextcloud/vue/directives/Tooltip\'</script>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'deprecatedTooltip' }],
+				},
 			],
 		})
 	})

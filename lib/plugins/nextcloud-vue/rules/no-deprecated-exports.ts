@@ -27,6 +27,7 @@ const rule: Rule.RuleModule = {
 			deprecatedDist: 'Import from "@nextcloud/vue/dist" is deprecated',
 			deprecatedMixin: 'Mixins are no longer recommended by Vue. Consider using available alternatives',
 			deprecatedNcSettingsInputText: 'NcSettingsInputText is deprecated. Consider using available alternatives',
+			deprecatedTooltip: 'Tooltip directive is deprecated. use native title attribute or NcPopover instead',
 		},
 	},
 
@@ -36,6 +37,9 @@ const rule: Rule.RuleModule = {
 
 		const oldPattern = '@nextcloud/vue/dist/([^/]+)/([^/.]+)'
 		const mixinPattern = '@nextcloud/vue/mixins/([^/.]+)'
+
+		const isVersionValidForTooltip = versionSatisfies('8.25.0')
+		const tooltipPattern = '@nextcloud/vue/directives/Tooltip'
 
 		const isVersionValidForNcSettingsInputText = versionSatisfies('8.31.0')
 		const patternForNcSettingsInputText = '@nextcloud/vue/components/NcSettingsInputText'
@@ -67,6 +71,19 @@ const rule: Rule.RuleModule = {
 					context.report({
 						node,
 						messageId: 'deprecatedMixin',
+					})
+				}
+
+				const tooltipMatch = importPath.match(new RegExp(tooltipPattern))
+				if (tooltipMatch) {
+					if (!isVersionValidForTooltip) {
+						context.report({ node, messageId: 'outdatedVueLibrary' })
+						return
+					}
+
+					context.report({
+						node,
+						messageId: 'deprecatedTooltip',
 					})
 				}
 
