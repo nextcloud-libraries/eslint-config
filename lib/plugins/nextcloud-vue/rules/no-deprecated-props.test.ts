@@ -290,6 +290,11 @@ describe('no-deprecated-props', () => {
 					errors: [{ messageId: 'useArrowEndInstead' }],
 					output: '<template><NcTextField :trailing-button-icon="isRTL ? \'arrowLeft\' : \'arrowEnd\'" /></template>',
 				},
+				{
+					code: '<template><NcSettingsSection :limit-width="false" /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'removeLimitWidth' }],
+				},
 			],
 		})
 	})

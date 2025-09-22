@@ -32,6 +32,7 @@ export default {
 			useNcSelectUsersInstead: 'Using `user-select` is deprecated - use `NcSelectUsers` component instead',
 			useArrowEndInstead: 'Using `arrow-right` is deprecated - use `arrow-end` instead',
 			removeAriaHidden: 'Using `aria-hidden` is deprecated - remove prop from components, otherwise root element will inherit incorrect attribute.',
+			removeLimitWidth: 'Using `limit-width` is deprecated - remove prop from components, otherwise root element will inherit incorrect attribute.',
 		},
 	},
 
@@ -324,6 +325,14 @@ export default {
 						},
 					})
 				}
+			},
+
+			'VElement[name="ncsettingssection"] VAttribute:has(VIdentifier[name="limit-width"])': function(node) {
+				// This was deprecated in 8.13.0 (Nextcloud 30+), before first supported version by plugin
+				context.report({
+					node,
+					messageId: 'removeLimitWidth',
+				})
 			},
 		})
 	},
