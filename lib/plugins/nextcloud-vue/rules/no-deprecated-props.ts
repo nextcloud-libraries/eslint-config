@@ -23,6 +23,7 @@ export default {
 			useVerboseStatusInstead: 'Using `show-user-status-compact` is deprecated - use `verbose-status` instead',
 			useNoPlaceholderInstead: 'Using `allow-placeholder` is deprecated - use `no-placeholder` instead',
 			useFormatInstead: 'Using `formatter` is deprecated - use `format` instead',
+			useLocaleInstead: 'Using `lang` is deprecated - use `locale` instead',
 			useTypeDateRangeInstead: 'Using `range` is deprecated - use `type` with `date-range` or `datetime-range` instead',
 			useNoCloseInstead: 'Using `can-close` is deprecated - use `no-close` instead',
 			useDisableSwipeForModalInstead: 'Using `enable-swipe` is deprecated - use `disable-swipe` instead',
@@ -36,6 +37,7 @@ export default {
 
 	create(context) {
 		const versionSatisfies = createLibVersionValidator(context)
+		const isVue3Valid = versionSatisfies('9.0.0') // #6651
 		const isAriaHiddenValid = versionSatisfies('8.2.0') // #4835
 		const isDisableSwipeValid = versionSatisfies('8.23.0') // #6452
 		const isVariantTypeValid = versionSatisfies('8.24.0') // #6472
@@ -194,6 +196,18 @@ export default {
 				context.report({
 					node,
 					messageId: 'useFormatInstead',
+				})
+			},
+
+			'VElement[name="ncdatetimepicker"] VAttribute:has(VIdentifier[name="lang"])': function(node) {
+				if (!isVue3Valid) {
+					// Do not throw for v8.X.X
+					return
+				}
+
+				context.report({
+					node,
+					messageId: 'useLocaleInstead',
 				})
 			},
 

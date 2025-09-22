@@ -63,6 +63,10 @@ describe('no-deprecated-props', () => {
 					code: '<template><NcButton>Hello</NcButton></template>',
 					filename: '/a/src/component.vue',
 				},
+				{
+					code: '<template><NcDateTimePicker :lang="customLangObject" /></template>', // Since 9.0.0
+					filename: '/a/src/component.vue',
+				},
 			],
 			invalid: [
 				{
@@ -82,7 +86,7 @@ describe('no-deprecated-props', () => {
 	test('no-deprecated-props', () => {
 		vol.fromNestedJSON({
 			'/a': {
-				'package.json': '{"name": "my-app","version": "0.1.0","dependencies":{"@nextcloud/vue":"^8.27.1"}}',
+				'package.json': '{"name": "my-app","version": "0.1.0","dependencies":{"@nextcloud/vue":"^9.0.0"}}',
 				src: { },
 			},
 		})
@@ -233,6 +237,11 @@ describe('no-deprecated-props', () => {
 					code: '<template><NcDateTimePicker :formatter="customFormatter" /></template>',
 					filename: '/a/src/component.vue',
 					errors: [{ messageId: 'useFormatInstead' }],
+				},
+				{
+					code: '<template><NcDateTimePicker :lang="customLangObject" /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useLocaleInstead' }],
 				},
 				{
 					code: '<template><NcDateTimePicker range /></template>',
