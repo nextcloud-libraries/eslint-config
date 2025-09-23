@@ -63,6 +63,10 @@ describe('no-deprecated-props', () => {
 					code: '<template><NcButton>Hello</NcButton></template>',
 					filename: '/a/src/component.vue',
 				},
+				{
+					code: '<template><NcDateTimePicker :lang="customLangObject" /></template>', // Since 9.0.0
+					filename: '/a/src/component.vue',
+				},
 			],
 			invalid: [
 				{
@@ -82,7 +86,7 @@ describe('no-deprecated-props', () => {
 	test('no-deprecated-props', () => {
 		vol.fromNestedJSON({
 			'/a': {
-				'package.json': '{"name": "my-app","version": "0.1.0","dependencies":{"@nextcloud/vue":"^8.27.1"}}',
+				'package.json': '{"name": "my-app","version": "0.1.0","dependencies":{"@nextcloud/vue":"^9.0.0"}}',
 				src: { },
 			},
 		})
@@ -235,6 +239,11 @@ describe('no-deprecated-props', () => {
 					errors: [{ messageId: 'useFormatInstead' }],
 				},
 				{
+					code: '<template><NcDateTimePicker :lang="customLangObject" /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useLocaleInstead' }],
+				},
+				{
 					code: '<template><NcDateTimePicker range /></template>',
 					filename: '/a/src/component.vue',
 					errors: [{ messageId: 'useTypeDateRangeInstead' }],
@@ -255,6 +264,11 @@ describe('no-deprecated-props', () => {
 					errors: [{ messageId: 'useDisableSwipeForModalInstead' }],
 				},
 				{
+					code: '<template><NcModal :close-button-contained="false" /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useCloseButtonOutsideInstead' }],
+				},
+				{
 					code: '<template><NcPopover :focus-trap="false" /></template>',
 					filename: '/a/src/component.vue',
 					errors: [{ messageId: 'useNoFocusTrapInstead' }],
@@ -268,6 +282,28 @@ describe('no-deprecated-props', () => {
 					code: '<template><NcSelect user-select /></template>',
 					filename: '/a/src/component.vue',
 					errors: [{ messageId: 'useNcSelectUsersInstead' }],
+				},
+				{
+					code: '<template><NcTextField trailing-button-icon="arrowRight" /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useArrowEndInstead' }],
+					output: '<template><NcTextField trailing-button-icon="arrowEnd" /></template>',
+				},
+				{
+					code: '<template><NcTextField :trailing-button-icon="isRTL ? \'arrowLeft\' : \'arrowRight\'" /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useArrowEndInstead' }],
+					output: '<template><NcTextField :trailing-button-icon="isRTL ? \'arrowLeft\' : \'arrowEnd\'" /></template>',
+				},
+				{
+					code: '<template><NcSettingsSection :limit-width="false" /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'removeLimitWidth' }],
+				},
+				{
+					code: '<template><NcButton :to="toObject" exact @click="handle">Hello</NcButton></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'removeExact' }],
 				},
 			],
 		})
