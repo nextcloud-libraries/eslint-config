@@ -1,8 +1,9 @@
-import type { Linter } from 'eslint'
 /*!
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
+
+import type { Linter } from 'eslint'
 import type { ConfigOptions } from '../types.d.ts'
 
 import perfectionist from 'eslint-plugin-perfectionist'
@@ -18,14 +19,76 @@ import importExtensions from '../plugins/import-extensions/index.ts'
  *
  * @param options - Configuration options
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function imports(options: ConfigOptions): Linter.Config[] {
+	const lintingRules: Partial<Linter.RulesRecord> = {
+		// Require file extensions
+		'import-extensions/extensions': 'error',
+	}
+
+	const formattingRules: Partial<Linter.RulesRecord> = {
+		// Sorting of imports
+		'sort-imports': 'off' as const,
+		'perfectionist/sort-imports': [
+			'error',
+			{
+				type: 'natural',
+				newlinesBetween: 'never',
+				groups: [
+					// type first
+					'external-type',
+					'type',
+					{ newlinesBetween: 'always' },
+					// external things
+					[
+						'builtin',
+						'external',
+						'object',
+					],
+					// Vue components
+					'vue', // external modules (e.g. nextcloud-vue)
+					'internalVue', // internal local vue components
+					// everything else which is everything internal
+					'unknown',
+					{ newlinesBetween: 'always' },
+					// side effect only: import 'sideeffect.js'
+					'side-effect',
+					// import style from 'my.module.css'
+					'style',
+				],
+				customGroups: [
+					{
+						groupName: 'vue',
+						selector: 'external',
+						modifiers: ['value'],
+						elementNamePattern: [
+							'\\.vue$',
+							'@nextcloud/vue/components/',
+						],
+					},
+					{
+						groupName: 'internalVue',
+						modifiers: ['value'],
+						elementNamePattern: ['\\.vue$'],
+					},
+				],
+			},
+		],
+		'perfectionist/sort-named-exports': [
+			'error',
+			createSortingConfig('export'),
+		],
+		'perfectionist/sort-named-imports': [
+			'error',
+			createSortingConfig('import'),
+		],
+	}
+
 	return [
 		{
 			name: 'nextcloud/imports/setup',
 			plugins: {
-				perfectionist,
-				'import-extensions': importExtensions,
+				...(options.formatting ? { perfectionist } : {}),
+				...(options.linting ? { 'import-extensions': importExtensions } : {}),
 			},
 		},
 		{
@@ -36,63 +99,8 @@ export function imports(options: ConfigOptions): Linter.Config[] {
 				...GLOB_FILES_VUE,
 			],
 			rules: {
-				// Require file extensions
-				'import-extensions/extensions': 'error',
-				// Sorting of imports
-				'sort-imports': 'off',
-				'perfectionist/sort-imports': [
-					'error',
-					{
-						type: 'natural',
-						newlinesBetween: 'never',
-						groups: [
-							// type first
-							'external-type',
-							'type',
-							{ newlinesBetween: 'always' },
-							// external things
-							[
-								'builtin',
-								'external',
-								'object',
-							],
-							// Vue components
-							'vue', // external modules (e.g. nextcloud-vue)
-							'internalVue', // internal local vue components
-							// everything else which is everything internal
-							'unknown',
-							{ newlinesBetween: 'always' },
-							// side effect only: import 'sideeffect.js'
-							'side-effect',
-							// import style from 'my.module.css'
-							'style',
-						],
-						customGroups: [
-							{
-								groupName: 'vue',
-								selector: 'external',
-								modifiers: ['value'],
-								elementNamePattern: [
-									'\\.vue$',
-									'@nextcloud/vue/components/',
-								],
-							},
-							{
-								groupName: 'internalVue',
-								modifiers: ['value'],
-								elementNamePattern: ['\\.vue$'],
-							},
-						],
-					},
-				],
-				'perfectionist/sort-named-exports': [
-					'error',
-					createSortingConfig('export'),
-				],
-				'perfectionist/sort-named-imports': [
-					'error',
-					createSortingConfig('import'),
-				],
+				...(options.linting ? lintingRules : {}),
+				...(options.formatting ? formattingRules : {}),
 			},
 		},
 	]

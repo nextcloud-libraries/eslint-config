@@ -2,6 +2,7 @@
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
+
 import type { Linter } from 'eslint'
 import type { ConfigOptions } from '../types.d.ts'
 
@@ -20,7 +21,11 @@ import l10nPlugin from '../plugins/l10n/index.ts'
  *
  * @param options options defining the config preset flavor
  */
-export function codeStyle(options: ConfigOptions): (Linter.Config | Linter.BaseConfig)[] {
+export function codeStyle(options: ConfigOptions): Linter.Config[] {
+	if (options.formatting === false) {
+		return []
+	}
+
 	return [
 		// Nextcloud code style
 		{

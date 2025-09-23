@@ -13,16 +13,22 @@ import { vue } from './vue.ts'
 /**
  * Vue2 related ESLint rules for Nextcloud
  *
- * @param option options defining the config preset flavor
+ * @param options - Configuration options defining the config preset flavor
  */
-export function vue2(option: ConfigOptions): Linter.Config[] {
+export function vue2(options: ConfigOptions): Linter.Config[] {
+	if (options.linting === false) {
+		return []
+	}
+
 	return [
 		...restrictConfigFiles(
-			vuePlugin.configs['flat/vue2-recommended'],
+			options.linting
+				? vuePlugin.configs['flat/vue2-recommended']
+				: vuePlugin.configs['flat/vue2-essential'],
 			GLOB_FILES_VUE,
 		),
 
-		...vue(option),
+		...vue(options),
 
 		{
 			rules: {

@@ -20,6 +20,10 @@ import { restrictConfigFiles } from '../utils.ts'
  * @param options options defining the config preset flavor
  */
 export function typescript(options: ConfigOptions): Linter.Config[] {
+	if (options.linting === false) {
+		return []
+	}
+
 	return [
 		...restrictConfigFiles(
 			typescriptPlugin.configs.recommended as Linter.Config[],
