@@ -18,22 +18,29 @@ import { vue } from './vue.ts'
 export function vue3(options: ConfigOptions): Linter.Config[] {
 	return [
 		...restrictConfigFiles(
-			vuePlugin.configs['flat/recommended'],
+			options.linting
+				? vuePlugin.configs['flat/recommended']
+				: vuePlugin.configs['flat/essential'],
 			GLOB_FILES_VUE,
 		),
 
 		...vue(options),
 
-		// Vue3 specific overrides
-		{
-			files: GLOB_FILES_VUE,
-			rules: {
-				// Deprecated thus we should not use it
-				'vue/no-deprecated-delete-set': 'error',
-				// When using script-setup the modern approach should be used
-				'vue/prefer-define-options': 'error',
-			},
-			name: 'nextcloud/vue3/rules',
-		},
+		...(options.linting
+			? [
+					// Vue3 specific overrides
+					{
+						files: GLOB_FILES_VUE,
+						rules: {
+							// Deprecated thus we should not use it
+							'vue/no-deprecated-delete-set': 'error',
+							// When using script-setup the modern approach should be used
+							'vue/prefer-define-options': 'error',
+						},
+						name: 'nextcloud/vue3/rules',
+					} satisfies Linter.Config,
+				]
+			: []
+		),
 	]
 }
