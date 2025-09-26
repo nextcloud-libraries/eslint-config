@@ -26,6 +26,7 @@ export default {
 			useLocaleInstead: 'Using `lang` is deprecated - use `locale` instead',
 			useTypeDateRangeInstead: 'Using `range` is deprecated - use `type` with `date-range` or `datetime-range` instead',
 			useNoCloseInstead: 'Using `can-close` is deprecated - use `no-close` instead',
+			useNoCloseOnClickOutsideInstead: 'Using `close-on-click-outside` is deprecated - use `no-close-on-click-outside` instead',
 			useDisableSwipeForModalInstead: 'Using `enable-swipe` is deprecated - use `disable-swipe` instead',
 			useNoFocusTrapInstead: 'Using `focus-trap` is deprecated - use `no-focus-trap` instead',
 			useKeepOpenInstead: 'Using `close-on-select` is deprecated - use `keep-open` instead',
@@ -35,6 +36,8 @@ export default {
 			removeLimitWidth: 'Using `limit-width` is deprecated - remove prop from components, otherwise root element will inherit incorrect attribute.',
 			removeExact: 'Using `exact` is deprecated - consult Vue Router documentation for alternatives.',
 			useCloseButtonOutsideInstead: 'Using `close-button-contained` is deprecated - use `close-button-outside` instead',
+			useModelValueInsteadChecked: 'Using `checked` is deprecated - use `model-value` or `v-model` instead',
+			useModelValueInsteadValue: 'Using `value` is deprecated - use `model-value` or `v-model` instead',
 		},
 	},
 
@@ -42,6 +45,7 @@ export default {
 		const versionSatisfies = createLibVersionValidator(context)
 		const isVue3Valid = versionSatisfies('9.0.0') // #6651
 		const isAriaHiddenValid = versionSatisfies('8.2.0') // #4835
+		const isModelValueValid = versionSatisfies('8.20.0') // #6172
 		const isDisableSwipeValid = versionSatisfies('8.23.0') // #6452
 		const isVariantTypeValid = versionSatisfies('8.24.0') // #6472
 		const isDefaultBooleanFalseValid = versionSatisfies('8.24.0') // #6656
@@ -246,6 +250,18 @@ export default {
 				})
 			},
 
+			'VElement[name="ncpopover"] VAttribute:has(VIdentifier[name="close-on-click-outside"])': function(node) {
+				if (!isVue3Valid) {
+					// Do not throw for v8.X.X
+					return
+				}
+
+				context.report({
+					node,
+					messageId: 'useNoCloseOnClickOutsideInstead',
+				})
+			},
+
 			'VElement[name="ncmodal"] VAttribute:has(VIdentifier[name="enable-swipe"])': function(node) {
 				if (!isDisableSwipeValid) {
 					context.report({ node, messageId: 'outdatedVueLibrary' })
@@ -369,6 +385,84 @@ export default {
 				context.report({
 					node,
 					messageId: 'removeExact',
+				})
+			},
+
+			'VElement VAttribute:has(VIdentifier[name="checked"])': function(node) {
+				if (![
+					'ncactioncheckbox',
+					'ncactionradio',
+					'nccheckboxradioswitch',
+				].includes(node.parent.parent.name)) {
+					return
+				}
+
+				if (!isModelValueValid) {
+					context.report({ node, messageId: 'outdatedVueLibrary' })
+					return
+				}
+
+				context.report({
+					node,
+					messageId: 'useModelValueInsteadChecked',
+					fix: (fixer) => {
+						if (node.key.type === 'VIdentifier') {
+							return fixer.replaceTextRange(node.key.range, 'model-value')
+						} else if (node.key.type === 'VDirectiveKey') {
+							if (node.key.name.name === 'model') {
+								return fixer.replaceTextRange(node.key.range, 'v-model')
+							} else if (node.key.modifiers.some((m) => m.name === 'sync')) {
+								return fixer.replaceTextRange(node.key.range, 'v-model')
+							} else {
+								return fixer.replaceTextRange(node.key.argument.range, 'model-value')
+							}
+						}
+					},
+				})
+			},
+
+			'VElement VAttribute:has(VIdentifier[name="value"])': function(node) {
+				if (![
+					'ncactioninput',
+					'ncactiontexteditable',
+					'nccolorpicker',
+					'ncdatetimepicker',
+					'ncdatetimepickernative',
+					'ncinputfield',
+					'nctextfield',
+					'ncpasswordfield',
+					'ncrichcontenteditable',
+					'ncselecttags',
+					'ncselect',
+					'ncsettingsinputtext',
+					'ncsettingsselectgroup',
+					'nctextarea',
+					'nctimezonepicker',
+				].includes(node.parent.parent.name)) {
+					return
+				}
+
+				if (!isModelValueValid) {
+					context.report({ node, messageId: 'outdatedVueLibrary' })
+					return
+				}
+
+				context.report({
+					node,
+					messageId: 'useModelValueInsteadValue',
+					fix: (fixer) => {
+						if (node.key.type === 'VIdentifier') {
+							return fixer.replaceTextRange(node.key.range, 'model-value')
+						} else if (node.key.type === 'VDirectiveKey') {
+							if (node.key.name.name === 'model') {
+								return fixer.replaceTextRange(node.key.range, 'v-model')
+							} else if (node.key.modifiers.some((m) => m.name === 'sync')) {
+								return fixer.replaceTextRange(node.key.range, 'v-model')
+							} else {
+								return fixer.replaceTextRange(node.key.argument.range, 'model-value')
+							}
+						}
+					},
 				})
 			},
 		})

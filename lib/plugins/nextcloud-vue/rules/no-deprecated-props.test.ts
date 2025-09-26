@@ -26,7 +26,6 @@ describe('no-deprecated-props', () => {
 	})
 
 	test('no-deprecated-props if library is not in use', () => {
-		console.log('only ttests')
 		vol.fromNestedJSON({
 			'/a': {
 				'package.json': '{"name": "my-app","version": "0.1.0"}',
@@ -284,6 +283,11 @@ describe('no-deprecated-props', () => {
 					errors: [{ messageId: 'useNcSelectUsersInstead' }],
 				},
 				{
+					code: '<template><NcPopover :close-on-click-outside="false" /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useNoCloseOnClickOutsideInstead' }],
+				},
+				{
 					code: '<template><NcTextField trailing-button-icon="arrowRight" /></template>',
 					filename: '/a/src/component.vue',
 					errors: [{ messageId: 'useArrowEndInstead' }],
@@ -304,6 +308,54 @@ describe('no-deprecated-props', () => {
 					code: '<template><NcButton :to="toObject" exact @click="handle">Hello</NcButton></template>',
 					filename: '/a/src/component.vue',
 					errors: [{ messageId: 'removeExact' }],
+				},
+				{
+					code: '<template><NcCheckboxRadioSwitch checked /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useModelValueInsteadChecked' }],
+					output: '<template><NcCheckboxRadioSwitch model-value /></template>',
+				},
+				{
+					code: '<template><NcCheckboxRadioSwitch :checked="isChecked" /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useModelValueInsteadChecked' }],
+					output: '<template><NcCheckboxRadioSwitch :model-value="isChecked" /></template>',
+				},
+				{
+					code: '<template><NcCheckboxRadioSwitch :checked.sync="isChecked" /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useModelValueInsteadChecked' }],
+					output: '<template><NcCheckboxRadioSwitch v-model="isChecked" /></template>',
+				},
+				{
+					code: '<template><NcCheckboxRadioSwitch v-model:checked="isChecked" /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useModelValueInsteadChecked' }],
+					output: '<template><NcCheckboxRadioSwitch v-model="isChecked" /></template>',
+				},
+				{
+					code: '<template><NcTextField value="input" /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useModelValueInsteadValue' }],
+					output: '<template><NcTextField model-value="input" /></template>',
+				},
+				{
+					code: '<template><NcTextField :value="input" /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useModelValueInsteadValue' }],
+					output: '<template><NcTextField :model-value="input" /></template>',
+				},
+				{
+					code: '<template><NcTextField :value.sync="input" /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useModelValueInsteadValue' }],
+					output: '<template><NcTextField v-model="input" /></template>',
+				},
+				{
+					code: '<template><NcTextField v-model:value="input" /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useModelValueInsteadValue' }],
+					output: '<template><NcTextField v-model="input" /></template>',
 				},
 			],
 		})
