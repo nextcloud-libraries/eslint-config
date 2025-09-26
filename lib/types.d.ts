@@ -6,4 +6,18 @@
 export interface ConfigOptions {
 	isLibrary: boolean
 	vueIsTypescript: boolean
+
+	/**
+	 * Include formatting related rules.
+	 *
+	 * @default true
+	 */
+	formatting?: boolean
+
+	/**
+	 * Include linting related rules.
+	 *
+	 * @default true
+	 */
+	linting?: boolean
 }

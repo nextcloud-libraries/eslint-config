@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 import type { ESLint, Linter } from 'eslint'
+import type { ConfigOptions } from '../types.d.ts'
 
 import jsonPlugin from '@eslint/json'
 import {
@@ -14,46 +15,57 @@ import packageJsonPlugin from '../plugins/packageJson.ts'
 
 /**
  * JSON related ESLint rules for Nextcloud
+ *
+ * @param options - Configuration options
  */
-export const json: Linter.Config[] = [
-	{
-		language: 'json/json',
-		plugins: {
-			json: jsonPlugin as ESLint.Plugin,
-			'package-json': packageJsonPlugin,
+export function json(options?: ConfigOptions): Linter.Config[] {
+	const linting = [
+		// Special handing of JSONC
+		{
+			files: GLOB_FILES_JSONC,
+			language: 'json/jsonc',
+			...jsonPlugin.configs.recommended,
+			name: 'nextcloud/jsonc',
 		},
-		rules: {
-			...jsonPlugin.configs.recommended.rules,
-		},
-		files: GLOB_FILES_JSON,
-		name: 'nextcloud/json',
-	},
 
-	// lint package.json files
-	{
-		files: ['**/package.json'],
-		language: 'json/json',
-		rules: {
-			'package-json/sort-package-json': 'error',
+		// Microsoft specific JSONC (e.g. Typescript config)
+		{
+			files: GLOB_FILES_MS_JSON,
+			language: 'json/jsonc',
+			languageOptions: {
+				allowTrailingCommas: true,
+			},
+			...jsonPlugin.configs.recommended,
+			name: 'nextcloud/ms-json',
 		},
-	},
+	]
 
-	// Special handing of JSONC
-	{
-		files: GLOB_FILES_JSONC,
-		language: 'json/jsonc',
-		...jsonPlugin.configs.recommended,
-		name: 'nextcloud/jsonc',
-	},
-
-	// Microsoft specific JSONC (e.g. Typescript config)
-	{
-		files: GLOB_FILES_MS_JSON,
-		language: 'json/jsonc',
-		languageOptions: {
-			allowTrailingCommas: true,
+	const formatting: Linter.Config[] = [
+		// format package.json files
+		{
+			files: ['**/package.json'],
+			language: 'json/json',
+			rules: {
+				'package-json/sort-package-json': 'error',
+			},
 		},
-		...jsonPlugin.configs.recommended,
-		name: 'nextcloud/ms-json',
-	},
-]
+	]
+
+	return [
+		{
+			language: 'json/json',
+			plugins: {
+				json: jsonPlugin as ESLint.Plugin,
+				'package-json': packageJsonPlugin,
+			},
+			rules: {
+				...jsonPlugin.configs.recommended.rules,
+			},
+			files: GLOB_FILES_JSON,
+			name: 'nextcloud/json',
+		},
+
+		...(options.linting ? linting : []),
+		...(options.formatting ? formatting : []),
+	]
+}
