@@ -26,6 +26,7 @@ export default {
 			useLocaleInstead: 'Using `lang` is deprecated - use `locale` instead',
 			useTypeDateRangeInstead: 'Using `range` is deprecated - use `type` with `date-range` or `datetime-range` instead',
 			useNoCloseInstead: 'Using `can-close` is deprecated - use `no-close` instead',
+			useNoCloseOnClickOutsideInstead: 'Using `close-on-click-outside` is deprecated - use `no-close-on-click-outside` instead',
 			useDisableSwipeForModalInstead: 'Using `enable-swipe` is deprecated - use `disable-swipe` instead',
 			useNoFocusTrapInstead: 'Using `focus-trap` is deprecated - use `no-focus-trap` instead',
 			useKeepOpenInstead: 'Using `close-on-select` is deprecated - use `keep-open` instead',
@@ -243,6 +244,18 @@ export default {
 				context.report({
 					node,
 					messageId: 'useNoCloseInstead',
+				})
+			},
+
+			'VElement[name="ncpopover"] VAttribute:has(VIdentifier[name="close-on-click-outside"])': function(node) {
+				if (!isVue3Valid) {
+					// Do not throw for v8.X.X
+					return
+				}
+
+				context.report({
+					node,
+					messageId: 'useNoCloseOnClickOutsideInstead',
 				})
 			},
 

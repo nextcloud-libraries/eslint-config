@@ -284,6 +284,11 @@ describe('no-deprecated-props', () => {
 					errors: [{ messageId: 'useNcSelectUsersInstead' }],
 				},
 				{
+					code: '<template><NcPopover :close-on-click-outside="false" /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useNoCloseOnClickOutsideInstead' }],
+				},
+				{
 					code: '<template><NcTextField trailing-button-icon="arrowRight" /></template>',
 					filename: '/a/src/component.vue',
 					errors: [{ messageId: 'useArrowEndInstead' }],
