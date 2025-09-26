@@ -37,6 +37,7 @@ export default {
 			removeExact: 'Using `exact` is deprecated - consult Vue Router documentation for alternatives.',
 			useCloseButtonOutsideInstead: 'Using `close-button-contained` is deprecated - use `close-button-outside` instead',
 			useModelValueInsteadChecked: 'Using `checked` is deprecated - use `model-value` or `v-model` instead',
+			useModelValueInsteadValue: 'Using `value` is deprecated - use `model-value` or `v-model` instead',
 		},
 	},
 
@@ -404,6 +405,51 @@ export default {
 				context.report({
 					node,
 					messageId: 'useModelValueInsteadChecked',
+					fix: (fixer) => {
+						if (node.key.type === 'VIdentifier') {
+							return fixer.replaceTextRange(node.key.range, 'model-value')
+						} else if (node.key.type === 'VDirectiveKey') {
+							if (node.key.name.name === 'model') {
+								return fixer.replaceTextRange(node.key.range, 'v-model')
+							} else if (node.key.modifiers.some((m) => m.name === 'sync')) {
+								return fixer.replaceTextRange(node.key.range, 'v-model')
+							} else {
+								return fixer.replaceTextRange(node.key.argument.range, 'model-value')
+							}
+						}
+					},
+				})
+			},
+
+			'VElement VAttribute:has(VIdentifier[name="value"])': function(node) {
+				if (![
+					'ncactioninput',
+					'ncactiontexteditable',
+					'nccolorpicker',
+					'ncdatetimepicker',
+					'ncdatetimepickernative',
+					'ncinputfield',
+					'nctextfield',
+					'ncpasswordfield',
+					'ncrichcontenteditable',
+					'ncselecttags',
+					'ncselect',
+					'ncsettingsinputtext',
+					'ncsettingsselectgroup',
+					'nctextarea',
+					'nctimezonepicker',
+				].includes(node.parent.parent.name)) {
+					return
+				}
+
+				if (!isModelValueValid) {
+					context.report({ node, messageId: 'outdatedVueLibrary' })
+					return
+				}
+
+				context.report({
+					node,
+					messageId: 'useModelValueInsteadValue',
 					fix: (fixer) => {
 						if (node.key.type === 'VIdentifier') {
 							return fixer.replaceTextRange(node.key.range, 'model-value')

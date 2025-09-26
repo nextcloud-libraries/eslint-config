@@ -333,6 +333,30 @@ describe('no-deprecated-props', () => {
 					errors: [{ messageId: 'useModelValueInsteadChecked' }],
 					output: '<template><NcCheckboxRadioSwitch v-model="isChecked" /></template>',
 				},
+				{
+					code: '<template><NcTextField value="input" /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useModelValueInsteadValue' }],
+					output: '<template><NcTextField model-value="input" /></template>',
+				},
+				{
+					code: '<template><NcTextField :value="input" /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useModelValueInsteadValue' }],
+					output: '<template><NcTextField :model-value="input" /></template>',
+				},
+				{
+					code: '<template><NcTextField :value.sync="input" /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useModelValueInsteadValue' }],
+					output: '<template><NcTextField v-model="input" /></template>',
+				},
+				{
+					code: '<template><NcTextField v-model:value="input" /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useModelValueInsteadValue' }],
+					output: '<template><NcTextField v-model="input" /></template>',
+				},
 			],
 		})
 	})
