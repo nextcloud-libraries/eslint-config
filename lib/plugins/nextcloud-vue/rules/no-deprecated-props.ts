@@ -36,6 +36,7 @@ export default {
 			removeLimitWidth: 'Using `limit-width` is deprecated - remove prop from components, otherwise root element will inherit incorrect attribute.',
 			removeExact: 'Using `exact` is deprecated - consult Vue Router documentation for alternatives.',
 			useCloseButtonOutsideInstead: 'Using `close-button-contained` is deprecated - use `close-button-outside` instead',
+			useModelValueInsteadChecked: 'Using `checked` is deprecated - use `model-value` or `v-model` instead',
 		},
 	},
 
@@ -43,6 +44,7 @@ export default {
 		const versionSatisfies = createLibVersionValidator(context)
 		const isVue3Valid = versionSatisfies('9.0.0') // #6651
 		const isAriaHiddenValid = versionSatisfies('8.2.0') // #4835
+		const isModelValueValid = versionSatisfies('8.20.0') // #6172
 		const isDisableSwipeValid = versionSatisfies('8.23.0') // #6452
 		const isVariantTypeValid = versionSatisfies('8.24.0') // #6472
 		const isDefaultBooleanFalseValid = versionSatisfies('8.24.0') // #6656
@@ -382,6 +384,39 @@ export default {
 				context.report({
 					node,
 					messageId: 'removeExact',
+				})
+			},
+
+			'VElement VAttribute:has(VIdentifier[name="checked"])': function(node) {
+				if (![
+					'ncactioncheckbox',
+					'ncactionradio',
+					'nccheckboxradioswitch',
+				].includes(node.parent.parent.name)) {
+					return
+				}
+
+				if (!isModelValueValid) {
+					context.report({ node, messageId: 'outdatedVueLibrary' })
+					return
+				}
+
+				context.report({
+					node,
+					messageId: 'useModelValueInsteadChecked',
+					fix: (fixer) => {
+						if (node.key.type === 'VIdentifier') {
+							return fixer.replaceTextRange(node.key.range, 'model-value')
+						} else if (node.key.type === 'VDirectiveKey') {
+							if (node.key.name.name === 'model') {
+								return fixer.replaceTextRange(node.key.range, 'v-model')
+							} else if (node.key.modifiers.some((m) => m.name === 'sync')) {
+								return fixer.replaceTextRange(node.key.range, 'v-model')
+							} else {
+								return fixer.replaceTextRange(node.key.argument.range, 'model-value')
+							}
+						}
+					},
 				})
 			},
 		})

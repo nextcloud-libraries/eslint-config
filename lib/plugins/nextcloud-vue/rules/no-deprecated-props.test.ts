@@ -26,7 +26,6 @@ describe('no-deprecated-props', () => {
 	})
 
 	test('no-deprecated-props if library is not in use', () => {
-		console.log('only ttests')
 		vol.fromNestedJSON({
 			'/a': {
 				'package.json': '{"name": "my-app","version": "0.1.0"}',
@@ -309,6 +308,30 @@ describe('no-deprecated-props', () => {
 					code: '<template><NcButton :to="toObject" exact @click="handle">Hello</NcButton></template>',
 					filename: '/a/src/component.vue',
 					errors: [{ messageId: 'removeExact' }],
+				},
+				{
+					code: '<template><NcCheckboxRadioSwitch checked /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useModelValueInsteadChecked' }],
+					output: '<template><NcCheckboxRadioSwitch model-value /></template>',
+				},
+				{
+					code: '<template><NcCheckboxRadioSwitch :checked="isChecked" /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useModelValueInsteadChecked' }],
+					output: '<template><NcCheckboxRadioSwitch :model-value="isChecked" /></template>',
+				},
+				{
+					code: '<template><NcCheckboxRadioSwitch :checked.sync="isChecked" /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useModelValueInsteadChecked' }],
+					output: '<template><NcCheckboxRadioSwitch v-model="isChecked" /></template>',
+				},
+				{
+					code: '<template><NcCheckboxRadioSwitch v-model:checked="isChecked" /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useModelValueInsteadChecked' }],
+					output: '<template><NcCheckboxRadioSwitch v-model="isChecked" /></template>',
 				},
 			],
 		})
