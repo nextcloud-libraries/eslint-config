@@ -44,10 +44,4 @@ const USER_STATUSES = [
 	'offline',
 ]
 // 🚧 Currently this is an edge case and isn't fixed properly...
-const WEEKDAYS = ['Monday',
-	'Tuesday',
-	'Wednesday',
-	'Thursday',
-	'Friday',
-	'Saturday',
-	'Sunday']
+const WEEKDAYS = ['Monday',	'Tuesday',	'Wednesday',	'Thursday',	'Friday',	'Saturday',	'Sunday']
