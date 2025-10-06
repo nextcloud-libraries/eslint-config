@@ -23,6 +23,10 @@ import nextcloudPlugin from '../plugins/nextcloud/index.ts'
  * @param options - Configuration options
  */
 export function javascript(options: ConfigOptions): Linter.Config[] {
+	if (options.linting === false) {
+		return []
+	}
+
 	return [
 		{
 			name: 'nextcloud/javascript/setup',
