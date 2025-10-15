@@ -47,20 +47,6 @@ export function vue(options: ConfigOptions): Linter.Config[] {
 		files: GLOB_FILES_VUE,
 		name: 'nextcloud/vue/rules',
 		rules: {
-			// PascalCase components names for vuejs
-			'vue/component-name-in-template-casing': [
-				'error',
-				'PascalCase',
-			],
-			// space before self-closing elements
-			'vue/html-closing-bracket-spacing': 'error',
-			// no ending html tag on a new line
-			'vue/html-closing-bracket-newline': [
-				'error',
-				{
-					multiline: 'never',
-				},
-			],
 			// Enforce documentation of properties
 			'vue/require-prop-comment': options.isLibrary
 				? [
@@ -82,15 +68,6 @@ export function vue(options: ConfigOptions): Linter.Config[] {
 			'vue/no-boolean-default': [
 				'warn',
 				'default-false',
-			],
-			// Allow 3 attributes on the same line if singe line
-			'vue/max-attributes-per-line': [
-				'error',
-				{
-					singleline: {
-						max: 3,
-					},
-				},
 			],
 			// Component names should match their export names - readability and maintainability ("where does this component come from?")
 			'vue/match-component-import-name': 'error',
@@ -141,6 +118,29 @@ export function vue(options: ConfigOptions): Linter.Config[] {
 			// same as in the codeStyle config but for the <template> in Vue files
 			'@nextcloud-l10n/non-breaking-space-vue': 'error',
 			'@nextcloud-l10n/enforce-ellipsis-vue': 'error',
+			// PascalCase components names for vuejs
+			'vue/component-name-in-template-casing': [
+				'error',
+				'PascalCase',
+			],
+			// space before self-closing elements
+			'vue/html-closing-bracket-spacing': 'error',
+			// no ending html tag on a new line
+			'vue/html-closing-bracket-newline': [
+				'error',
+				{
+					multiline: 'never',
+				},
+			],
+			// Allow 3 attributes on the same line if singe line
+			'vue/max-attributes-per-line': [
+				'error',
+				{
+					singleline: {
+						max: 3,
+					},
+				},
+			],
 			// Also enforce tabs for template
 			'vue/html-indent': [
 				'error',

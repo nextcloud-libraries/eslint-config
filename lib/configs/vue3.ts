@@ -17,12 +17,9 @@ import { vue } from './vue.ts'
  */
 export function vue3(options: ConfigOptions): Linter.Config[] {
 	return [
-		...restrictConfigFiles(
-			options.linting
-				? vuePlugin.configs['flat/recommended']
-				: vuePlugin.configs['flat/essential'],
-			GLOB_FILES_VUE,
-		),
+		// the essential rules contain rules that
+		...(options.linting && !options.formatting ? restrictConfigFiles(vuePlugin.configs['flat/essential'], GLOB_FILES_VUE) : []),
+		...(options.linting && options.formatting ? restrictConfigFiles(vuePlugin.configs['flat/recommended'], GLOB_FILES_VUE) : []),
 
 		...vue(options),
 

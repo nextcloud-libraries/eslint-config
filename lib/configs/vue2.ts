@@ -16,20 +16,7 @@ import { vue } from './vue.ts'
  * @param options - Configuration options defining the config preset flavor
  */
 export function vue2(options: ConfigOptions): Linter.Config[] {
-	if (options.linting === false) {
-		return []
-	}
-
-	return [
-		...restrictConfigFiles(
-			options.linting
-				? vuePlugin.configs['flat/vue2-recommended']
-				: vuePlugin.configs['flat/vue2-essential'],
-			GLOB_FILES_VUE,
-		),
-
-		...vue(options),
-
+	const formattingRules: Linter.Config[] = [
 		{
 			rules: {
 			// custom event naming convention
@@ -43,7 +30,17 @@ export function vue2(options: ConfigOptions): Linter.Config[] {
 				],
 			},
 			files: GLOB_FILES_VUE,
-			name: 'nextcloud/vue2/rules',
+			name: 'nextcloud/vue2/stylistic-rules',
 		},
+	]
+
+	return [
+		// the essential rules contain rules that
+		...(options.linting && !options.formatting ? restrictConfigFiles(vuePlugin.configs['flat/vue2-essential'], GLOB_FILES_VUE) : []),
+		...(options.linting && options.formatting ? restrictConfigFiles(vuePlugin.configs['flat/vue2-recommended'], GLOB_FILES_VUE) : []),
+
+		...vue(options),
+
+		...(options.formatting ? formattingRules : []),
 	]
 }
