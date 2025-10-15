@@ -13,17 +13,10 @@ import { vue } from './vue.ts'
 /**
  * Vue2 related ESLint rules for Nextcloud
  *
- * @param option options defining the config preset flavor
+ * @param options - Configuration options defining the config preset flavor
  */
-export function vue2(option: ConfigOptions): Linter.Config[] {
-	return [
-		...restrictConfigFiles(
-			vuePlugin.configs['flat/vue2-recommended'],
-			GLOB_FILES_VUE,
-		),
-
-		...vue(option),
-
+export function vue2(options: ConfigOptions): Linter.Config[] {
+	const formattingRules: Linter.Config[] = [
 		{
 			rules: {
 			// custom event naming convention
@@ -37,7 +30,17 @@ export function vue2(option: ConfigOptions): Linter.Config[] {
 				],
 			},
 			files: GLOB_FILES_VUE,
-			name: 'nextcloud/vue2/rules',
+			name: 'nextcloud/vue2/stylistic-rules',
 		},
+	]
+
+	return [
+		// the essential rules contain rules that
+		...(options.linting && !options.formatting ? restrictConfigFiles(vuePlugin.configs['flat/vue2-essential'], GLOB_FILES_VUE) : []),
+		...(options.linting && options.formatting ? restrictConfigFiles(vuePlugin.configs['flat/vue2-recommended'], GLOB_FILES_VUE) : []),
+
+		...vue(options),
+
+		...(options.formatting ? formattingRules : []),
 	]
 }

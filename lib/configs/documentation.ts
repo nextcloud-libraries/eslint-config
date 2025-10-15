@@ -2,6 +2,7 @@
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
+
 import type { Linter } from 'eslint'
 import type { Settings } from 'eslint-plugin-jsdoc/iterateJsdoc.js'
 import type { ConfigOptions } from '../types.d.ts'
@@ -41,6 +42,10 @@ const SHARED_JSDOC_SETTINGS: Partial<Settings> = {
  * @param options options defining the config preset flavor
  */
 export function documentation(options: ConfigOptions): Linter.Config[] {
+	if (options.linting === false) {
+		return []
+	}
+
 	return [
 		{
 			...jsdoc({
