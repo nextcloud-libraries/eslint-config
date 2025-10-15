@@ -93,13 +93,11 @@ export function codeStyle(options: ConfigOptions): (Linter.Config | Linter.BaseC
 					{ avoidQuotes: true },
 				],
 
-				// Enforce consistent new lines after [ and before ]
-				'@stylistic/array-bracket-newline': [
-					'error',
-					'consistent',
-				],
+				// Enforce new lines after [ and before ] if there are multiline entries or more than 1 item in the array (better git diff)
+				'@stylistic/array-bracket-newline': ['error',  'consistent'],
 				// Enforce new lines between array elements (better git diff) but allow to have single line arrays
 				'@stylistic/array-element-newline': ['error', 'consistent'],
+				'antfu/consistent-list-newline': ['error'],
 				// Same for objects as for arrays
 				'@stylistic/object-curly-newline': [
 					'error',
