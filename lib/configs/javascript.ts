@@ -13,6 +13,7 @@ import {
 	GLOB_FILES_TYPESCRIPT,
 	GLOB_FILES_VUE,
 } from '../globs.ts'
+import copyrightPlugin from '../plugins/copyright/index.ts'
 import nextcloudPlugin from '../plugins/nextcloud/index.ts'
 
 /**
@@ -88,6 +89,21 @@ export function javascript(options: ConfigOptions): Linter.Config[] {
 						],
 					}
 		),
+
+		// Copyright header enforcement
+		{
+			name: 'nextcloud/javascript/copyright',
+			files: [
+				...GLOB_FILES_JAVASCRIPT,
+				...GLOB_FILES_TYPESCRIPT,
+			],
+			plugins: {
+				'@nextcloud/copyright': copyrightPlugin,
+			},
+			rules: {
+				'@nextcloud/copyright/consistent-copyright-header': 'error',
+			},
+		},
 
 		// Nextcloud specific overwrite
 		{
