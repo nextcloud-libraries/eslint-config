@@ -2,6 +2,7 @@
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
+
 import type { ConfigOptions } from './types.d.ts'
 
 import { codeStyle } from './configs/codeStyle.ts'
@@ -69,6 +70,7 @@ export const recommendedVue2Library = createConfig({
 export { default as packageJsonPlugin } from './plugins/packageJson.ts'
 export { default as nextcloudPlugin } from './plugins/nextcloud/index.ts'
 export { default as l10nPlugin } from './plugins/l10n/index.ts'
+export { default as copyrightPlugin } from './plugins/copyright/index.ts'
 
 /**
  * Generate a configuration based on given options
