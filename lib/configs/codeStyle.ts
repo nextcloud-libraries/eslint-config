@@ -101,7 +101,20 @@ export function codeStyle(options: ConfigOptions): Linter.Config[] {
 				'@stylistic/object-curly-newline': 'off',
 				'@stylistic/object-curly-spacing': 'off',
 				'@stylistic/object-property-newline': 'off',
-				'@stylistic/exp-list-style': 'error',
+				'@stylistic/exp-list-style': ['error', {
+					singleLine: {
+						spacing: 'never',
+						maxItems: 3,
+					},
+					multiLine: {
+						minItems: 0,
+					},
+					overrides: {
+						'{}': {
+							singleLine: { spacing: 'always', maxItems: Number.POSITIVE_INFINITY },
+						},
+					},
+				}],
 
 				// No space between function name and parenthesis. Enforce fn() instead of fn ()
 				'@stylistic/function-call-spacing': [
