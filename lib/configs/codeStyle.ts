@@ -20,7 +20,7 @@ import l10nPlugin from '../plugins/l10n/index.ts'
  *
  * @param options options defining the config preset flavor
  */
-export function codeStyle(options: ConfigOptions): (Linter.Config | Linter.BaseConfig)[] {
+export function codeStyle(options: ConfigOptions): Linter.Config[] {
 	return [
 		// Nextcloud code style
 		{

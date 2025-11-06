@@ -2,6 +2,8 @@
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
+
+import type { Linter } from 'eslint'
 import type { ConfigOptions } from './types.d.ts'
 
 import { codeStyle } from './configs/codeStyle.ts'
@@ -18,7 +20,7 @@ import { vue3 } from './configs/vue3.ts'
 /**
  * Nextcloud shared configuration for projects using Vue 2 with Javascript <script> blocks
  */
-export const recommendedVue2Javascript = createConfig({
+export const recommendedVue2Javascript: Linter.Config[] = createConfig({
 	isLibrary: false,
 	vue2: true,
 	vueIsTypescript: false,
@@ -27,7 +29,7 @@ export const recommendedVue2Javascript = createConfig({
 /**
  * Nextcloud shared configuration for projects using Vue 2 with Typescript <script> blocks
  */
-export const recommendedVue2 = createConfig({
+export const recommendedVue2: Linter.Config[] = createConfig({
 	isLibrary: false,
 	vue2: true,
 	vueIsTypescript: true,
@@ -36,7 +38,7 @@ export const recommendedVue2 = createConfig({
 /**
  * Nextcloud shared configuration for projects using Vue 3 with Javascript <script> blocks
  */
-export const recommendedJavascript = createConfig({
+export const recommendedJavascript: Linter.Config[] = createConfig({
 	isLibrary: false,
 	vueIsTypescript: false,
 })
@@ -44,7 +46,7 @@ export const recommendedJavascript = createConfig({
 /**
  * Nextcloud shared configuration for projects using Vue 3 with Typescript <script> blocks
  */
-export const recommended = createConfig({
+export const recommended: Linter.Config[] = createConfig({
 	isLibrary: false,
 	vueIsTypescript: true,
 })
@@ -52,7 +54,7 @@ export const recommended = createConfig({
 /**
  * Nextcloud shared configuration for projects using Vue 3 with Typescript <script> blocks
  */
-export const recommendedLibrary = createConfig({
+export const recommendedLibrary: Linter.Config[] = createConfig({
 	isLibrary: true,
 	vueIsTypescript: true,
 })
@@ -60,7 +62,7 @@ export const recommendedLibrary = createConfig({
 /**
  * Nextcloud shared configuration for projects using Vue 3 with Typescript <script> blocks
  */
-export const recommendedVue2Library = createConfig({
+export const recommendedVue2Library: Linter.Config[] = createConfig({
 	isLibrary: true,
 	vue2: true,
 	vueIsTypescript: true,
@@ -75,7 +77,7 @@ export { default as l10nPlugin } from './plugins/l10n/index.ts'
  *
  * @param options - Configuration options
  */
-function createConfig(options: ConfigOptions & { vue2?: boolean }) {
+function createConfig(options: ConfigOptions & { vue2?: boolean }): Linter.Config[] {
 	return [
 		...filesystem,
 		...javascript(options),

@@ -11,7 +11,7 @@ import type { Linter } from 'eslint'
  * @param configs The configs to restrict
  * @param files The glob pattern to assign
  */
-export function restrictConfigFiles(configs: Linter.Config[], files: string[]) {
+export function restrictConfigFiles(configs: Linter.Config[], files: string[]): Linter.Config[] {
 	return configs.map((config) => ({
 		...config,
 		files: [
