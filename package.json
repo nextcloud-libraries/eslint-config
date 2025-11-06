@@ -37,8 +37,8 @@
     "build": "npm run build:cleanup && npm run build:source",
     "build:cleanup": "tsc --build --clean",
     "build:source": "tsc",
-    "lint": "npx --node-options='--experimental-strip-types' eslint --flag unstable_native_nodejs_ts_config",
-    "lint:fix": "npx --node-options='--experimental-strip-types' eslint --flag unstable_native_nodejs_ts_config --fix",
+    "lint": "eslint --flag unstable_native_nodejs_ts_config",
+    "lint:fix": "eslint --flag unstable_native_nodejs_ts_config --fix",
     "prerelease:format-changelog": "node build/format-changelog.mjs",
     "test": "vitest run"
   },
@@ -73,12 +73,12 @@
     "packageManager": [
       {
         "name": "npm",
-        "version": "^10"
+        "version": "^11.3.0"
       }
     ],
     "runtime": {
       "name": "node",
-      "version": "^22.10"
+      "version": "^24.3.0"
     }
   }
 }
