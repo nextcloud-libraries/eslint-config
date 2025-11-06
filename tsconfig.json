@@ -1,5 +1,5 @@
 {
-	"$schema": "https://json.schemastore.org/tsconfig",
+	"$schema": "https://www.schemastore.org/tsconfig.json",
 	"compilerOptions": {
 		"declaration": true,
 		"esModuleInterop": true,
@@ -11,7 +11,8 @@
 		"target": "ES2022",
 		"lib": ["ES2022"],
 		"outDir": "./dist",
-		"rootDir": "lib/"
+		"rootDir": "lib/",
+		"skipLibCheck": true
 	},
 	"include": [
 		"lib"
