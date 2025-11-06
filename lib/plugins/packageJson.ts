@@ -3,13 +3,14 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import type { JSONRuleDefinition, JSONRuleVisitor } from '@eslint/json/types'
 import type { ESLint, Rule } from 'eslint'
 
 import path from 'node:path'
 import sortPackageJson from 'sort-package-json'
 import { packageVersion } from '../version.ts'
 
-const SortPackageJsonRule: Rule.RuleModule = {
+const SortPackageJsonRule: JSONRuleDefinition = {
 	meta: {
 		fixable: 'code',
 		docs: {
@@ -33,7 +34,7 @@ const SortPackageJsonRule: Rule.RuleModule = {
 		],
 	},
 
-	create(context: Rule.RuleContext): Rule.RuleListener {
+	create(context) {
 		if (path.basename(context.filename) !== 'package.json') {
 			return {}
 		}
@@ -51,12 +52,13 @@ const SortPackageJsonRule: Rule.RuleModule = {
 						node: body,
 						message: 'package.json is not sorted correctly',
 						fix(fixer: Rule.RuleFixer): Rule.Fix {
+							// @ts-expect-error its always an object node
 							return fixer.replaceText(body, sortedPackageJsonText)
 						},
 					})
 				}
 			},
-		} satisfies Rule.NodeListener
+		} as JSONRuleVisitor
 	},
 }
 
@@ -69,6 +71,7 @@ const Plugin: ESLint.Plugin = {
 		version: packageVersion,
 	},
 	rules: {
+		// @ts-expect-error ESLint is missing some API for language-specific rules
 		'sort-package-json': SortPackageJsonRule,
 	},
 }
