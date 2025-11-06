@@ -40,15 +40,18 @@ const global = {
 }
 
 const oc = {
+	AppConfig: '16.0.0',
 	L10n: '26.0.0',
+	SystemTags: '32.0.0',
 	_capabilities: '17.0.0',
 	addTranslations: '17.0.0',
 	basename: '18.0.0',
 	coreApps: '17.0.0',
 	currentUser: '19.0.0',
+	dialogs: '30.0.0',
 	dirname: '18.0.0',
 	encodePath: '18.0.0',
-	fileIsBlacklisted: '17.0.0',
+	fileIsBlacklisted: '18.0.0',
 	filePath: '19.0.0',
 	generateUrl: '19.0.0',
 	get: '19.0.0',
@@ -82,6 +85,13 @@ const ocNested = {
 		formatDate: '20.0.0',
 		humanFileSize: '20.0.0',
 		relativeModifiedDate: '20.0.0',
+	},
+	dialogs: {
+		fileexists: '29.0.0',
+	},
+	config: {
+		blacklist_files_regex: '30.0.0',
+		forbidden_filename_characters: '30.0.0',
 	},
 }
 
