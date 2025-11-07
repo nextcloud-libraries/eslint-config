@@ -19,15 +19,27 @@ const global: Record<string, string | undefined> = {
 	getURLParameter: '19.0.0',
 	humanFileSize: '19.0.0',
 	marked: '19.0.0',
+	md5: '32.0.0',
 	relative_modified_date: '19.0.0',
 }
 
 const oc: Record<string, string | undefined> = {
+	AppConfig: '33.0.0',
+	SystemTags: '33.0.0',
 	getScrollBarWidth: '15.0.0',
 	addTranslations: '26.0.0',
 	appSettings: '28.0.0',
+	fileIsBlacklisted: '33.0.0',
+	get: '33.0.0',
+	getHost: '33.0.0',
+	getHostName: '33.0.0',
+	getPort: '33.0.0',
+	getProtocol: '33.0.0',
 	loadScript: '28.0.0',
 	loadStyle: '28.0.0',
+	redirect: '33.0.0',
+	reload: '33.0.0',
+	set: '33.0.0',
 }
 
 const ocNested: Record<string, Record<string, string | undefined> | undefined> = {
@@ -47,6 +59,13 @@ const ocNested: Record<string, Record<string, string | undefined> | undefined> =
 const oca: Record<string, string | undefined> = {
 	// ref: https://github.com/nextcloud/server/commit/6eced42b7a40f5b0ea0489244583219d0ee2e7af
 	Search: '20.0.0',
+	FilesSharingDrop: '31.0.0',
+}
+
+const ocaNested: Record<string, Record<string, string | undefined> | undefined> = {
+	Sharing: {
+		ExternalLinkActions: '33.0.0',
+	},
 }
 
 // TODO: handle OC.x.y.z like OC.Share.ShareConfigModel.areAvatarsEnabled()
@@ -100,6 +119,30 @@ const rule: Rule.RuleModule = {
 						node,
 						message: `The property or function OCA.${node.property.name} was removed in Nextcloud ${oca[node.property.name]}`,
 					})
+				}
+
+				// OCA.x.y
+				if (
+					node.object.type === 'MemberExpression'
+					&& 'name' in node.object.object
+					&& node.object.object.name === 'OCA'
+					&& 'name' in node.object.property
+					&& ocaNested[node.object.property.name]
+					&& 'name' in node.property
+					&& ocaNested[node.object.property.name]![node.property.name]
+				) {
+					const version = ocaNested[node.object.property.name]![node.property.name]!
+					if (checkTargetVersion(version)) {
+						const prop = [
+							'OC',
+							node.object.property.name,
+							node.property.name,
+						].join('.')
+						context.report({
+							node,
+							message: `The property or function ${prop} was removed in Nextcloud ${version}`,
+						})
+					}
 				}
 
 				// OC.x
