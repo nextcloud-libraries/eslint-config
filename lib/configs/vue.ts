@@ -143,7 +143,8 @@ export function vue(options: ConfigOptions): Linter.Config[] {
 				'vue/prefer-separate-static-class': 'error',
 				// For consistent layout of components
 				'vue/define-macros-order': [
-					'error', {
+					'error',
+					{
 						order: [
 							'defineOptions',
 							'defineModel',
