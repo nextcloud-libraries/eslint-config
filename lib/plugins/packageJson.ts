@@ -71,7 +71,6 @@ const Plugin: ESLint.Plugin = {
 		version: packageVersion,
 	},
 	rules: {
-		// @ts-expect-error ESLint is missing some API for language-specific rules
 		'sort-package-json': SortPackageJsonRule,
 	},
 }
