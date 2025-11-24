@@ -4,20 +4,18 @@
  */
 
 import { RuleTester } from 'eslint'
-import { fs, vol } from 'memfs'
-import { afterAll, beforeAll, describe, test, vi } from 'vitest'
+import { gte } from 'semver'
+import { describe, test, vi } from 'vitest'
 import vueParser from 'vue-eslint-parser'
 import rule from './no-deprecated-exports.ts'
 
-vi.mock('node:fs', () => fs)
+const createLibVersionValidator = vi.hoisted(() => vi.fn(() => (version: string) => !!version))
+
+vi.mock('../utils/lib-version-parser.ts', () => ({
+	createLibVersionValidator,
+}))
 
 describe('no-deprecated-exports', () => {
-	beforeAll(() => vol.fromNestedJSON({
-		[__dirname]: {},
-		[__filename]: '...',
-	}))
-	afterAll(() => vol.reset())
-
 	const ruleTester = new RuleTester({
 		languageOptions: {
 			parser: vueParser,
@@ -26,12 +24,7 @@ describe('no-deprecated-exports', () => {
 	})
 
 	test('no-deprecated-exports if library is not in use', () => {
-		vol.fromNestedJSON({
-			'/a': {
-				'package.json': '{"name": "my-app","version": "0.1.0"}',
-				src: { },
-			},
-		}, '/a/src')
+		createLibVersionValidator.mockReturnValue(() => false)
 		ruleTester.run('no-deprecated-exports', rule, {
 			valid: [
 				{
@@ -50,12 +43,7 @@ describe('no-deprecated-exports', () => {
 	})
 
 	test('no-deprecated-exports if library has outdated version', () => {
-		vol.fromNestedJSON({
-			'/a': {
-				'package.json': '{"name": "my-app","version": "0.1.0","dependencies":{"@nextcloud/vue":"^8.22.0"}}',
-				src: { },
-			},
-		})
+		createLibVersionValidator.mockReturnValue((version: string) => gte('8.22.0', version))
 		ruleTester.run('no-deprecated-exports', rule, {
 			valid: [
 				{
@@ -74,12 +62,7 @@ describe('no-deprecated-exports', () => {
 	})
 
 	test('no-deprecated-exports for dist syntax', () => {
-		vol.fromNestedJSON({
-			'/a': {
-				'package.json': '{"name": "my-app","version": "0.1.0","dependencies":{"@nextcloud/vue":"^8.23.1"}}',
-				src: { },
-			},
-		})
+		createLibVersionValidator.mockReturnValue((version: string) => gte('8.23.1', version))
 		ruleTester.run('no-deprecated-exports', rule, {
 			valid: [
 				{
@@ -130,12 +113,7 @@ describe('no-deprecated-exports', () => {
 	})
 
 	test('no-deprecated-exports for removed content', () => {
-		vol.fromNestedJSON({
-			'/a': {
-				'package.json': '{"name": "my-app","version": "0.1.0","dependencies":{"@nextcloud/vue":"^8.31.0"}}',
-				src: { },
-			},
-		})
+		createLibVersionValidator.mockReturnValue((version: string) => gte('8.31.0', version))
 		ruleTester.run('no-deprecated-exports', rule, {
 			valid: [
 				{

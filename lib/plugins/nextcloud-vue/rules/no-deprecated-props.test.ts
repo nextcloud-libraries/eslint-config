@@ -4,20 +4,18 @@
  */
 
 import { RuleTester } from 'eslint'
-import { fs, vol } from 'memfs'
-import { afterAll, beforeAll, describe, test, vi } from 'vitest'
+import { gte } from 'semver'
+import { describe, test, vi } from 'vitest'
 import vueParser from 'vue-eslint-parser'
 import rule from './no-deprecated-props.ts'
 
-vi.mock('node:fs', () => fs)
+const createLibVersionValidator = vi.hoisted(() => vi.fn(() => (version: string) => !!version))
+
+vi.mock('../utils/lib-version-parser.ts', () => ({
+	createLibVersionValidator,
+}))
 
 describe('no-deprecated-props', () => {
-	beforeAll(() => vol.fromNestedJSON({
-		[__dirname]: {},
-		[__filename]: '...',
-	}))
-	afterAll(() => vol.reset())
-
 	const ruleTester = new RuleTester({
 		languageOptions: {
 			parser: vueParser,
@@ -26,12 +24,7 @@ describe('no-deprecated-props', () => {
 	})
 
 	test('no-deprecated-props if library is not in use', () => {
-		vol.fromNestedJSON({
-			'/a': {
-				'package.json': '{"name": "my-app","version": "0.1.0"}',
-				src: { },
-			},
-		}, '/a/src')
+		createLibVersionValidator.mockReturnValue(() => false)
 		ruleTester.run('no-deprecated-props', rule, {
 			valid: [
 				{
@@ -50,12 +43,7 @@ describe('no-deprecated-props', () => {
 	})
 
 	test('no-deprecated-props if library has outdated version', () => {
-		vol.fromNestedJSON({
-			'/a': {
-				'package.json': '{"name": "my-app","version": "0.1.0","dependencies":{"@nextcloud/vue":"^8.23.1"}}',
-				src: { },
-			},
-		})
+		createLibVersionValidator.mockReturnValue((version) => gte('8.23.1', version))
 		ruleTester.run('no-deprecated-props', rule, {
 			valid: [
 				{
@@ -83,12 +71,7 @@ describe('no-deprecated-props', () => {
 	})
 
 	test('no-deprecated-props', () => {
-		vol.fromNestedJSON({
-			'/a': {
-				'package.json': '{"name": "my-app","version": "0.1.0","dependencies":{"@nextcloud/vue":"^9.0.0"}}',
-				src: { },
-			},
-		})
+		createLibVersionValidator.mockReturnValue((version) => gte('9.0.0', version))
 		ruleTester.run('no-deprecated-props', rule, {
 			valid: [
 				{
