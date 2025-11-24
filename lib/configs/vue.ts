@@ -57,6 +57,11 @@ export function vue(options: ConfigOptions): Linter.Config[] {
 					'error',
 					'PascalCase',
 				],
+				// Keep camelCase in props/attrs for consistency with <script>, with other casing rules and prevent tooling issues
+				'vue/attribute-hyphenation': ['error', 'never'],
+				// camelCase names for slots
+				'vue/slot-name-casing': ['error'],
+
 				// space before self-closing elements
 				'vue/html-closing-bracket-spacing': 'error',
 				// no ending html tag on a new line
