@@ -48,7 +48,10 @@ export function doSomething(
  * @param num
  * @param enable
  */
-export function doSomethingDifferent(num: number, enable: boolean) {
+export function doSomethingDifferent(
+	num: number,
+	enable: boolean,
+) {
 	// ...
 }
 

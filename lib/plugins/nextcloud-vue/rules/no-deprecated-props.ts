@@ -56,7 +56,15 @@ export default {
 		const isNcTextFieldArrowEndValid = versionSatisfies('8.28.0') // #7002
 		const isCloseButtonOutsideValid = versionSatisfies('8.32.0') // #7553
 
-		const legacyTypes = ['primary', 'error', 'warning', 'success', 'secondary', 'tertiary', 'tertiary-no-background']
+		const legacyTypes = [
+			'primary',
+			'error',
+			'warning',
+			'success',
+			'secondary',
+			'tertiary',
+			'tertiary-no-background',
+		]
 
 		return vueUtils.defineTemplateBodyVisitor(context, {
 			'VElement VAttribute:has(VIdentifier[name="type"])': function(node) {
