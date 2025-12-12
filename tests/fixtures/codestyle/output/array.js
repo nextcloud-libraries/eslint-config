@@ -7,13 +7,7 @@ const items = [
 	'second',
 	'third',
 ]
-const LATIN_VOWELS = [
-	'a',
-	'e',
-	'i',
-	'o',
-	'u',
-]
+const LATIN_VOWELS = ['a', 'e', 'i', 'o', 'u']
 
 // ❌ Multi-line array should have a single element per line to make it diff-safe and readable
 // Here the last two elements are on the same line
@@ -50,12 +44,4 @@ const USER_STATUSES = [
 	'offline',
 ]
 // 🚧 Currently this is an edge case and isn't fixed properly...
-const WEEKDAYS = [
-	'Monday',
-	'Tuesday',
-	'Wednesday',
-	'Thursday',
-	'Friday',
-	'Saturday',
-	'Sunday',
-]
+const WEEKDAYS = ['Monday',	'Tuesday',	'Wednesday',	'Thursday',	'Friday',	'Saturday',	'Sunday']

@@ -104,14 +104,10 @@ export function codeStyle(options: ConfigOptions): Linter.Config[] {
 				'@stylistic/exp-list-style': ['error', {
 					singleLine: {
 						spacing: 'never',
-						maxItems: 3,
-					},
-					multiLine: {
-						minItems: 0,
 					},
 					overrides: {
 						'{}': {
-							singleLine: { spacing: 'always', maxItems: Number.POSITIVE_INFINITY },
+							singleLine: { spacing: 'always' },
 						},
 					},
 				}],
