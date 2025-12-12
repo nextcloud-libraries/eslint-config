@@ -41,7 +41,8 @@ const USER_STATUSES = [
 	'dnd',
 	'invisible',
 	'offline']
-// 🚧 Currently this is an edge case and isn't fixed properly...
+
+// ❌ Mixed single/multiline style is formatted based on the first element formatting
 const WEEKDAYS = ['Monday',
 	'Tuesday',
 	'Wednesday',
