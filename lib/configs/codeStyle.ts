@@ -93,25 +93,24 @@ export function codeStyle(options: ConfigOptions): Linter.Config[] {
 					{ avoidQuotes: true },
 				],
 
-				// Enforce consistent new lines after [ and before ]
-				'@stylistic/array-bracket-newline': [
-					'error',
-					'consistent',
-				],
-				// Enforce new lines between array elements (better git diff) but allow to have single line arrays
-				'@stylistic/array-element-newline': ['error', 'consistent'],
-				// Same for objects as for arrays
-				'@stylistic/object-curly-newline': [
-					'error',
-					{
-						consistent: true,
-						multiline: true,
+				// Enforce consistent new lines after brackets
+				'@stylistic/array-bracket-newline': 'off',
+				'@stylistic/array-bracket-spacing': 'off',
+				'@stylistic/array-element-newline': 'off',
+				'@stylistic/jsx-function-call-newline': 'off',
+				'@stylistic/object-curly-newline': 'off',
+				'@stylistic/object-curly-spacing': 'off',
+				'@stylistic/object-property-newline': 'off',
+				'@stylistic/exp-list-style': ['error', {
+					singleLine: {
+						spacing: 'never',
 					},
-				],
-				'@stylistic/object-property-newline': [
-					'error',
-					{ allowAllPropertiesOnSameLine: true },
-				],
+					overrides: {
+						'{}': {
+							singleLine: { spacing: 'always' },
+						},
+					},
+				}],
 
 				// No space between function name and parenthesis. Enforce fn() instead of fn ()
 				'@stylistic/function-call-spacing': [
