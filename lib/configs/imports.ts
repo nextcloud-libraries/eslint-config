@@ -44,24 +44,23 @@ export function imports(options: ConfigOptions): Linter.Config[] {
 					'error',
 					{
 						type: 'natural',
-						newlinesBetween: 'never',
+						newlinesBetween: 0,
 						groups: [
 							// type first
-							'external-type',
-							'type',
-							{ newlinesBetween: 'always' },
+							['type-external', 'type-builtin'],
+							'type-import',
+							{ newlinesBetween: 1 },
 							// external things
 							[
 								'builtin',
 								'external',
-								'object',
 							],
 							// Vue components
 							'vue', // external modules (e.g. nextcloud-vue)
 							'internalVue', // internal local vue components
 							// everything else which is everything internal
 							'unknown',
-							{ newlinesBetween: 'always' },
+							{ newlinesBetween: 1 },
 							// side effect only: import 'sideeffect.js'
 							'side-effect',
 							// import style from 'my.module.css'
@@ -106,7 +105,7 @@ export function imports(options: ConfigOptions): Linter.Config[] {
 function createSortingConfig(type: 'export' | 'import') {
 	return {
 		type: 'natural',
-		newlinesBetween: 'always',
+		newlinesBetween: 1,
 		partitionByNewLine: false,
 		groups: [
 			`type-${type}`,
