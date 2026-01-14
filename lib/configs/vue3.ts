@@ -39,6 +39,11 @@ export function vue3(options: ConfigOptions): Linter.Config[] {
 				],
 				// Also force camelCase for events in template for consistency with <script>
 				'vue/v-on-event-hyphenation': ['error', 'never', { autofix: true }],
+				// Also for slots
+				// Changing case is breaking for component users.
+				// For libraries it may result in a breaking change. Warn to prevent unintended breaking change.
+				// TODO: allow namespace:slotName format like in events
+				'vue/slot-name-casing': [options.isLibrary ? 'warn' : 'error', 'camelCase'],
 
 				// Deprecated thus we should not use it
 				'vue/no-deprecated-delete-set': 'error',
