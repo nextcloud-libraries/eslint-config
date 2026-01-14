@@ -37,6 +37,9 @@ export function vue3(options: ConfigOptions): Linter.Config[] {
 						ignores: ['/^[a-z]+:[a-z]+$/iu'],
 					},
 				],
+				// Also force camelCase for events in template for consistency with <script>
+				'vue/v-on-event-hyphenation': ['error', 'never', { autofix: true }],
+
 				// Deprecated thus we should not use it
 				'vue/no-deprecated-delete-set': 'error',
 				// When using script-setup the modern approach should be used
