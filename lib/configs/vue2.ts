@@ -26,12 +26,12 @@ export function vue2(option: ConfigOptions): Linter.Config[] {
 
 		{
 			rules: {
-			// custom event naming convention
+				// Force kebab-case for custom event name definitions (recommended by Vue 2 documentation)
 				'vue/custom-event-name-casing': [
 					'error',
 					'kebab-case',
 					{
-						// allows custom xxxx:xxx events formats
+						// Allow namespace formats namespace:event
 						ignores: ['/^[a-z]+(?:-[a-z]+)*:[a-z]+(?:-[a-z]+)*$/u'],
 					},
 				],

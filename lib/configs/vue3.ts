@@ -28,6 +28,15 @@ export function vue3(options: ConfigOptions): Linter.Config[] {
 		{
 			files: GLOB_FILES_VUE,
 			rules: {
+				// Force camelCase for custom event name definitions (recommended by Vue 3 documentation and consistent with JS)
+				'vue/custom-event-name-casing': [
+					'error',
+					'camelCase',
+					{
+						// Allow namespace formats namespace:event
+						ignores: ['/^[a-z]+:[a-z]+$/iu'],
+					},
+				],
 				// Deprecated thus we should not use it
 				'vue/no-deprecated-delete-set': 'error',
 				// When using script-setup the modern approach should be used
