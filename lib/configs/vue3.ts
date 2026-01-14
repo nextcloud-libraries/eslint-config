@@ -28,6 +28,8 @@ export function vue3(options: ConfigOptions): Linter.Config[] {
 		{
 			files: GLOB_FILES_VUE,
 			rules: {
+				// Force camelCase in props/attrs for consistency with <script> and prevent tooling issues
+				'vue/attribute-hyphenation': ['error', 'never'],
 				// Force camelCase for custom event name definitions (recommended by Vue 3 documentation and consistent with JS)
 				'vue/custom-event-name-casing': [
 					'error',
@@ -37,9 +39,9 @@ export function vue3(options: ConfigOptions): Linter.Config[] {
 						ignores: ['/^[a-z]+:[a-z]+$/iu'],
 					},
 				],
-				// Also force camelCase for events in template for consistency with <script>
+				// Force camelCase for events in template for consistency with <script>
 				'vue/v-on-event-hyphenation': ['error', 'never', { autofix: true }],
-				// Also for slots
+				// Force camelCase for slot names.
 				// Changing case is breaking for component users.
 				// For libraries it may result in a breaking change. Warn to prevent unintended breaking change.
 				// TODO: allow namespace:slotName format like in events
