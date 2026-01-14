@@ -52,11 +52,11 @@ export function vue(options: ConfigOptions): Linter.Config[] {
 			files: GLOB_FILES_VUE,
 			name: 'nextcloud/vue/rules',
 			rules: {
-				// PascalCase components names for vuejs
-				'vue/component-name-in-template-casing': [
-					'error',
-					'PascalCase',
-				],
+				// PascalCase components names in template tag names
+				'vue/component-name-in-template-casing': ['error', 'PascalCase'],
+				// Also in registration
+				'vue/component-options-name-casing': ['error', 'PascalCase'],
+
 				// space before self-closing elements
 				'vue/html-closing-bracket-spacing': 'error',
 				// no ending html tag on a new line
