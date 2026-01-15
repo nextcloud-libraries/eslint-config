@@ -4,7 +4,7 @@
 -->	
 # Changelog
 
-## [v9.0.0](https://github.com/nextcloud-libraries/eslint-config/tree/v9.0.0) (unreleased)
+## [v9.0.0](https://github.com/nextcloud-libraries/eslint-config/tree/v9.0.0) (2025-11-26)
 
 ### Breaking
 This package now is using ESLint v9 and requires ESLint flat configurations.
@@ -82,13 +82,18 @@ Please refer to the README on how to adjust your configuration for flat config.
 * chore: lint this project as a library [\#1130](https://github.com/nextcloud-libraries/eslint-config/pull/1130) \([susnux](https://github.com/susnux)\)
 * chore: update devEngines to align with apps [\#1204](https://github.com/nextcloud-libraries/eslint-config/pull/1204) \([susnux](https://github.com/susnux)\)
 * build: disable libcheck for Typescript [\#1205](https://github.com/nextcloud-libraries/eslint-config/pull/1205) \([susnux](https://github.com/susnux)\)
-* Updated `@eslint/json` to 0.12.0
-* Updated `@stylistic/eslint-plugin` 4.2.0
-* Updated `eslint-plugin-jsdoc` to 50.6.11
-* Updated `eslint-plugin-vue` to 10.0.0
-* Updated `fast-xml-parser` to 5.2.1
-* Updated `sort-package-json` to 3.0.0
-* Updated `typescript-eslint` to 8.31.0
+* Updated `@eslint/json` to 0.14.0
+* Updated `@stylistic/eslint-plugin` to 5.5.0
+* Updated `eslint-config-flat-gitignore` to 2.1.0
+* Updated `eslint-plugin-antfu` to 3.1.1
+* Updated `eslint-plugin-jsdoc` to 61.2.1
+* Updated `eslint-plugin-perfectionist` to 4.15.1
+* Updated `eslint-plugin-vue` to 10.5.1
+* Updated `fast-xml-parser` to 5.3.2
+* Updated `globals` to 16.5.0
+* Updated `semver` to 7.7.3
+* Updated `sort-package-json` to 3.4.0
+* Updated `typescript-eslint` to 8.46.4
 
 ## [v8.4.2](https://github.com/nextcloud-libraries/eslint-config/tree/v8.4.2) (2025-02-16)
 ### Fixed
