@@ -5,7 +5,6 @@
 import type { Linter } from 'eslint'
 
 import { ESLint } from 'eslint'
-import { existsSync } from 'fs'
 import { readFile } from 'fs/promises'
 import { join, resolve } from 'path'
 import { expect, test } from 'vitest'
@@ -24,29 +23,24 @@ const eslint = new ESLint({
  * @return Lint result
  */
 async function lintTestCase(testCase: string) {
-	let file = `fixtures/codestyle/input/${testCase}.`
-	if (existsSync(join(__dirname, file) + 'js')) {
-		file += 'js'
-	} else {
-		file += 'ts'
-	}
-
-	const path = resolve(join(__dirname, file))
+	const filepath = join('fixtures/codestyle/input/', testCase)
+	const path = resolve(join(__dirname, filepath))
 	const content = await readFile(path)
-	const results = await eslint.lintText(content.toString(), { filePath: `src/${file}` })
+	const results = await eslint.lintText(content.toString(), { filePath: `src/${filepath}` })
 	return { results, path }
 }
 
 test.for([
-	'array',
-	'arrow-function',
-	'function',
-	'exports',
-	'imports',
-	'indention',
-	'objects',
-	'quotes',
-	'semicolons',
+	'array.js',
+	'arrow-function.ts',
+	'exports.ts',
+	'function.ts',
+	'imports.ts',
+	'indention.js',
+	'objects.js',
+	'quotes.js',
+	'semicolons.js',
+	'VueComponent.vue',
 ])('Code style', async (testCase: string) => {
 	const { results, path } = await lintTestCase(testCase)
 	expect(results).toHaveLength(1)
