@@ -29,6 +29,11 @@ Please refer to the README on how to adjust your configuration for flat config.
 * feat(nextcloud-vue-plugin): deprecate additional props [\#1163](https://github.com/nextcloud-libraries/eslint-config/pull/1163) \([Antreesy](https://github.com/Antreesy)\)
 * feat(nextcloud-vue-plugin): deprecate additional exports [\#1162](https://github.com/nextcloud-libraries/eslint-config/pull/1162) \([Antreesy](https://github.com/Antreesy)\)
 * feat(nextcloud-vue-plugin): deprecate NcPopover props [\#1165](https://github.com/nextcloud-libraries/eslint-config/pull/1165) \([Antreesy](https://github.com/Antreesy)\)
+* feat(vue): add vue/component-options-name-casing with PascalCase [\#1261](https://github.com/nextcloud-libraries/eslint-config/pull/1261) \([ShGKme](https://github.com/ShGKme)\)
+* feat(vue3): force camelCase for events in `<script>` [\#1262](https://github.com/nextcloud-libraries/eslint-config/pull/1262) \([ShGKme](https://github.com/ShGKme)\)
+* feat(vue3): force camelCase for events in `<template>` [\#1263](https://github.com/nextcloud-libraries/eslint-config/pull/1263) \([ShGKme](https://github.com/ShGKme)\)
+* feat(vue3): force camelCase for slot names [\#1264](https://github.com/nextcloud-libraries/eslint-config/pull/1264) \([ShGKme](https://github.com/ShGKme)\)
+* feat(vue3): force camelCase for props in template [\#1266](https://github.com/nextcloud-libraries/eslint-config/pull/1266) \([ShGKme](https://github.com/ShGKme)\)
 
 ### Fixed
 * fix(codestyle): do not require splitting chains [\#951](https://github.com/nextcloud-libraries/eslint-config/pull/951)
@@ -63,6 +68,7 @@ Please refer to the README on how to adjust your configuration for flat config.
 * fix(vue): use vue variant of `no-irregular-whitespace` [\#1129](https://github.com/nextcloud-libraries/eslint-config/pull/1129) \([susnux](https://github.com/susnux)\)
 * fix(nextcloud): add missing deprecations and removals [\#1206](https://github.com/nextcloud-libraries/eslint-config/pull/1206) \([susnux](https://github.com/susnux)\)
 * fix(plugin:nextcloud-vue): use resolved dependency for detecting nextcloud-vue version [\#1220](https://github.com/nextcloud-libraries/eslint-config/pull/1220) \([susnux](https://github.com/susnux)\)
+* fix: switch to `@stylistic/exp-list-style` to resolve array edge-cases [\#1203](https://github.com/nextcloud-libraries/eslint-config/pull/1203) \([susnux](https://github.com/susnux)\)
 
 ### Changed
 * Add SPDX header [#802](https://github.com/nextcloud-libraries/eslint-config/pull/802)
@@ -82,13 +88,20 @@ Please refer to the README on how to adjust your configuration for flat config.
 * chore: lint this project as a library [\#1130](https://github.com/nextcloud-libraries/eslint-config/pull/1130) \([susnux](https://github.com/susnux)\)
 * chore: update devEngines to align with apps [\#1204](https://github.com/nextcloud-libraries/eslint-config/pull/1204) \([susnux](https://github.com/susnux)\)
 * build: disable libcheck for Typescript [\#1205](https://github.com/nextcloud-libraries/eslint-config/pull/1205) \([susnux](https://github.com/susnux)\)
-* Updated `@eslint/json` to 0.12.0
-* Updated `@stylistic/eslint-plugin` 4.2.0
-* Updated `eslint-plugin-jsdoc` to 50.6.11
-* Updated `eslint-plugin-vue` to 10.0.0
-* Updated `fast-xml-parser` to 5.2.1
-* Updated `sort-package-json` to 3.0.0
-* Updated `typescript-eslint` to 8.31.0
+* chore(gitignore): ignore IDE configs [\#1265](https://github.com/nextcloud-libraries/eslint-config/pull/1265) \([ShGKme](https://github.com/ShGKme)\)
+* test(vue3): add some formatting tests [\#1267](https://github.com/nextcloud-libraries/eslint-config/pull/1267) \([ShGKme](https://github.com/ShGKme)\)
+* Updated `@eslint/json` to 0.14.0
+* Updated `@stylistic/eslint-plugin` to 5.7.0
+* Updated `eslint-config-flat-gitignore` to 2.1.0
+* Updated `eslint-plugin-antfu` to 3.1.3
+* Updated `eslint-plugin-jsdoc` to 62.0.0
+* Updated `eslint-plugin-perfectionist` to 5.3.1
+* Updated `eslint-plugin-vue` to 10.6.2
+* Updated `fast-xml-parser` to 5.3.3
+* Updated `globals` to 17.0.0
+* Updated `semver` to 7.7.3
+* Updated `sort-package-json` to 3.6.0
+* Updated `typescript-eslint` to 8.53.0
 
 ## [v8.4.2](https://github.com/nextcloud-libraries/eslint-config/tree/v8.4.2) (2025-02-16)
 ### Fixed
