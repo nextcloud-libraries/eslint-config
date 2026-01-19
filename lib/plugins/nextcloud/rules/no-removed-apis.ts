@@ -54,6 +54,9 @@ const ocNested: Record<string, Record<string, string | undefined> | undefined> =
 		scaleFixForIE8: '15.0.0',
 		isIE8: '15.0.0',
 	},
+	Settings: {
+		UserSettings: '33.0.0',
+	},
 }
 
 const oca: Record<string, string | undefined> = {
@@ -63,6 +66,12 @@ const oca: Record<string, string | undefined> = {
 }
 
 const ocaNested: Record<string, Record<string, string | undefined> | undefined> = {
+	Core: {
+		ProfileSections: '33.0.0',
+	},
+	Files: {
+		Sidebar: '33.0.0',
+	},
 	Sharing: {
 		ExternalLinkActions: '33.0.0',
 	},
