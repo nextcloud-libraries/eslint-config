@@ -5,7 +5,7 @@
 
 import type { Rule } from 'eslint'
 
-import * as vueUtils from 'eslint-plugin-vue/lib/utils/index.js'
+import { defineTemplateBodyVisitor } from '../../nextcloud-vue/utils/vue-template-visitor.ts'
 import enforceEllipsis from './enforce-ellipsis.ts'
 
 const defineRule = (r: Rule.RuleModule) => r
@@ -14,6 +14,6 @@ export default defineRule({
 	...enforceEllipsis,
 
 	create(context) {
-		return vueUtils.defineTemplateBodyVisitor(context, enforceEllipsis.create(context))
+		return defineTemplateBodyVisitor(context, enforceEllipsis.create(context))
 	},
 })

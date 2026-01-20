@@ -5,7 +5,7 @@
 
 import type { Rule } from 'eslint'
 
-import * as vueUtils from 'eslint-plugin-vue/lib/utils/index.js'
+import { defineTemplateBodyVisitor } from '../../nextcloud-vue/utils/vue-template-visitor.ts'
 import nonBreakingSpace from './non-breaking-space.ts'
 
 const defineRule = (r: Rule.RuleModule) => r
@@ -14,6 +14,6 @@ export default defineRule({
 	...nonBreakingSpace,
 
 	create(context) {
-		return vueUtils.defineTemplateBodyVisitor(context, nonBreakingSpace.create(context))
+		return defineTemplateBodyVisitor(context, nonBreakingSpace.create(context))
 	},
 })
