@@ -60,7 +60,7 @@
     "@types/node": "^25.0.10",
     "@types/semver": "^7.7.1",
     "eslint": "^9.39.2",
-    "memfs": "^4.56.2",
+    "memfs": "^4.56.10",
     "vitest": "^4.0.18"
   },
   "peerDependencies": {
