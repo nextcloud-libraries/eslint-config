@@ -69,6 +69,8 @@ Please refer to the README on how to adjust your configuration for flat config.
 * fix(nextcloud): add missing deprecations and removals [\#1206](https://github.com/nextcloud-libraries/eslint-config/pull/1206) \([susnux](https://github.com/susnux)\)
 * fix(plugin:nextcloud-vue): use resolved dependency for detecting nextcloud-vue version [\#1220](https://github.com/nextcloud-libraries/eslint-config/pull/1220) \([susnux](https://github.com/susnux)\)
 * fix: switch to `@stylistic/exp-list-style` to resolve array edge-cases [\#1203](https://github.com/nextcloud-libraries/eslint-config/pull/1203) \([susnux](https://github.com/susnux)\)
+* fix(nextcloud-plugin): add more removed API in Nextcloud 33 [\#1269](https://github.com/nextcloud-libraries/eslint-config/pull/1269) \([susnux](https://github.com/susnux)\)
+* fix: use vue-eslint-parser directly [\#1277](https://github.com/nextcloud-libraries/eslint-config/pull/1277) \([susnux](https://github.com/susnux)\)
 
 ### Changed
 * Add SPDX header [#802](https://github.com/nextcloud-libraries/eslint-config/pull/802)
