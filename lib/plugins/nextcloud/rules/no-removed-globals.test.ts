@@ -4,13 +4,13 @@
  */
 import { RuleTester } from 'eslint'
 import { describe, test } from 'vitest'
-import rule from './no-removed-apis.ts'
+import rule from './no-removed-globals.ts'
 
 // ------------------------------------------------------------------------------
 // Tests
 // ------------------------------------------------------------------------------
 
-describe('no-removed-api', () => {
+describe('no-removed-globals', () => {
 	const ruleTester = new RuleTester()
 
 	test('no-removed-apis', () => {
@@ -53,8 +53,8 @@ describe('no-removed-api', () => {
 		})
 	})
 
-	test('no-removed-api (with target version parsing)', () => {
-		ruleTester.run('no-removed-api (with target version parsing)', rule, {
+	test('no-removed-globals (with target version parsing)', () => {
+		ruleTester.run('no-removed-globals (with target version parsing)', rule, {
 			valid: [
 				// Removed in 26, but accept if our target is 25
 				{
