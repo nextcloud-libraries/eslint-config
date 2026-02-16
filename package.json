@@ -47,7 +47,7 @@
     "@stylistic/eslint-plugin": "^5.7.1",
     "eslint-config-flat-gitignore": "^2.1.0",
     "eslint-plugin-antfu": "^3.2.0",
-    "eslint-plugin-jsdoc": "^62.5.4",
+    "eslint-plugin-jsdoc": "^62.5.5",
     "eslint-plugin-perfectionist": "^5.5.0",
     "eslint-plugin-vue": "^10.8.0",
     "fast-xml-parser": "^5.3.5",
