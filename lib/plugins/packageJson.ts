@@ -3,8 +3,8 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import type { JSONRuleDefinition, JSONRuleVisitor } from '@eslint/json/types'
-import type { ESLint, Rule } from 'eslint'
+import type { JSONRuleDefinition, JSONRuleVisitor } from '@eslint/json'
+import type { ESLint } from 'eslint'
 
 import path from 'node:path'
 import sortPackageJson from 'sort-package-json'
@@ -51,8 +51,7 @@ const SortPackageJsonRule: JSONRuleDefinition = {
 					context.report({
 						node: body,
 						message: 'package.json is not sorted correctly',
-						fix(fixer: Rule.RuleFixer): Rule.Fix {
-							// @ts-expect-error its always an object node
+						fix(fixer) {
 							return fixer.replaceText(body, sortedPackageJsonText)
 						},
 					})

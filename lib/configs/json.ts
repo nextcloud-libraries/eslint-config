@@ -2,7 +2,7 @@
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
-import type { ESLint, Linter } from 'eslint'
+import type { Linter } from 'eslint'
 
 import jsonPlugin from '@eslint/json'
 import {
@@ -19,7 +19,7 @@ export const json: Linter.Config[] = [
 	{
 		language: 'json/json',
 		plugins: {
-			json: jsonPlugin as ESLint.Plugin,
+			json: jsonPlugin,
 			'package-json': packageJsonPlugin,
 		},
 		rules: {
