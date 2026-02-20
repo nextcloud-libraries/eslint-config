@@ -84,7 +84,6 @@ const rule: Rule.RuleModule = {
 	meta: {
 		docs: {
 			description: 'Removed Nextcloud APIs',
-			category: 'Nextcloud',
 			recommended: true,
 		},
 		// fixable: "code" or "whitespace"
