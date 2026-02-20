@@ -2,9 +2,10 @@
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
+
 import type { Rule, Scope } from 'eslint'
 
-import { createVersionValidator } from '../utils/version-parser.ts'
+import { createVersionValidator } from '../utils/app-version-parser.ts'
 
 // ------------------------------------------------------------------------------
 // Rule Definition
