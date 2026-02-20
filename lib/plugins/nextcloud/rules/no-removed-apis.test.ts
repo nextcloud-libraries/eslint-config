@@ -2,6 +2,7 @@
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
+
 import { RuleTester } from 'eslint'
 import { describe, test } from 'vitest'
 import rule from './no-removed-apis.ts'
@@ -27,7 +28,6 @@ describe('no-removed-api', () => {
 					errors: [
 						{
 							message: 'The property or function OC.Util.isIE8 was removed in Nextcloud 15.0.0',
-							type: 'MemberExpression',
 						},
 					],
 				},
@@ -36,7 +36,6 @@ describe('no-removed-api', () => {
 					errors: [
 						{
 							message: 'The global property or function fileDownloadPath was removed in Nextcloud 15.0.0',
-							type: 'Program',
 						},
 					],
 				},
@@ -45,11 +44,14 @@ describe('no-removed-api', () => {
 					errors: [
 						{
 							message: 'The property or function OC.addTranslations was removed in Nextcloud 26.0.0',
-							type: 'MemberExpression',
 						},
 					],
 				},
 			],
+
+			assertionOptions: {
+				requireMessage: true,
+			},
 		})
 	})
 
@@ -80,7 +82,6 @@ describe('no-removed-api', () => {
 					errors: [
 						{
 							message: 'The property or function OC.addTranslations was removed in Nextcloud 26.0.0',
-							type: 'MemberExpression',
 						},
 					],
 				},
@@ -91,11 +92,14 @@ describe('no-removed-api', () => {
 					errors: [
 						{
 							message: 'The property or function OC.addTranslations was removed in Nextcloud 26.0.0',
-							type: 'MemberExpression',
 						},
 					],
 				},
 			],
+
+			assertionOptions: {
+				requireMessage: true,
+			},
 		})
 	})
 })

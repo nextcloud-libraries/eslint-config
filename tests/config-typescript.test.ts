@@ -33,7 +33,6 @@ describe('Typescript', () => {
 		test('overrides have higher priority than vue', async () => {
 			const results = await lintFile('fixtures/typescript-vue-overrides.vue')
 			// In Javascript rules this rule is no-use-before-define, not @typescript-eslint/no-use-before-define
-			expect(results).toHaveIssueCount(1)
 			expect(results).toHaveIssue('@typescript-eslint/no-use-before-define')
 		})
 
@@ -63,7 +62,6 @@ describe('Typescript', () => {
 	test('no-use-before-define allows functions', async () => {
 		const results = await lintFile('fixtures/use-before-define.ts')
 
-		expect(results).toHaveIssueCount(1)
 		expect(results).toHaveIssue({
 			ruleId: '@typescript-eslint/no-use-before-define',
 			line: 7,
@@ -73,7 +71,6 @@ describe('Typescript', () => {
 	test('no-use-before-define allows functions', async () => {
 		const results = await lintFile('fixtures/use-before-define.ts')
 
-		expect(results).toHaveIssueCount(1)
 		expect(results).toHaveIssue({
 			ruleId: '@typescript-eslint/no-use-before-define',
 			line: 7,

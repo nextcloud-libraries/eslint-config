@@ -7,8 +7,17 @@
 ## [v9.0.0](https://github.com/nextcloud-libraries/eslint-config/tree/v9.0.0) (unreleased)
 
 ### Breaking
-This package now is using ESLint v9 and requires ESLint flat configurations.
+This package now is using ESLint v10 and requires ESLint flat configurations.
 Please refer to the README on how to adjust your configuration for flat config.
+
+#### Potential pitfalls
+Some of the used eslint plugins still keep a ESLint v8 compatibility,
+this can cause some issues if not all packages are updated to the ESLint v10 compatible version.
+
+If you see a linter error like the one below make sure to update all nested dependencies,
+either using the sledge hammer method (remove the lock file and run `npm i`) or by running `npm update`.
+
+> TypeError: scopeManager.addGlobals is not a function
 
 ### Added
 * feat: new modular config for (and with) ESLint v9 support [#887](https://github.com/nextcloud-libraries/eslint-config/pull/887)

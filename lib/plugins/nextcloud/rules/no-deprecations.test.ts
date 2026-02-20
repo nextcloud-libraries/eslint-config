@@ -15,6 +15,10 @@ describe('no-deprecations', () => {
 
 	test('no-deprecations', () => {
 		ruleTester.run('no-deprecations', rule, {
+			assertionOptions: {
+				requireMessage: true,
+			},
+
 			valid: [
 				{
 					code: "var escapeHTML = require('escape-html'); var sanitized = escapeHTML('hello')",
@@ -27,7 +31,6 @@ describe('no-deprecations', () => {
 					errors: [
 						{
 							message: 'The global property or function relative_modified_date was deprecated in Nextcloud 16.0.0',
-							type: 'Program',
 						},
 					],
 				},
@@ -36,7 +39,6 @@ describe('no-deprecations', () => {
 					errors: [
 						{
 							message: 'The global property or function $ was deprecated in Nextcloud 19.0.0',
-							type: 'Program',
 						},
 					],
 				},
@@ -45,7 +47,6 @@ describe('no-deprecations', () => {
 					errors: [
 						{
 							message: 'The property or function OC.getHost was deprecated in Nextcloud 17.0.0',
-							type: 'MemberExpression',
 						},
 					],
 				},
@@ -54,7 +55,6 @@ describe('no-deprecations', () => {
 					errors: [
 						{
 							message: 'The property or function OCP.Toast was deprecated in Nextcloud 19.0.0',
-							type: 'MemberExpression',
 						},
 					],
 				},
@@ -63,7 +63,6 @@ describe('no-deprecations', () => {
 					errors: [
 						{
 							message: 'The global property or function DOMPurify was deprecated in Nextcloud 18.0.0',
-							type: 'Program',
 						},
 					],
 				},
@@ -73,6 +72,9 @@ describe('no-deprecations', () => {
 
 	test('no-deprecations with target version', () => {
 		ruleTester.run('no-deprecations with target version', rule, {
+			assertionOptions: {
+				requireMessage: true,
+			},
 			valid: [
 				{
 					name: 'manual target version lower than deprecation',
@@ -100,7 +102,6 @@ describe('no-deprecations', () => {
 					errors: [
 						{
 							message: 'The property or function OC.L10n was deprecated in Nextcloud 26.0.0',
-							type: 'MemberExpression',
 						},
 					],
 				},

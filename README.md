@@ -28,7 +28,7 @@ npm install --save-dev @nextcloud/eslint-config
 ### Usage
 
 > [!NOTE]
-> Since version 9 this package depends on ESLint 9, which uses the new flat config system.
+> Since version 9 this package depends on ESLint 10, which uses the new flat config system.
 
 This package provides some predefined configurations you can choose from.
 For the recommended setup add a file `eslint.config.js` in the root directory of your app repository with the following content:

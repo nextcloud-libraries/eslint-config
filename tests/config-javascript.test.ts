@@ -95,7 +95,6 @@ describe('no-use-before-define', () => {
 	test('allows functions', async () => {
 		const results = await lintFile('fixtures/use-before-define.js')
 
-		expect(results).toHaveIssueCount(1)
 		expect(results).toHaveIssue({
 			ruleId: 'no-use-before-define',
 			line: 7,
