@@ -43,6 +43,7 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@eslint/js": "^10.0.1",
     "@eslint/json": "^1.0.1",
     "@stylistic/eslint-plugin": "^5.9.0",
     "eslint-config-flat-gitignore": "^2.2.1",
