@@ -23,8 +23,7 @@ export default defineRule({
 		return {
 			CallExpression(node) {
 				if (node.callee.type !== 'Identifier'
-					|| (node.callee.name !== 't' && node.callee.name !== 'n')
-				) {
+					|| (node.callee.name !== 't' && node.callee.name !== 'n')) {
 					return
 				}
 
