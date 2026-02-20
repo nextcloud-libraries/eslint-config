@@ -11,7 +11,7 @@ import {
 	GLOB_FILES_TYPESCRIPT,
 	GLOB_FILES_VUE,
 } from '../globs.ts'
-import nextcloudVuePlugin from '../plugins/nextcloud-vue/index.ts'
+import { nextcloudPlugin } from '../index.ts'
 import { codeStyle } from './codeStyle.ts'
 
 const stylisticRules = codeStyle({
@@ -165,11 +165,11 @@ export function vue(options: ConfigOptions): Linter.Config[] {
 				...GLOB_FILES_VUE,
 			],
 			plugins: {
-				'@nextcloud/vue': nextcloudVuePlugin,
+				'@nextcloud': nextcloudPlugin,
 			},
 			rules: {
-				'@nextcloud/vue/no-deprecated-exports': 'error',
-				'@nextcloud/vue/no-deprecated-props': 'error',
+				'@nextcloud/no-deprecated-library-exports': 'error',
+				'@nextcloud/no-deprecated-library-props': 'error',
 			},
 			name: 'nextcloud/vue/migration-rules',
 		},
