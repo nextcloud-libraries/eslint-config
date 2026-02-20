@@ -128,8 +128,8 @@ export function vue(options: ConfigOptions): Linter.Config[] {
 				// same as the stylistic rules but for the <template> in Vue files
 				...Object.fromEntries(vueStylisticRules),
 				// same as in the codeStyle config but for the <template> in Vue files
-				'@nextcloud-l10n/non-breaking-space-vue': 'error',
-				'@nextcloud-l10n/enforce-ellipsis-vue': 'error',
+				'@nextcloud/l10n-non-breaking-space': 'error',
+				'@nextcloud/l10n-enforce-ellipsis': 'error',
 				// Also enforce tabs for template
 				'vue/html-indent': [
 					'error',

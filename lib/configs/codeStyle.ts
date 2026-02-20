@@ -12,7 +12,6 @@ import {
 	GLOB_FILES_TYPESCRIPT,
 	GLOB_FILES_VUE,
 } from '../globs.ts'
-import l10nPlugin from '../plugins/l10n/index.ts'
 
 /**
  * Config factory for general code style related rules
@@ -189,13 +188,10 @@ export function codeStyle(options: ConfigOptions): Linter.Config[] {
 				...GLOB_FILES_TYPESCRIPT,
 				...GLOB_FILES_VUE,
 			],
-			plugins: {
-				'@nextcloud-l10n': l10nPlugin,
-			},
 			// Enforce that translations use ellipsis instead of tripple dots
 			rules: {
-				'@nextcloud-l10n/non-breaking-space': 'error',
-				'@nextcloud-l10n/enforce-ellipsis': 'error',
+				'@nextcloud/l10n-non-breaking-space': 'error',
+				'@nextcloud/l10n-enforce-ellipsis': 'error',
 			},
 		},
 	]
