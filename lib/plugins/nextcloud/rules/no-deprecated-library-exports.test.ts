@@ -7,7 +7,7 @@ import { RuleTester } from 'eslint'
 import { gte } from 'semver'
 import { describe, test, vi } from 'vitest'
 import vueParser from 'vue-eslint-parser'
-import rule from './no-deprecated-exports.ts'
+import rule from './no-deprecated-library-exports.ts'
 
 const createLibVersionValidator = vi.hoisted(() => vi.fn(() => (version: string) => !!version))
 
@@ -15,7 +15,7 @@ vi.mock('../utils/lib-version-parser.ts', () => ({
 	createLibVersionValidator,
 }))
 
-describe('no-deprecated-exports', () => {
+describe('no-deprecated-library-exports', () => {
 	const ruleTester = new RuleTester({
 		languageOptions: {
 			parser: vueParser,
@@ -23,9 +23,9 @@ describe('no-deprecated-exports', () => {
 		},
 	})
 
-	test('no-deprecated-exports if library is not in use', () => {
+	test('no-deprecated-library-exports if library is not in use', () => {
 		createLibVersionValidator.mockReturnValue(() => false)
-		ruleTester.run('no-deprecated-exports', rule, {
+		ruleTester.run('no-deprecated-library-exports', rule, {
 			valid: [
 				{
 					code: '<script>import anything from \'anywhere\'</script>',
@@ -42,9 +42,9 @@ describe('no-deprecated-exports', () => {
 		})
 	})
 
-	test('no-deprecated-exports if library has outdated version', () => {
+	test('no-deprecated-library-exports if library has outdated version', () => {
 		createLibVersionValidator.mockReturnValue((version: string) => gte('8.22.0', version))
-		ruleTester.run('no-deprecated-exports', rule, {
+		ruleTester.run('no-deprecated-library-exports', rule, {
 			valid: [
 				{
 					code: '<script>import anything from \'anywhere\'</script>',
@@ -61,9 +61,9 @@ describe('no-deprecated-exports', () => {
 		})
 	})
 
-	test('no-deprecated-exports for dist syntax', () => {
+	test('no-deprecated-library-exports for dist syntax', () => {
 		createLibVersionValidator.mockReturnValue((version: string) => gte('8.23.1', version))
-		ruleTester.run('no-deprecated-exports', rule, {
+		ruleTester.run('no-deprecated-library-exports', rule, {
 			valid: [
 				{
 					code: '<script>import NcButton from \'@nextcloud/vue/components/NcButton\'</script>',
@@ -112,9 +112,9 @@ describe('no-deprecated-exports', () => {
 		})
 	})
 
-	test('no-deprecated-exports for removed content', () => {
+	test('no-deprecated-library-exports for removed content', () => {
 		createLibVersionValidator.mockReturnValue((version: string) => gte('8.31.0', version))
-		ruleTester.run('no-deprecated-exports', rule, {
+		ruleTester.run('no-deprecated-library-exports', rule, {
 			valid: [
 				{
 					code: '<script>import NcButton from \'@nextcloud/vue/components/NcButton\'</script>',

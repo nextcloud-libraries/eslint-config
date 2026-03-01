@@ -80,7 +80,7 @@ export default [
 		files: ['**/*.js'],
 		rules: {
 			// Make deprecations error instead of warning level
-			'@nextcloud/no-deprecations': ['error'],
+			'@nextcloud/no-deprecated-globals': ['error'],
 		}
 	}
 ]
@@ -97,7 +97,7 @@ export default [
 			'@nextcloud': nextcloudPlugin,
 		},
 		rules: {
-			'@nextcloud/no-removed-apis': ['error', { targetVersion: '29.0.0' }],
+			'@nextcloud/no-removed-globals': ['error', { targetVersion: '29.0.0' }],
 		},
 	}
 ]
@@ -111,7 +111,7 @@ Rules:
 
 ##### `@nextcloud` plugin
 Rules:
-- `no-deprecations`
+- `no-deprecated-globals`
   - Report usage of deprecated Nextcloud API
   - Included as `warn` level in recommended configuration
   - Available options
@@ -130,7 +130,7 @@ Rules:
       parseAppInfo?: boolean
     }
     ```
-- `no-removed-apis`
+- `no-removed-globals`
   - Report usage of removed Nextcloud API
   - Included as `error` level in recommended configuration
   - Available options
@@ -149,17 +149,10 @@ Rules:
       parseAppInfo?: boolean
     }
     ```
-
-##### `@nextcloud-l10n`
-```ts
-import { l10nPlugin  } from '@nextcloud/eslint-config'
-```
-
-Rules:
-- `enforce-ellipsis`
+- `l10n-enforce-ellipsis`
   - Enforce consistent usageof ellipsis instead of tripple dots
   - Included as `error` level in recommended configuration
-- `non-breaking-space`
+- `l10n-non-breaking-space`
   - Enforce non-breaking spaces before ellipsis
   - Included as `error` level in recommended configuration
 

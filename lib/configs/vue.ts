@@ -11,7 +11,7 @@ import {
 	GLOB_FILES_TYPESCRIPT,
 	GLOB_FILES_VUE,
 } from '../globs.ts'
-import nextcloudVuePlugin from '../plugins/nextcloud-vue/index.ts'
+import { nextcloudPlugin } from '../index.ts'
 import { codeStyle } from './codeStyle.ts'
 
 const stylisticRules = codeStyle({
@@ -128,8 +128,8 @@ export function vue(options: ConfigOptions): Linter.Config[] {
 				// same as the stylistic rules but for the <template> in Vue files
 				...Object.fromEntries(vueStylisticRules),
 				// same as in the codeStyle config but for the <template> in Vue files
-				'@nextcloud-l10n/non-breaking-space-vue': 'error',
-				'@nextcloud-l10n/enforce-ellipsis-vue': 'error',
+				'@nextcloud/l10n-non-breaking-space': 'error',
+				'@nextcloud/l10n-enforce-ellipsis': 'error',
 				// Also enforce tabs for template
 				'vue/html-indent': [
 					'error',
@@ -165,11 +165,11 @@ export function vue(options: ConfigOptions): Linter.Config[] {
 				...GLOB_FILES_VUE,
 			],
 			plugins: {
-				'@nextcloud/vue': nextcloudVuePlugin,
+				'@nextcloud': nextcloudPlugin,
 			},
 			rules: {
-				'@nextcloud/vue/no-deprecated-exports': 'error',
-				'@nextcloud/vue/no-deprecated-props': 'error',
+				'@nextcloud/no-deprecated-library-exports': 'error',
+				'@nextcloud/no-deprecated-library-props': 'error',
 			},
 			name: 'nextcloud/vue/migration-rules',
 		},

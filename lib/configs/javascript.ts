@@ -78,8 +78,8 @@ export function javascript(options: ConfigOptions): Linter.Config[] {
 							'@nextcloud': nextcloudPlugin,
 						},
 						rules: {
-							'@nextcloud/no-deprecations': ['warn'],
-							'@nextcloud/no-removed-apis': ['error'],
+							'@nextcloud/no-deprecated-globals': ['warn'],
+							'@nextcloud/no-removed-globals': ['error'],
 						},
 						files: [
 							...GLOB_FILES_JAVASCRIPT,

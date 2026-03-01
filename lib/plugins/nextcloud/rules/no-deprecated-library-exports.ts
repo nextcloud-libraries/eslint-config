@@ -2,19 +2,15 @@
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
+
 import type { Rule } from 'eslint'
 
 import { createLibVersionValidator } from '../utils/lib-version-parser.ts'
-
-// ------------------------------------------------------------------------------
-// Rule Definition
-// ------------------------------------------------------------------------------
 
 /*
  Introduced in @nextcloud/vue v8.23.0
  https://github.com/nextcloud-libraries/nextcloud-vue/pull/6385
  */
-
 const rule: Rule.RuleModule = {
 	meta: {
 		docs: {
