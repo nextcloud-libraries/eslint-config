@@ -45,7 +45,7 @@
   "dependencies": {
     "@eslint/js": "^10.0.1",
     "@eslint/json": "^1.1.0",
-    "@stylistic/eslint-plugin": "^5.9.0",
+    "@stylistic/eslint-plugin": "^5.10.0",
     "eslint-config-flat-gitignore": "^2.2.1",
     "eslint-plugin-antfu": "^3.2.2",
     "eslint-plugin-jsdoc": "^62.7.1",
