@@ -4,17 +4,17 @@
  */
 import { RuleTester } from 'eslint'
 import { describe, test } from 'vitest'
-import rule from './no-deprecations.ts'
+import rule from './no-deprecated-globals.ts'
 
 // ------------------------------------------------------------------------------
 // Tests
 // ------------------------------------------------------------------------------
 
-describe('no-deprecations', () => {
+describe('no-deprecated-globals', () => {
 	const ruleTester = new RuleTester()
 
-	test('no-deprecations', () => {
-		ruleTester.run('no-deprecations', rule, {
+	test('no-deprecated-globals', () => {
+		ruleTester.run('no-deprecated-globals', rule, {
 			assertionOptions: {
 				requireMessage: true,
 			},
