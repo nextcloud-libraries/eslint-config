@@ -2,6 +2,7 @@
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
+
 import type { Rule } from 'eslint'
 
 import { fs, vol } from 'memfs'
@@ -13,7 +14,7 @@ import {
 	isDirectory,
 	isFile,
 	sanitizeTargetVersion,
-} from './version-parser.ts'
+} from './app-version-parser.ts'
 
 vi.mock('node:fs', () => fs)
 
@@ -45,14 +46,14 @@ describe('version-parser', () => {
 			const output = sanitizeTargetVersion('a.b.c')
 			expect(output).toBe('Should not be reached')
 		} catch (e) {
-			expect(e.message).toMatch(/Invalid target version/)
+			expect((e as any).message).toMatch(/Invalid target version/)
 		}
 
 		try {
 			const output = sanitizeTargetVersion('25.0.0.1')
 			expect(output).toBe('Should not be reached')
 		} catch (e) {
-			expect(e.message).toMatch(/Invalid target version/)
+			expect((e as any).message).toMatch(/Invalid target version/)
 		}
 	})
 
