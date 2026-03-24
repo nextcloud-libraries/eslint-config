@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "@eslint/js": "^10.0.1",
-    "@eslint/json": "^1.1.0",
+    "@eslint/json": "^1.2.0",
     "@stylistic/eslint-plugin": "^5.10.0",
     "eslint-config-flat-gitignore": "^2.2.1",
     "eslint-plugin-antfu": "^3.2.2",
@@ -60,7 +60,7 @@
   "devDependencies": {
     "@types/node": "^25.5.0",
     "@types/semver": "^7.7.1",
-    "eslint": "^10.0.3",
+    "eslint": "^10.1.0",
     "memfs": "^4.56.11",
     "vitest": "^4.1.0"
   },
