@@ -62,7 +62,7 @@
     "@types/semver": "^7.7.1",
     "eslint": "^10.1.0",
     "memfs": "^4.57.1",
-    "vitest": "^4.1.0"
+    "vitest": "^4.1.1"
   },
   "peerDependencies": {
     "eslint": ">=10"
