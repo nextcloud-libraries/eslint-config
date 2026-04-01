@@ -2,7 +2,10 @@
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
+
 import type { Rule } from 'eslint'
+
+import { defineTemplateBodyVisitor } from '../utils/vue-template-visitor.ts'
 
 const defineRule = (r: Rule.RuleModule) => r
 
@@ -20,7 +23,7 @@ export default defineRule({
 	},
 
 	create(context) {
-		return {
+		const visitor: Rule.NodeListener = {
 			CallExpression(node) {
 				if (node.callee.type !== 'Identifier'
 					|| (node.callee.name !== 't' && node.callee.name !== 'n')) {
@@ -44,5 +47,7 @@ export default defineRule({
 				}
 			},
 		}
+
+		return defineTemplateBodyVisitor(context, visitor, visitor)
 	},
 })
