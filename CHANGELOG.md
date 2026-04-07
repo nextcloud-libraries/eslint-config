@@ -20,6 +20,7 @@ either using the sledge hammer method (remove the lock file and run `npm i`) or 
 > TypeError: scopeManager.addGlobals is not a function
 
 ### Added
+* feat: migrate to ESLint v10 [\#1323](https://github.com/nextcloud-libraries/eslint-config/pull/1323) \([susnux](https://github.com/susnux)\)
 * feat: new modular config for (and with) ESLint v9 support [#887](https://github.com/nextcloud-libraries/eslint-config/pull/887)
 * feat: merge plugin repository [#899](https://github.com/nextcloud-libraries/eslint-config/pull/899)
 * feat: enforce non-breaking spaces before ellipsis for translations [\#948](https://github.com/nextcloud-libraries/eslint-config/pull/948)
@@ -101,6 +102,7 @@ either using the sledge hammer method (remove the lock file and run `npm i`) or 
 * build: disable libcheck for Typescript [\#1205](https://github.com/nextcloud-libraries/eslint-config/pull/1205) \([susnux](https://github.com/susnux)\)
 * chore(gitignore): ignore IDE configs [\#1265](https://github.com/nextcloud-libraries/eslint-config/pull/1265) \([ShGKme](https://github.com/ShGKme)\)
 * test(vue3): add some formatting tests [\#1267](https://github.com/nextcloud-libraries/eslint-config/pull/1267) \([ShGKme](https://github.com/ShGKme)\)
+* refactor: merge Nextcloud specific rules into the `@nextcloud` plugin [\#1278](https://github.com/nextcloud-libraries/eslint-config/pull/1278) \([susnux](https://github.com/susnux)\)
 * Updated `@eslint/json` to 0.14.0
 * Updated `@stylistic/eslint-plugin` to 5.7.0
 * Updated `eslint-config-flat-gitignore` to 2.1.0
