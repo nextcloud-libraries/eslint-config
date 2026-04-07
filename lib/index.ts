@@ -70,7 +70,6 @@ export const recommendedVue2Library: Linter.Config[] = createConfig({
 
 export { default as packageJsonPlugin } from './plugins/packageJson.ts'
 export { default as nextcloudPlugin } from './plugins/nextcloud/index.ts'
-export { default as l10nPlugin } from './plugins/l10n/index.ts'
 
 /**
  * Generate a configuration based on given options

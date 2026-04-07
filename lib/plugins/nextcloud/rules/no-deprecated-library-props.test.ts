@@ -7,7 +7,7 @@ import { RuleTester } from 'eslint'
 import { gte } from 'semver'
 import { describe, test, vi } from 'vitest'
 import vueParser from 'vue-eslint-parser'
-import rule from './no-deprecated-props.ts'
+import rule from './no-deprecated-library-props.ts'
 
 const createLibVersionValidator = vi.hoisted(() => vi.fn(() => (version: string) => !!version))
 
@@ -15,7 +15,7 @@ vi.mock('../utils/lib-version-parser.ts', () => ({
 	createLibVersionValidator,
 }))
 
-describe('no-deprecated-props', () => {
+describe('no-deprecated-library-props', () => {
 	const ruleTester = new RuleTester({
 		languageOptions: {
 			parser: vueParser,
@@ -23,9 +23,9 @@ describe('no-deprecated-props', () => {
 		},
 	})
 
-	test('no-deprecated-props if library is not in use', () => {
+	test('no-deprecated-library-props if library is not in use', () => {
 		createLibVersionValidator.mockReturnValue(() => false)
-		ruleTester.run('no-deprecated-props', rule, {
+		ruleTester.run('no-deprecated-library-props', rule, {
 			valid: [
 				{
 					code: '<template><NcButton>Hello</NcButton></template>',
@@ -42,9 +42,9 @@ describe('no-deprecated-props', () => {
 		})
 	})
 
-	test('no-deprecated-props if library has outdated version', () => {
+	test('no-deprecated-library-props if library has outdated version', () => {
 		createLibVersionValidator.mockReturnValue((version) => gte('8.23.1', version))
-		ruleTester.run('no-deprecated-props', rule, {
+		ruleTester.run('no-deprecated-library-props', rule, {
 			valid: [
 				{
 					code: '<template><NcButton>Hello</NcButton></template>',
@@ -70,9 +70,9 @@ describe('no-deprecated-props', () => {
 		})
 	})
 
-	test('no-deprecated-props', () => {
+	test('no-deprecated-library-props', () => {
 		createLibVersionValidator.mockReturnValue((version) => gte('9.0.0', version))
-		ruleTester.run('no-deprecated-props', rule, {
+		ruleTester.run('no-deprecated-library-props', rule, {
 			valid: [
 				{
 					code: '<template><NcButton variant="primary">Hello</NcButton></template>',

@@ -54,9 +54,11 @@ export function defineTemplateBodyVisitor(context: Rule.RuleContext, templateBod
 				},
 				message: 'Use the latest vue-eslint-parser. See also https://eslint.vuejs.org/user-guide/#what-is-the-use-the-latest-vue-eslint-parser-error.',
 			})
+		} else {
+			return scriptVisitor ?? {}
 		}
-		return {}
 	}
+
 	return (sourceCode.parserServices as ParserServices)
 		.defineTemplateBodyVisitor(templateBodyVisitor, scriptVisitor, options)
 }
