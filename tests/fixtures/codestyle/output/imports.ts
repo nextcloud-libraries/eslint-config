@@ -16,6 +16,14 @@ import IconBellRingOutline from 'vue-material-design-icons/BellRingOutline.vue'
 import SettingsFormGroup from './components/SettingsFormGroup.vue'
 import { a, y, z } from '../../../constants.js'
 import { useAppConfigStore } from './appConfig.store.ts'
+import { type Config, createConfig } from './config.ts'
+import {
+	type Bear,
+	type Elefant,
+	type Zoo,
+	createBear,
+	createZoo,
+} from './zoo.ts'
 
 import 'some-sideeffect'
 import style from './my.module.css'
