@@ -4,6 +4,8 @@ export {
 	afoo,
 } from './my/module.ts'
 
+export { zbar, type a } from './my/module.ts'
+
 const z = ''
 const b = ''
 

@@ -106,7 +106,7 @@ export function imports(options: ConfigOptions): Linter.Config[] {
 function createSortingConfig(type: 'export' | 'import') {
 	return {
 		type: 'natural',
-		newlinesBetween: 1,
+		newlinesBetween: 0,
 		partitionByNewLine: false,
 		groups: [
 			`type-${type}`,
