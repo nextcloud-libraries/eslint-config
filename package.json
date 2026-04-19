@@ -58,7 +58,7 @@
     "typescript-eslint": "^8.61.1"
   },
   "devDependencies": {
-    "@types/node": "^25.9.3",
+    "@types/node": "^26.0.0",
     "@types/semver": "^7.7.1",
     "eslint": "^10.5.0",
     "memfs": "^4.57.7",
@@ -68,7 +68,7 @@
     "eslint": ">=10"
   },
   "engines": {
-    "node": "^20.19 || ^22.13 || ^24"
+    "node": "^22.13 || ^24 || >=26"
   },
   "devEngines": {
     "packageManager": [
