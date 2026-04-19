@@ -1,238 +1,207 @@
 /*!
+ * SPDX-FileCopyrightText: 2026 Nextcloud GmbH and Nextcloud contributors
  * SPDX-FileCopyrightText: 2015 Ben Mosher
  * SPDX-License-Identifier: MIT
  */
 
-function isComma(token) {
-	return token.type === 'Punctuator' && token.value === ',';
-}
+import type { TSESTree } from '@typescript-eslint/types'
+import type { AST, Rule, SourceCode } from 'eslint'
+import type * as ESTree from 'estree'
 
-/**
- * @param {import('eslint').Rule.Fix[]} fixes
- * @param {import('eslint').Rule.RuleFixer} fixer
- * @param {import('eslint').SourceCode.SourceCode} sourceCode
- * @param {(ImportSpecifier | ImportDefaultSpecifier | ImportNamespaceSpecifier)[]} specifiers
- * */
-function removeSpecifiers(fixes, fixer, sourceCode, specifiers) {
-	for (const specifier of specifiers) {
-	// remove the trailing comma
-	const token = sourceCode.getTokenAfter(specifier);
-	if (token && isComma(token)) {
-		fixes.push(fixer.remove(token));
-	}
-	fixes.push(fixer.remove(specifier));
-	}
-}
-
-/** @type {(node: import('estree').Node, sourceCode: import('eslint').SourceCode.SourceCode, specifiers: (ImportSpecifier | ImportNamespaceSpecifier)[], kind: 'type' | 'typeof') => string} */
-function getImportText(
-	node,
-	sourceCode,
-	specifiers,
-	kind,
-) {
-	const sourceString = sourceCode.getText(node.source);
-	if (specifiers.length === 0) {
-	return '';
-	}
-
-	const names = specifiers.map((s) => {
-	if (s.imported.name === s.local.name) {
-		return s.imported.name;
-	}
-	return `${s.imported.name} as ${s.local.name}`;
-	});
-	// insert a fresh top-level import
-	return `import ${kind} {${names.join(', ')}} from ${sourceString};`;
-}
-
-/** @type {import('eslint').Rule.RuleModule} */
-export const rule = {
+export const rule: Rule.RuleModule = {
 	meta: {
-	type: 'suggestion',
-	docs: {
-		category: 'Style guide',
-		description: 'Enforce or ban the use of inline type-only markers for named imports.',
-	},
-	fixable: 'code',
-	schema: [
-		{
-		type: 'string',
-		enum: ['prefer-inline', 'prefer-top-level'],
-		default: 'prefer-inline',
+		fixable: 'code',
+		type: 'suggestion',
+		docs: {
+			dialects: ['typescript'],
+			description: 'Ban the use of inline type-only markers for named imports.',
 		},
-	],
+		messages: {
+			preferTopLevel: 'Prefer using a top-level type-only import instead of inline type specifiers.',
+		},
 	},
 
 	create(context) {
-	const sourceCode = context.sourceCode;
-
-	if (context.options[0] === 'prefer-inline') {
 		return {
-		ImportDeclaration(node) {
-			if (node.importKind === 'value' || node.importKind == null) {
-			// top-level value / unknown is valid
-			return;
-			}
-
-			if (
-			// no specifiers (import type {} from '') have no specifiers to mark as inline
-			node.specifiers.length === 0
-			|| node.specifiers.length === 1
-			// default imports are both "inline" and "top-level"
-			&& (
-				node.specifiers[0].type === 'ImportDefaultSpecifier'
-				// namespace imports are both "inline" and "top-level"
-				|| node.specifiers[0].type === 'ImportNamespaceSpecifier'
-			)
-			) {
-			return;
-			}
-
-			context.report({
-			node,
-			message: 'Prefer using inline {{kind}} specifiers instead of a top-level {{kind}}-only import.',
-			data: {
-				kind: node.importKind,
-			},
-			fix(fixer) {
-				const kindToken = sourceCode.getFirstToken(node, { skip: 1 });
-
-				return [].concat(
-				kindToken ? fixer.remove(kindToken) : [],
-				node.specifiers.map((specifier) => fixer.insertTextBefore(specifier, `${node.importKind} `)),
-				);
-			},
-			});
-		},
-		};
-	}
-
-	// prefer-top-level
-	return {
-		/** @param {import('estree').ImportDeclaration} node */
-		ImportDeclaration(node) {
-		if (
-			// already top-level is valid
-			node.importKind === 'type'
-			|| node.importKind === 'typeof'
-			// no specifiers (import {} from '') cannot have inline - so is valid
-			|| node.specifiers.length === 0
-			|| node.specifiers.length === 1
-			// default imports are both "inline" and "top-level"
-			&& (
-			node.specifiers[0].type === 'ImportDefaultSpecifier'
-			// namespace imports are both "inline" and "top-level"
-			|| node.specifiers[0].type === 'ImportNamespaceSpecifier'
-			)
-		) {
-			return;
-		}
-
-		/** @type {typeof node.specifiers} */
-		const typeSpecifiers = [];
-		/** @type {typeof node.specifiers} */
-		const typeofSpecifiers = [];
-		/** @type {typeof node.specifiers} */
-		const valueSpecifiers = [];
-		/** @type {typeof node.specifiers[number]} */
-		let defaultSpecifier = null;
-		for (const specifier of node.specifiers) {
-			if (specifier.type === 'ImportDefaultSpecifier') {
-			defaultSpecifier = specifier;
-			continue;
-			}
-
-			if (specifier.importKind === 'type') {
-			typeSpecifiers.push(specifier);
-			} else if (specifier.importKind === 'typeof') {
-			typeofSpecifiers.push(specifier);
-			} else if (specifier.importKind === 'value' || specifier.importKind == null) {
-			valueSpecifiers.push(specifier);
-			}
-		}
-
-		const typeImport = getImportText(node, sourceCode, typeSpecifiers, 'type');
-		const typeofImport = getImportText(node, sourceCode, typeofSpecifiers, 'typeof');
-		const newImports = `${typeImport}\n${typeofImport}`.trim();
-
-		if (typeSpecifiers.length + typeofSpecifiers.length === node.specifiers.length) {
-			/** @type {('type' | 'typeof')[]} */
-			// all specifiers have inline specifiers - so we replace the entire import
-			const kind = [].concat(
-			typeSpecifiers.length > 0 ? 'type' : [],
-			typeofSpecifiers.length > 0 ? 'typeof' : [],
-			);
-
-			context.report({
-			node,
-			message: 'Prefer using a top-level {{kind}}-only import instead of inline {{kind}} specifiers.',
-			data: {
-				kind: kind.join('/'),
-			},
-			fix(fixer) {
-				return fixer.replaceText(node, newImports);
-			},
-			});
-		} else {
-			// remove specific specifiers and insert new imports for them
-			typeSpecifiers.concat(typeofSpecifiers).forEach((specifier) => {
-			context.report({
-				node: specifier,
-				message: 'Prefer using a top-level {{kind}}-only import instead of inline {{kind}} specifiers.',
-				data: {
-				kind: specifier.importKind,
-				},
-				fix(fixer) {
-				/** @type {import('eslint').Rule.Fix[]} */
-				const fixes = [];
-
-				// if there are no value specifiers, then the other report fixer will be called, not this one
-
-				if (valueSpecifiers.length > 0) {
-					// import { Value, type Type } from 'mod';
-
-					// we can just remove the type specifiers
-					removeSpecifiers(fixes, fixer, sourceCode, typeSpecifiers);
-					removeSpecifiers(fixes, fixer, sourceCode, typeofSpecifiers);
-
-					// make the import nicely formatted by also removing the trailing comma after the last value import
-					// eg
-					// import { Value, type Type } from 'mod';
-					// to
-					// import { Value	} from 'mod';
-					// not
-					// import { Value,	} from 'mod';
-					const maybeComma = sourceCode.getTokenAfter(valueSpecifiers[valueSpecifiers.length - 1]);
-					if (isComma(maybeComma)) {
-					fixes.push(fixer.remove(maybeComma));
-					}
-				} else if (defaultSpecifier) {
-					// import Default, { type Type } from 'mod';
-
-					// remove the entire curly block so we don't leave an empty one behind
-					// NOTE - the default specifier *must* be the first specifier always!
-					//				so a comma exists that we also have to clean up or else it's bad syntax
-					const comma = sourceCode.getTokenAfter(defaultSpecifier, isComma);
-					const closingBrace = sourceCode.getTokenAfter(
-					node.specifiers[node.specifiers.length - 1],
-					(token) => token.type === 'Punctuator' && token.value === '}',
-					);
-					fixes.push(fixer.removeRange([
-					comma.range[0],
-					closingBrace.range[1],
-					]));
+			ImportDeclaration(node: ESTree.ImportDeclaration | TSESTree.ImportDeclaration) {
+				if (
+					!('importKind' in node)
+					|| node.importKind === 'type'
+					// no specifiers (import {} from '') cannot have inline - so is valid
+					|| node.specifiers.length === 0
+					|| (
+						node.specifiers.length === 1
+						// default imports are both "inline" and "top-level"
+						&& (
+							node.specifiers[0].type === 'ImportDefaultSpecifier'
+							// namespace imports are both "inline" and "top-level"
+							|| node.specifiers[0].type === 'ImportNamespaceSpecifier'
+						)
+					)
+				) {
+					return
 				}
 
-				return fixes.concat(
-					// insert the new imports after the old declaration
-					fixer.insertTextAfter(node, `\n${newImports}`),
-				);
-				},
-			});
-			});
+				const typeSpecifiers: TSESTree.ImportSpecifier[] = []
+				const valueSpecifiers: TSESTree.ImportClause[] = []
+				let defaultSpecifier: TSESTree.ImportDefaultSpecifier
+				for (const specifier of node.specifiers) {
+					if (specifier.type === 'ImportDefaultSpecifier') {
+						defaultSpecifier = specifier
+						continue
+					}
+
+					if (!('importKind' in specifier) || !specifier.importKind) {
+						valueSpecifiers.push(specifier)
+						continue
+					}
+
+					if (specifier.importKind === 'type') {
+						typeSpecifiers.push(specifier)
+					} else if (specifier.importKind === 'value') {
+						valueSpecifiers.push(specifier)
+					}
+				}
+
+				const typeImport = getImportText(node, context.sourceCode, typeSpecifiers)
+				const newImports = typeImport.trim()
+
+				if (typeSpecifiers.length === node.specifiers.length) {
+					// all specifiers have inline specifiers - so we replace the entire import
+					context.report({
+						node,
+						messageId: 'preferTopLevel',
+						fix(fixer) {
+							return fixer.replaceText(node, newImports)
+						},
+					})
+				} else {
+					// remove specific specifiers and insert new imports for them
+					for (const specifier of typeSpecifiers) {
+						context.report({
+							node: specifier,
+							messageId: 'preferTopLevel',
+							fix(fixer) {
+								const fixes: Rule.Fix[] = []
+
+								// if there are no value specifiers, then the other report fixer will be called, not this one
+								if (valueSpecifiers.length > 0) {
+									// import { Value, type Type } from 'mod';
+
+									// we can just remove the type specifiers
+									removeSpecifiers(fixes, fixer, context.sourceCode, typeSpecifiers)
+
+									// make the import nicely formatted by also removing the trailing comma after the last value import
+									// eg
+									// import { Value, type Type } from 'mod';
+									// to
+									// import { Value  } from 'mod';
+									// not
+									// import { Value,  } from 'mod';
+									removeCommaAfterNode(fixes, fixer, context.sourceCode, valueSpecifiers[valueSpecifiers.length - 1])
+								} else if (defaultSpecifier) {
+									// import Default, { type Type } from 'mod';
+
+									// remove the entire curly block so we don't leave an empty one behind
+									// NOTE - the default specifier *must* be the first specifier always!
+									//        so a comma exists that we also have to clean up or else it's bad syntax
+									const comma = context.sourceCode.getTokenAfter(defaultSpecifier, isComma)
+									const closingBrace = context.sourceCode.getTokenAfter(
+										node.specifiers[node.specifiers.length - 1],
+										(token) => token.type === 'Punctuator' && token.value === '}',
+									)
+									if (comma && closingBrace) {
+										fixes.push(fixer.removeRange([
+											comma.range[0],
+											closingBrace.range[1],
+										]))
+									}
+								}
+
+								// insert the new imports after the old declaration
+								return fixes.concat(fixer.insertTextAfter(node, `\n${newImports}`))
+							},
+						})
+					}
+				}
+			},
 		}
-		},
-	};
 	},
-};
+}
+
+/**
+ * Check if the given token is a comma
+ *
+ * @param token - The token to check
+ */
+function isComma(token: TSESTree.Token | AST.Token): boolean {
+	return token.type === 'Punctuator' && token.value === ','
+}
+
+/**
+ * Remove the given specifiers from the import declaration, along with any trailing commas if necessary.
+ *
+ * @param fixes - The array to which the generated fixes will be added
+ * @param fixer - The fixer object used to create the fixes
+ * @param sourceCode - The source code object used to analyze the code and find tokens
+ * @param specifiers - The specifiers to remove from the import declaration
+ */
+function removeSpecifiers(fixes: Rule.Fix[], fixer: Rule.RuleFixer, sourceCode: SourceCode, specifiers: TSESTree.ImportClause[]) {
+	for (const specifier of specifiers) {
+		removeCommaAfterNode(fixes, fixer, sourceCode, specifier)
+		fixes.push(fixer.remove(specifier))
+	}
+}
+
+/**
+ * Remove the trailing comma
+ *
+ * @param fixes - The array to which the generated fixes will be added
+ * @param fixer - The fixer object used to create the fixes
+ * @param sourceCode - The source code object used to analyze the code and find tokens
+ * @param node - The node after which to check for a comma and remove it if exists
+ */
+function removeCommaAfterNode(fixes: Rule.Fix[], fixer: Rule.RuleFixer, sourceCode: SourceCode, node: AST.Token | ESTree.Node) {
+	const token = sourceCode.getTokenAfter(node)
+	if (token && isComma(token)) {
+		const nextToken = sourceCode.getTokenAfter(token)
+		// get the empty space to remove double whitespace after removing the comma
+		const emptySpace = sourceCode.text
+			.slice(token.range[1], nextToken?.range[0] ?? token.range[1])
+			.match(/^[ \t]*[\n\r]*/)
+			?.[0] ?? ''
+		if (emptySpace) {
+			fixes.push(fixer.removeRange([token.range[0], token.range[1] + emptySpace.length]))
+		} else {
+			fixes.push(fixer.remove(token))
+		}
+	}
+}
+
+/**
+ * Get the text for a new top-level type-only import based on the given inline type specifiers.
+ *
+ * @param node - The original import declaration node containing the inline type specifiers
+ * @param sourceCode - The source code object used to analyze the code and find tokens
+ * @param specifiers - The inline type specifiers for which to generate the new import text
+ */
+function getImportText(
+	node: ESTree.ImportDeclaration | TSESTree.ImportDeclaration,
+	sourceCode: SourceCode,
+	specifiers: TSESTree.ImportSpecifier[],
+) {
+	const sourceString = sourceCode.getText(node.source)
+	if (specifiers.length === 0) {
+		return ''
+	}
+
+	const names = specifiers.map((s) => {
+		const name = 'name' in s.imported ? s.imported.name : s.imported.value
+		if (name === s.local.name) {
+			return name
+		}
+		return `${name} as ${s.local.name}`
+	})
+	// insert a fresh top-level import
+	return `import type {${names.join(', ')}} from ${sourceString};`
+}
