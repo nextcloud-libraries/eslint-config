@@ -8,11 +8,12 @@
 		"resolveJsonModule": true,
 		"moduleResolution": "NodeNext",
 		"module": "NodeNext",
-		"target": "ES2022",
-		"lib": ["ES2022"],
+		"target": "es2024",
+		"lib": ["ES2024"],
 		"outDir": "./dist",
 		"rootDir": "lib/",
-		"skipLibCheck": true
+		"skipLibCheck": true,
+		"types": ["node"]
 	},
 	"include": [
 		"lib"
