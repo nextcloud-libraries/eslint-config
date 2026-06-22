@@ -30,17 +30,25 @@ async function lintFile(file: string) {
 
 test('Formatting', async () => {
 	const results = await lintFile('fixtures/component-formatting.vue')
-	expect(results).toHaveIssueCount(3)
+	expect(results).toHaveIssueCount(5)
 	expect(results).toHaveIssue({
 		ruleId: 'vue/prop-name-casing',
 		line: 11,
 	})
 	expect(results).toHaveIssue({
 		ruleId: 'vue/custom-event-name-casing',
-		line: 31,
+		line: 26, // 'update:model-value' vs 'update:modelValue'
+	})
+	expect(results).toHaveIssue({
+		ruleId: 'vue/custom-event-name-casing',
+		line: 33, // 'update:model-value' vs 'update:modelValue'
+	})
+	expect(results).toHaveIssue({
+		ruleId: 'vue/custom-event-name-casing',
+		line: 31, // 'my-event' vs 'myEvent'
 	})
 	expect(results).toHaveIssue({
 		ruleId: 'vue/slot-name-casing',
-		line: 34,
+		line: 34, // 'my-icon' vs 'myIcon'
 	})
 })
