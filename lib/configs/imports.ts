@@ -39,6 +39,8 @@ export function imports(options: ConfigOptions): Linter.Config[] {
 			rules: {
 				// Require file extensions
 				'import-extensions/extensions': 'error',
+				// enforce explicit type imports (no inline types)
+				'import-extensions/ban-inline-type-imports': 'error',
 				// Sorting of imports
 				'sort-imports': 'off',
 				'perfectionist/sort-imports': [

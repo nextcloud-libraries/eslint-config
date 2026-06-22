@@ -22,12 +22,14 @@ import 'some-sideeffect'
 import type { AssertPredicate } from 'node:assert'
 import style from './my.module.css'
 
-import { type Config, createConfig } from './config.ts';
-
+import { type Config, createConfig } from './config.ts'
 import {
 	type Bear,
 	type Elefant,
 	createBear,
 	type Zoo,
 	createZoo,
-} from './zoo.ts';
+} from './zoo.ts'
+
+import MixedValueDefaultImport, { type MixedValueDefaultTypeImport } from './mixed-default-import.ts'
+import { MixedValueImport, type MixedValueTypeImport } from './mixed-import.ts'
