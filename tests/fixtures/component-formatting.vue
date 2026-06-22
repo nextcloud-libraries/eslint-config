@@ -30,7 +30,7 @@ emit('update:model-value', 'value') // ❌ Should be camelCase 'update:modelValu
 	<div>
 		<button @click="$emit('my-event')" /> <!-- ❌ Should be camelCase 'myEvent' -->
 		<button @click="$emit('namespace:event')" /> <!-- ✅ Namespaced events are allowed -->
-		<button @click="$emit('update:model-value')" /> <!-- ⚠️ vue/custom-event-name-casing ignores update:* events completely -->
+		<button @click="$emit('update:model-value')" /> <!-- ❌ Should be camelCase 'update:modelValue' -->
 		<slot name="my-icon" /> <!-- ❌ Should be camelCase 'myIcon' -->
 	</div>
 </template>
