@@ -44,6 +44,7 @@ either using the sledge hammer method (remove the lock file and run `npm i`) or 
 * feat(vue3): force camelCase for events in `<template>` [\#1263](https://github.com/nextcloud-libraries/eslint-config/pull/1263) \([ShGKme](https://github.com/ShGKme)\)
 * feat(vue3): force camelCase for slot names [\#1264](https://github.com/nextcloud-libraries/eslint-config/pull/1264) \([ShGKme](https://github.com/ShGKme)\)
 * feat(vue3): force camelCase for props in template [\#1266](https://github.com/nextcloud-libraries/eslint-config/pull/1266) \([ShGKme](https://github.com/ShGKme)\)
+* feat(import): enforce consistent types imports and ban usage of inline type specifiers [\#1382](https://github.com/nextcloud-libraries/eslint-config/pull/1382) \([susnux](https://github.com/susnux)\)
 
 ### Fixed
 * fix(codestyle): do not require splitting chains [\#951](https://github.com/nextcloud-libraries/eslint-config/pull/951)
@@ -81,6 +82,7 @@ either using the sledge hammer method (remove the lock file and run `npm i`) or 
 * fix: switch to `@stylistic/exp-list-style` to resolve array edge-cases [\#1203](https://github.com/nextcloud-libraries/eslint-config/pull/1203) \([susnux](https://github.com/susnux)\)
 * fix(nextcloud-plugin): add more removed API in Nextcloud 33 [\#1269](https://github.com/nextcloud-libraries/eslint-config/pull/1269) \([susnux](https://github.com/susnux)\)
 * fix: use vue-eslint-parser directly [\#1277](https://github.com/nextcloud-libraries/eslint-config/pull/1277) \([susnux](https://github.com/susnux)\)
+* fix(imports): no newline inside import statements [\#1379](https://github.com/nextcloud-libraries/eslint-config/pull/1379) \([max-nextcloud](https://github.com/max-nextcloud)\)
 
 ### Changed
 * Add SPDX header [#802](https://github.com/nextcloud-libraries/eslint-config/pull/802)
@@ -89,6 +91,7 @@ either using the sledge hammer method (remove the lock file and run `npm i`) or 
 * refactor: use camelCase for internal variables [#971](https://github.com/nextcloud-libraries/eslint-config/pull/971) ([susnux](https://github.com/susnux))
 * chore: do not bundle config but just use Typescript [#967](https://github.com/nextcloud-libraries/eslint-config/pull/967)
 * chore: require node ^20.19 [\#982](https://github.com/nextcloud-libraries/eslint-config/pull/982)
+* chore: remove EOL Node version and add new future LTS [\#1381](https://github.com/nextcloud-libraries/eslint-config/pull/1381) \([susnux](https://github.com/susnux)\)
 * chore: allow to run `npm lint` without compile step [#975](https://github.com/nextcloud-libraries/eslint-config/pull/975) ([susnux](https://github.com/susnux))
 * chore: prepare v9.0.0-rc.1 [#1010](https://github.com/nextcloud-libraries/eslint-config/pull/1010) ([susnux](https://github.com/susnux))
 * docs: consistent badge style with the reuse one [#1060](https://github.com/nextcloud-libraries/eslint-config/pull/1060) ([susnux](https://github.com/susnux))
@@ -103,18 +106,18 @@ either using the sledge hammer method (remove the lock file and run `npm i`) or 
 * chore(gitignore): ignore IDE configs [\#1265](https://github.com/nextcloud-libraries/eslint-config/pull/1265) \([ShGKme](https://github.com/ShGKme)\)
 * test(vue3): add some formatting tests [\#1267](https://github.com/nextcloud-libraries/eslint-config/pull/1267) \([ShGKme](https://github.com/ShGKme)\)
 * refactor: merge Nextcloud specific rules into the `@nextcloud` plugin [\#1278](https://github.com/nextcloud-libraries/eslint-config/pull/1278) \([susnux](https://github.com/susnux)\)
-* Updated `@eslint/json` to 0.14.0
+* Updated `@eslint/json` to 2.0.0
 * Updated `@stylistic/eslint-plugin` to 5.7.0
 * Updated `eslint-config-flat-gitignore` to 2.1.0
-* Updated `eslint-plugin-antfu` to 3.1.3
-* Updated `eslint-plugin-jsdoc` to 62.0.0
-* Updated `eslint-plugin-perfectionist` to 5.3.1
-* Updated `eslint-plugin-vue` to 10.6.2
-* Updated `fast-xml-parser` to 5.3.3
-* Updated `globals` to 17.0.0
-* Updated `semver` to 7.7.3
-* Updated `sort-package-json` to 3.6.0
-* Updated `typescript-eslint` to 8.53.0
+* Updated `eslint-plugin-antfu` to 3.2.3
+* Updated `eslint-plugin-jsdoc` to 63.0.4
+* Updated `eslint-plugin-perfectionist` to 5.9.1
+* Updated `eslint-plugin-vue` to 10.9.2
+* Updated `fast-xml-parser` to 5.9.0
+* Updated `globals` to 17.6.0
+* Updated `semver` to 7.8.4
+* Updated `sort-package-json` to 4.0.0
+* Updated `typescript-eslint` to 8.61.1
 
 ## [v8.4.2](https://github.com/nextcloud-libraries/eslint-config/tree/v8.4.2) (2025-02-16)
 ### Fixed
