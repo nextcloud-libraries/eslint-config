@@ -52,7 +52,7 @@
     "eslint-plugin-perfectionist": "^5.9.1",
     "eslint-plugin-vue": "^10.9.2",
     "fast-xml-parser": "^5.9.3",
-    "globals": "^17.6.0",
+    "globals": "^17.7.0",
     "semver": "^7.8.5",
     "sort-package-json": "^4.0.0",
     "typescript-eslint": "^8.61.1"
