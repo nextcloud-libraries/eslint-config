@@ -141,7 +141,11 @@ export function vue(options: ConfigOptions): Linter.Config[] {
 				'vue/padding-line-between-blocks': 'error',
 				// Prefer separated static and dynamic class attributes
 				'vue/prefer-separate-static-class': 'error',
+				// For consistent layout of the template
+				'vue/attributes-order': 'error',
 				// For consistent layout of components
+				'vue/order-in-components': 'error',
+				// For consistent layout of script-setup components
 				'vue/define-macros-order': [
 					'error',
 					{
