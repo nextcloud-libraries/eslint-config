@@ -4,7 +4,7 @@
 -->	
 # Changelog
 
-## [v9.0.0](https://github.com/nextcloud-libraries/eslint-config/tree/v9.0.0) (unreleased)
+## [v9.0.0](https://github.com/nextcloud-libraries/eslint-config/tree/v9.0.0) (2026-06-26)
 
 ### Breaking
 This package now is using ESLint v10 and requires ESLint flat configurations.
@@ -114,10 +114,10 @@ either using the sledge hammer method (remove the lock file and run `npm i`) or 
 * Updated `eslint-plugin-perfectionist` to 5.9.1
 * Updated `eslint-plugin-vue` to 10.9.2
 * Updated `fast-xml-parser` to 5.9.0
-* Updated `globals` to 17.6.0
+* Updated `globals` to 17.7.0
 * Updated `semver` to 7.8.4
 * Updated `sort-package-json` to 4.0.0
-* Updated `typescript-eslint` to 8.61.1
+* Updated `typescript-eslint` to 8.62.0
 
 ## [v8.4.2](https://github.com/nextcloud-libraries/eslint-config/tree/v8.4.2) (2025-02-16)
 ### Fixed
