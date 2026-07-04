@@ -32,7 +32,11 @@ const rule: Rule.RuleModule = {
 		const isVersionValidForDist = versionSatisfies('8.23.0')
 
 		const oldPattern = '@nextcloud/vue/dist/([^/]+)/([^/.]+)'
-		const mixinPattern = '@nextcloud/vue/mixins/([^/.]+)'
+		// Matches both the legacy `dist/Mixins/*` path and a bare `mixins/*` path.
+		// There is no clean `@nextcloud/vue/mixins/*` subpath export (only components,
+		// composables, directives and functions), so mixins must be migrated to
+		// composables rather than have their import path rewritten.
+		const mixinPattern = '@nextcloud/vue/(?:dist/)?mixins/([^/.]+)'
 
 		const isVersionValidForTooltip = versionSatisfies('8.25.0')
 		const tooltipPattern = '@nextcloud/vue/directives/Tooltip'
@@ -88,6 +92,11 @@ const rule: Rule.RuleModule = {
 				if (match) {
 					if (!isVersionValidForDist) {
 						context.report({ node, messageId: 'outdatedVueLibrary' })
+						return
+					}
+
+					// Mixins removed in v9 and already reported as `deprecatedMixin`
+					if (match[1].toLowerCase() === 'mixins') {
 						return
 					}
 

@@ -105,8 +105,7 @@ describe('no-deprecated-library-exports', () => {
 				{
 					code: '<script>import isMobile from \'@nextcloud/vue/dist/Mixins/isMobile.js\'</script>',
 					filename: '/a/src/component.vue',
-					errors: [{ messageId: 'deprecatedDist' }],
-					output: '<script>import isMobile from \'@nextcloud/vue/mixins/isMobile\'</script>',
+					errors: [{ messageId: 'deprecatedMixin' }],
 				},
 			],
 		})
