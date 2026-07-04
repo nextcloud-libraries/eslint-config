@@ -33,7 +33,7 @@ export default {
 			useNoFocusTrapInstead: 'Using `focus-trap` is deprecated - use `no-focus-trap` instead',
 			useKeepOpenInstead: 'Using `close-on-select` is deprecated - use `keep-open` instead',
 			useNcSelectUsersInstead: 'Using `user-select` is deprecated - use `NcSelectUsers` component instead',
-			useArrowEndInstead: 'Using `arrow-right` is deprecated - use `arrow-end` instead',
+			useArrowEndInstead: 'Using `arrowRight` as `trailing-button-icon` value is deprecated - use `arrowEnd` instead',
 			removeAriaHidden: 'Using `aria-hidden` is deprecated - remove prop from components, otherwise root element will inherit incorrect attribute.',
 			removeLimitWidth: 'Using `limit-width` is deprecated - remove prop from components, otherwise root element will inherit incorrect attribute.',
 			removeExact: 'Using `exact` is deprecated - consult Vue Router documentation for alternatives.',
@@ -54,7 +54,7 @@ export default {
 		const isDateTimePickerFormatValid = versionSatisfies('8.25.0') // #6738
 		const isNcSelectKeepOpenValid = versionSatisfies('8.25.0') // #6791
 		const isNcPopoverNoFocusTrapValid = versionSatisfies('8.26.0') // #6808
-		const isNcSelectUsersValid = versionSatisfies('8.27.1') // #7032
+		const isNcSelectUsersValid = versionSatisfies('8.25.0') // #6791
 		const isNcTextFieldArrowEndValid = versionSatisfies('8.28.0') // #7002
 		const isCloseButtonOutsideValid = versionSatisfies('8.32.0') // #7553
 
@@ -374,7 +374,7 @@ export default {
 			},
 
 			'VElement[name="ncsettingssection"] VAttribute:has(VIdentifier[name="limit-width"])': function(node: AST.VAttribute | AST.VDirective) {
-				// This was deprecated in 8.13.0 (Nextcloud 30+), before first supported version by plugin
+				// This was deprecated in 8.12.0 (Nextcloud 30+), before first supported version by plugin
 				context.report({
 					node,
 					messageId: 'removeLimitWidth',
