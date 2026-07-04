@@ -9,6 +9,41 @@ import type { AST } from 'vue-eslint-parser'
 import { createLibVersionValidator } from '../utils/lib-version-parser.ts'
 import { defineTemplateBodyVisitor } from '../utils/vue-template-visitor.ts'
 
+/*
+ * Deprecated props can be authored in either kebab-case or camelCase:
+ * - camelCase is forced by `vue/attribute-hyphenation: never` shipped rule;
+ * - kebab-case might come from legacy code and other presets.
+ * A single `VAttribute` visitor normalizes the raw attribute name with `toCamelCase()`
+ * and dispatches to the handler registered under the canonical camelCase name.
+ */
+
+/**
+ * Convert an attribute name to camelCase, matching Vue's own prop normalization,
+ * so a template attribute written in either casing maps to a single canonical name.
+ *
+ * @param name - the raw attribute name as written in the template
+ */
+const toCamelCase = (name: string) => name.replace(/-(\w)/g, (_, char) => char.toUpperCase())
+
+/**
+ * Resolve the raw (case-preserving) name of a template attribute: the argument
+ * for a directive binding (`:foo` / `v-model:foo`), or the key otherwise.
+ * Returns `undefined` when there is no static name (e.g. a dynamic argument).
+ *
+ * Must use `rawName`, not `name`: Vue lowercases `name` in the AST (`focusTrap`
+ * becomes `focustrap`), which `toCamelCase()` cannot restore, so it would no
+ * longer match the camelCase handler key. `rawName` keeps the original casing.
+ *
+ * @param node - the attribute or directive node
+ */
+function getRawName(node: AST.VAttribute | AST.VDirective): string | undefined {
+	if (node.key.type === 'VDirectiveKey') {
+		return node.key.argument?.type === 'VIdentifier' ? node.key.argument.rawName : undefined
+	}
+
+	return node.key.rawName
+}
+
 export default {
 	meta: {
 		docs: {
@@ -68,8 +103,13 @@ export default {
 			'tertiary-no-background',
 		]
 
-		return defineTemplateBodyVisitor(context, {
-			'VElement VAttribute:has(VIdentifier[name="type"])': function(node: AST.VAttribute | AST.VDirective) {
+		/*
+		 * Deprecated prop handlers keyed by their canonical camelCase name. Each
+		 * handler receives the matched attribute node and verifies the owning
+		 * component and installed library version itself.
+		 */
+		const handlers: Record<string, (node: AST.VAttribute | AST.VDirective) => void> = {
+			type: function(node) {
 				if (![
 					'ncactions',
 					'ncappnavigationnew',
@@ -85,9 +125,10 @@ export default {
 					return
 				}
 
-				const hasNativeType = node.parent.attributes.find((attr) => (
-					attr.key.name === 'native-type'
-					|| (attr.key.type === 'VDirectiveKey' && attr.key.argument && attr.key.argument.type === 'VIdentifier' && attr.key.argument.name === 'native-type')))
+				const hasNativeType = node.parent.attributes.some((attr) => {
+					const rawName = getRawName(attr)
+					return rawName !== undefined && toCamelCase(rawName) === 'nativeType'
+				})
 
 				const isLiteral = node.value.type === 'VLiteral' && legacyTypes.includes(node.value.value)
 				const isExpression = node.value.type === 'VExpressionContainer'
@@ -116,7 +157,7 @@ export default {
 				}
 			},
 
-			'VElement VAttribute:has(VIdentifier[name="native-type"])': function(node: AST.VAttribute | AST.VDirective) {
+			nativeType: function(node) {
 				if (![
 					'ncbutton',
 					'ncdialogbutton',
@@ -142,7 +183,7 @@ export default {
 				})
 			},
 
-			'VElement VAttribute:has(VIdentifier[name="aria-hidden"])': function(node: AST.VAttribute | AST.VDirective) {
+			ariaHidden: function(node) {
 				if (node.parent.parent.name.startsWith('ncaction')
 					|| node.parent.parent.name === 'ncbutton') {
 					if (!isAriaHiddenValid) {
@@ -157,7 +198,11 @@ export default {
 				}
 			},
 
-			'VElement[name="ncappcontent"] VAttribute:has(VIdentifier[name="allow-swipe-navigation"])': function(node: AST.VAttribute | AST.VDirective) {
+			allowSwipeNavigation: function(node) {
+				if (node.parent.parent.name !== 'ncappcontent') {
+					return
+				}
+
 				if (!isDisableSwipeValid) {
 					context.report({ node, messageId: 'outdatedVueLibrary' })
 					return
@@ -169,7 +214,11 @@ export default {
 				})
 			},
 
-			'VElement[name="ncavatar"] VAttribute:has(VIdentifier[name="show-user-status"])': function(node: AST.VAttribute | AST.VDirective) {
+			showUserStatus: function(node) {
+				if (node.parent.parent.name !== 'ncavatar') {
+					return
+				}
+
 				if (!isDefaultBooleanFalseValid) {
 					context.report({ node, messageId: 'outdatedVueLibrary' })
 					return
@@ -181,7 +230,11 @@ export default {
 				})
 			},
 
-			'VElement[name="ncavatar"] VAttribute:has(VIdentifier[name="show-user-status-compact"])': function(node: AST.VAttribute | AST.VDirective) {
+			showUserStatusCompact: function(node) {
+				if (node.parent.parent.name !== 'ncavatar') {
+					return
+				}
+
 				if (!isDefaultBooleanFalseValid) {
 					context.report({ node, messageId: 'outdatedVueLibrary' })
 					return
@@ -193,7 +246,11 @@ export default {
 				})
 			},
 
-			'VElement[name="ncavatar"] VAttribute:has(VIdentifier[name="allow-placeholder"])': function(node: AST.VAttribute | AST.VDirective) {
+			allowPlaceholder: function(node) {
+				if (node.parent.parent.name !== 'ncavatar') {
+					return
+				}
+
 				if (!isDefaultBooleanFalseValid) {
 					context.report({ node, messageId: 'outdatedVueLibrary' })
 					return
@@ -205,7 +262,11 @@ export default {
 				})
 			},
 
-			'VElement[name="ncdatetimepicker"] VAttribute:has(VIdentifier[name="formatter"])': function(node: AST.VAttribute | AST.VDirective) {
+			formatter: function(node) {
+				if (node.parent.parent.name !== 'ncdatetimepicker') {
+					return
+				}
+
 				if (!isDateTimePickerFormatValid) {
 					context.report({ node, messageId: 'outdatedVueLibrary' })
 					return
@@ -217,7 +278,11 @@ export default {
 				})
 			},
 
-			'VElement[name="ncdatetimepicker"] VAttribute:has(VIdentifier[name="lang"])': function(node: AST.VAttribute | AST.VDirective) {
+			lang: function(node) {
+				if (node.parent.parent.name !== 'ncdatetimepicker') {
+					return
+				}
+
 				if (!isVue3Valid) {
 					// Do not throw for v8.X.X
 					return
@@ -229,7 +294,11 @@ export default {
 				})
 			},
 
-			'VElement[name="ncdatetimepicker"] VAttribute:has(VIdentifier[name="range"])': function(node: AST.VAttribute | AST.VDirective) {
+			range: function(node) {
+				if (node.parent.parent.name !== 'ncdatetimepicker') {
+					return
+				}
+
 				if (!isDateTimePickerFormatValid) {
 					context.report({ node, messageId: 'outdatedVueLibrary' })
 					return
@@ -241,7 +310,7 @@ export default {
 				})
 			},
 
-			'VElement VAttribute:has(VIdentifier[name="can-close"])': function(node: AST.VAttribute | AST.VDirective) {
+			canClose: function(node) {
 				if (![
 					'ncdialog',
 					'ncmodal',
@@ -260,7 +329,11 @@ export default {
 				})
 			},
 
-			'VElement[name="ncpopover"] VAttribute:has(VIdentifier[name="close-on-click-outside"])': function(node: AST.VAttribute | AST.VDirective) {
+			closeOnClickOutside: function(node) {
+				if (node.parent.parent.name !== 'ncpopover') {
+					return
+				}
+
 				if (!isVue3Valid) {
 					// Do not throw for v8.X.X
 					return
@@ -272,7 +345,11 @@ export default {
 				})
 			},
 
-			'VElement[name="ncmodal"] VAttribute:has(VIdentifier[name="enable-swipe"])': function(node: AST.VAttribute | AST.VDirective) {
+			enableSwipe: function(node) {
+				if (node.parent.parent.name !== 'ncmodal') {
+					return
+				}
+
 				if (!isDisableSwipeValid) {
 					context.report({ node, messageId: 'outdatedVueLibrary' })
 					return
@@ -284,7 +361,11 @@ export default {
 				})
 			},
 
-			'VElement[name="ncmodal"] VAttribute:has(VIdentifier[name="close-button-contained"])': function(node: AST.VAttribute | AST.VDirective) {
+			closeButtonContained: function(node) {
+				if (node.parent.parent.name !== 'ncmodal') {
+					return
+				}
+
 				if (!isCloseButtonOutsideValid) {
 					context.report({ node, messageId: 'outdatedVueLibrary' })
 					return
@@ -296,7 +377,11 @@ export default {
 				})
 			},
 
-			'VElement[name="ncpopover"] VAttribute:has(VIdentifier[name="focus-trap"])': function(node: AST.VAttribute | AST.VDirective) {
+			focusTrap: function(node) {
+				if (node.parent.parent.name !== 'ncpopover') {
+					return
+				}
+
 				if (!isNcPopoverNoFocusTrapValid) {
 					context.report({ node, messageId: 'outdatedVueLibrary' })
 					return
@@ -308,7 +393,11 @@ export default {
 				})
 			},
 
-			'VElement[name="ncselect"] VAttribute:has(VIdentifier[name="close-on-select"])': function(node: AST.VAttribute | AST.VDirective) {
+			closeOnSelect: function(node) {
+				if (node.parent.parent.name !== 'ncselect') {
+					return
+				}
+
 				if (!isNcSelectKeepOpenValid) {
 					context.report({ node, messageId: 'outdatedVueLibrary' })
 					return
@@ -320,7 +409,11 @@ export default {
 				})
 			},
 
-			'VElement[name="ncselect"] VAttribute:has(VIdentifier[name="user-select"])': function(node: AST.VAttribute | AST.VDirective) {
+			userSelect: function(node) {
+				if (node.parent.parent.name !== 'ncselect') {
+					return
+				}
+
 				if (!isNcSelectUsersValid) {
 					context.report({ node, messageId: 'outdatedVueLibrary' })
 					return
@@ -332,7 +425,7 @@ export default {
 				})
 			},
 
-			'VElement VAttribute:has(VIdentifier[name="trailing-button-icon"])': function(node: AST.VAttribute | AST.VDirective) {
+			trailingButtonIcon: function(node) {
 				if (node.parent.parent.name !== 'nctextfield') {
 					return
 				}
@@ -373,7 +466,11 @@ export default {
 				}
 			},
 
-			'VElement[name="ncsettingssection"] VAttribute:has(VIdentifier[name="limit-width"])': function(node: AST.VAttribute | AST.VDirective) {
+			limitWidth: function(node) {
+				if (node.parent.parent.name !== 'ncsettingssection') {
+					return
+				}
+
 				// This was deprecated in 8.12.0 (Nextcloud 30+), before first supported version by plugin
 				context.report({
 					node,
@@ -381,7 +478,7 @@ export default {
 				})
 			},
 
-			'VElement VAttribute:has(VIdentifier[name="exact"])': function(node: AST.VAttribute | AST.VDirective) {
+			exact: function(node) {
 				if (![
 					'ncactionrouter',
 					'ncappnavigationitem',
@@ -403,7 +500,7 @@ export default {
 				})
 			},
 
-			'VElement VAttribute:has(VIdentifier[name="checked"])': function(node: AST.VAttribute | AST.VDirective) {
+			checked: function(node) {
 				if (![
 					'ncactioncheckbox',
 					'ncactionradio',
@@ -436,7 +533,7 @@ export default {
 				})
 			},
 
-			'VElement VAttribute:has(VIdentifier[name="value"])': function(node: AST.VAttribute | AST.VDirective) {
+			value: function(node) {
 				if (![
 					'ncactioninput',
 					'ncactiontexteditable',
@@ -479,6 +576,17 @@ export default {
 						}
 					},
 				})
+			},
+		}
+
+		return defineTemplateBodyVisitor(context, {
+			VAttribute(node: AST.VAttribute | AST.VDirective) {
+				const rawName = getRawName(node)
+				if (rawName === undefined) {
+					return
+				}
+
+				handlers[toCamelCase(rawName)]?.(node)
 			},
 		})
 	},
