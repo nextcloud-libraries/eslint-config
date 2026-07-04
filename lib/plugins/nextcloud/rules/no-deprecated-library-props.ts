@@ -75,6 +75,10 @@ export default {
 			useCloseButtonOutsideInstead: 'Using `close-button-contained` is deprecated - use `close-button-outside` instead',
 			useModelValueInsteadChecked: 'Using `checked` is deprecated - use `model-value` or `v-model` instead',
 			useModelValueInsteadValue: 'Using `value` is deprecated - use `model-value` or `v-model` instead',
+			useHideLabelInstead: 'Using `label-hidden` is deprecated - use `hide-label` instead',
+			useNcRadioGroupInstead: 'Using `button-variant` / `button-variant-grouped` is deprecated - use the `NcRadioGroup` component instead',
+			useLabelInstead: 'Using `title` is deprecated - use `label` instead',
+			removeLegacy: 'Using `legacy` is deprecated - the legacy design will be removed, migrate to the new design',
 		},
 	},
 
@@ -92,6 +96,10 @@ export default {
 		const isNcSelectUsersValid = versionSatisfies('8.25.0') // #6791
 		const isNcTextFieldArrowEndValid = versionSatisfies('8.28.0') // #7002
 		const isCloseButtonOutsideValid = versionSatisfies('8.32.0') // #7553
+		const isTitleLabelValid = versionSatisfies('8.6.2') // #5215
+		const isNcRadioGroupValid = versionSatisfies('8.31.0') // #7492
+		const isHideLabelValid = versionSatisfies('8.34.0') // #7772
+		const isAppSettingsLegacyValid = versionSatisfies('8.34.0') // #7802
 
 		const legacyTypes = [
 			'primary',
@@ -530,6 +538,91 @@ export default {
 							}
 						}
 					},
+				})
+			},
+
+			labelHidden: function(node) {
+				if (node.parent.parent.name !== 'ncradiogroup') {
+					return
+				}
+
+				if (!isHideLabelValid) {
+					context.report({ node, messageId: 'outdatedVueLibrary' })
+					return
+				}
+
+				context.report({
+					node,
+					messageId: 'useHideLabelInstead',
+					fix: (fixer) => {
+						if (node.key.type === 'VIdentifier') {
+							return fixer.replaceTextRange(node.key.range, 'hide-label')
+						} else if (node.key.type === 'VDirectiveKey') {
+							return fixer.replaceTextRange(node.key.argument.range, 'hide-label')
+						}
+					},
+				})
+			},
+
+			buttonVariant: function(node) {
+				if (node.parent.parent.name !== 'nccheckboxradioswitch') {
+					return
+				}
+
+				if (!isNcRadioGroupValid) {
+					context.report({ node, messageId: 'outdatedVueLibrary' })
+					return
+				}
+
+				context.report({
+					node,
+					messageId: 'useNcRadioGroupInstead',
+				})
+			},
+
+			// Same correction as `button-variant`
+			buttonVariantGrouped(node) {
+				handlers.buttonVariant(node)
+			},
+
+			title: function(node) {
+				if (![
+					'ncautocompleteresult',
+					'ncmentionbubble',
+				].includes(node.parent.parent.name)) {
+					return
+				}
+
+				if (!isTitleLabelValid) {
+					context.report({ node, messageId: 'outdatedVueLibrary' })
+					return
+				}
+
+				context.report({
+					node,
+					messageId: 'useLabelInstead',
+					fix: (fixer) => {
+						if (node.key.type === 'VIdentifier') {
+							return fixer.replaceTextRange(node.key.range, 'label')
+						} else if (node.key.type === 'VDirectiveKey') {
+							return fixer.replaceTextRange(node.key.argument.range, 'label')
+						}
+					},
+				})
+			},
+
+			legacy: function(node) {
+				if (node.parent.parent.name !== 'ncappsettingsdialog') {
+					return
+				}
+				if (!isAppSettingsLegacyValid) {
+					context.report({ node, messageId: 'outdatedVueLibrary' })
+					return
+				}
+
+				context.report({
+					node,
+					messageId: 'removeLegacy',
 				})
 			},
 
