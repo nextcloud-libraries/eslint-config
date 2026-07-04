@@ -33,7 +33,7 @@ export default {
 			useNoFocusTrapInstead: 'Using `focus-trap` is deprecated - use `no-focus-trap` instead',
 			useKeepOpenInstead: 'Using `close-on-select` is deprecated - use `keep-open` instead',
 			useNcSelectUsersInstead: 'Using `user-select` is deprecated - use `NcSelectUsers` component instead',
-			useArrowEndInstead: 'Using `arrow-right` is deprecated - use `arrow-end` instead',
+			useArrowEndInstead: 'Using `arrowRight` as `trailing-button-icon` value is deprecated - use `arrowEnd` instead',
 			removeAriaHidden: 'Using `aria-hidden` is deprecated - remove prop from components, otherwise root element will inherit incorrect attribute.',
 			removeLimitWidth: 'Using `limit-width` is deprecated - remove prop from components, otherwise root element will inherit incorrect attribute.',
 			removeExact: 'Using `exact` is deprecated - consult Vue Router documentation for alternatives.',
