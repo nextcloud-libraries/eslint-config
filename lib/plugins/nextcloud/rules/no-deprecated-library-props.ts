@@ -54,7 +54,7 @@ export default {
 		const isDateTimePickerFormatValid = versionSatisfies('8.25.0') // #6738
 		const isNcSelectKeepOpenValid = versionSatisfies('8.25.0') // #6791
 		const isNcPopoverNoFocusTrapValid = versionSatisfies('8.26.0') // #6808
-		const isNcSelectUsersValid = versionSatisfies('8.27.1') // #7032
+		const isNcSelectUsersValid = versionSatisfies('8.25.0') // #6791
 		const isNcTextFieldArrowEndValid = versionSatisfies('8.28.0') // #7002
 		const isCloseButtonOutsideValid = versionSatisfies('8.32.0') // #7553
 
@@ -374,7 +374,7 @@ export default {
 			},
 
 			'VElement[name="ncsettingssection"] VAttribute:has(VIdentifier[name="limit-width"])': function(node: AST.VAttribute | AST.VDirective) {
-				// This was deprecated in 8.13.0 (Nextcloud 30+), before first supported version by plugin
+				// This was deprecated in 8.12.0 (Nextcloud 30+), before first supported version by plugin
 				context.report({
 					node,
 					messageId: 'removeLimitWidth',
