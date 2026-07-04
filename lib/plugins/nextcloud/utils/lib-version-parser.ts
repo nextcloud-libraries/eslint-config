@@ -37,13 +37,13 @@ export function createLibVersionValidator({ cwd, physicalFilename }, importResol
 		return () => false
 	}
 
-	if (!cachedMap[packageJsonDir]) {
+	if (!cachedMap.has(packageJsonDir)) {
 		const json = JSON.parse(readFileSync(join(packageJsonDir, 'package.json'), 'utf-8'))
 		const libVersion = json.version
-		cachedMap[packageJsonDir] = (version: string) => gte(libVersion, version)
+		cachedMap.set(packageJsonDir, (version: string) => gte(libVersion, version))
 	}
 
-	return cachedMap[packageJsonDir]
+	return cachedMap.get(packageJsonDir)!
 }
 
 /**
