@@ -343,4 +343,81 @@ describe('no-deprecated-library-props', () => {
 			],
 		})
 	})
+
+	test('no-deprecated-library-props camelCase prop names', () => {
+		createLibVersionValidator.mockReturnValue((version) => gte('9.0.0', version))
+		ruleTester.run('no-deprecated-library-props', rule, {
+			valid: [
+				// The correct replacement prop in camelCase must not be flagged by this rule
+				{
+					code: '<template><NcAvatar :hideStatus="true" /></template>',
+					filename: '/a/src/component.vue',
+				},
+				// A deprecated prop on a component that does not own it must not be flagged by this rule
+				{
+					code: '<template><NcButton :showUserStatus="false">Hello</NcButton></template>',
+					filename: '/a/src/component.vue',
+				},
+				{
+					code: '<template><NcButton :closeOnSelect="false">Hello</NcButton></template>',
+					filename: '/a/src/component.vue',
+				},
+				// Same prop name on a plain element must not be flagged by this rule
+				{
+					code: '<template><input formatter="x" /></template>',
+					filename: '/a/src/component.vue',
+				},
+			],
+			invalid: [
+				{
+					code: '<template><NcButton nativeType="button">Hello</NcButton></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useTypeInstead' }],
+					output: '<template><NcButton type="button">Hello</NcButton></template>',
+				},
+				{
+					code: '<template><NcButton :type="buttonType" :nativeType="nativeType">Hello</NcButton></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useVariantInstead' }, { messageId: 'useTypeInstead' }],
+					output: '<template><NcButton :variant="buttonType" :type="nativeType">Hello</NcButton></template>',
+				},
+				{
+					code: '<template><NcAppContent allowSwipeNavigation @click="handle">Hello</NcAppContent></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useDisableSwipeForNavInstead' }],
+				},
+				{
+					code: '<template><NcAvatar :showUserStatus="false" /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useHideStatusInstead' }],
+				},
+				{
+					code: '<template><NcAvatar :showUserStatusCompact="false" /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useVerboseStatusInstead' }],
+				},
+				{
+					code: '<template><NcModal :closeButtonContained="false" /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useCloseButtonOutsideInstead' }],
+				},
+				{
+					code: '<template><NcSelect :closeOnSelect="false" /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useKeepOpenInstead' }],
+				},
+				{
+					code: '<template><NcSelect userSelect /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useNcSelectUsersInstead' }],
+				},
+				{
+					code: '<template><NcTextField trailingButtonIcon="arrowRight" /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useArrowEndInstead' }],
+					output: '<template><NcTextField trailingButtonIcon="arrowEnd" /></template>',
+				},
+			],
+		})
+	})
 })
