@@ -68,7 +68,7 @@
     "eslint": ">=10"
   },
   "engines": {
-    "node": "^22.13 || ^24 || >=26"
+    "node": "^22.14 || ^24 || >=26"
   },
   "devEngines": {
     "packageManager": [
