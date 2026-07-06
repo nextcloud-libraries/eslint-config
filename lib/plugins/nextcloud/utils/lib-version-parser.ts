@@ -3,8 +3,9 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 import { readFileSync } from 'node:fs'
-import { isAbsolute, join, resolve } from 'node:path'
-import { fileURLToPath, pathToFileURL } from 'node:url'
+import { findPackageJSON } from 'node:module'
+import { isAbsolute, resolve } from 'node:path'
+import { pathToFileURL } from 'node:url'
 import { gte } from 'semver'
 
 /**
@@ -19,31 +20,32 @@ const cachedMap = new Map<string, (version: string) => boolean>()
  * @param options Options
  * @param options.cwd The current working directory
  * @param options.physicalFilename The real filename where ESLint is linting currently
- * @param importResolve Optional custom import resolver function (for testing purposes)
  * @return Function validator, return a boolean whether current version satisfies minimal required for the rule
  */
-export function createLibVersionValidator({ cwd, physicalFilename }, importResolve = import.meta.resolve): ((version: string) => boolean) {
+export function createLibVersionValidator({ cwd, physicalFilename }: { cwd: string, physicalFilename: string }): ((version: string) => boolean) {
 	// Try to find package.json of the nextcloud-vue package
 	const sourceFile = isAbsolute(physicalFilename)
 		? resolve(physicalFilename)
 		: resolve(cwd, physicalFilename)
 
-	let packageJsonDir: string
+	let packageJsonPath: string | undefined
 	try {
-		const modulePath = fileURLToPath(importResolve('@nextcloud/vue', pathToFileURL(sourceFile)))
-		const idx = modulePath.lastIndexOf('/dist/')
-		packageJsonDir = modulePath.substring(0, idx)
+		packageJsonPath = findPackageJSON('@nextcloud/vue', pathToFileURL(sourceFile))
 	} catch {
+		packageJsonPath = undefined
+	}
+
+	if (!packageJsonPath) {
 		return () => false
 	}
 
-	if (!cachedMap.has(packageJsonDir)) {
-		const json = JSON.parse(readFileSync(join(packageJsonDir, 'package.json'), 'utf-8'))
+	if (!cachedMap.has(packageJsonPath)) {
+		const json = JSON.parse(readFileSync(packageJsonPath, 'utf-8'))
 		const libVersion = json.version
-		cachedMap.set(packageJsonDir, (version: string) => gte(libVersion, version))
+		cachedMap.set(packageJsonPath, (version: string) => gte(libVersion, version))
 	}
 
-	return cachedMap.get(packageJsonDir)!
+	return cachedMap.get(packageJsonPath)!
 }
 
 /**

@@ -4,11 +4,20 @@
  */
 
 import { fs, vol } from 'memfs'
+import { findPackageJSON } from 'node:module'
 import { beforeEach } from 'node:test'
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'
 import { clearCache, createLibVersionValidator } from './lib-version-parser.ts'
 
 vi.mock('node:fs', () => fs)
+vi.mock('node:module', async (importOriginal) => {
+	// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+	const original = await importOriginal<typeof import('node:module')>()
+	return {
+		...original,
+		findPackageJSON: vi.fn(),
+	}
+})
 
 describe('createLibVersionValidator', () => {
 	beforeAll(() => vol.fromNestedJSON({
@@ -27,11 +36,12 @@ describe('createLibVersionValidator', () => {
 	${'8.24.0'} | ${false}
 	${'9.0.0'}  | ${false}
 	`('returns false without nextcloud/vue in dependencies', ({ version, expected }) => {
+		vi.mocked(findPackageJSON).mockImplementation(() => {
+			throw new Error("Cannot find package '@nextcloud/vue' imported from /a/src/b.js", { cause: 'ERR_MODULE_NOT_FOUND' })
+		})
 		const fn = createLibVersionValidator({
 			cwd: '',
 			physicalFilename: '/a/src/b.js',
-		}, () => {
-			throw new Error('not found', { cause: 'ERR_MODULE_NOT_FOUND' })
 		})
 		expect(fn(version)).toBe(expected)
 	})
@@ -49,10 +59,11 @@ describe('createLibVersionValidator', () => {
 				src: {},
 			},
 		})
+		vi.mocked(findPackageJSON).mockReturnValue('/a/node_modules/@nextcloud/vue/package.json')
 		const fn = createLibVersionValidator({
 			cwd: '',
 			physicalFilename: '/a/src/b.js',
-		}, () => 'file:///a/node_modules/@nextcloud/vue/dist/index.js')
+		})
 		expect(fn('8.22.0')).toBe(true)
 		expect(fn('8.23.0')).toBe(true)
 		expect(fn('8.23.1')).toBe(true)
@@ -73,10 +84,11 @@ describe('createLibVersionValidator', () => {
 				src: {},
 			},
 		})
+		vi.mocked(findPackageJSON).mockReturnValue('/a/node_modules/@nextcloud/vue/package.json')
 		const fn = createLibVersionValidator({
 			cwd: '/a',
 			physicalFilename: 'src/b.js',
-		}, () => 'file:///a/node_modules/@nextcloud/vue/dist/index.js')
+		})
 
 		expect(fn('8.22.0')).toBe(true)
 		expect(fn('8.23.0')).toBe(true)
