@@ -4,8 +4,15 @@
 -->	
 # Changelog
 
-## [v9.0.0](https://github.com/nextcloud-libraries/eslint-config/tree/v9.0.0) (2026-06-26)
+## [v9.0.1](https://github.com/nextcloud-libraries/eslint-config/tree/v9.0.1) (2026-07-07)
+### Fixed
+* fix(vue): error on `vue/attributes-order` and `vue/order-in-components` instead of warn [\#1445](https://github.com/nextcloud-libraries/eslint-config/pull/1445) \([susnux](https://github.com/susnux)\)
+* fix: `no-deprecated-library-*` rules incorrectly behave for `nextcloud/vue` syntax [\#1452](https://github.com/nextcloud-libraries/eslint-config/pull/1452) \([Antreesy](https://github.com/Antreesy)\)
+* fix(no-deprecated-library-props): support win32 filesystem and different `@nextcloud/vue` directory structures [\#1454](https://github.com/nextcloud-libraries/eslint-config/pull/1454) \([ShGKme](https://github.com/ShGKme)\)
+* fix(no-deprecated-library-props): support camelCase attributes [\#1453](https://github.com/nextcloud-libraries/eslint-config/pull/1453) \([Antreesy](https://github.com/Antreesy)\)
+* fix: increase min. Node version to 22.14 [\#1455](https://github.com/nextcloud-libraries/eslint-config/pull/1455) \([susnux](https://github.com/susnux)\)
 
+## [v9.0.0](https://github.com/nextcloud-libraries/eslint-config/tree/v9.0.0) (2026-06-26)
 ### Breaking
 This package now is using ESLint v10 and requires ESLint flat configurations.
 Please refer to the README on how to adjust your configuration for flat config.
