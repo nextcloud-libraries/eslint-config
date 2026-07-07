@@ -49,7 +49,7 @@
     "eslint-config-flat-gitignore": "^2.3.0",
     "eslint-plugin-antfu": "^3.2.3",
     "eslint-plugin-jsdoc": "^63.0.12",
-    "eslint-plugin-perfectionist": "^5.9.1",
+    "eslint-plugin-perfectionist": "^5.10.0",
     "eslint-plugin-vue": "^10.9.2",
     "fast-xml-parser": "^5.9.3",
     "globals": "^17.7.0",
