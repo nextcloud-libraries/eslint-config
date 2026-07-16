@@ -94,6 +94,10 @@ describe('no-deprecated-library-props', () => {
 					code: '<template><NcButton :variant="isPrimary ? \'primary\' : \'tertiary\'">Hello</NcButton></template>',
 					filename: '/a/src/component.vue',
 				},
+				{
+					code: '<template><NcRadioGroup hide-label :value="v" /></template>',
+					filename: '/a/src/component.vue',
+				},
 			],
 			invalid: [
 				{
@@ -340,6 +344,28 @@ describe('no-deprecated-library-props', () => {
 					errors: [{ messageId: 'useModelValueInsteadValue' }],
 					output: '<template><NcTextField v-model="input" /></template>',
 				},
+				{
+					code: '<template><NcRadioGroup label-hidden :value="v" /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useHideLabelInstead' }],
+					output: '<template><NcRadioGroup hide-label :value="v" /></template>',
+				},
+				{
+					code: '<template><NcRadioGroup :label-hidden="cond" :value="v" /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useHideLabelInstead' }],
+					output: '<template><NcRadioGroup :hide-label="cond" :value="v" /></template>',
+				},
+				{
+					code: '<template><NcCheckboxRadioSwitch button-variant>Option</NcCheckboxRadioSwitch></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useNcRadioGroupInstead' }],
+				},
+				{
+					code: '<template><NcCheckboxRadioSwitch button-variant-grouped="continuous">Option</NcCheckboxRadioSwitch></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useNcRadioGroupInstead' }],
+				},
 			],
 		})
 	})
@@ -365,6 +391,10 @@ describe('no-deprecated-library-props', () => {
 				// Same prop name on a plain element must not be flagged by this rule
 				{
 					code: '<template><input formatter="x" /></template>',
+					filename: '/a/src/component.vue',
+				},
+				{
+					code: '<template><NcRadioGroup hideLabel :value="v" /></template>',
 					filename: '/a/src/component.vue',
 				},
 			],
@@ -416,6 +446,57 @@ describe('no-deprecated-library-props', () => {
 					filename: '/a/src/component.vue',
 					errors: [{ messageId: 'useArrowEndInstead' }],
 					output: '<template><NcTextField trailingButtonIcon="arrowEnd" /></template>',
+				},
+				// The fixer emits kebab-case props; `vue/attribute-hyphenation` will change it on second pass
+				{
+					code: '<template><NcTextField :value="input" /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useModelValueInsteadValue' }],
+					output: '<template><NcTextField :model-value="input" /></template>',
+				},
+				{
+					code: '<template><NcRadioGroup labelHidden :value="v" /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useHideLabelInstead' }],
+					output: '<template><NcRadioGroup hide-label :value="v" /></template>',
+				},
+				{
+					code: '<template><NcRadioGroup :labelHidden="cond" :value="v" /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useHideLabelInstead' }],
+					output: '<template><NcRadioGroup :hide-label="cond" :value="v" /></template>',
+				},
+				{
+					code: '<template><NcCheckboxRadioSwitch buttonVariant>Option</NcCheckboxRadioSwitch></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useNcRadioGroupInstead' }],
+				},
+				{
+					code: '<template><NcCheckboxRadioSwitch :buttonVariantGrouped="grouped">Option</NcCheckboxRadioSwitch></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useNcRadioGroupInstead' }],
+				},
+				{
+					code: '<template><NcAutoCompleteResult title="Alice" /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useLabelInstead' }],
+					output: '<template><NcAutoCompleteResult label="Alice" /></template>',
+				},
+				{
+					code: '<template><NcMentionBubble :title="name" /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'useLabelInstead' }],
+					output: '<template><NcMentionBubble :label="name" /></template>',
+				},
+				{
+					code: '<template><NcAppSettingsDialog legacy :open="open" name="Settings" /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'removeLegacy' }],
+				},
+				{
+					code: '<template><NcAppSettingsDialog :legacy="true" :open="open" name="Settings" /></template>',
+					filename: '/a/src/component.vue',
+					errors: [{ messageId: 'removeLegacy' }],
 				},
 			],
 		})
