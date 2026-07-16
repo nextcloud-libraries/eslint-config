@@ -85,21 +85,21 @@ export default {
 	create(context) {
 		const versionSatisfies = createLibVersionValidator(context)
 		const isVue3Valid = versionSatisfies('9.0.0') // #6651
-		const isAriaHiddenValid = versionSatisfies('8.2.0') // #4835
-		const isModelValueValid = versionSatisfies('8.20.0') // #6172
-		const isDisableSwipeValid = versionSatisfies('8.23.0') // #6452
-		const isVariantTypeValid = versionSatisfies('8.24.0') // #6472
-		const isDefaultBooleanFalseValid = versionSatisfies('8.24.0') // #6656
-		const isDateTimePickerFormatValid = versionSatisfies('8.25.0') // #6738
-		const isNcSelectKeepOpenValid = versionSatisfies('8.25.0') // #6791
-		const isNcPopoverNoFocusTrapValid = versionSatisfies('8.26.0') // #6808
-		const isNcSelectUsersValid = versionSatisfies('8.25.0') // #6791
-		const isNcTextFieldArrowEndValid = versionSatisfies('8.28.0') // #7002
-		const isCloseButtonOutsideValid = versionSatisfies('8.32.0') // #7553
-		const isTitleLabelValid = versionSatisfies('8.6.2') // #5215
-		const isNcRadioGroupValid = versionSatisfies('8.31.0') // #7492
-		const isHideLabelValid = versionSatisfies('8.34.0') // #7772
-		const isAppSettingsLegacyValid = versionSatisfies('8.34.0') // #7802
+		const isAriaHiddenValid = versionSatisfies('8.2.0') // #4835 (stable8)
+		const isModelValueValid = versionSatisfies('8.20.0') // #6172 (stable8)
+		const isDisableSwipeValid = versionSatisfies('8.23.0', '9.0.0') // #6452 (stable8) / #6509 (main)
+		const isVariantTypeValid = versionSatisfies('8.24.0', '9.0.0') // #6472 (stable8) / #6595 (main)
+		const isDefaultBooleanFalseValid = versionSatisfies('8.24.0', '9.0.0') // #6656 (stable8) / #6653 (main)
+		const isDateTimePickerFormatValid = versionSatisfies('8.25.0', '9.0.0') // #6738 (stable8) / #6651 (main)
+		const isNcSelectKeepOpenValid = versionSatisfies('8.25.0', '9.0.0') // #6791 (stable8) / #6732 (main)
+		const isNcPopoverNoFocusTrapValid = versionSatisfies('8.26.0', '9.0.0') // #6808 (stable8) / #6807 (main)
+		const isNcSelectUsersValid = versionSatisfies('8.25.0', '9.0.0') // #6791 (stable8) / #6732 (main)
+		const isNcTextFieldArrowEndValid = versionSatisfies('8.28.0', '9.0.0') // #7002 (stable8) / #6993 (main)
+		const isCloseButtonOutsideValid = versionSatisfies('8.32.0', '9.0.0') // #7553 (stable8) / #6719 (main)
+		const isTitleLabelValid = versionSatisfies('8.6.2', '9.0.0') // #5215 (stable8)
+		const isNcRadioGroupValid = versionSatisfies('8.31.0', '9.0.0') // #7492 (stable8) / #7490 (main)
+		const isHideLabelValid = versionSatisfies('8.34.0', '9.2.0') // #7772 (stable8) / #7771 (main)
+		const isAppSettingsLegacyValid = versionSatisfies('8.34.0', '9.2.0') // #7802 (stable8) / #7797 (main)
 
 		const legacyTypes = [
 			'primary',
