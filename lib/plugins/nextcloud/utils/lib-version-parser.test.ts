@@ -96,4 +96,40 @@ describe('createLibVersionValidator', () => {
 		expect(fn('8.24.0')).toBe(false)
 		expect(fn('9.0.0')).toBe(false)
 	})
+
+	it('matches the threshold for the installed major (9.x)', () => {
+		vol.fromNestedJSON({
+			'/b': {
+				node_modules: { '@nextcloud': { vue: { 'package.json': '{"version": "9.1.0"}' } } },
+				src: {},
+			},
+		})
+		vi.mocked(findPackageJSON).mockReturnValue('/b/node_modules/@nextcloud/vue/package.json')
+		const fn = createLibVersionValidator({ cwd: '', physicalFilename: '/b/src/b.js' })
+
+		// 9.1.0 is compared against the 9.x threshold, not the backported 8.x one
+		expect(fn('8.34.0', '9.2.0')).toBe(false) // deprecated on main only from 9.2.0
+		expect(fn('8.34.0', '9.0.0')).toBe(true)
+		expect(fn('9.1.0')).toBe(true)
+		expect(fn('9.2.0')).toBe(false)
+		// a lone 8.x threshold still applies to a 9.x install (feature removed in v9)
+		expect(fn('8.24.0')).toBe(true)
+		// a threshold from a newer major than installed is never satisfied
+		expect(fn('10.0.0')).toBe(false)
+	})
+
+	it('matches the threshold for the installed major (8.x)', () => {
+		vol.fromNestedJSON({
+			'/c': {
+				node_modules: { '@nextcloud': { vue: { 'package.json': '{"version": "8.35.0"}' } } },
+				src: {},
+			},
+		})
+		vi.mocked(findPackageJSON).mockReturnValue('/c/node_modules/@nextcloud/vue/package.json')
+		const fn = createLibVersionValidator({ cwd: '', physicalFilename: '/c/src/b.js' })
+
+		// 8.35.0 is compared against the 8.x threshold, ignoring the 9.x one
+		expect(fn('8.34.0', '9.2.0')).toBe(true)
+		expect(fn('8.36.0', '9.0.0')).toBe(false)
+	})
 })
