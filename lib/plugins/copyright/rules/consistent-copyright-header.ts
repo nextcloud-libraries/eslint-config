@@ -27,7 +27,7 @@ export default {
 				const comments = sourceCode.getAllComments()
 
 				// Only check only the very first block comment
-				if (comments.length === 0 || comments[0].type !== 'Block' || comments[0].range[0] !== 0) {
+				if (comments.length === 0 || comments[0].type !== 'Block' || comments[0].range?.[0] !== 0) {
 					return
 				}
 
@@ -48,7 +48,7 @@ export default {
 						data: { format: commentStart },
 						fix(fixer) {
 							return fixer.replaceTextRange(
-								[comment.range[0], comment.range[0] + commentStart.length],
+								[comment.range![0], comment.range![0] + commentStart.length],
 								'/*!',
 							)
 						},
@@ -56,7 +56,7 @@ export default {
 				}
 
 				// Check for empty line after copyright comment
-				const commentEnd = comment.range[1]
+				const commentEnd = comment.range![1]
 				const textAfterComment = sourceCode.getText().slice(commentEnd, commentEnd + 2)
 				if (textAfterComment !== '\n\n') {
 					context.report({
