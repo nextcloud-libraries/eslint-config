@@ -9,9 +9,9 @@ import { packageVersion } from '../../version.ts'
 import { rules } from './rules/index.ts'
 
 export default {
-	rules,
 	meta: {
-		name: '@nextcloud/eslint-plugin',
+		name: '@nextcloud/copyright-plugin',
 		version: packageVersion,
 	},
-} as ESLint.Plugin
+	rules,
+} satisfies ESLint.Plugin
