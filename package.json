@@ -46,7 +46,7 @@
     "@eslint/js": "^10.0.1",
     "@eslint/json": "^2.0.1",
     "@stylistic/eslint-plugin": "^5.10.0",
-    "eslint-config-flat-gitignore": "^2.3.0",
+    "eslint-config-flat-gitignore": "^2.4.0",
     "eslint-plugin-antfu": "^3.2.3",
     "eslint-plugin-jsdoc": "^64.2.1",
     "eslint-plugin-perfectionist": "^5.10.1",
