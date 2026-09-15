@@ -2,6 +2,7 @@
  * SPDX-FileCopyrightText: Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: CC0-1.0
  */
+
 /* eslint-disable no-console */
 
 import { readFile, writeFile } from 'node:fs/promises'
