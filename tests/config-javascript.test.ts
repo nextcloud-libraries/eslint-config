@@ -1,7 +1,8 @@
-/**
+/*!
  * SPDX-FileCopyrightText: 2023 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
+
 import type { Linter } from 'eslint'
 
 import { ESLint } from 'eslint'
@@ -34,7 +35,7 @@ test('some basic issues should fail', async () => {
 	expect(results).toHaveIssue('@stylistic/semi')
 	expect(results).toHaveIssue({
 		ruleId: 'no-console',
-		line: 7,
+		line: 8,
 	})
 })
 
