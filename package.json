@@ -50,7 +50,7 @@
     "eslint-plugin-antfu": "^3.3.1",
     "eslint-plugin-jsdoc": "^65.4.5",
     "eslint-plugin-perfectionist": "^5.13.0",
-    "eslint-plugin-vue": "^10.12.0",
+    "eslint-plugin-vue": "^10.12.1",
     "fast-xml-parser": "^5.12.0",
     "globals": "^17.14.0",
     "semver": "^7.8.6",
