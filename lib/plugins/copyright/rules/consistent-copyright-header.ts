@@ -24,26 +24,25 @@ export default {
 
 		return {
 			Program(node) {
-				const comments = sourceCode.getAllComments()
+				// Only consider block comments before any code (e.g. after a shebang or eslint directives)
+				const firstToken = sourceCode.getFirstToken(node)
+				const comment = sourceCode.getAllComments()
+					.filter((comment) => comment.type === 'Block')
+					.filter((comment) => !firstToken || comment.range![1] <= firstToken.range[0])
+					// Only check if it's actually a copyright comment
+					.find((comment) => comment.value.toLowerCase().includes('copyright'))
 
-				// Only check only the very first block comment
-				if (comments.length === 0 || comments[0].type !== 'Block' || comments[0].range?.[0] !== 0) {
+				if (!comment) {
 					return
 				}
 
-				// Only check if it's actually a copyright comment
-				if (!comments[0].value.toLowerCase().includes('copyright')) {
-					return
-				}
-
-				const comment = comments[0]
 				const commentText = sourceCode.getText(comment as unknown as Rule.Node)
 				const commentStart = commentText.match(/^\/\*[^\s]*/)![0]
 
 				// Check for correct /*! comment format
 				if (commentStart !== '/*!') {
 					context.report({
-						node,
+						loc: comment.loc!,
 						messageId: 'wrongCommentFormat',
 						data: { format: commentStart },
 						fix(fixer) {
@@ -60,7 +59,7 @@ export default {
 				const textAfterComment = sourceCode.getText().slice(commentEnd, commentEnd + 2)
 				if (textAfterComment !== '\n\n') {
 					context.report({
-						node,
+						loc: comment.loc!,
 						messageId: 'missingEmptyLine',
 						fix(fixer) {
 							return fixer.insertTextAfterRange([commentEnd, commentEnd], '\n')

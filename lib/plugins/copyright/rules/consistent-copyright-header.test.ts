@@ -57,18 +57,151 @@ console.log('hello')`,
 		})
 	})
 
-	it('should skip if the first comment is not at the beginning', () => {
+	it('should skip copyright comments that come after code', () => {
 		ruleTester.run('consistent-copyright-header', rule, {
 			valid: [
 				{
 					code: `console.log('hello')
-/*!
+/**
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */`,
 				},
 			],
 			invalid: [],
+		})
+	})
+
+	it('should pass with correct copyright header after a shebang', () => {
+		ruleTester.run('consistent-copyright-header', rule, {
+			valid: [
+				{
+					code: `#!/usr/bin/env node
+/*!
+ * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+
+console.log('hello')`,
+				},
+			],
+			invalid: [],
+		})
+	})
+
+	it('should pass with correct copyright header after other leading comments', () => {
+		ruleTester.run('consistent-copyright-header', rule, {
+			valid: [
+				{
+					code: `/* eslint-disable no-console */
+/*!
+ * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+
+console.log('hello')`,
+				},
+			],
+			invalid: [],
+		})
+	})
+
+	it('should fix the copyright header format after a shebang', () => {
+		ruleTester.run('consistent-copyright-header', rule, {
+			valid: [],
+			invalid: [
+				{
+					code: `#!/usr/bin/env node
+/**
+ * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+
+console.log('hello')`,
+					errors: [{ messageId: 'wrongCommentFormat', data: { format: '/**' } }],
+					output: `#!/usr/bin/env node
+/*!
+ * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+
+console.log('hello')`,
+				},
+			],
+		})
+	})
+
+	it('should fix the copyright header format after other leading block comments', () => {
+		ruleTester.run('consistent-copyright-header', rule, {
+			valid: [],
+			invalid: [
+				{
+					code: `/* eslint-disable no-console */
+/**
+ * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+
+console.log('hello')`,
+					errors: [{ messageId: 'wrongCommentFormat', data: { format: '/**' } }],
+					output: `/* eslint-disable no-console */
+/*!
+ * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+
+console.log('hello')`,
+				},
+			],
+		})
+	})
+
+	it('should fix the copyright header format after leading line comments', () => {
+		ruleTester.run('consistent-copyright-header', rule, {
+			valid: [],
+			invalid: [
+				{
+					code: `// @ts-nocheck
+/*
+ * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+
+console.log('hello')`,
+					errors: [{ messageId: 'wrongCommentFormat', data: { format: '/*' } }],
+					output: `// @ts-nocheck
+/*!
+ * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+
+console.log('hello')`,
+				},
+			],
+		})
+	})
+
+	it('should add an empty line after a copyright header that follows a shebang', () => {
+		ruleTester.run('consistent-copyright-header', rule, {
+			valid: [],
+			invalid: [
+				{
+					code: `#!/usr/bin/env node
+/*!
+ * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+console.log('hello')`,
+					errors: [{ messageId: 'missingEmptyLine' }],
+					output: `#!/usr/bin/env node
+/*!
+ * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+
+console.log('hello')`,
+				},
+			],
 		})
 	})
 
