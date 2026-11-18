@@ -4,6 +4,18 @@
 -->	
 # Changelog
 
+## [v9.1.0](https://github.com/nextcloud-libraries/eslint-config/tree/v9.1.0) (2026-11-18)
+### 🚀 Enhancements
+* fix: add deprecation rule for rest of migrated props [\#1472](https://github.com/nextcloud-libraries/eslint-config/pull/1472) \([Antreesy](https://github.com/Antreesy)\)
+* feat: add `@nextcloud/copyright` plugin with `consistent-copyright` rule [\#1501](https://github.com/nextcloud-libraries/eslint-config/pull/1501) \([susnux](https://github.com/susnux)\)
+
+### 🐛 Fixed bugs
+* fix: support multiple threshold versions for deprecated rules [\#1473](https://github.com/nextcloud-libraries/eslint-config/pull/1473) \([Antreesy](https://github.com/Antreesy)\)
+
+### Other Changes
+* ci: update workflows from organization [\#1579](https://github.com/nextcloud-libraries/eslint-config/pull/1579) \([susnux](https://github.com/susnux)\)
+
+
 ## [v9.0.1](https://github.com/nextcloud-libraries/eslint-config/tree/v9.0.1) (2026-07-07)
 ### Fixed
 * fix(vue): error on `vue/attributes-order` and `vue/order-in-components` instead of warn [\#1445](https://github.com/nextcloud-libraries/eslint-config/pull/1445) \([susnux](https://github.com/susnux)\)
