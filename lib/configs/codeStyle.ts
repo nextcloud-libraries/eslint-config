@@ -101,7 +101,7 @@ export function codeStyle(options: ConfigOptions): Linter.Config[] {
 				'@stylistic/object-curly-newline': 'off',
 				'@stylistic/object-curly-spacing': 'off',
 				'@stylistic/object-property-newline': 'off',
-				'@stylistic/exp-list-style': ['error', {
+				'@stylistic/list-style': ['error', {
 					singleLine: {
 						spacing: 'never',
 					},
