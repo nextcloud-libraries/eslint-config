@@ -130,16 +130,6 @@ export function codeStyle(options: ConfigOptions): Linter.Config[] {
 						asyncArrow: 'always',
 					},
 				],
-				// Enforce consistent newlines in function parameters, if one parameter is separated by newline, than all should
-				'@stylistic/function-call-argument-newline': [
-					'error',
-					'consistent',
-				],
-				// If parameters are separated by newlines, then the first one should also be separated by a newline from the parenthesis
-				'@stylistic/function-paren-newline': [
-					'error',
-					'multiline',
-				],
 				// Generator functions should have the * on the function keyword as this defines the type of function. "function* generator()"
 				'@stylistic/generator-star-spacing': [
 					'error',
