@@ -82,6 +82,7 @@ export function javascript(options: ConfigOptions): Linter.Config[] {
 						rules: {
 							'@nextcloud/no-deprecated-globals': ['warn'],
 							'@nextcloud/no-removed-globals': ['error'],
+							'@nextcloud/no-emit-and-broadcast': ['error'],
 						},
 						files: [
 							...GLOB_FILES_JAVASCRIPT,
