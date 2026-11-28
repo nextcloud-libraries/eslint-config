@@ -155,6 +155,10 @@ Rules:
 - `l10n-non-breaking-space`
   - Enforce non-breaking spaces before ellipsis
   - Included as `error` level in recommended configuration
+- `no-emit-and-broadcast`
+  - Disallow `emit()` for an event that the same function also sends with `broadcast()` from `@nextcloud/event-bus`, `broadcast()` already emits in the current tab
+  - Only static event names are checked
+  - Included as `error` level in recommended configuration for apps
 
 #### Adding custom overrides
 

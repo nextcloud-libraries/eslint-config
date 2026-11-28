@@ -10,6 +10,7 @@ import l10nNonBreakingSpace from './l10n-non-breaking-space.ts'
 import noDeprecatedGlobals from './no-deprecated-globals.ts'
 import noDeprecatedLibraryExports from './no-deprecated-library-exports.ts'
 import noDeprecatedLibraryProps from './no-deprecated-library-props.ts'
+import noEmitAndBroadcast from './no-emit-and-broadcast.ts'
 import noRemovedGlobals from './no-removed-globals.ts'
 
 export const rules: Record<string, Rule.RuleModule> = {
@@ -19,4 +20,5 @@ export const rules: Record<string, Rule.RuleModule> = {
 	'no-removed-globals': noRemovedGlobals,
 	'no-deprecated-library-exports': noDeprecatedLibraryExports,
 	'no-deprecated-library-props': noDeprecatedLibraryProps,
+	'no-emit-and-broadcast': noEmitAndBroadcast,
 }
